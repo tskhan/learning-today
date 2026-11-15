@@ -1,3 +1,6 @@
+# learning-today.com robots.txt
+# Everything may be crawled except the student websites page, which lists students' sites and
+# their automated ratings and is kept out of search results.
 User-agent: *
 Allow: /
 Disallow: /student-websites.html
