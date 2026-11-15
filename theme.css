@@ -1,8 +1,14 @@
 /* ==========================================================================
-   learning-today.com shared theme: paper and ink, one vermilion accent,
-   green for student work. Loaded LAST on every page so it wins over the
-   page's own tokens. Selector :root:not([data-never]) matches the
-   specificity of the pages' own dark-mode blocks.
+   theme.css: the shared design theme for learning-today.com.
+   Used by index.html, admin-links.html and student-websites.html.
+
+   What is in here: colour tokens (light and dark), the three fonts, the site
+   header and its popover menu, buttons, the footer, and the sticky offsets.
+   Palette: paper and ink, one vermilion accent, green for student work.
+
+   Loaded LAST on every page so it wins over the page's own tokens. The selector
+   :root:not([data-never]) matches the specificity of the pages' own dark-mode
+   blocks. Change a colour here and it changes on all three pages.
    ========================================================================== */
 :root:not([data-never]) {
   /* raw light and dark values */
