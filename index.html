@@ -81,8 +81,32 @@ section { padding-block: clamp(3.5rem, 8vw, 6rem); }
 .doc p { color: var(--mute); }
 .doc .btn { align-self: flex-start; margin-block-start: auto; }
 
+/* core documents */
+.feature { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; padding-block: 2.2rem; border-block-end: 1px solid var(--line); }
+.feature.flip { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); }
+.feature.flip .shot { order: 2; }
+.shot { display: block; overflow: hidden; border-radius: 16px; border: 1.5px solid var(--ink); background: var(--paper2); box-shadow: 0 22px 40px -26px rgba(0, 0, 0, 0.55); transition: transform 0.2s; }
+.shot:hover { transform: translateY(-2px); }
+.shot img { display: block; inline-size: 100%; block-size: auto; transition: transform 0.35s; }
+.shot:hover img { transform: scale(1.02); }
+.doc-body h3 { font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 800; line-height: 1.05; margin-block: 0.4rem 0.9rem; }
+.doc-body > p:not(.mono) { color: var(--mute); max-inline-size: 56ch; }
+.chips { list-style: none; margin: 1.1rem 0 1.4rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chips li { font: 500 0.78rem var(--mono); letter-spacing: 0.04em; border: 1.5px solid var(--ink); border-radius: 99px; padding: 0.3rem 0.8rem; }
+.btn.sm { min-block-size: 44px; padding: 0.5rem 1.2rem; font-size: 0.95rem; }
+.group-title { font-size: 1.7rem; font-weight: 800; margin-block: 3rem 1.4rem; }
+.class-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.6rem; margin-block-end: 1.6rem; }
+.mini-doc { display: flex; flex-direction: column; gap: 0.6rem; }
+.mini-doc .shot { margin-block-end: 0.6rem; }
+.mini-doc h3 { font-size: 1.4rem; font-weight: 800; line-height: 1.1; }
+.mini-doc p:not(.mono) { color: var(--mute); font-size: 0.97rem; }
+.mini-doc .btn { align-self: flex-start; margin-block-start: auto; }
+
 /* narrow */
 @media (max-width: 860px) {
+  .feature, .feature.flip { grid-template-columns: 1fr; }
+  .feature.flip .shot { order: 0; }
+  .class-grid { grid-template-columns: 1fr; }
   .hero-grid, .section-head { grid-template-columns: 1fr; }
   .step { grid-template-columns: 3.2rem 1fr; }
   .step::before { font-size: 2.2rem; grid-row: span 2; }
@@ -115,6 +139,7 @@ section { padding-block: clamp(3.5rem, 8vw, 6rem); }
         <span>Menu</span>
       </button>
       <ul id="site-menu" class="site-menu" popover="auto">
+        <li><a href="#core">Core documents</a></li>
         <li><a href="#learn">Learn Claude</a></li>
         <li><a href="#batch-91">PIAIC Batch 91</a></li>
         <li><a href="admin-links.html">Admin links</a></li>
@@ -145,12 +170,87 @@ section { padding-block: clamp(3.5rem, 8vw, 6rem); }
           <li><time datetime="2026-10-25">25 Oct</time><span>Chapter 1 and its lab: from chatbots to AI workers.</span></li>
           <li><time datetime="2026-10-28">28 Oct</time><span>Claude Desktop becomes the class tool.</span></li>
           <li><time datetime="2026-11-02">2 Nov</time><span>Class Quest, a game built on Chapter 1.</span></li>
-          <li><time datetime="2026-11-08">8 Nov</time><span>General agents on the web: research, search and Cowork.</span></li>
+          <li><time datetime="2026-11-08">8 Nov</time><span>Claude and ChatGPT 2.0, the practical: handing AI a whole job.</span></li>
           <li><time datetime="2026-11-15">15 Nov</time><span>Coding agents: Claude Code and OpenCode setup.</span></li>
         </ol>
       </aside>
     </div>
   </div>
+
+  <section id="core">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Read these first</h2>
+        <p>Two documents explain the course: the main coursebook and the beginner slides from the first class. Three more are what the teachers use in class every week.</p>
+      </div>
+
+      <article class="feature">
+        <a class="shot" href="https://agentfactory2.panaversity.org/" target="_blank" rel="noopener">
+          <img src="assets/previews/coursebook.jpg" width="960" height="582" loading="lazy" alt="Home page of The AI Agent Factory: the book on a sunlit desk beside the headline Education for the AI Worker Economy">
+        </a>
+        <div class="doc-body">
+          <p class="mono">Main coursebook</p>
+          <h3>The AI Agent Factory, second edition</h3>
+          <p>The book the whole course follows. It has one running example, an accounts-payable AI Worker at a small company, a lab in every chapter and a free AI tutor. Pick a reading route: everyday professional (7 to 11 hours), builder, domain expert or leader. New to AI? Read Part 0 first, then Chapter 1, From Chatbots to AI Workers.</p>
+          <ul class="chips"><li>Free to read</li><li>A lab in every chapter</li><li>Zia Tutor AI included</li></ul>
+          <div class="actions">
+            <a class="btn solid sm" href="https://agentfactory2.panaversity.org/" target="_blank" rel="noopener">Open the book</a>
+            <a class="btn ghost sm" href="https://agentfactory2.panaversity.org/ai-worker-paradigm/from-chatbots-to-ai-workers/overview/" target="_blank" rel="noopener">Chapter 1</a>
+            <a class="btn ghost sm" href="https://agentfactory2.panaversity.org/ai-worker-paradigm/from-chatbots-to-ai-workers/lab/" target="_blank" rel="noopener">Lab 1</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="feature flip">
+        <a class="shot" href="https://docs.google.com/presentation/d/118LHEYY9VezecFmWQIVnVjbVDvseOJMxsZUe9W5oWwg/edit?usp=sharing" target="_blank" rel="noopener">
+          <img src="assets/previews/intro-slides.jpg" width="960" height="540" loading="lazy" alt="First slide of the introductory session: Welcome to Agentic AI Engineering, for beginners with no prior coding">
+        </a>
+        <div class="doc-body">
+          <p class="mono">For beginners</p>
+          <h3>Agentic AI Engineering: introductory session</h3>
+          <p>The first class, in plain language. Part 1 explains what AI is, how LLMs work and why AI can be confidently wrong. Part 2 explains agents (an LLM plus tools plus a loop), when not to hand a job to one, and the 10-80-10 rhythm. It ends with Assignment 1, a one-page explainer.</p>
+          <ul class="chips"><li>37 slides</li><li>No coding needed</li><li>Assignment 1 inside</li></ul>
+          <div class="actions">
+            <a class="btn solid sm" href="https://docs.google.com/presentation/d/118LHEYY9VezecFmWQIVnVjbVDvseOJMxsZUe9W5oWwg/edit?usp=sharing" target="_blank" rel="noopener">Open the slides</a>
+            <a class="btn ghost sm" href="https://docs.google.com/presentation/d/118LHEYY9VezecFmWQIVnVjbVDvseOJMxsZUe9W5oWwg/export/pdf" rel="noopener">Download PDF</a>
+            <a class="btn ghost sm" href="https://docs.google.com/presentation/d/118LHEYY9VezecFmWQIVnVjbVDvseOJMxsZUe9W5oWwg/export/pptx" rel="noopener">Download PowerPoint</a>
+          </div>
+        </div>
+      </article>
+
+      <h3 class="group-title">Used to teach in class</h3>
+      <div class="class-grid">
+        <article class="mini-doc">
+          <a class="shot" href="https://claude.ai/artifact/HjZE9nV8mndGoQ27uruEea?sk=e3GCNOAtwTOfj25IwDJLtQ" target="_blank" rel="noopener">
+            <img src="assets/previews/class-quest.jpg" width="960" height="600" loading="lazy" alt="AI Worker Quest: a game with a pixel robot guide called Bitto, teaching Chapter 1 by playing">
+          </a>
+          <p class="mono">Chapter 1 game</p>
+          <h3>AI Worker Quest</h3>
+          <p>A game that teaches Chapter 1 in easy words. Eight levels, each hiding a secret code, then a 10-question final quiz. Ranks run from Naya Musafir to AI Ustaad.</p>
+          <a class="btn solid sm" href="https://claude.ai/artifact/HjZE9nV8mndGoQ27uruEea?sk=e3GCNOAtwTOfj25IwDJLtQ" target="_blank" rel="noopener">Play the Quest</a>
+        </article>
+        <article class="mini-doc">
+          <a class="shot" href="https://claude.ai/artifact/77bKtX6VwqtNxNvx39wAVy?sk=DzBLtP6Nli-szRNlP3bJbg" target="_blank" rel="noopener">
+            <img src="assets/previews/claude-2-practical.jpg" width="960" height="600" loading="lazy" alt="Title slide of Claude and ChatGPT 2.0, the practical class: from download to handing AI a whole job">
+          </a>
+          <p class="mono">Class slides, 8 Nov</p>
+          <h3>Claude and ChatGPT 2.0: the practical</h3>
+          <p>23 slides from downloading Claude to handing AI a whole job. Write a brief, let the AI work on your files, check the result. Pick a practice lab: Brightline's payment run or the Big Shaadi payment day.</p>
+          <a class="btn solid sm" href="https://claude.ai/artifact/77bKtX6VwqtNxNvx39wAVy?sk=DzBLtP6Nli-szRNlP3bJbg" target="_blank" rel="noopener">Open the slides</a>
+        </article>
+        <article class="mini-doc">
+          <a class="shot" href="https://claude.ai/artifact/VoK6WtACCqGsijNXs4SS1K?sk=tYgJe9077QHkcGowqUkmTA" target="_blank" rel="noopener">
+            <img src="assets/previews/coding-agents-practical.jpg" width="960" height="600" loading="lazy" alt="Title slide: Build a website with a coding agent, showing a terminal running OpenCode beside the finished page">
+          </a>
+          <p class="mono">Class slides, 15 Nov</p>
+          <h3>Build a website with a coding agent</h3>
+          <p>20 slides on moving the AI into a folder on your own computer. Install Node.js, pick Claude Code or OpenCode, install it with npm, then give it one brief and open the website it builds.</p>
+          <a class="btn solid sm" href="https://claude.ai/artifact/VoK6WtACCqGsijNXs4SS1K?sk=tYgJe9077QHkcGowqUkmTA" target="_blank" rel="noopener">Open the slides</a>
+        </article>
+      </div>
+      <p class="note">The class slides are interactive pages made with Claude. For downloads of the files the admins shared, see the <a href="admin-links.html">admin links</a>.</p>
+    </div>
+  </section>
 
   <section id="learn">
     <div class="wrap">
