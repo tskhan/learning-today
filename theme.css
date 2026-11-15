@@ -1,0 +1,139 @@
+/* ==========================================================================
+   learning-today.com shared theme: paper and ink, one vermilion accent,
+   green for student work. Loaded LAST on every page so it wins over the
+   page's own tokens. Selector :root:not([data-never]) matches the
+   specificity of the pages' own dark-mode blocks.
+   ========================================================================== */
+:root:not([data-never]) {
+  /* raw light and dark values */
+  --paper-l: #f5f1e8;   --paper-d: #16120e;
+  --paper2-l: #ebe4d4;  --paper2-d: #211b14;
+  --card-l: #fbf8f1;    --card-d: #1d1711;
+  --ink-l: #1b1612;     --ink-d: #f2ece0;
+  --mute-l: #6a5f52;    --mute-d: #ab9f8d;
+  --line-l: #d9d0bd;    --line-d: #3a3226;
+  --hot-l: #b3390b;     --hot-d: #ff7a55;
+  --onhot-l: #ffffff;   --onhot-d: #16120e;
+  --hotbg-l: #f8e1d6;   --hotbg-d: #2e1810;
+  --green-l: #1f6f50;   --green-d: #5fd39b;
+  --greenbg-l: #dcebe2; --greenbg-d: #16261e;
+
+  /* resolved tokens: light first */
+  --paper: var(--paper-l); --paper2: var(--paper2-l); --card: var(--card-l); --ink: var(--ink-l);
+  --mute: var(--mute-l); --line: var(--line-l); --hot: var(--hot-l); --onhot: var(--onhot-l);
+  --hotbg: var(--hotbg-l); --green: var(--green-l); --greenbg: var(--greenbg-l);
+
+  /* fallback for browsers without light-dark() */
+  @media (prefers-color-scheme: dark) {
+    --paper: var(--paper-d); --paper2: var(--paper2-d); --card: var(--card-d); --ink: var(--ink-d);
+    --mute: var(--mute-d); --line: var(--line-d); --hot: var(--hot-d); --onhot: var(--onhot-d);
+    --hotbg: var(--hotbg-d); --green: var(--green-d); --greenbg: var(--greenbg-d);
+  }
+  @supports (color: light-dark(white, black)) {
+    --paper: light-dark(var(--paper-l), var(--paper-d)); --paper2: light-dark(var(--paper2-l), var(--paper2-d));
+    --card: light-dark(var(--card-l), var(--card-d)); --ink: light-dark(var(--ink-l), var(--ink-d));
+    --mute: light-dark(var(--mute-l), var(--mute-d)); --line: light-dark(var(--line-l), var(--line-d));
+    --hot: light-dark(var(--hot-l), var(--hot-d)); --onhot: light-dark(var(--onhot-l), var(--onhot-d));
+    --hotbg: light-dark(var(--hotbg-l), var(--hotbg-d)); --green: light-dark(var(--green-l), var(--green-d));
+    --greenbg: light-dark(var(--greenbg-l), var(--greenbg-d));
+  }
+
+  /* the same tokens under the names each page already uses */
+  --bg: var(--paper);                    /* student websites */
+  --acc: var(--green); --accbg: var(--greenbg);
+  --rule: var(--ink); --soft: var(--line);   /* admin links */
+  --task: var(--hot); --taskbg: var(--hotbg);
+  --impbg: var(--hotbg);
+
+  color-scheme: light dark;
+  accent-color: var(--hot);
+  scrollbar-color: var(--mute) var(--paper);
+
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "DM Mono", ui-monospace, Consolas, monospace;
+  --wrap: min(1180px, 100% - 2.5rem);
+  --header-h: 4.25rem;
+}
+
+/* ---- shared page behaviour ---- */
+html { background: var(--paper); scroll-padding-block-start: calc(var(--header-h) + 1rem); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { background: var(--paper); color: var(--ink); }
+::selection { background: var(--hot); color: var(--onhot); }
+:focus-visible { outline: 3px solid var(--hot); outline-offset: 3px; border-radius: 6px; }
+
+/* secondary sticky bars sit under the site header */
+.topnav, .chips { top: var(--header-h); }
+section, .controls { scroll-margin-block-start: calc(var(--header-h) + 3.5rem); }
+
+/* ---- skip link ---- */
+.skip { position: absolute; inset-inline-start: 0.75rem; inset-block-start: -4rem; z-index: 60; background: var(--ink); color: var(--paper); padding: 0.7rem 1rem; border-radius: 8px; }
+.skip:focus { inset-block-start: 0.75rem; }
+
+/* ---- header and nav: one list, a popover when the links do not fit ---- */
+.site-header {
+  position: sticky; inset-block-start: 0; z-index: 50;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(10px); border-block-end: 1px solid var(--line);
+  font-family: var(--sans);
+}
+.header-inner { inline-size: var(--wrap); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.7rem; }
+.header-inner > * { flex-shrink: 0; white-space: nowrap; }
+.site-logo { font: 800 1.35rem var(--serif); text-decoration: none; letter-spacing: -0.02em; color: var(--ink); }
+.site-logo span { color: var(--hot); }
+.menu-button {
+  anchor-name: --menu-button; display: inline-flex; align-items: center; gap: 0.5rem;
+  font: 600 0.95rem var(--sans); color: var(--ink); background: transparent;
+  border: 1.5px solid var(--ink); border-radius: 99px; padding: 0.6rem 1.1rem; min-block-size: 44px; cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+.menu-button:hover { background: var(--paper2); transform: translateY(-1px); }
+.menu-button:active { transform: none; }
+.menu-button svg { inline-size: 1.1rem; block-size: 1.1rem; }
+.site-menu { list-style: none; margin: 0; padding: 0.5rem; background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.45); }
+.site-menu a { display: flex; align-items: center; min-block-size: 44px; padding: 0.5rem 0.9rem; border-radius: 10px; text-decoration: none; font-weight: 500; color: var(--ink); }
+.site-menu a:hover { background: var(--paper2); }
+.site-menu a[aria-current="page"] { font-weight: 600; text-decoration: underline; text-decoration-color: var(--hot); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+.site-menu .cta { background: var(--hot); color: var(--onhot); font-weight: 600; margin-block-start: 0.35rem; justify-content: center; text-decoration: none; }
+.site-menu .cta:hover { background: var(--hot); filter: brightness(1.08); }
+.site-header .site-menu {
+  position: fixed; inset: auto;
+  inset-block-start: 4.4rem;                                   /* fallback without anchor positioning */
+  inset-block-start: anchor(--menu-button bottom);
+  inset-inline-end: 1rem; inline-size: min(80dvw, 22rem); max-inline-size: calc(100dvw - 2rem);
+  block-size: fit-content; max-block-size: calc(100dvh - 6rem); margin-block-start: 0.5rem; overflow: auto;
+}
+.site-header.is-measuring * { transition: none !important; }
+.site-header.is-wide .menu-button { display: none; }
+.site-header.is-wide .site-menu {
+  position: static; display: flex; align-items: center; gap: 0.25rem; inline-size: auto; max-inline-size: none;
+  block-size: auto; max-block-size: none; overflow: visible; margin: 0; padding: 0; border: 0; background: transparent; box-shadow: none;
+}
+.site-header.is-wide .site-menu::backdrop { display: none; }
+.site-header.is-wide .site-menu .cta { margin-block-start: 0; padding-inline: 1.2rem; border-radius: 99px; margin-inline-start: 0.5rem; }
+[popover]:is(:popover-open, .\:popover-open) { display: block; }
+.site-header.is-wide .site-menu { display: flex; }
+
+/* ---- buttons ---- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-block-size: 48px; padding: 0.75rem 1.5rem;
+  border-radius: 99px; font: 600 1rem var(--sans); text-decoration: none; border: 2px solid var(--ink); color: var(--ink);
+  transition: transform 0.15s, background 0.15s, color 0.15s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0) scale(0.98); }
+.btn.solid { background: var(--hot); border-color: var(--hot); color: var(--onhot); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost:hover { background: var(--paper2); }
+.btn.green { background: var(--green); border-color: var(--green); color: var(--paper); }
+
+/* ---- footer ---- */
+.site-footer { border-block-start: 1px solid var(--line); padding-block: 2.5rem 3rem; color: var(--mute); font: 0.95rem/1.6 var(--sans); background: var(--paper); }
+.site-footer .foot { inline-size: var(--wrap); margin-inline: auto; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 1.5rem 3rem; }
+.site-footer .foot-note { grid-column: 1 / -1; font: 0.85rem/1.5 var(--mono); }
+.site-footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; align-content: start; }
+.site-footer a { color: var(--ink); text-decoration-color: var(--hot); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.site-footer a:hover { background: var(--hot); color: var(--onhot); text-decoration-color: transparent; }
+@media (max-width: 860px) { .site-footer .foot { grid-template-columns: 1fr; } }
+@media (forced-colors: active) { .btn, .menu-button { border: 2px solid CanvasText; } }

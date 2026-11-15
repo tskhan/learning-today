@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Learn Claude, hands on | learning-today.com</title>
+<meta name="description" content="Learn Claude by using it: a path from your first chat to AI agents, with the PIAIC Batch 91 course, the links the class admins posted, and the websites the class built.">
+<link rel="canonical" href="https://learning-today.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Learn Claude, hands on">
+<meta property="og:description" content="A path from your first Claude chat to AI agents, with the PIAIC Batch 91 course details and class resources.">
+<meta property="og:url" content="https://learning-today.com/">
+<style>
+/* Page styles for the landing page. Colours, fonts, header, buttons and footer come from theme.css. */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font: 1.0625rem/1.6 var(--sans); text-wrap: pretty; }
+h1, h2, h3 { font-family: var(--serif); text-wrap: balance; margin: 0; letter-spacing: -0.02em; }
+p { margin: 0; }
+a { color: inherit; }
+.wrap { inline-size: var(--wrap); margin-inline: auto; }
+.mono { font: 500 0.78rem/1.3 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute); }
+
+/* hero */
+.hero { padding-block: clamp(3rem, 8vw, 6.5rem) clamp(3rem, 7vw, 5.5rem); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+.hero h1 { font-weight: 800; font-size: clamp(2.8rem, 8vw, 6rem); line-height: 0.96; }
+.hero h1 em { font-style: normal; font-weight: 500; color: var(--hot); }
+.lede { margin-block: 1.6rem 2rem; max-inline-size: 52ch; font-size: clamp(1.1rem, 2vw, 1.3rem); color: var(--mute); }
+.lede strong { color: var(--ink); font-weight: 600; }
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.log { background: var(--paper2); border: 1px solid var(--line); border-radius: 18px; padding: 1.5rem 1.5rem 0.75rem; }
+.log h2 { font-size: 1.25rem; margin-block-end: 0.25rem; }
+.log ol { list-style: none; margin: 1rem 0 0; padding: 0; }
+.log li { display: grid; grid-template-columns: 4.2rem 1fr; gap: 0.75rem; padding-block: 0.8rem; border-block-start: 1px dashed var(--line); font-size: 0.97rem; line-height: 1.45; }
+.log time { font: 500 0.82rem var(--mono); color: var(--hot); padding-block-start: 0.15rem; }
+@keyframes rise { from { opacity: 0; translate: 0 16px; } to { opacity: 1; translate: 0 0; } }
+@media (prefers-reduced-motion: no-preference) {
+  .hero h1, .hero .lede, .hero .actions, .log { animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+  .hero .lede { animation-delay: 0.08s; } .hero .actions { animation-delay: 0.16s; } .log { animation-delay: 0.24s; }
+}
+
+/* sections */
+section { padding-block: clamp(3.5rem, 8vw, 6rem); }
+.section-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 1.5rem 3rem; align-items: end; padding-block-end: 1.25rem; margin-block-end: 2.5rem; border-block-end: 3px solid var(--ink); }
+.section-head h2 { font-size: clamp(2rem, 5vw, 3.6rem); font-weight: 800; line-height: 1; }
+.section-head p { color: var(--mute); max-inline-size: 56ch; }
+
+/* learning path */
+.steps { list-style: none; margin: 0; padding: 0; counter-reset: step; }
+.step { display: grid; grid-template-columns: 4.5rem minmax(0, 1fr) minmax(0, 1.2fr); gap: 0.75rem 2rem; padding-block: 1.6rem; border-block-end: 1px solid var(--line); align-items: start; }
+.step::before { counter-increment: step; content: counter(step); font: italic 500 3rem/1 var(--serif); color: var(--hot); }
+.step h3 { font-size: 1.5rem; font-weight: 800; }
+.step p { color: var(--mute); }
+.step p a { color: var(--ink); text-decoration-color: var(--hot); text-decoration-thickness: 2px; text-underline-offset: 3px; font-weight: 500; }
+.step p a:hover { background: var(--hot); color: var(--onhot); text-decoration-color: transparent; }
+
+/* Batch 91 */
+.batch { background: var(--paper2); border-block: 1px solid var(--line); }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 3rem; margin: 0 0 3.5rem; }
+.fact { padding-block: 1.1rem; border-block-end: 1px solid var(--line); display: grid; grid-template-columns: 9rem 1fr; gap: 1rem; }
+.fact dt { font: 500 0.78rem/1.5 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute); padding-block-start: 0.2rem; }
+.fact dd { margin: 0; }
+.fact a { text-decoration-color: var(--hot); text-decoration-thickness: 2px; text-underline-offset: 3px; font-weight: 500; }
+.batch h3 { font-size: 1.7rem; font-weight: 800; margin-block-end: 1rem; }
+.quarters { list-style: none; margin: 0 0 2rem; padding: 0; }
+.quarters li { display: grid; grid-template-columns: 5.5rem minmax(0, 1.4fr) minmax(0, 1fr); gap: 0.4rem 1.5rem; padding-block: 1.1rem; border-block-end: 1px dashed var(--line); align-items: baseline; }
+.quarters code { font: 500 0.95rem var(--mono); color: var(--hot); }
+.quarters strong { font-family: var(--serif); font-size: 1.2rem; font-weight: 800; letter-spacing: -0.01em; }
+.quarters span { color: var(--mute); font-size: 0.95rem; }
+.note { max-inline-size: 70ch; color: var(--mute); font-size: 0.98rem; }
+.note a { color: var(--ink); text-decoration-color: var(--hot); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+
+/* resources */
+.docs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+.doc { display: flex; flex-direction: column; gap: 1rem; padding: 2rem; border-radius: 20px; border: 1.5px solid var(--ink); background: var(--hotbg); transition: transform 0.2s; }
+.doc:hover { transform: translateY(-2px); }
+.doc.students { background: var(--greenbg); }
+.doc h3 { font-size: clamp(1.7rem, 3vw, 2.3rem); font-weight: 800; line-height: 1.05; }
+.doc .big { font: 800 clamp(3rem, 7vw, 4.5rem)/1 var(--serif); letter-spacing: -0.03em; color: var(--hot); }
+.doc.students .big { color: var(--green); }
+.doc p { color: var(--mute); }
+.doc .btn { align-self: flex-start; margin-block-start: auto; }
+
+/* narrow */
+@media (max-width: 860px) {
+  .hero-grid, .section-head { grid-template-columns: 1fr; }
+  .step { grid-template-columns: 3.2rem 1fr; }
+  .step::before { font-size: 2.2rem; grid-row: span 2; }
+  .step p { grid-column: 2; }
+  .facts { grid-template-columns: 1fr; }
+  .fact { grid-template-columns: 7rem 1fr; }
+  .quarters li { grid-template-columns: 4.5rem 1fr; }
+  .quarters span { grid-column: 2; }
+  .docs { grid-template-columns: 1fr; }
+}
+@media (forced-colors: active) { .doc { border: 2px solid CanvasText; } }
+</style>
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f5f1e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16120e" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23b3390b'/%3E%3Cpath d='M20 14v30h24' fill='none' stroke='%23fff' stroke-width='7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;1,9..144,500&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="theme.css">
+</head>
+<body id="top">
+<a class="skip" href="#main">Skip to the content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-logo" href="index.html" aria-label="learning-today.com, home">learning<span>-</span>today</a>
+    <nav class="site-nav" aria-label="Primary">
+      <button class="menu-button" type="button" popovertarget="site-menu" popovertargetaction="toggle" aria-controls="site-menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span>Menu</span>
+      </button>
+      <ul id="site-menu" class="site-menu" popover="auto">
+        <li><a href="#learn">Learn Claude</a></li>
+        <li><a href="#batch-91">PIAIC Batch 91</a></li>
+        <li><a href="admin-links.html">Admin links</a></li>
+        <li><a href="student-websites.html">Student websites</a></li>
+        <li><a class="cta" href="https://portal.piaic.org/" rel="noopener">Enrol with PIAIC</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<main id="main">
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Learn Claude by <em>using</em> it.</h1>
+        <p class="lede">A plain path from your first chat to AI agents that do real work, built around <strong>PIAIC's Certified Agentic AI Architect programme</strong>: five quarters, 11 exams and four Anthropic credentials. Start here, then follow Batch 91 week by week.</p>
+        <div class="actions">
+          <a class="btn solid" href="#batch-91">See the Batch 91 course</a>
+          <a class="btn ghost" href="#resources">Open the class resources</a>
+        </div>
+      </div>
+      <aside class="log" aria-labelledby="log-title">
+        <h2 id="log-title">Batch 91, so far</h2>
+        <p class="mono">Class group, 20 Oct to 15 Nov 2026</p>
+        <ol>
+          <li><time datetime="2026-10-20">20 Oct</time><span>Intro to AI, LLMs and agents. Students build their first websites on Lovable.</span></li>
+          <li><time datetime="2026-10-25">25 Oct</time><span>Chapter 1 and its lab: from chatbots to AI workers.</span></li>
+          <li><time datetime="2026-10-28">28 Oct</time><span>Claude Desktop becomes the class tool.</span></li>
+          <li><time datetime="2026-11-02">2 Nov</time><span>Class Quest, a game built on Chapter 1.</span></li>
+          <li><time datetime="2026-11-08">8 Nov</time><span>General agents on the web: research, search and Cowork.</span></li>
+          <li><time datetime="2026-11-15">15 Nov</time><span>Coding agents: Claude Code and OpenCode setup.</span></li>
+        </ol>
+      </aside>
+    </div>
+  </div>
+
+  <section id="learn">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>A path for learning Claude</h2>
+        <p>Four steps, in the order the Batch 91 class takes them. Do the first one today; it costs nothing.</p>
+      </div>
+      <ol class="steps">
+        <li class="step">
+          <h3>Install Claude Desktop and start a chat</h3>
+          <p>The class works in the Claude Desktop app on Windows, macOS and Linux. The free plan is enough to begin. <a href="https://claude.com/download" rel="noopener">Download Claude</a>, sign in and ask it something real.</p>
+        </li>
+        <li class="step">
+          <h3>Hand it a whole job, then check the work</h3>
+          <p>The course teaches one habit: say what you want, let the AI do the heavy lifting, review the result. It is called the 10-80-10 rhythm. Start with <a href="https://agentfactory2.panaversity.org/ai-worker-paradigm/from-chatbots-to-ai-workers/overview/" rel="noopener">Chapter 1</a> and its lab.</p>
+        </li>
+        <li class="step">
+          <h3>Move up to Claude Code</h3>
+          <p>Once chat feels natural, learn coding agents that read files, run commands and finish tasks. Class announced that Claude Code needs a paid Claude plan. The <a href="https://code.claude.com/docs/en/overview" rel="noopener">Claude Code docs</a> are the place to start.</p>
+        </li>
+        <li class="step">
+          <h3>Prove it with an exam</h3>
+          <p>Anthropic's <a href="https://anthropic-partners.skilljar.com/claude-certified-associate-foundations-certification" rel="noopener">Claude Certified Associate</a> exam has 60 questions, runs 120 minutes and passes at 720 out of 1,000. PIAIC runs its own readiness exam first; read the <a href="https://agentfactory.piaic.org/docs/certifications/pcao-f" rel="noopener">PCAO-F guide</a>.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="batch-91" class="batch">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>PIAIC Batch 91</h2>
+        <p>Batch 91 sits inside PIAIC's Certified Agentic AI Architect programme. PIAIC's notice for the intake covered Batches 71 to 95, Quarter 1 to Quarter 5.</p>
+      </div>
+      <dl class="facts">
+        <div class="fact"><dt>Programme</dt><dd>Certified Agentic AI Architect. Five quarters, four certification levels, 11 exams. Built for people with zero coding experience.</dd></div>
+        <div class="fact"><dt>Class day</dt><dd>Live classes run on Sundays. Slides and class links go into the batch group.</dd></div>
+        <div class="fact"><dt>Taught by</dt><dd>Hamzah Syed and Aneeq Khatri lead the class. Zia Khan, COO of PIAIC, posts course updates.</dd></div>
+        <div class="fact"><dt>Main text</dt><dd><a href="https://agentfactory2.panaversity.org/" rel="noopener">The AI Agent Factory, second edition</a>. Each chapter has a lab, submitted through a Google Form.</dd></div>
+        <div class="fact"><dt>Exam focus</dt><dd>Preparing for the Claude Associate exam, so graduates carry a credential employers can verify.</dd></div>
+        <div class="fact"><dt>Where</dt><dd>PIAIC runs in Karachi, Lahore, Islamabad, Peshawar and Faisalabad.</dd></div>
+        <div class="fact"><dt>Fees</dt><dd>Fee payment for this intake was due on 14 Oct 2026. Check <a href="https://www.piaic.org" rel="noopener">piaic.org</a> for what is open now.</dd></div>
+        <div class="fact"><dt>Enrol</dt><dd><a href="https://portal.piaic.org/" rel="noopener">portal.piaic.org</a>, or WhatsApp PIAIC through the contact details on <a href="https://www.piaic.org" rel="noopener">piaic.org</a>.</dd></div>
+      </dl>
+
+      <h3>The five quarters</h3>
+      <ol class="quarters">
+        <li><code>AI-101</code><strong>AI-driven development, Claude Code and OpenClaw</strong><span>Contributes to Level 1</span></li>
+        <li><code>AI-151</code><strong>Context engineering and spec-driven development</strong><span>Earns Level 1: Certified Agentic AI Foundations</span></li>
+        <li><code>AI-251</code><strong>Learn to think and program in the AI era</strong><span>Earns Level 2: Certified Agentic AI Developer</span></li>
+        <li><code>AI-321</code><strong>Building an AI Agent Factory</strong><span>Earns Level 3, plus Anthropic's CCA-F exam</span></li>
+        <li><code>AI-451</code><strong>Deploying Agent Factories in the cloud</strong><span>Earns Level 4: Certified Agentic AI Architect</span></li>
+      </ol>
+      <p class="note">Course details come from <a href="https://www.piaic.org" rel="noopener">piaic.org</a> and the Batch 91 class group, and can change. PIAIC's site is the authority on syllabus, fees and dates.</p>
+    </div>
+  </section>
+
+  <section id="resources">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Class resources</h2>
+        <p>Two documents built from the Batch 91 group, updated 15 Nov 2026. Open them on any device.</p>
+      </div>
+      <div class="docs">
+        <article class="doc">
+          <p class="mono">For every student</p>
+          <p class="big" aria-hidden="true">31</p>
+          <h3>Links from the class admins</h3>
+          <p>Every link the admins posted, with the story behind it from the chat: what to read, what to watch, what to submit. The 11 that matter most are starred.</p>
+          <a class="btn solid" href="admin-links.html">Open the admin links</a>
+        </article>
+        <article class="doc students">
+          <p class="mono">Made by the class</p>
+          <p class="big" aria-hidden="true">146</p>
+          <h3>Student websites</h3>
+          <p>The websites students built on Lovable and other platforms. Live previews, a search box, and a score out of 100 for concept, uniqueness, design and usability.</p>
+          <a class="btn green" href="student-websites.html">Open the student websites</a>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="foot">
+    <p>learning-today.com is an independent learner site. PIAIC and Anthropic run the official programme and exams; this site only points to them and records what one class has covered.</p>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="admin-links.html">Admin links</a></li>
+      <li><a href="student-websites.html">Student websites</a></li>
+      <li><a href="https://www.piaic.org" rel="noopener">piaic.org</a></li>
+      <li><a href="https://agentfactory.piaic.org/" rel="noopener">The AI Agent Factory</a></li>
+      <li><a href="https://claude.com/download" rel="noopener">Claude</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="site.js" defer></script>
+</body>
+</html>
