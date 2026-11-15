@@ -1,4 +1,11 @@
-/* learning-today.com shared header behaviour. Classic script so it also works when a page is opened from disk. */
+/* site.js: the one script shared by index.html, admin-links.html and student-websites.html.
+
+   What it does: shows the header links inline when they fit and collapses them into a
+   popover menu when they do not (measured, so there is no fixed breakpoint), closes the
+   menu after a link is chosen, and loads a small popover polyfill only in browsers that
+   have no native popover support.
+
+   It is a classic script, not a module, so the pages also work when opened from disk. */
 (function () {
   /* Popover polyfill, loaded only where the browser has no native popover */
   if (!Object.hasOwn(HTMLElement.prototype, 'popover')) {
