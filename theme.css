@@ -59,7 +59,7 @@
   --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "DM Mono", ui-monospace, Consolas, monospace;
   --wrap: min(1180px, 100% - 2.5rem);
-  --header-h: 4.25rem;
+  --header-h: 4.9rem;
 }
 
 /* ---- shared page behaviour ---- */
@@ -86,8 +86,9 @@ section, .controls { scroll-margin-block-start: calc(var(--header-h) + 3.5rem); 
 }
 .header-inner { inline-size: var(--wrap); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.7rem; }
 .header-inner > * { flex-shrink: 0; white-space: nowrap; }
-.site-logo { font: 800 1.35rem var(--serif); text-decoration: none; letter-spacing: -0.02em; color: var(--ink); }
-.site-logo span { color: var(--hot); }
+.site-logo { display: flex; align-items: center; line-height: 0; text-decoration: none; }
+.site-logo img { display: block; block-size: 54px; inline-size: auto; }
+@media (max-width: 480px) { .site-logo img { block-size: 40px; } }
 .menu-button {
   anchor-name: --menu-button; display: inline-flex; align-items: center; gap: 0.5rem;
   font: 600 0.95rem var(--sans); color: var(--ink); background: transparent;
