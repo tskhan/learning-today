@@ -43,6 +43,10 @@
   new ResizeObserver(function () { update(false); }).observe(header);
   new ResizeObserver(function () { update(false); }).observe(menu);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { update(true); });
+  /* The fonts load without blocking, so the header may first be measured in the fallback font.
+     Measure again once the real fonts have swapped in, and once everything has loaded. */
+  if (document.fonts && document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', function () { update(true); });
+  addEventListener('load', function () { update(true); });
   update(true);
 
   /* A menu link should close the menu in the collapsed layout */
