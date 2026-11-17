@@ -20,6 +20,7 @@ A small static website for learning Claude, built around the **PIAIC Batch 91** 
 |---|---|
 | `index.html` | The landing page (see above). |
 | `admin-links.html` | The Links shared in Class page (see above). The file keeps its original name so existing links keep working. |
+| `privacy.html` | The privacy page, linked from every page's footer. Says what the site collects (Google Analytics), which other companies see a visit (Google Fonts, the student site previews, outside links), and how to ask for a change or removal through GitHub issues. Update its date whenever the site's data use changes. |
 | `student-websites.html` | The student websites gallery (see above). Large, because it holds all 146 cards and the five rankings. |
 | `theme.css` | The shared design theme used by all three pages: colour tokens for light and dark mode, the fonts, the header and navigation, buttons and the footer. Changing a colour here changes it everywhere. |
 | `site.js` | The one script all three pages share. It shows the header links inline when they fit and collapses them into a menu when they do not. It loads a small popover polyfill only in browsers that lack native support. |
@@ -39,7 +40,7 @@ A small static website for learning Claude, built around the **PIAIC Batch 91** 
 | `files/shaadi-expenses-sheet1.csv` | A small practice spreadsheet an admin shared in class: 12 made-up wedding expense lines with deliberate traps (a repeated line, a cancelled booking, a lowercase event name, pending items) for a checking exercise. Offered as a download from the Links shared in Class page. |
 | `CNAME` | Tells GitHub Pages to serve this repo at `learning-today.com`. Do not delete it. |
 | `robots.txt` | Tells search engines to skip the student websites page, and where the sitemap is. |
-| `sitemap.xml` | Lists the pages search engines should index (home and admin links). Update `lastmod` when a page changes, and add any new page here. |
+| `sitemap.xml` | Lists the pages search engines should index (home, Links shared in Class and privacy). Update `lastmod` when a page changes, and add any new page here. |
 | `.nojekyll` | Tells GitHub Pages to publish the files as they are, without running Jekyll. |
 | `README.md` | This file. |
 
