@@ -25,6 +25,8 @@ A small static website for learning Claude, built around the **PIAIC Batch 91** 
 | `site.js` | The one script all three pages share. It shows the header links inline when they fit and collapses them into a menu when they do not. It loads a small popover polyfill only in browsers that lack native support. |
 | `assets/logo.png` | The learning-today.com logo as a transparent image, shown in the header of every page on light backgrounds. |
 | `assets/logo-dark.png` | The same logo with the navy recoloured cream, so it stays readable on dark backgrounds. The header switches to it automatically in dark mode. |
+| `assets/logo.webp`, `assets/logo-dark.webp` | WebP copies of the two logos, about 40% smaller. Browsers that support WebP (nearly all) load these; the PNGs stay as the fallback. |
+| `assets/previews/*.webp`, `assets/previews/*-640.webp` | WebP copies of each preview image at 960 px and 640 px wide. The home page lets the browser pick the size it needs; the JPGs below stay as the fallback. |
 | `assets/icon-192.png` | Square 192 px icon: the book-and-arrow mark on a white tile. Used as a browser tab icon on high-resolution screens. |
 | `favicon.ico` | The browser tab icon (16, 32 and 48 px versions of the same mark). |
 | `apple-touch-icon.png` | 180 px icon used when the site is added to an iPhone or iPad home screen. |
@@ -62,7 +64,7 @@ python -m http.server 8000
 # then visit http://localhost:8000
 ```
 
-Fonts (Fraunces, Instrument Sans, DM Mono) load from Google Fonts. The student gallery shows live previews of each student's site, so it needs an internet connection.
+Fonts (Fraunces, Instrument Sans, DM Mono) load from Google Fonts, without blocking the first paint. The student gallery shows live previews of each student's site, so it needs an internet connection.
 
 ## Hosting and domain
 

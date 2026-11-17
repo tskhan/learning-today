@@ -96,6 +96,7 @@ section { padding-block: clamp(3.5rem, 8vw, 6rem); }
 .feature.flip .shot { order: 2; }
 .shot { display: block; overflow: hidden; border-radius: 16px; border: 1.5px solid var(--ink); background: var(--paper2); box-shadow: 0 22px 40px -26px rgba(0, 0, 0, 0.55); transition: transform 0.2s; }
 .shot:hover { transform: translateY(-2px); }
+.shot picture { display: block; }
 .shot img { display: block; inline-size: 100%; block-size: auto; transition: transform 0.35s; }
 .shot:hover img { transform: scale(1.02); }
 .doc-body h3 { font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 800; line-height: 1.05; margin-block: 0.4rem 0.9rem; }
@@ -136,7 +137,9 @@ section { padding-block: clamp(3.5rem, 8vw, 6rem); }
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;1,9..144,500&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Fonts load without blocking the first paint; text shows in a fallback font for a moment, then swaps. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;1,9..144,500&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;1,9..144,500&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap"></noscript>
 <link rel="stylesheet" href="theme.css">
 </head>
 <body id="top">
@@ -145,8 +148,10 @@ section { padding-block: clamp(3.5rem, 8vw, 6rem); }
   <div class="header-inner">
     <a class="site-logo" href="index.html">
       <picture>
+        <source srcset="assets/logo-dark.webp" media="(prefers-color-scheme: dark)" type="image/webp">
         <source srcset="assets/logo-dark.png" media="(prefers-color-scheme: dark)">
-        <img src="assets/logo.png" width="236" height="54" alt="learning-today.com, home">
+        <source srcset="assets/logo.webp" type="image/webp">
+        <img src="assets/logo.png" width="236" height="54" alt="learning-today.com, home" fetchpriority="high">
       </picture>
     </a>
     <nav class="site-nav" aria-label="Primary">
@@ -202,7 +207,7 @@ section { padding-block: clamp(3.5rem, 8vw, 6rem); }
 
       <article class="feature">
         <a class="shot" href="https://agentfactory2.panaversity.org/" target="_blank" rel="noopener">
-          <img src="assets/previews/coursebook.jpg" width="960" height="582" loading="lazy" alt="Home page of The AI Agent Factory: the book on a sunlit desk beside the headline Education for the AI Worker Economy">
+          <picture><source type="image/webp" srcset="assets/previews/coursebook-640.webp 640w, assets/previews/coursebook.webp 960w" sizes="(max-width: 860px) 92vw, 600px"><img src="assets/previews/coursebook.jpg" width="960" height="582" loading="lazy" alt="Home page of The AI Agent Factory: the book on a sunlit desk beside the headline Education for the AI Worker Economy"></picture>
         </a>
         <div class="doc-body">
           <p class="mono">Main coursebook</p>
@@ -219,7 +224,7 @@ section { padding-block: clamp(3.5rem, 8vw, 6rem); }
 
       <article class="feature flip">
         <a class="shot" href="https://docs.google.com/presentation/d/118LHEYY9VezecFmWQIVnVjbVDvseOJMxsZUe9W5oWwg/edit?usp=sharing" target="_blank" rel="noopener">
-          <img src="assets/previews/intro-slides.jpg" width="960" height="540" loading="lazy" alt="First slide of the introductory session: Welcome to Agentic AI Engineering, for beginners with no prior coding">
+          <picture><source type="image/webp" srcset="assets/previews/intro-slides-640.webp 640w, assets/previews/intro-slides.webp 960w" sizes="(max-width: 860px) 92vw, 600px"><img src="assets/previews/intro-slides.jpg" width="960" height="540" loading="lazy" alt="First slide of the introductory session: Welcome to Agentic AI Engineering, for beginners with no prior coding"></picture>
         </a>
         <div class="doc-body">
           <p class="mono">For beginners</p>
@@ -238,7 +243,7 @@ section { padding-block: clamp(3.5rem, 8vw, 6rem); }
       <div class="class-grid">
         <article class="mini-doc">
           <a class="shot" href="https://claude.ai/artifact/HjZE9nV8mndGoQ27uruEea?sk=e3GCNOAtwTOfj25IwDJLtQ" target="_blank" rel="noopener">
-            <img src="assets/previews/class-quest.jpg" width="960" height="600" loading="lazy" alt="AI Worker Quest: a game with a pixel robot guide called Bitto, teaching Chapter 1 by playing">
+            <picture><source type="image/webp" srcset="assets/previews/class-quest-640.webp 640w, assets/previews/class-quest.webp 960w" sizes="(max-width: 860px) 92vw, 360px"><img src="assets/previews/class-quest.jpg" width="960" height="600" loading="lazy" alt="AI Worker Quest: a game with a pixel robot guide called Bitto, teaching Chapter 1 by playing"></picture>
           </a>
           <p class="mono">Chapter 1 game</p>
           <h3>AI Worker Quest</h3>
@@ -247,7 +252,7 @@ section { padding-block: clamp(3.5rem, 8vw, 6rem); }
         </article>
         <article class="mini-doc">
           <a class="shot" href="https://claude.ai/artifact/77bKtX6VwqtNxNvx39wAVy?sk=DzBLtP6Nli-szRNlP3bJbg" target="_blank" rel="noopener">
-            <img src="assets/previews/claude-2-practical.jpg" width="960" height="600" loading="lazy" alt="Title slide of Claude and ChatGPT 2.0, the practical class: from download to handing AI a whole job">
+            <picture><source type="image/webp" srcset="assets/previews/claude-2-practical-640.webp 640w, assets/previews/claude-2-practical.webp 960w" sizes="(max-width: 860px) 92vw, 360px"><img src="assets/previews/claude-2-practical.jpg" width="960" height="600" loading="lazy" alt="Title slide of Claude and ChatGPT 2.0, the practical class: from download to handing AI a whole job"></picture>
           </a>
           <p class="mono">Class slides, 8 Nov</p>
           <h3>Claude and ChatGPT 2.0: the practical</h3>
@@ -256,7 +261,7 @@ section { padding-block: clamp(3.5rem, 8vw, 6rem); }
         </article>
         <article class="mini-doc">
           <a class="shot" href="https://claude.ai/artifact/VoK6WtACCqGsijNXs4SS1K?sk=tYgJe9077QHkcGowqUkmTA" target="_blank" rel="noopener">
-            <img src="assets/previews/coding-agents-practical.jpg" width="960" height="600" loading="lazy" alt="Title slide: Build a website with a coding agent, showing a terminal running OpenCode beside the finished page">
+            <picture><source type="image/webp" srcset="assets/previews/coding-agents-practical-640.webp 640w, assets/previews/coding-agents-practical.webp 960w" sizes="(max-width: 860px) 92vw, 360px"><img src="assets/previews/coding-agents-practical.jpg" width="960" height="600" loading="lazy" alt="Title slide: Build a website with a coding agent, showing a terminal running OpenCode beside the finished page"></picture>
           </a>
           <p class="mono">Class slides, 15 Nov</p>
           <h3>Build a website with a coding agent</h3>
