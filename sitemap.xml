@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Pages for search engines to index. The student websites page is left out on purpose (it is noindex). -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://learning-today.com/</loc>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+  <url>
+    <loc>https://learning-today.com/admin-links.html</loc>
+    <lastmod>2026-11-17</lastmod>
+  </url>
+</urlset>

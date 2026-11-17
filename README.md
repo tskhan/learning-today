@@ -35,7 +35,8 @@ A small static website for learning Claude, built around the **PIAIC Batch 91** 
 | `assets/previews/coding-agents-practical.jpg` | Preview image of the *Build a website with a coding agent* class slides. |
 | `files/shaadi-expenses-sheet1.csv` | A small practice spreadsheet an admin shared in class: 12 made-up wedding expense lines with deliberate traps (a repeated line, a cancelled booking, a lowercase event name, pending items) for a checking exercise. Offered as a download from the admin links page. |
 | `CNAME` | Tells GitHub Pages to serve this repo at `learning-today.com`. Do not delete it. |
-| `robots.txt` | Tells search engines to skip the student websites page. |
+| `robots.txt` | Tells search engines to skip the student websites page, and where the sitemap is. |
+| `sitemap.xml` | Lists the pages search engines should index (home and admin links). Update `lastmod` when a page changes, and add any new page here. |
 | `.nojekyll` | Tells GitHub Pages to publish the files as they are, without running Jekyll. |
 | `README.md` | This file. |
 
