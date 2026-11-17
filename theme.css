@@ -87,7 +87,7 @@ section, .controls { scroll-margin-block-start: calc(var(--header-h) + 3.5rem); 
 .header-inner { inline-size: var(--wrap); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.7rem; }
 .header-inner > * { flex-shrink: 0; white-space: nowrap; }
 .site-logo { display: flex; align-items: center; line-height: 0; text-decoration: none; }
-.site-logo img { display: block; block-size: 54px; inline-size: auto; }
+.site-logo img { display: block; block-size: 50px; inline-size: auto; }
 @media (max-width: 480px) { .site-logo img { block-size: 40px; } }
 .menu-button {
   anchor-name: --menu-button; display: inline-flex; align-items: center; gap: 0.5rem;
@@ -113,6 +113,7 @@ section, .controls { scroll-margin-block-start: calc(var(--header-h) + 3.5rem); 
 }
 .site-header.is-measuring * { transition: none !important; }
 .site-header.is-wide .menu-button { display: none; }
+.site-header.is-wide .site-menu a { padding-inline: 0.65rem; }
 .site-header.is-wide .site-menu {
   position: static; display: flex; align-items: center; gap: 0.25rem; inline-size: auto; max-inline-size: none;
   block-size: auto; max-block-size: none; overflow: visible; margin: 0; padding: 0; border: 0; background: transparent; box-shadow: none;
