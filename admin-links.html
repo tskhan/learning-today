@@ -1,13 +1,29 @@
 <!doctype html>
 <!-- admin-links.html: every link the Batch 91 class admins posted, with the story behind it from the chat and a description of the link itself. Repeated links are merged, key ones are starred, and Google Slides and Docs files have download buttons. Shared styles: theme.css. Shared script: site.js. -->
 <html lang="en"><head><meta charset="utf-8">
-<!-- Google Analytics (GA4) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RVSZ0QWH35"></script>
+<!-- Google Analytics (GA4). The page view is queued at once, but the Google script itself
+     loads only after the page has finished loading (2.5 s later) or at the visitor's first
+     scroll, tap or key press, whichever comes first, so it does not slow the first paint. -->
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-RVSZ0QWH35');
+  (function () {
+    var loaded = false;
+    function loadGA() {
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-RVSZ0QWH35';
+      document.head.appendChild(s);
+    }
+    ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(function (e) {
+      addEventListener(e, loadGA, { once: true, passive: true });
+    });
+    addEventListener('load', function () { setTimeout(loadGA, 2500); });
+  })();
 </script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Admin links | learning-today.com</title>
