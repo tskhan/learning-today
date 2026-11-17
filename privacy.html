@@ -1,0 +1,139 @@
+<!doctype html>
+<!-- privacy.html: what the site collects (Google Analytics), which other companies see a visit (Google Fonts, the student site previews, links), and how to ask for something to be changed or removed. Shared styles: theme.css. Shared script: site.js. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google Analytics (GA4). The page view is queued at once, but the Google script itself
+     loads only after the page has finished loading (2.5 s later) or at the visitor's first
+     scroll, tap or key press, whichever comes first, so it does not slow the first paint. -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RVSZ0QWH35');
+  (function () {
+    var loaded = false;
+    function loadGA() {
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-RVSZ0QWH35';
+      document.head.appendChild(s);
+    }
+    ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(function (e) {
+      addEventListener(e, loadGA, { once: true, passive: true });
+    });
+    addEventListener('load', function () { setTimeout(loadGA, 2500); });
+  })();
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Privacy | learning-today.com</title>
+<meta name="description" content="What learning-today.com collects, which other companies see your visit, and how to ask for a change or removal.">
+<link rel="canonical" href="https://learning-today.com/privacy.html">
+<style>
+/* Page styles for the privacy page. Colours, fonts, header and footer come from theme.css. */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font: 1.0625rem/1.65 var(--sans); text-wrap: pretty; }
+main { inline-size: min(760px, 100% - 2.5rem); margin-inline: auto; padding-block: clamp(2.5rem, 7vw, 5rem) clamp(3rem, 8vw, 6rem); }
+h1, h2 { font-family: var(--serif); text-wrap: balance; letter-spacing: -0.02em; margin: 0; }
+h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); font-weight: 800; line-height: 1; }
+.updated { margin-block: 1rem 2.5rem; color: var(--mute); font: 500 0.85rem var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
+.lede { font-size: 1.2rem; color: var(--mute); margin-block-end: 1rem; }
+.lede strong { color: var(--ink); font-weight: 600; }
+h2 { font-size: 1.7rem; font-weight: 800; margin-block: 2.6rem 0.7rem; padding-block-start: 1.4rem; border-block-start: 2px solid var(--ink); }
+p { margin: 0 0 1rem; }
+ul { margin: 0 0 1rem; padding-inline-start: 1.3rem; }
+li { margin-block-end: 0.4rem; }
+a { color: var(--ink); text-decoration-color: var(--hot); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+a:hover { background: var(--hot); color: var(--onhot); text-decoration-color: transparent; }
+</style>
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f5f1e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16120e" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" href="assets/icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fonts load without blocking the first paint; text shows in a fallback font for a moment, then swaps. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;1,9..144,500&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;1,9..144,500&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap"></noscript>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-logo" href="index.html">
+      <picture>
+        <source srcset="assets/logo-dark.webp" media="(prefers-color-scheme: dark)" type="image/webp">
+        <source srcset="assets/logo-dark.png" media="(prefers-color-scheme: dark)">
+        <source srcset="assets/logo.webp" type="image/webp">
+        <img src="assets/logo.png" width="219" height="50" alt="learning-today.com, home" fetchpriority="high">
+      </picture>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <button class="menu-button" type="button" popovertarget="site-menu" popovertargetaction="toggle" aria-controls="site-menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span>Menu</span>
+      </button>
+      <ul id="site-menu" class="site-menu" popover="auto">
+        <li><a href="index.html#core">Core documents</a></li>
+        <li><a href="index.html#learn">Learn Claude</a></li>
+        <li><a href="index.html#batch-91">PIAIC Batch 91</a></li>
+        <li><a href="admin-links.html">Links shared in Class</a></li>
+        <li><a href="student-websites.html">Student websites</a></li>
+        <li><a class="cta" href="https://portal.piaic.org/" rel="noopener">Enrol with PIAIC</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <h1>Privacy</h1>
+  <p class="updated">Last updated 17 November 2026</p>
+  <p class="lede">learning-today.com is a small learner site. It has <strong>no accounts, no forms and no sign-in</strong>, so it never asks you for your name, email or any other detail.</p>
+  <p>This page says what the site does collect, which other companies see your visit, and how to ask for something to be changed or removed.</p>
+
+  <h2>Analytics</h2>
+  <p>We use Google Analytics (GA4) to count visits and see which pages are read. It records things like the page you viewed, your approximate location (country or city), your device and browser, and how you arrived. It sets cookies to do this. We do not use it to identify you.</p>
+  <p>The Google Analytics script loads only after the page has finished loading, or after you first scroll, tap or press a key. Google's own policy is at <a href="https://policies.google.com/privacy" rel="noopener">policies.google.com/privacy</a>. If you do not want to be counted, you can install Google's <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">opt-out browser add-on</a> or block analytics in your browser.</p>
+
+  <h2>Other companies that see your visit</h2>
+  <p>To show a page, your browser contacts other servers. Each of them can see your IP address and your browser details:</p>
+  <ul>
+    <li><strong>Google Fonts</strong> (fonts.googleapis.com and fonts.gstatic.com) supplies the typefaces.</li>
+    <li><strong>unpkg.com</strong> supplies a small script, only in older browsers that lack a built-in menu feature.</li>
+    <li><strong>The student websites page</strong> shows a live preview of each student's own website. Loading the page therefore contacts those sites too (most are hosted on Lovable, Netlify, Vercel and similar). Their own privacy policies apply.</li>
+    <li><strong>Links and downloads</strong> go to PIAIC, Panaversity, Anthropic, Google Docs and other sites. Their policies apply once you leave this one.</li>
+  </ul>
+  <p>This site sets no cookies of its own other than the analytics cookies above.</p>
+
+  <h2>Student websites and admin photos</h2>
+  <p>The student websites page links to sites that students built and posted in the class group. It shows each site's own public title and description. We remove phone numbers and email addresses that appear in those descriptions, and we do not publish who posted a link.</p>
+  <p>The scores and ranks on that page are <strong>automated estimates</strong> made by measuring each page. They are not a grade or an assessment of any person.</p>
+  <p>The photos beside the admins' names on the Links shared in Class page come from their official public pages (panaversity.org and aneeqkhatri.com).</p>
+
+  <h2>Asking for a change or removal</h2>
+  <p>If you built one of the listed sites, appear in a photo here, or want anything corrected or taken down, open an issue on the site's <a href="https://github.com/tskhan/learning-today/issues" rel="noopener">GitHub page</a> and say which page and which item. Please do not put private details in a public issue. We will remove or change it promptly.</p>
+
+  <h2>Changes</h2>
+  <p>We update this page when the site changes. The date at the top shows when it last did.</p>
+</main>
+<footer class="site-footer">
+  <div class="foot">
+    <p>learning-today.com is an independent learner site. PIAIC and Anthropic run the official programme and exams; this site only points to them and records what one class has covered.</p>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="admin-links.html">Links shared in Class</a></li>
+      <li><a href="student-websites.html">Student websites</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="https://www.piaic.org" rel="noopener">piaic.org</a></li>
+      <li><a href="https://agentfactory.piaic.org/" rel="noopener">The AI Agent Factory</a></li>
+      <li><a href="https://claude.com/download" rel="noopener">Claude</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="site.js" defer></script>
+</body>
+</html>
