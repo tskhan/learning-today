@@ -83,6 +83,8 @@ section, .controls { scroll-margin-block-start: calc(var(--header-h) + 3.5rem); 
   background: color-mix(in srgb, var(--paper) 88%, transparent);
   backdrop-filter: blur(10px); border-block-end: 1px solid var(--line);
   font-family: var(--sans);
+  font-size: 1.0625rem;   /* the menu text must not depend on each page's body size */
+  line-height: 1.5;
 }
 .header-inner { inline-size: var(--wrap); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.7rem; }
 .header-inner > * { flex-shrink: 0; white-space: nowrap; }
