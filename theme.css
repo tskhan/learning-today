@@ -2,10 +2,11 @@
    theme.css: the shared design theme for learning-today.com.
    Used by every page. Loaded LAST so it wins over each page's own styles.
 
-   Look: modelled on apple.com. White and #f5f5f7 grounds (black in dark mode),
-   #1d1d1f ink, one blue accent, the system San Francisco font (Inter where SF
-   is not installed), a slim translucent header with small links, large soft
-   rounded tiles with no outlines, and pill buttons.
+   Look: an industrial grey-and-orange style. Light grey grounds (near black
+   in dark mode), charcoal ink, one orange accent, condensed uppercase headings
+   (Oswald) that mix light and bold weights, Inter for text, small spaced
+   uppercase nav links, square orange buttons, a faint oversized serif
+   watermark behind the hero, and greyscale previews that colour on hover.
 
    What is in here: colour tokens (light and dark), fonts, the site header and
    its menu, buttons, links, the footer, and the overrides that bring each
@@ -14,17 +15,17 @@
    ========================================================================== */
 :root:not([data-never]) {
   /* raw light and dark values */
-  --paper-l: #ffffff;   --paper-d: #000000;
-  --paper2-l: #f5f5f7;  --paper2-d: #161617;
-  --card-l: #ffffff;    --card-d: #1c1c1e;
-  --ink-l: #1d1d1f;     --ink-d: #f5f5f7;
-  --mute-l: #6e6e73;    --mute-d: #a1a1a6;
-  --line-l: #d2d2d7;    --line-d: #424245;
-  --hot-l: #0066cc;     --hot-d: #2997ff;     /* links and accents */
-  --onhot-l: #ffffff;   --onhot-d: #000000;
-  --hotbg-l: #f5f5f7;   --hotbg-d: #161617;
-  --green-l: #248a3d;   --green-d: #30d158;
-  --greenbg-l: #f5f5f7; --greenbg-d: #161617;
+  --paper-l: #ededed;   --paper-d: #141414;
+  --paper2-l: #e2e2e2;  --paper2-d: #1e1e1e;
+  --card-l: #f6f6f6;    --card-d: #1b1b1b;
+  --ink-l: #222222;     --ink-d: #ececec;
+  --mute-l: #626262;    --mute-d: #a3a3a3;
+  --line-l: #cfcfcf;    --line-d: #3a3a3a;
+  --hot-l: #b35500;     --hot-d: #ff9a3c;     /* orange for links and accents (text-safe shade) */
+  --onhot-l: #ffffff;   --onhot-d: #141414;
+  --hotbg-l: #e2e2e2;   --hotbg-d: #1e1e1e;
+  --green-l: #3d6b4f;   --green-d: #7fc79a;
+  --greenbg-l: #e2e2e2; --greenbg-d: #1e1e1e;
 
   /* resolved tokens: light first */
   --paper: var(--paper-l); --paper2: var(--paper2-l); --card: var(--card-l); --ink: var(--ink-l);
@@ -46,8 +47,8 @@
     --greenbg: light-dark(var(--greenbg-l), var(--greenbg-d));
   }
 
-  /* Apple's button blue: the same in both modes, always with white text */
-  --btn: #0071e3; --btn-hover: #0077ed;
+  /* button orange: the same in both modes, dark enough for white text */
+  --btn: #c45f00; --btn-hover: #d96a00; --orange: #f39200;
 
   /* the same tokens under the names each page already uses */
   --bg: var(--paper);                    /* student websites */
@@ -60,10 +61,11 @@
   accent-color: var(--btn);
   scrollbar-color: var(--mute) var(--paper);
 
-  /* One family for everything, like apple.com. --serif is kept as a name so page styles still work. */
-  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", Inter, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
-  --serif: -apple-system, BlinkMacSystemFont, "SF Pro Display", Inter, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
-  --mono: var(--sans);   /* page labels used a mono font; Apple sets labels in the text font */
+  /* Inter for text; Oswald (condensed) for headings. --serif keeps its old name so page styles still work. */
+  --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --serif: Oswald, "Arial Narrow", "Roboto Condensed", Impact, sans-serif;
+  --watermark: Georgia, "Times New Roman", serif;
+  --mono: var(--sans);   /* page labels used a mono font; labels now use the text font */
   --code: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   --wrap: min(1024px, 100% - 2.5rem);
   --header-h: 3.25rem;
@@ -78,10 +80,11 @@ body { background: var(--paper); color: var(--ink); letter-spacing: -0.01em; }
 :focus-visible { outline: 2px solid var(--btn); outline-offset: 3px; border-radius: 6px; }
 code, pre, kbd { font-family: var(--code); }
 
-/* headings: SF semibold/bold with Apple's tight tracking, never the heavy 800 weight */
-:root :is(h1, h2, h3, .big, .num, .pos, .stat b, .ini, .score) { font-weight: 600; letter-spacing: -0.025em; }
-:root h1 { font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; }
-:root :is(h1, h2) em { font-style: normal; font-weight: inherit; color: var(--hot); }
+/* headings: condensed uppercase. h1 is light with bold emphasis; h2 and h3 are medium */
+:root :is(h1, h2, h3, .big, .num, .pos, .stat b, .ini, .score) { font-family: var(--serif); font-weight: 500; letter-spacing: 0.01em; text-transform: uppercase; }
+:root h1 { font-weight: 300; letter-spacing: 0; line-height: 1.02; }
+:root :is(h1, h2) em { font-style: normal; font-weight: 700; color: var(--ink); }
+:root h1 em { box-shadow: inset 0 -0.12em 0 var(--orange); }
 
 /* secondary sticky bars sit under the site header */
 .topnav, .chips { top: var(--header-h); }
@@ -118,7 +121,7 @@ section, .controls { scroll-margin-block-start: calc(var(--header-h) + 3.5rem); 
 
 .site-menu { list-style: none; margin: 0; padding: 0; color: var(--ink); }
 .site-menu a { display: flex; align-items: center; text-decoration: none; color: var(--ink); }
-.site-menu .cta { justify-content: center; background: var(--btn); color: #fff; font-weight: 500; border-radius: 99px; }
+.site-menu .cta { justify-content: center; background: var(--btn); color: #fff; font-weight: 700; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.08em; }
 .site-menu .cta:hover { background: var(--btn-hover); }
 
 /* narrow: the menu opens as a full-width panel under the header, with large links */
@@ -129,10 +132,10 @@ section, .controls { scroll-margin-block-start: calc(var(--header-h) + 3.5rem); 
   background: var(--paper); border: 0; border-radius: 0; box-shadow: none; overflow: auto;
 }
 .site-header .site-menu::backdrop { background: transparent; }
-.site-header .site-menu a { min-block-size: 48px; padding: 0.35rem 0; font: 600 1.6rem/1.2 var(--sans); letter-spacing: -0.025em; color: var(--ink); }
+.site-header .site-menu a { min-block-size: 48px; padding: 0.35rem 0; font: 500 1.9rem/1.15 var(--serif); letter-spacing: 0.01em; text-transform: uppercase; color: var(--ink); }
 .site-header .site-menu a:hover { color: var(--hot); }
 .site-header .site-menu a[aria-current="page"] { color: var(--mute); }
-.site-header .site-menu .cta { display: inline-flex; margin-block-start: 1.25rem; padding: 0.7rem 1.4rem; min-block-size: 44px; font-size: 1.0625rem; font-weight: 500; letter-spacing: 0; color: #fff; }
+.site-header .site-menu .cta { display: inline-flex; margin-block-start: 1.25rem; padding: 0.7rem 1.4rem; min-block-size: 44px; font: 700 0.875rem/1 var(--sans); letter-spacing: 0.08em; color: #fff; }
 .site-header .site-menu .cta:hover { color: #fff; }
 @media (prefers-reduced-motion: no-preference) {
   .site-header .site-menu:popover-open li { animation: menu-in 0.45s var(--ease) both; }
@@ -145,7 +148,7 @@ section, .controls { scroll-margin-block-start: calc(var(--header-h) + 3.5rem); 
 }
 @keyframes menu-in { from { opacity: 0; translate: 0 -8px; } to { opacity: 1; translate: 0 0; } }
 
-/* wide: links sit in the bar, small and quiet, like apple.com's global nav */
+/* wide: links sit in the bar as small, spaced uppercase text */
 .site-header.is-measuring * { transition: none !important; animation: none !important; }
 .site-header.is-wide .menu-button { display: none; }
 .site-header.is-wide .site-menu {
@@ -153,18 +156,19 @@ section, .controls { scroll-margin-block-start: calc(var(--header-h) + 3.5rem); 
   block-size: auto; max-block-size: none; overflow: visible; margin: 0; padding: 0; border: 0; background: transparent; box-shadow: none;
 }
 .site-header.is-wide .site-menu::backdrop { display: none; }
-.site-header.is-wide .site-menu a { min-block-size: 44px; padding: 0 0.5rem; font: 400 0.8125rem/1 var(--sans); letter-spacing: -0.01em; color: color-mix(in srgb, var(--ink) 80%, transparent); transition: color 0.2s; }
-.site-header.is-wide .site-menu a:hover { color: var(--ink); }
+.site-header.is-wide .site-menu a { min-block-size: 44px; padding: 0 0.42rem; font: 600 0.6875rem/1 var(--sans); letter-spacing: 0.05em; text-transform: uppercase; color: var(--mute); transition: color 0.2s; }
+.site-header.is-wide .site-menu a:hover { color: var(--hot); }
 .site-header.is-wide .site-menu a[aria-current="page"] { color: var(--ink); font-weight: 600; }
-.site-header.is-wide .site-menu .cta { min-block-size: 28px; margin-block-start: 0; margin-inline-start: 0.6rem; padding: 0.4rem 0.9rem; color: #fff; font-weight: 500; }
+.site-header.is-wide .site-menu .cta { min-block-size: 32px; margin-block-start: 0; margin-inline-start: 0.6rem; padding: 0.5rem 0.9rem; color: #fff; font-weight: 700; border-radius: 2px; }
+.site-header.is-wide .site-menu .cta::after { content: " ›"; }
 .site-header.is-wide .site-menu .cta:hover { color: #fff; }
 [popover]:is(:popover-open, .\:popover-open) { display: block; }
 .site-header.is-wide .site-menu { display: flex; }
 
-/* ---- buttons: Apple pills. Solid is blue; ghost is a blue outline ---- */
+/* ---- buttons: square-cornered, uppercase. Solid is orange; ghost is a charcoal outline ---- */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; min-block-size: 44px; padding: 0.7rem 1.4rem;
-  border-radius: 99px; font: 400 1.0625rem/1.2 var(--sans); letter-spacing: -0.01em; text-decoration: none;
+  border-radius: 2px; font: 700 0.8125rem/1.2 var(--sans); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
   border: 1px solid var(--btn); color: var(--btn); background: transparent;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
@@ -172,18 +176,18 @@ section, .controls { scroll-margin-block-start: calc(var(--header-h) + 3.5rem); 
 :root .btn:active { transform: scale(0.98); }
 :root .btn.solid { background: var(--btn); border-color: var(--btn); color: #fff; }
 :root .btn.solid:hover { background: var(--btn-hover); border-color: var(--btn-hover); }
-:root .btn.ghost { background: transparent; color: var(--hot); border-color: var(--hot); }
-:root .btn.ghost:hover { background: var(--hot); color: var(--onhot); }
+:root .btn.ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+:root .btn.ghost:hover { background: var(--ink); color: var(--paper); }
 :root .btn.green { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 :root .btn.green:hover { opacity: 0.85; }
-:root .btn.sm { min-block-size: 40px; padding: 0.5rem 1.1rem; font-size: 0.9375rem; }
+:root .btn.sm { min-block-size: 40px; padding: 0.5rem 1.1rem; font-size: 0.75rem; }
 
-/* ---- text links: blue, no underline until hover (overrides each page's ink-and-highlight links) ---- */
+/* ---- text links: orange, no underline until hover (overrides each page's ink-and-highlight links) ---- */
 :root :is(main, .site-footer) :is(p, dd, td, li, .note) a:not(.btn, .cta, .dlb, .shot, .nm) { color: var(--hot); text-decoration: none; background: none; }
 :root :is(main, .site-footer) :is(p, dd, td, li, .note) a:not(.btn, .cta, .dlb, .shot, .nm):hover { color: var(--hot); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; background: none; }
 :root :is(main, .site-footer) .site a:not(.btn) { color: var(--ink); text-decoration: none; }   /* student cards stay ink */
 
-/* ---- footer: small grey text on #f5f5f7, like apple.com ---- */
+/* ---- footer: small grey text on the darker grey ---- */
 .site-footer { border-block-start: 0; padding-block: 2rem 2.5rem; color: var(--mute); font: 0.75rem/1.5 var(--sans); background: var(--paper2); }
 .site-footer .foot { inline-size: var(--wrap); margin-inline: auto; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 1rem 3rem; }
 .site-footer .foot-note { grid-column: 1 / -1; font: 0.75rem/1.5 var(--sans); }
@@ -196,8 +200,8 @@ section, .controls { scroll-margin-block-start: calc(var(--header-h) + 3.5rem); 
    Page overrides: remove the old newsprint outlines and dashed rules,
    and turn boxes into soft rounded tiles.
    ========================================================================== */
-/* small labels: Apple eyebrow text, not shouting uppercase */
-:root :is(.mono, .kicker) { font: 600 0.8125rem/1.3 var(--sans); letter-spacing: -0.01em; text-transform: none; color: var(--mute); }
+/* small labels: spaced uppercase eyebrow text in orange */
+:root :is(.mono, .kicker) { font: 700 0.6875rem/1.3 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; color: var(--hot); }
 
 /* index.html */
 :root .updated { border: 0; background: var(--paper2); padding: 0.3rem 0.35rem 0.3rem 1rem; }
@@ -268,3 +272,30 @@ section, .controls { scroll-margin-block-start: calc(var(--header-h) + 3.5rem); 
 :root th { font-family: var(--sans); font-weight: 600; text-transform: none; letter-spacing: 0; font-size: 0.875rem; }
 :root .note { border-inline-start: 0; background: var(--paper2); border-radius: 14px; padding: 1rem 1.2rem; }
 :root .updated:not(:has(time)) { background: none; padding: 0; font: 600 0.875rem var(--sans); text-transform: none; letter-spacing: 0; }
+
+/* ==========================================================================
+   Grey-and-orange extras: soft studio background, a faint serif watermark
+   behind the hero, and greyscale previews that take their colour on hover.
+   ========================================================================== */
+body { background: radial-gradient(1200px 700px at 50% -10%, var(--card), var(--paper) 60%) no-repeat, var(--paper); }
+:root .hero { position: relative; overflow: hidden; isolation: isolate; }
+:root .hero::before {
+  content: "learning today"; position: absolute; z-index: -1; inset-inline: -5%; inset-block-start: 50%; translate: 0 -50%;
+  font: 400 clamp(4.5rem, 15vw, 13rem)/0.9 var(--watermark); letter-spacing: -0.04em; text-align: center;
+  color: color-mix(in srgb, var(--ink) 4%, transparent); pointer-events: none; user-select: none;
+}
+:root .shot img, :root .shot iframe.ok { filter: grayscale(1) contrast(1.05); transition: filter 0.5s var(--ease), transform 0.35s; }
+:root :is(.shot:hover, .shot:focus-visible) img, :root .site a:is(:hover, :focus-visible) .shot iframe.ok { filter: none; }
+:root .shot, :root .doc, :root .log, :root .site a, :root .videos video { border-radius: 12px; }
+:root :is(.doc, .log, .site a) { background: var(--card); box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.25); }
+:root .batch { background: var(--paper2); }
+:root .batch .doc { background: var(--card); }
+:root .updated time { background: var(--btn); color: #fff; border-radius: 2px; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.75rem; font-weight: 700; }
+:root .updated { border-radius: 2px; }
+:root .chips li, :root .chip, :root .tag, :root .star, :root .core, :root .meta span, :root .rk .pl { border-radius: 2px; }
+:root .step::before { font-family: var(--serif); font-weight: 300; color: var(--hot); }
+:root .doc .big, :root .doc.students .big { font-weight: 700; color: var(--hot); }
+:root .doc.students .big { color: var(--ink); }
+:root .hero h1 em { color: var(--ink); }
+:root .section-head h2 { font-weight: 500; }
+:root .search, :root .sort, :root pre, :root .note { border-radius: 4px; }
