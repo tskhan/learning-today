@@ -322,3 +322,10 @@ body { background: radial-gradient(1200px 700px at 50% -10%, var(--card), var(--
 .site-header a:hover, .site-header a:focus-visible, .site-footer a:hover, .site-footer a:focus-visible { background: none; text-decoration-color: currentColor; }
 .site-header .site-logo:hover, .site-header .site-logo:focus-visible { background: none; }
 .site-footer a:hover, .site-footer a:focus-visible { color: var(--hot); }
+
+/* the Class resources summary ignores a page's own summary marker (admin-links draws "+" / "-" on its details) */
+.site-header .menu-group summary::before { content: none; }
+.site-header .menu-group summary::marker { content: ""; }
+.site-header.is-wide .menu-group summary::after { inline-size: 0.42em; block-size: 0.42em; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg) translateY(-0.1em); }
+.site-header.is-wide .menu-group details[open] > summary::after { transform: rotate(-135deg) translateY(-0.1em); }
+.menu-group details { margin: 0; padding: 0; }
