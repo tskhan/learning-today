@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { cleanText, LIMITS } from "@/lib/limits";
 import { field, safeNext, type FormState } from "@/lib/forms";
-import { loginErrorMessage, REMOVED_MESSAGE as REMOVED } from "@/lib/errors";
+import { loginErrorMessage, REMOVED_MESSAGE as REMOVED, unavailableMessage } from "@/lib/errors";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -19,7 +19,12 @@ export async function signUp(_prev: FormState, fd: FormData): Promise<FormState>
 
   const admin = createAdminClient();
   const { data: settings, error: settingsError } = await admin.from("settings").select("join_code").single();
-  if (settingsError || !settings) return { error: "Sign-up is unavailable right now. Please try again later." };
+  if (settingsError || !settings) {
+    // Is the secret key itself accepted? (A wrong key and missing grants both look like "permission denied".)
+    const { error: keyError } = await admin.auth.admin.listUsers({ page: 1, perPage: 1 });
+    console.error("signUp: could not read the join code from settings", { settingsError, keyError });
+    return { error: unavailableMessage(settingsError, !keyError) };
+  }
   if (joinCode.toLowerCase() !== settings.join_code.trim().toLowerCase()) {
     return { error: "That join code isn't right. Ask in the Batch 91 WhatsApp group for the current code." };
   }
@@ -35,6 +40,7 @@ export async function signUp(_prev: FormState, fd: FormData): Promise<FormState>
       return { error: "There's already an account with that email. Log in instead, or reset your password." };
     }
     if (createError.code === "weak_password") return { error: "Choose a stronger password." };
+    console.error("signUp: createUser failed", createError);
     return { error: "We couldn't create your account. Please try again." };
   }
 
