@@ -52,6 +52,10 @@ a { color: inherit; }
 .updated time { font: 600 0.95rem var(--sans); background: var(--hot); color: var(--onhot); border-radius: 99px; padding: 0.3rem 0.9rem; }
 
 /* hero */
+.pinned { inline-size: var(--wrap); margin: var(--space-max) auto 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1rem; padding: 0.9rem 1.2rem; background: var(--paper2); border: 1px solid var(--line); border-inline-start: 4px solid var(--hot); border-radius: 4px; }
+.pinned .tag { font: 700 0.75rem var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--hot); }
+.pinned p { margin: 0; flex: 1 1 22rem; }
+.pinned .btn { min-block-size: 40px; padding: 0.5rem 1.1rem; font-size: 0.9rem; }
 .hero { padding-block: var(--space-max) 0; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: var(--space-max); align-items: start; }
 .hero h1 { font-weight: 800; font-size: clamp(2.8rem, 8vw, 6rem); line-height: 0.96; }
@@ -226,6 +230,11 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
 
 
 <main id="main">
+  <aside class="pinned" aria-label="Pinned">
+    <span class="tag">Pinned</span>
+    <p><b>Practice quiz: the AI Worker Paradigm.</b> Read the chapter, then take the quiz and send your result to the class group. It is optional and just for fun.</p>
+    <a class="btn solid" href="https://g23nx6n0fthgpyzmzq62jds85.bolt.host" target="_blank" rel="noopener">Take the quiz</a>
+  </aside>
   <div class="hero">
     <div class="wrap hero-grid">
       <div>
