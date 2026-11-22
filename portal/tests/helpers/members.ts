@@ -95,3 +95,12 @@ export async function createClassFixture(opts: {
   }
   return { classId: data.id, number, homeworkIds };
 }
+
+/** Logs a member in through the real login form. */
+export async function loginAs(page: import("@playwright/test").Page, member: { email: string; password: string }, next?: string) {
+  await page.goto(next ? `/login?next=${encodeURIComponent(next)}` : "/login");
+  await page.getByLabel("Email").fill(member.email);
+  await page.getByLabel("Password").fill(member.password);
+  await page.getByRole("button", { name: "Log in" }).click();
+  await page.waitForURL((url) => !url.pathname.startsWith("/login"));
+}

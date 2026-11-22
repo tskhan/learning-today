@@ -6,7 +6,6 @@ export function Logo() {
     <a className="site-logo" href="https://learning-today.com">
       <picture>
         <source srcSet="/logo-dark.png" media="(prefers-color-scheme: dark)" />
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/logo.png" alt="learning-today.com" width={114} height={26} />
       </picture>
     </a>
