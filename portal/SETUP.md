@@ -90,3 +90,4 @@ You will copy a few keys between websites. **Never paste a key into a chat, an e
 - **Adding a class:** after each class, go to Admin → Classes → New class, fill in what was discussed, the material and any homework, and set it to Published.
 - **Someone forgot their password and the email didn't arrive:** Admin → Members → **Reset link** next to their name, then send them the link on WhatsApp. It works once.
 - **Another admin:** Admin → Members → **Make admin**.
+- **"Too many log-ins right now":** everyone's log-ins share the limit from step 1.6. If students see this message, wait 5 minutes, or raise the limit in Supabase → Authentication → Rate Limits.

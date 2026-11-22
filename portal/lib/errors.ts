@@ -7,3 +7,14 @@ export function friendlyError(e: { message?: string; code?: string } | null | un
   if (e?.code === "42501" || /row-level security/i.test(message)) return "You don't have permission to do that.";
   return "Something went wrong. Please try again.";
 }
+
+export const REMOVED_MESSAGE = "This account has been removed. Contact the batch admin if you think this is a mistake.";
+
+/** Message for a failed log-in. Log-ins share one rate limit (they all come from the portal's server). */
+export function loginErrorMessage(e: { status?: number; code?: string } | null | undefined): string {
+  if (e?.code === "user_banned") return REMOVED_MESSAGE;
+  if (e?.status === 429 || e?.code === "over_request_rate_limit") {
+    return "Too many log-ins right now. Please wait a few minutes and try again.";
+  }
+  return "Email or password is wrong.";
+}

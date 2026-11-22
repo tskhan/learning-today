@@ -370,3 +370,18 @@ end;
 $$;
 create trigger classes_close_thread before delete on public.classes
   for each row execute function public.close_class_thread();
+
+-- When homework is switched to "hand-in expected", earlier ticks without a
+-- link no longer count as done, so they are cleared (real hand-ins stay).
+create function public.clear_ticks_without_handin() returns trigger
+language plpgsql security definer set search_path = ''
+as $$
+begin
+  if new.handin_expected and not old.handin_expected then
+    delete from public.homework_status where homework_id = new.id and handin_url is null;
+  end if;
+  return new;
+end;
+$$;
+create trigger homework_handin_switched after update of handin_expected on public.homework
+  for each row execute function public.clear_ticks_without_handin();

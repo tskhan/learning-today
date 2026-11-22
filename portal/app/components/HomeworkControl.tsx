@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useActionState } from "react";
+import { useKeptActionState } from "./useKeptActionState";
 import { markHomework, unmarkHomework } from "@/app/(member)/classes/actions";
 import { FormMessage } from "./FormMessage";
 import { SubmitButton } from "./SubmitButton";
@@ -14,7 +14,7 @@ export function HomeworkControl({ homeworkId, handinExpected, status, editing, r
   editing: boolean;
   returnTo: string;
 }) {
-  const [state, action] = useActionState(markHomework, undefined);
+  const [state, action] = useKeptActionState(markHomework, ["handin_url", "note"]);
   const hidden = (
     <>
       <input type="hidden" name="homework_id" value={homeworkId} />
@@ -69,11 +69,11 @@ export function HomeworkControl({ homeworkId, handinExpected, status, editing, r
       <FormMessage state={state?.error ? state : undefined} />
       <div className="form-row">
         <label htmlFor={`handin-${homeworkId}`}>Link to your work</label>
-        <input id={`handin-${homeworkId}`} name="handin_url" type="url" inputMode="url" placeholder="https://…" defaultValue={status?.handinUrl ?? ""} />
+        <input id={`handin-${homeworkId}`} name="handin_url" type="url" inputMode="url" placeholder="https://…" defaultValue={state?.values?.handin_url ?? status?.handinUrl ?? ""} />
       </div>
       <div className="form-row">
         <label htmlFor={`note-${homeworkId}`}>Note (optional)</label>
-        <input id={`note-${homeworkId}`} name="note" type="text" maxLength={500} defaultValue={status?.note ?? ""} />
+        <input id={`note-${homeworkId}`} name="note" type="text" maxLength={500} defaultValue={state?.values?.note ?? status?.note ?? ""} />
       </div>
       <div className="row">
         <SubmitButton pendingText="Handing in…">Hand in</SubmitButton>

@@ -134,3 +134,19 @@ describe("deleting a class", () => {
     expect(kept).toEqual({ id: linked!.id, class_id: null });
   });
 });
+
+describe("switching homework to 'hand-in expected'", () => {
+  it("clears earlier ticks that have no link, keeps real hand-ins", async () => {
+    const cls = await createClassFixture({ homework: [{ handin_expected: false }] });
+    const ticked = await createMember();
+    const linked = await createMember();
+    const hw = cls.homeworkIds[0];
+    await ticked.client.from("homework_status").insert({ user_id: ticked.id, homework_id: hw });
+    await linked.client.from("homework_status").insert({ user_id: linked.id, homework_id: hw, handin_url: "https://x.dev" });
+
+    const { error } = await adminClient().from("homework").update({ handin_expected: true }).eq("id", hw);
+    expect(error).toBeNull();
+    const { data } = await adminClient().from("homework_status").select("user_id").eq("homework_id", hw);
+    expect(data).toEqual([{ user_id: linked.id }]);
+  });
+});

@@ -22,3 +22,18 @@ describe("friendlyError", () => {
     expect(friendlyError({ message: "boom" })).toBe("Something went wrong. Please try again.");
   });
 });
+
+import { loginErrorMessage } from "@/lib/errors";
+
+describe("loginErrorMessage", () => {
+  it("says when the shared login limit is hit instead of blaming the password", () => {
+    expect(loginErrorMessage({ status: 429, code: "over_request_rate_limit" })).toBe(
+      "Too many log-ins right now. Please wait a few minutes and try again.",
+    );
+    expect(loginErrorMessage({ status: 429 })).toBe("Too many log-ins right now. Please wait a few minutes and try again.");
+  });
+  it("explains removed accounts and wrong passwords", () => {
+    expect(loginErrorMessage({ code: "user_banned" })).toContain("This account has been removed.");
+    expect(loginErrorMessage({ code: "invalid_credentials", status: 400 })).toBe("Email or password is wrong.");
+  });
+});

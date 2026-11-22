@@ -4,8 +4,8 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { cleanText, LIMITS } from "@/lib/limits";
 import { field, safeNext, type FormState } from "@/lib/forms";
+import { loginErrorMessage, REMOVED_MESSAGE as REMOVED } from "@/lib/errors";
 
-const REMOVED = "This account has been removed. Contact the batch admin if you think this is a mistake.";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function signUp(_prev: FormState, fd: FormData): Promise<FormState> {
@@ -52,10 +52,7 @@ export async function logIn(_prev: FormState, fd: FormData): Promise<FormState> 
 
   const supabase = await createClient();
   const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) {
-    if (error.code === "user_banned") return { error: REMOVED };
-    return { error: "Email or password is wrong." };
-  }
+  if (error) return { error: loginErrorMessage(error) };
   const { data: profile } = await createAdminClient()
     .from("profiles")
     .select("status")
