@@ -51,7 +51,11 @@ pre { margin: 0 0 1.2rem; padding: 0.9rem 1rem; overflow-x: auto; border: 2px so
 .videos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-block: 1.5rem 1rem; }
 .videos figure { margin: 0; }
 .videos video { display: block; inline-size: 100%; block-size: auto; aspect-ratio: 9 / 16; border: 2px solid var(--ink); border-radius: 8px; background: #000; color: #fff; }
-.videos video a { color: #fff; }
+.videos video a, .result video a { color: #fff; }
+.result { margin: 1rem 0 1.5rem; }
+.result video { display: block; inline-size: 100%; block-size: auto; aspect-ratio: 16 / 9; border: 2px solid var(--ink); border-radius: 8px; background: #000; color: #fff; }
+.result figcaption { margin-block-start: 0.6rem; font-size: 0.95rem; color: var(--mute); }
+.result figcaption strong { display: block; color: var(--ink); font-weight: 600; }
 .videos figcaption { margin-block-start: 0.6rem; font-size: 0.95rem; color: var(--mute); }
 .videos figcaption strong { display: block; color: var(--ink); font-weight: 600; }
 table { inline-size: 100%; border-collapse: collapse; margin-block: 0 1.2rem; font-size: 0.97rem; }
@@ -157,7 +161,7 @@ th { font-family: var(--mono); font-size: 0.8rem; text-transform: uppercase; let
   <ol>
     <li>Make an empty folder, for example <code>My Videos</code>, and open it in Claude Code.</li>
     <li>Describe your video. Say what it's about, how long it should be, its shape, and the feel you want. For example:
-      <pre><code>Make a 45-second vertical (9:16) animated video that explains how plants make food from sunlight. Use friendly cartoon characters, a calm voiceover, light background music and soft sound effects. Use Remotion.</code></pre>
+      <pre><code>Make a 45-second landscape (16:9) animated video that explains how plants make food from sunlight. Use friendly cartoon characters, a calm voiceover, light background music and soft sound effects. Use Remotion.</code></pre>
     </li>
     <li>Claude writes a script and shows it to you. Read it and say what to change.</li>
     <li>Claude builds the scenes and opens a <strong>preview</strong> in your browser. Watch it.</li>
@@ -165,6 +169,15 @@ th { font-family: var(--mono); font-size: 0.8rem; text-transform: uppercase; let
     <li>When you're happy, say <strong>"render it"</strong>. Claude exports the MP4 into an <code>out</code> folder.</li>
   </ol>
   <p class="note">A video like the examples takes about one to two hours of back-and-forth the first time, mostly spent on changes. Rendering one minute of video takes a few minutes on a normal laptop.</p>
+  <h3>The result</h3>
+  <p>This is the video Claude made from the sample prompt above, from script to finished MP4.</p>
+  <figure class="result">
+    <video controls playsinline preload="none" poster="assets/videos/plants-photosynthesis-poster.jpg" width="1920" height="1080">
+      <source src="assets/videos/plants-photosynthesis.mp4" type="video/mp4">
+      <a href="assets/videos/plants-photosynthesis.mp4">Download the video (MP4, 8.2 MB)</a>
+    </video>
+    <figcaption><strong>How plants make food</strong>45 seconds, landscape. Six scenes with a calm voiceover, soft sound effects and quiet background music.</figcaption>
+  </figure>
 
   <h2>How the example videos were built</h2>
   <p>Here's what Claude made for the two example videos, so you know what to expect:</p>
