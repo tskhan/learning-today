@@ -1,0 +1,206 @@
+<!doctype html>
+<!-- make-videos-with-claude.html: beginner guide to making animated videos with Claude Code + Remotion skills, with two example videos (assets/videos/). Shared styles: theme.css. Shared script: site.js. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Google Analytics (GA4). Same deferred loader as the other pages. -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-RVSZ0QWH35');
+  (function () {
+    var loaded = false;
+    function loadGA() {
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-RVSZ0QWH35';
+      document.head.appendChild(s);
+    }
+    ['scroll', 'pointerdown', 'keydown', 'touchstart'].forEach(function (e) {
+      addEventListener(e, loadGA, { once: true, passive: true });
+    });
+    addEventListener('load', function () { setTimeout(loadGA, 2500); });
+  })();
+</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Make videos with Claude | learning-today.com</title>
+<meta name="description" content="A beginner's guide to making animated videos with Claude Code: what to install, which skills to add, what to type, and two example videos made this way.">
+<link rel="canonical" href="https://learning-today.com/make-videos-with-claude.html">
+<style>
+/* Page styles for the video guide. Colours, fonts, header and footer come from theme.css. */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; font: 1.0625rem/1.65 var(--sans); text-wrap: pretty; }
+main { inline-size: min(760px, 100% - 2.5rem); margin-inline: auto; padding-block: clamp(2.5rem, 7vw, 5rem) clamp(3rem, 8vw, 6rem); }
+h1, h2, h3 { font-family: var(--serif); text-wrap: balance; letter-spacing: -0.02em; margin: 0; }
+h1 { font-size: clamp(2.6rem, 8vw, 4.6rem); font-weight: 800; line-height: 1; }
+.updated { margin-block: 1rem 2.5rem; color: var(--mute); font: 500 0.85rem var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
+.lede { font-size: 1.2rem; color: var(--mute); margin-block-end: 1rem; }
+.lede strong { color: var(--ink); font-weight: 600; }
+h2 { font-size: 1.7rem; font-weight: 800; margin-block: 2.6rem 0.7rem; padding-block-start: 1.4rem; border-block-start: 2px solid var(--ink); }
+h3 { font-size: 1.25rem; font-weight: 800; margin-block: 1.6rem 0.4rem; }
+p { margin: 0 0 1rem; }
+ul, ol { margin: 0 0 1rem; padding-inline-start: 1.3rem; }
+li { margin-block-end: 0.5rem; }
+a { color: var(--ink); text-decoration-color: var(--hot); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+a:hover { background: var(--hot); color: var(--onhot); text-decoration-color: transparent; }
+code { font: 0.9em var(--mono); }
+pre { margin: 0 0 1.2rem; padding: 0.9rem 1rem; overflow-x: auto; border: 2px solid var(--ink); border-radius: 6px; font: 0.88rem/1.5 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; }
+.videos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-block: 1.5rem 1rem; }
+.videos figure { margin: 0; }
+.videos video { display: block; inline-size: 100%; block-size: auto; aspect-ratio: 9 / 16; border: 2px solid var(--ink); border-radius: 8px; background: #000; color: #fff; }
+.videos video a { color: #fff; }
+.videos figcaption { margin-block-start: 0.6rem; font-size: 0.95rem; color: var(--mute); }
+.videos figcaption strong { display: block; color: var(--ink); font-weight: 600; }
+table { inline-size: 100%; border-collapse: collapse; margin-block: 0 1.2rem; font-size: 0.97rem; }
+th, td { text-align: start; vertical-align: top; padding: 0.55rem 0.6rem; border-block-end: 1px solid var(--mute); }
+th { font-family: var(--mono); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.table-wrap { overflow-x: auto; }
+.note { padding: 0.9rem 1rem; border-inline-start: 4px solid var(--hot); margin-block: 0 1.2rem; }
+.credits { font-size: 0.9rem; color: var(--mute); }
+</style>
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f5f1e8" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16120e" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" href="assets/icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Fonts load without blocking the first paint; text shows in a fallback font for a moment, then swaps. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;1,9..144,500&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,800;1,9..144,500&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap"></noscript>
+<link rel="stylesheet" href="theme.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="site-logo" href="index.html">
+      <picture>
+        <source srcset="assets/logo-dark.webp" media="(prefers-color-scheme: dark)" type="image/webp">
+        <source srcset="assets/logo-dark.png" media="(prefers-color-scheme: dark)">
+        <source srcset="assets/logo.webp" type="image/webp">
+        <img src="assets/logo.png" width="219" height="50" alt="learning-today.com, home" fetchpriority="high">
+      </picture>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <button class="menu-button" type="button" popovertarget="site-menu" popovertargetaction="toggle" aria-controls="site-menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <span>Menu</span>
+      </button>
+      <ul id="site-menu" class="site-menu" popover="auto">
+        <li><a href="index.html#core">Core documents</a></li>
+        <li><a href="index.html#learn">Learn Claude</a></li>
+        <li><a href="index.html#batch-91">PIAIC Batch 91</a></li>
+        <li><a href="admin-links.html">Links shared in Class</a></li>
+        <li><a href="student-websites.html">Student websites</a></li>
+        <li><a class="cta" href="https://portal.piaic.org/" rel="noopener">Enrol with PIAIC</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <h1>Make videos with Claude</h1>
+  <p class="updated">Last updated 22 November 2026</p>
+  <p class="lede">You can make a full animated video with voice, music and sound effects <strong>by describing it to Claude in plain words</strong>. You don't need an animation studio, and you don't need to know how to code.</p>
+  <p>Both videos below were made this way. Claude wrote the script, drew every character and scene in code, added the voiceover and sound, and rendered the final MP4. This page shows what to install and what to type to make your own.</p>
+
+  <h2>The two example videos</h2>
+  <div class="videos">
+    <figure>
+      <video controls playsinline preload="none" poster="assets/videos/claude-anim-poster.jpg" width="720" height="1280">
+        <source src="assets/videos/claude-anim.mp4" type="video/mp4">
+        <a href="assets/videos/claude-anim.mp4">Download the video (MP4, 9.6 MB)</a>
+      </video>
+      <figcaption><strong>Make animation videos with Claude</strong>56 seconds. Six animated scenes that explain the process this page describes.</figcaption>
+    </figure>
+    <figure>
+      <video controls playsinline preload="none" poster="assets/videos/learning-today-promo-poster.jpg" width="720" height="1280">
+        <source src="assets/videos/learning-today-promo.mp4" type="video/mp4">
+        <a href="assets/videos/learning-today-promo.mp4">Download the video (MP4, 8 MB)</a>
+      </video>
+      <figcaption><strong>learning-today.com promo</strong>55 seconds. A short promo for this site with characters, real page previews and music.</figcaption>
+    </figure>
+  </div>
+  <p>Both are vertical (9:16), the shape used for Reels, Shorts and TikTok.</p>
+
+  <h2>How it works</h2>
+  <p>Claude doesn't "film" anything. It writes a small web project with <a href="https://www.remotion.dev" rel="noopener">Remotion</a>, a free tool that turns code into video. Every frame is a web page, and Remotion records the frames into an MP4.</p>
+  <p>Because the whole video is code, every change is quick. You say "make the title bigger" or "use brighter colours", and Claude edits the code and renders it again.</p>
+
+  <h2>Set up: one prompt</h2>
+  <p>You only install one thing yourself: <strong>Claude Code</strong>, the version of Claude that can create files and run programs on your computer. Get it from <a href="https://claude.com/download" rel="noopener">claude.com/download</a> and use the desktop app's Code tab.</p>
+  <p>Then open an empty folder in Claude Code and paste this prompt:</p>
+  <pre><code>I want to make video reels using Claude. Check my setup and install all necessary tools to achieve this.</code></pre>
+  <p>Claude checks what is already on your computer and installs what's missing. It asks before each install, so read each request and click <strong>Allow</strong>. This takes about 10 to 20 minutes.</p>
+  <h3>What Claude installs</h3>
+  <p>Your list may differ a little, depending on what you already have. For the example videos, Claude set up these tools:</p>
+  <div class="table-wrap">
+  <table>
+    <thead><tr><th>Tool</th><th>What it's for</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Remotion</strong></td><td>Turns code into video. Claude builds every scene with it.</td></tr>
+      <tr><td><strong>Node.js, Python and git</strong></td><td>The programs that Remotion and the other tools run on.</td></tr>
+      <tr><td><strong>FFmpeg</strong></td><td>Joins, trims and compresses audio and video.</td></tr>
+      <tr><td><strong>whisper-ctranslate2</strong></td><td>Turns speech into text, for subtitles and captions.</td></tr>
+      <tr><td><strong>yt-dlp</strong></td><td>Downloads video clips you have the right to use, for example your own uploads.</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>Claude can also add <strong>Remotion skills</strong>. A skill is a set of instructions that teaches Claude one job well, such as building, previewing or rendering a video. For a voiceover, Claude can set up <a href="https://github.com/thewh1teagle/kokoro-onnx" rel="noopener">Kokoro</a>, a free voice that runs on your own computer with no account. If Claude doesn't offer these, ask for them.</p>
+
+  <h2>Make your first video</h2>
+  <ol>
+    <li>Make an empty folder, for example <code>My Videos</code>, and open it in Claude Code.</li>
+    <li>Describe your video. Say what it's about, how long it should be, its shape, and the feel you want. For example:
+      <pre><code>Make a 45-second vertical (9:16) animated video that explains how plants make food from sunlight. Use friendly cartoon characters, a calm voiceover, light background music and soft sound effects. Use Remotion.</code></pre>
+    </li>
+    <li>Claude writes a script and shows it to you. Read it and say what to change.</li>
+    <li>Claude builds the scenes and opens a <strong>preview</strong> in your browser. Watch it.</li>
+    <li>Ask for changes in plain words: "make the title bigger", "slow down scene 3", "use a warmer voice".</li>
+    <li>When you're happy, say <strong>"render it"</strong>. Claude exports the MP4 into an <code>out</code> folder.</li>
+  </ol>
+  <p class="note">A video like the examples takes about one to two hours of back-and-forth the first time, mostly spent on changes. Rendering one minute of video takes a few minutes on a normal laptop.</p>
+
+  <h2>How the example videos were built</h2>
+  <p>Here's what Claude made for the two example videos, so you know what to expect:</p>
+  <ul>
+    <li><strong>Scenes as code.</strong> Each scene is its own file. The first video has six (<code>A1.tsx</code> to <code>A6.tsx</code>), and Remotion plays them in order at 30 frames a second.</li>
+    <li><strong>Characters drawn in code.</strong> Every shape and character was drawn by Claude as code. No image files were used for the artwork.</li>
+    <li><strong>Voiceover.</strong> Claude wrote the narration line by line, made each line with Kokoro (voice <code>af_heart</code>), and timed the animation to match the speech.</li>
+    <li><strong>Sound effects.</strong> Claude synthesised the pops and whooshes with a short Python script instead of downloading them.</li>
+    <li><strong>Music.</strong> Free tracks by Kevin MacLeod, mixed under the voice with FFmpeg.</li>
+    <li><strong>Final export.</strong> Remotion rendered the full-HD MP4, and FFmpeg compressed a smaller copy for this page.</li>
+  </ul>
+
+  <h2>Tips</h2>
+  <ul>
+    <li><strong>Be specific about the feel.</strong> "Playful, bright colours, bouncy motion" works better than "make it nice".</li>
+    <li><strong>Change one thing at a time.</strong> Small requests give cleaner results than a long list.</li>
+    <li><strong>Use free music and credit it.</strong> Tracks from <a href="https://incompetech.com" rel="noopener">incompetech.com</a> are free if you credit the artist.</li>
+    <li><strong>Check the licence.</strong> Remotion is free for individuals and teams of up to three. Larger companies need a <a href="https://www.remotion.pro" rel="noopener">company licence</a>.</li>
+  </ul>
+
+  <h2>Credits</h2>
+  <p class="credits">Music: "Life of Riley" and "Carefree" by Kevin MacLeod (incompetech.com), licensed under <a href="https://creativecommons.org/licenses/by/4.0/" rel="noopener">Creative Commons Attribution 4.0</a>. Voiceover: Kokoro-82M (Apache-2.0). Fonts: Fraunces, Caveat and DM Mono (SIL Open Font License). Animation: Remotion. Both videos were made with Claude Code.</p>
+</main>
+<footer class="site-footer">
+  <div class="foot">
+    <p>learning-today.com is an independent learner site. PIAIC and Anthropic run the official programme and exams; this site only points to them and records what one class has covered.</p>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="admin-links.html">Links shared in Class</a></li>
+      <li><a href="student-websites.html">Student websites</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="https://www.piaic.org" rel="noopener">piaic.org</a></li>
+      <li><a href="https://agentfactory.piaic.org/" rel="noopener">The AI Agent Factory</a></li>
+      <li><a href="https://claude.com/download" rel="noopener">Claude</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="site.js" defer></script>
+</body>
+</html>
