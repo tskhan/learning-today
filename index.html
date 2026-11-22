@@ -57,11 +57,12 @@ a { color: inherit; }
 .pinned p { margin: 0; flex: 1 1 22rem; }
 .pinned .btn { min-block-size: 40px; padding: 0.5rem 1.1rem; font-size: 0.9rem; }
 /* class table: date, what was covered, and the documents taught from */
-.classes { inline-size: 100%; border-collapse: collapse; margin-block-start: 1rem; background: var(--paper2); border-radius: 10px; overflow: hidden; font-size: 0.875rem; line-height: 1.4; }
-.classes th, .classes td { text-align: start; vertical-align: top; padding: 0.55rem 0.9rem; border-block-end: 1px solid var(--line); }
+#classes .section-head, .classes { max-inline-size: 60rem; margin-inline: auto; }
+.classes { inline-size: 100%; border-collapse: separate; border-spacing: 0; margin-block-start: 1rem; border: 1px solid var(--line); background: var(--paper2); border-radius: 10px; overflow: hidden; font-size: 0.875rem; line-height: 1.4; }
+.classes th, .classes td { text-align: start; vertical-align: top; padding: 0.7rem 1.1rem; border-block-end: 1px solid var(--line); }
 .classes thead th { font: 700 0.6875rem var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); background: var(--card); padding-block: 0.5rem; }
-.classes td:first-child { white-space: nowrap; inline-size: 5.5rem; font: 600 0.85rem var(--sans); color: var(--hot); }
-.classes td:nth-child(2) { inline-size: 40%; }
+.classes td:first-child { white-space: nowrap; inline-size: 1%; padding-inline: 1.1rem; font: 600 0.85rem var(--sans); color: var(--hot); }
+.classes td:nth-child(2) { inline-size: 42%; }
 .classes td a { display: block; color: var(--hot); font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; overflow-wrap: anywhere; }
 .classes td a + a { margin-block-start: 0.25rem; }
 .classes td a:hover { text-decoration-thickness: 2px; }
