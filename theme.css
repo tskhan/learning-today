@@ -1,28 +1,30 @@
 /* ==========================================================================
    theme.css: the shared design theme for learning-today.com.
-   Used by index.html, admin-links.html and student-websites.html.
+   Used by every page. Loaded LAST so it wins over each page's own styles.
 
-   What is in here: colour tokens (light and dark), the three fonts, the site
-   header and its popover menu, buttons, the footer, and the sticky offsets.
-   Palette: paper and ink, one vermilion accent, green for student work.
+   Look: modelled on apple.com. White and #f5f5f7 grounds (black in dark mode),
+   #1d1d1f ink, one blue accent, the system San Francisco font (Inter where SF
+   is not installed), a slim translucent header with small links, large soft
+   rounded tiles with no outlines, and pill buttons.
 
-   Loaded LAST on every page so it wins over the page's own tokens. The selector
-   :root:not([data-never]) matches the specificity of the pages' own dark-mode
-   blocks. Change a colour here and it changes on all three pages.
+   What is in here: colour tokens (light and dark), fonts, the site header and
+   its menu, buttons, links, the footer, and the overrides that bring each
+   page's own styles into the same look. The selector :root:not([data-never])
+   beats the specificity of the pages' own :root token blocks.
    ========================================================================== */
 :root:not([data-never]) {
   /* raw light and dark values */
-  --paper-l: #f5f1e8;   --paper-d: #16120e;
-  --paper2-l: #ebe4d4;  --paper2-d: #211b14;
-  --card-l: #fbf8f1;    --card-d: #1d1711;
-  --ink-l: #1b1612;     --ink-d: #f2ece0;
-  --mute-l: #6a5f52;    --mute-d: #ab9f8d;
-  --line-l: #d9d0bd;    --line-d: #3a3226;
-  --hot-l: #b3390b;     --hot-d: #ff7a55;
-  --onhot-l: #ffffff;   --onhot-d: #16120e;
-  --hotbg-l: #f8e1d6;   --hotbg-d: #2e1810;
-  --green-l: #1f6f50;   --green-d: #5fd39b;
-  --greenbg-l: #dcebe2; --greenbg-d: #16261e;
+  --paper-l: #ffffff;   --paper-d: #000000;
+  --paper2-l: #f5f5f7;  --paper2-d: #161617;
+  --card-l: #ffffff;    --card-d: #1c1c1e;
+  --ink-l: #1d1d1f;     --ink-d: #f5f5f7;
+  --mute-l: #6e6e73;    --mute-d: #a1a1a6;
+  --line-l: #d2d2d7;    --line-d: #424245;
+  --hot-l: #0066cc;     --hot-d: #2997ff;     /* links and accents */
+  --onhot-l: #ffffff;   --onhot-d: #000000;
+  --hotbg-l: #f5f5f7;   --hotbg-d: #161617;
+  --green-l: #248a3d;   --green-d: #30d158;
+  --greenbg-l: #f5f5f7; --greenbg-d: #161617;
 
   /* resolved tokens: light first */
   --paper: var(--paper-l); --paper2: var(--paper2-l); --card: var(--card-l); --ink: var(--ink-l);
@@ -44,30 +46,42 @@
     --greenbg: light-dark(var(--greenbg-l), var(--greenbg-d));
   }
 
+  /* Apple's button blue: the same in both modes, always with white text */
+  --btn: #0071e3; --btn-hover: #0077ed;
+
   /* the same tokens under the names each page already uses */
   --bg: var(--paper);                    /* student websites */
-  --acc: var(--green); --accbg: var(--greenbg);
-  --rule: var(--ink); --soft: var(--line);   /* admin links */
-  --task: var(--hot); --taskbg: var(--hotbg);
-  --impbg: var(--hotbg);
+  --acc: var(--hot); --accbg: var(--paper2);
+  --rule: var(--line); --soft: var(--line);   /* admin links */
+  --task: var(--hot); --taskbg: var(--paper2);
+  --impbg: var(--paper2);
 
   color-scheme: light dark;
-  accent-color: var(--hot);
+  accent-color: var(--btn);
   scrollbar-color: var(--mute) var(--paper);
 
-  --serif: "Fraunces", Georgia, serif;
-  --sans: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --mono: "DM Mono", ui-monospace, Consolas, monospace;
-  --wrap: min(1180px, 100% - 2.5rem);
-  --header-h: 4.9rem;
+  /* One family for everything, like apple.com. --serif is kept as a name so page styles still work. */
+  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", Inter, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+  --serif: -apple-system, BlinkMacSystemFont, "SF Pro Display", Inter, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+  --mono: var(--sans);   /* page labels used a mono font; Apple sets labels in the text font */
+  --code: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --wrap: min(1024px, 100% - 2.5rem);
+  --header-h: 3.25rem;
+  --ease: cubic-bezier(0.28, 0.11, 0.32, 1);
 }
 
 /* ---- shared page behaviour ---- */
-html { background: var(--paper); scroll-padding-block-start: calc(var(--header-h) + 1rem); }
+html { background: var(--paper); scroll-padding-block-start: calc(var(--header-h) + 1rem); -webkit-font-smoothing: antialiased; }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
-body { background: var(--paper); color: var(--ink); }
-::selection { background: var(--hot); color: var(--onhot); }
-:focus-visible { outline: 3px solid var(--hot); outline-offset: 3px; border-radius: 6px; }
+body { background: var(--paper); color: var(--ink); letter-spacing: -0.01em; }
+::selection { background: color-mix(in srgb, var(--btn) 30%, transparent); color: inherit; }
+:focus-visible { outline: 2px solid var(--btn); outline-offset: 3px; border-radius: 6px; }
+code, pre, kbd { font-family: var(--code); }
+
+/* headings: SF semibold/bold with Apple's tight tracking, never the heavy 800 weight */
+:root :is(h1, h2, h3, .big, .num, .pos, .stat b, .ini, .score) { font-weight: 600; letter-spacing: -0.025em; }
+:root h1 { font-weight: 700; letter-spacing: -0.035em; line-height: 1.05; }
+:root :is(h1, h2) em { font-style: normal; font-weight: inherit; color: var(--hot); }
 
 /* secondary sticky bars sit under the site header */
 .topnav, .chips { top: var(--header-h); }
@@ -77,73 +91,180 @@ section, .controls { scroll-margin-block-start: calc(var(--header-h) + 3.5rem); 
 .skip { position: absolute; inset-inline-start: 0.75rem; inset-block-start: -4rem; z-index: 60; background: var(--ink); color: var(--paper); padding: 0.7rem 1rem; border-radius: 8px; }
 .skip:focus { inset-block-start: 0.75rem; }
 
-/* ---- header and nav: one list, a popover when the links do not fit ---- */
+/* ---- header: slim frosted bar, small links; a full-width panel when they do not fit ---- */
 .site-header {
   position: sticky; inset-block-start: 0; z-index: 50;
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
-  backdrop-filter: blur(10px); border-block-end: 1px solid var(--line);
+  background: color-mix(in srgb, var(--paper) 80%, transparent);
+  backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-block-end: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
   font-family: var(--sans);
-  font-size: 1.0625rem;   /* the menu text must not depend on each page's body size */
-  line-height: 1.5;
+  font-size: 0.8125rem;   /* fixed here so the menu does not depend on each page's body size */
+  line-height: 1.4; letter-spacing: -0.01em;
 }
-.header-inner { inline-size: var(--wrap); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.7rem; }
+.header-inner { inline-size: min(1180px, 100% - 2.5rem); min-block-size: var(--header-h); margin-inline: auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .header-inner > * { flex-shrink: 0; white-space: nowrap; }
-.site-logo { display: flex; align-items: center; line-height: 0; text-decoration: none; }
-.site-logo img { display: block; block-size: 50px; inline-size: auto; }
-@media (max-width: 480px) { .site-logo img { block-size: 40px; } }
+.site-logo { display: flex; align-items: center; line-height: 0; text-decoration: none; opacity: 0.92; transition: opacity 0.2s; }
+.site-logo:hover { opacity: 1; }
+.site-logo img { display: block; block-size: 28px; inline-size: auto; }
+
 .menu-button {
-  anchor-name: --menu-button; display: inline-flex; align-items: center; gap: 0.5rem;
-  font: 600 0.95rem var(--sans); color: var(--ink); background: transparent;
-  border: 1.5px solid var(--ink); border-radius: 99px; padding: 0.6rem 1.1rem; min-block-size: 44px; cursor: pointer;
-  transition: background 0.15s, transform 0.15s;
+  anchor-name: --menu-button; display: inline-grid; place-items: center;
+  inline-size: 44px; block-size: 44px; margin-inline-end: -10px; padding: 0;
+  color: var(--ink); background: transparent; border: 0; border-radius: 50%; cursor: pointer;
 }
-.menu-button:hover { background: var(--paper2); transform: translateY(-1px); }
-.menu-button:active { transform: none; }
-.menu-button svg { inline-size: 1.1rem; block-size: 1.1rem; }
-.site-menu { list-style: none; margin: 0; padding: 0.5rem; background: var(--paper); color: var(--ink); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.45); }
-.site-menu a { display: flex; align-items: center; min-block-size: 44px; padding: 0.5rem 0.9rem; border-radius: 10px; text-decoration: none; font-weight: 500; color: var(--ink); }
-.site-menu a:hover { background: var(--paper2); }
-.site-menu a[aria-current="page"] { font-weight: 600; text-decoration: underline; text-decoration-color: var(--hot); text-decoration-thickness: 2px; text-underline-offset: 6px; }
-.site-menu .cta { background: var(--hot); color: var(--onhot); font-weight: 600; margin-block-start: 0.35rem; justify-content: center; text-decoration: none; }
-.site-menu .cta:hover { background: var(--hot); filter: brightness(1.08); }
+.menu-button span { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.menu-button svg { inline-size: 1.15rem; block-size: 1.15rem; opacity: 0.85; transition: opacity 0.2s; }
+.menu-button:hover svg { opacity: 1; }
+
+.site-menu { list-style: none; margin: 0; padding: 0; color: var(--ink); }
+.site-menu a { display: flex; align-items: center; text-decoration: none; color: var(--ink); }
+.site-menu .cta { justify-content: center; background: var(--btn); color: #fff; font-weight: 500; border-radius: 99px; }
+.site-menu .cta:hover { background: var(--btn-hover); }
+
+/* narrow: the menu opens as a full-width panel under the header, with large links */
 .site-header .site-menu {
-  position: fixed; inset: auto;
-  inset-block-start: 4.4rem;                                   /* fallback without anchor positioning */
-  inset-block-start: anchor(--menu-button bottom);
-  inset-inline-end: 1rem; inline-size: min(80dvw, 22rem); max-inline-size: calc(100dvw - 2rem);
-  block-size: fit-content; max-block-size: calc(100dvh - 6rem); margin-block-start: 0.5rem; overflow: auto;
+  position: fixed; inset: var(--header-h) 0 auto 0; margin: 0;
+  inline-size: 100%; max-inline-size: none; block-size: calc(100dvh - var(--header-h)); max-block-size: none;
+  padding: 1.25rem max(1.25rem, (100% - 1024px) / 2) 3rem;
+  background: var(--paper); border: 0; border-radius: 0; box-shadow: none; overflow: auto;
 }
-.site-header.is-measuring * { transition: none !important; }
+.site-header .site-menu::backdrop { background: transparent; }
+.site-header .site-menu a { min-block-size: 48px; padding: 0.35rem 0; font: 600 1.6rem/1.2 var(--sans); letter-spacing: -0.025em; color: var(--ink); }
+.site-header .site-menu a:hover { color: var(--hot); }
+.site-header .site-menu a[aria-current="page"] { color: var(--mute); }
+.site-header .site-menu .cta { display: inline-flex; margin-block-start: 1.25rem; padding: 0.7rem 1.4rem; min-block-size: 44px; font-size: 1.0625rem; font-weight: 500; letter-spacing: 0; color: #fff; }
+.site-header .site-menu .cta:hover { color: #fff; }
+@media (prefers-reduced-motion: no-preference) {
+  .site-header .site-menu:popover-open li { animation: menu-in 0.45s var(--ease) both; }
+  .site-header .site-menu:popover-open li:nth-child(2) { animation-delay: 0.03s; }
+  .site-header .site-menu:popover-open li:nth-child(3) { animation-delay: 0.06s; }
+  .site-header .site-menu:popover-open li:nth-child(4) { animation-delay: 0.09s; }
+  .site-header .site-menu:popover-open li:nth-child(5) { animation-delay: 0.12s; }
+  .site-header .site-menu:popover-open li:nth-child(6) { animation-delay: 0.15s; }
+  .site-header .site-menu:popover-open li:nth-child(7) { animation-delay: 0.18s; }
+}
+@keyframes menu-in { from { opacity: 0; translate: 0 -8px; } to { opacity: 1; translate: 0 0; } }
+
+/* wide: links sit in the bar, small and quiet, like apple.com's global nav */
+.site-header.is-measuring * { transition: none !important; animation: none !important; }
 .site-header.is-wide .menu-button { display: none; }
-.site-header.is-wide .site-menu a { padding-inline: 0.55rem; }
 .site-header.is-wide .site-menu {
-  position: static; display: flex; align-items: center; gap: 0.25rem; inline-size: auto; max-inline-size: none;
+  position: static; display: flex; align-items: center; gap: 0.15rem; inline-size: auto; max-inline-size: none;
   block-size: auto; max-block-size: none; overflow: visible; margin: 0; padding: 0; border: 0; background: transparent; box-shadow: none;
 }
 .site-header.is-wide .site-menu::backdrop { display: none; }
-.site-header.is-wide .site-menu .cta { margin-block-start: 0; padding-inline: 1.2rem; border-radius: 99px; margin-inline-start: 0.5rem; }
+.site-header.is-wide .site-menu a { min-block-size: 44px; padding: 0 0.5rem; font: 400 0.8125rem/1 var(--sans); letter-spacing: -0.01em; color: color-mix(in srgb, var(--ink) 80%, transparent); transition: color 0.2s; }
+.site-header.is-wide .site-menu a:hover { color: var(--ink); }
+.site-header.is-wide .site-menu a[aria-current="page"] { color: var(--ink); font-weight: 600; }
+.site-header.is-wide .site-menu .cta { min-block-size: 28px; margin-inline-start: 0.6rem; padding: 0.4rem 0.9rem; color: #fff; font-weight: 500; }
+.site-header.is-wide .site-menu .cta:hover { color: #fff; }
 [popover]:is(:popover-open, .\:popover-open) { display: block; }
 .site-header.is-wide .site-menu { display: flex; }
 
-/* ---- buttons ---- */
+/* ---- buttons: Apple pills. Solid is blue; ghost is a blue outline ---- */
 .btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-block-size: 48px; padding: 0.75rem 1.5rem;
-  border-radius: 99px; font: 600 1rem var(--sans); text-decoration: none; border: 2px solid var(--ink); color: var(--ink);
-  transition: transform 0.15s, background 0.15s, color 0.15s;
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; min-block-size: 44px; padding: 0.7rem 1.4rem;
+  border-radius: 99px; font: 400 1.0625rem/1.2 var(--sans); letter-spacing: -0.01em; text-decoration: none;
+  border: 1px solid var(--btn); color: var(--btn); background: transparent;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
-.btn:hover { transform: translateY(-2px); }
-.btn:active { transform: translateY(0) scale(0.98); }
-.btn.solid { background: var(--hot); border-color: var(--hot); color: var(--onhot); }
-.btn.ghost { background: transparent; color: var(--ink); }
-.btn.ghost:hover { background: var(--paper2); }
-.btn.green { background: var(--green); border-color: var(--green); color: var(--paper); }
+:root .btn:hover { transform: none; }
+:root .btn:active { transform: scale(0.98); }
+:root .btn.solid { background: var(--btn); border-color: var(--btn); color: #fff; }
+:root .btn.solid:hover { background: var(--btn-hover); border-color: var(--btn-hover); }
+:root .btn.ghost { background: transparent; color: var(--hot); border-color: var(--hot); }
+:root .btn.ghost:hover { background: var(--hot); color: var(--onhot); }
+:root .btn.green { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+:root .btn.green:hover { opacity: 0.85; }
+:root .btn.sm { min-block-size: 40px; padding: 0.5rem 1.1rem; font-size: 0.9375rem; }
 
-/* ---- footer ---- */
-.site-footer { border-block-start: 1px solid var(--line); padding-block: 2.5rem 3rem; color: var(--mute); font: 0.95rem/1.6 var(--sans); background: var(--paper); }
-.site-footer .foot { inline-size: var(--wrap); margin-inline: auto; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 1.5rem 3rem; }
-.site-footer .foot-note { grid-column: 1 / -1; font: 0.85rem/1.5 var(--mono); }
+/* ---- text links: blue, no underline until hover (overrides each page's ink-and-highlight links) ---- */
+:root :is(main, .site-footer) :is(p, dd, td, li, .note) a:not(.btn, .cta, .dlb, .shot, .nm) { color: var(--hot); text-decoration: none; background: none; }
+:root :is(main, .site-footer) :is(p, dd, td, li, .note) a:not(.btn, .cta, .dlb, .shot, .nm):hover { color: var(--hot); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; background: none; }
+:root :is(main, .site-footer) .site a:not(.btn) { color: var(--ink); text-decoration: none; }   /* student cards stay ink */
+
+/* ---- footer: small grey text on #f5f5f7, like apple.com ---- */
+.site-footer { border-block-start: 0; padding-block: 2rem 2.5rem; color: var(--mute); font: 0.75rem/1.5 var(--sans); background: var(--paper2); }
+.site-footer .foot { inline-size: var(--wrap); margin-inline: auto; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 1rem 3rem; }
+.site-footer .foot-note { grid-column: 1 / -1; font: 0.75rem/1.5 var(--sans); }
 .site-footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; align-content: start; }
-.site-footer a { color: var(--ink); text-decoration-color: var(--hot); text-decoration-thickness: 2px; text-underline-offset: 3px; }
-.site-footer a:hover { background: var(--hot); color: var(--onhot); text-decoration-color: transparent; }
+:root .site-footer li a:not(.btn) { color: color-mix(in srgb, var(--ink) 80%, transparent); }
 @media (max-width: 860px) { .site-footer .foot { grid-template-columns: 1fr; } }
-@media (forced-colors: active) { .btn, .menu-button { border: 2px solid CanvasText; } }
+@media (forced-colors: active) { .btn, .menu-button { border: 1px solid CanvasText; } }
+
+/* ==========================================================================
+   Page overrides: remove the old newsprint outlines and dashed rules,
+   and turn boxes into soft rounded tiles.
+   ========================================================================== */
+/* small labels: Apple eyebrow text, not shouting uppercase */
+:root :is(.mono, .kicker) { font: 600 0.8125rem/1.3 var(--sans); letter-spacing: -0.01em; text-transform: none; color: var(--mute); }
+
+/* index.html */
+:root .updated { border: 0; background: var(--paper2); padding: 0.3rem 0.35rem 0.3rem 1rem; }
+:root .updated time { background: var(--ink); color: var(--paper); font-weight: 500; }
+:root .hero h1 { font-size: clamp(2.8rem, 7.5vw, 5.25rem); }
+:root .hero h1 em { color: var(--hot); }
+:root .log { border: 0; border-radius: 28px; background: var(--paper2); padding: 1.75rem 1.75rem 1rem; }
+:root .log li { border-block-start: 1px solid var(--line); }
+:root .quarters li { border-block-end: 1px solid var(--line); }
+:root .log time { color: var(--hot); font-family: var(--sans); font-weight: 600; }
+:root .section-head { border-block-end: 0; padding-block-end: 0; margin-block-end: 2.5rem; }
+:root .section-head h2 { font-size: clamp(2.2rem, 5vw, 3.5rem); line-height: 1.05; }
+:root .step { border-color: var(--line); }
+:root .step::before { font-style: normal; font-weight: 600; color: var(--mute); }
+:root .batch { background: var(--paper2); border-block: 0; }
+:root .fact { border-color: var(--line); }
+:root .doc { border: 0; border-radius: 28px; background: var(--paper2); padding: 2.25rem; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); }
+:root .doc:hover { transform: scale(1.01); box-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.18); }
+:root .doc .big { color: var(--hot); font-weight: 700; }
+:root .doc.students .big { color: var(--green); }
+:root .shot { border: 0; border-radius: 18px; box-shadow: 0 4px 24px -8px rgba(0, 0, 0, 0.18); }
+:root .shot:hover { transform: none; }
+:root .feature { border-color: var(--line); }
+:root .chips li { border: 0; background: var(--paper2); font: 500 0.8125rem var(--sans); letter-spacing: -0.01em; padding: 0.35rem 0.85rem; }
+:root .quarters code { color: var(--hot); font-family: var(--sans); font-weight: 600; }
+
+/* admin-links.html */
+:root .stats { border-block-start: 1px solid var(--line); border-block-end: 1px solid var(--line); }
+:root .stat { border-color: var(--line); }
+:root .chip { border: 1px solid var(--line); border-radius: 99px; font: 500 0.8125rem/1.2 var(--sans); letter-spacing: -0.01em; text-transform: none; }
+:root .chip:hover { transform: none; border-color: var(--ink); }
+:root .chip.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+:root .chip[data-f=imp] { border-color: var(--hot); color: var(--hot); }
+:root .chip[data-f=imp].on { background: var(--hot); color: var(--onhot); }
+:root .adm { border-block-end: 1px solid var(--line); }
+:root .num { font-style: normal; color: var(--mute); }
+:root .card { border-block-end: 1px solid var(--line); }
+:root .card.imp { background: var(--paper2); border-inline-start: 0; border-block-end-color: transparent; border-radius: 14px; padding-inline-start: 12px; }
+:root .star { transform: none; border-radius: 99px; background: var(--hot); color: var(--onhot); font: 600 0.6875rem var(--sans); letter-spacing: 0; text-transform: none; padding: 2px 8px; }
+:root .tag { border-radius: 99px; border-width: 1px; font: 500 0.75rem var(--sans); letter-spacing: 0; text-transform: none; }
+:root .core { border: 1px solid var(--line); font: 500 0.6875rem var(--sans); letter-spacing: 0; text-transform: none; }
+:root .avatar { border: 0; }
+:root .body a { font-family: var(--sans); font-size: 0.875rem; }
+:root .body p.about { border-color: var(--line); }
+:root .dlb { border: 1px solid var(--btn); color: var(--btn); font-family: var(--sans); font-weight: 400; }
+:root .dlb:hover { background: var(--btn); border-color: var(--btn); color: #fff; transform: none; }
+
+/* student-websites.html */
+:root .shead { border-block-end: 1px solid var(--line); }
+:root .search { border: 1px solid var(--line); border-radius: 12px; background: var(--paper2); }
+:root .search:focus { border-color: var(--btn); }
+:root .sort { border: 1px solid var(--line); background: var(--paper2); }
+:root .showall { border: 1px solid var(--btn); color: var(--btn); }
+:root .showall:hover { background: var(--btn); color: #fff; transform: none; }
+:root .site a { border: 0; border-radius: 18px; background: var(--paper2); box-shadow: none; transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease); }
+:root :is(.site a:hover, .site a:focus-visible) { transform: scale(1.015); box-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.2); }
+:root :is(.meta span, .rk .pl) { border-width: 1px; font-weight: 600; letter-spacing: 0; text-transform: none; }
+:root .topnav { background: color-mix(in srgb, var(--paper) 80%, transparent); border-block-end: 1px solid color-mix(in srgb, var(--line) 60%, transparent); }
+:root .topnav a { font-weight: 400; font-size: 0.875rem; }
+:root .topnav a:hover { background: var(--paper2); transform: none; }
+:root .controls { background: color-mix(in srgb, var(--paper) 92%, transparent); border-block-end-color: var(--line); }
+
+/* make-videos-with-claude.html and privacy.html */
+:root main > h2 { border-block-start: 0; padding-block-start: 0; margin-block-start: 3rem; font-size: 2rem; }
+:root pre { border: 0; border-radius: 14px; background: var(--paper2); padding: 1rem 1.2rem; }
+:root .videos video { border: 0; border-radius: 22px; box-shadow: 0 10px 40px -14px rgba(0, 0, 0, 0.35); }
+:root :is(th, td) { border-block-end-color: var(--line); }
+:root th { font-family: var(--sans); font-weight: 600; text-transform: none; letter-spacing: 0; font-size: 0.875rem; }
+:root .note { border-inline-start: 0; background: var(--paper2); border-radius: 14px; padding: 1rem 1.2rem; }
+:root .updated:not(:has(time)) { background: none; padding: 0; font: 600 0.875rem var(--sans); text-transform: none; letter-spacing: 0; }
