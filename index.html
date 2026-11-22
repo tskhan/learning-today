@@ -63,6 +63,24 @@ a { color: inherit; }
 .log ol { list-style: none; margin: 1rem 0 0; padding: 0; }
 .log li { display: grid; grid-template-columns: 4.2rem 1fr; gap: 0.75rem; padding-block: 0.8rem; border-block-start: 1px dashed var(--line); font-size: 0.97rem; line-height: 1.45; }
 .log time { font: 500 0.82rem var(--mono); color: var(--hot); padding-block-start: 0.15rem; }
+/* hero prompt demo: a Claude Code window that types real class prompts; hover or focus pauses it, click opens the matching page */
+.prompt-demo { display: block; max-inline-size: 34rem; margin-block-end: clamp(1.75rem, 4vw, 2.75rem); border-radius: 12px; background: #161616; color: #ececec; text-decoration: none; box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.45); outline-offset: 4px; transition: translate 0.4s var(--ease), box-shadow 0.4s var(--ease); }
+.prompt-demo:hover, .prompt-demo:focus-visible { translate: 0 -3px; box-shadow: 0 26px 48px -26px rgba(0, 0, 0, 0.55); }
+.prompt-demo .bar { display: flex; align-items: center; gap: 0.45rem; padding: 0.7rem 1rem; border-block-end: 1px solid #2c2c2c; font: 500 0.8rem var(--sans); color: #a3a3a3; }
+.prompt-demo .bar i { inline-size: 0.6rem; block-size: 0.6rem; border-radius: 50%; background: #3a3a3a; }
+.prompt-demo .bar span { margin-inline-start: 0.4rem; }
+.prompt-demo .bar .state { margin-inline-start: auto; color: #ff9a3c; opacity: 0; transition: opacity 0.3s var(--ease); }
+.prompt-demo:hover .state, .prompt-demo:focus-visible .state { opacity: 1; }
+.prompt-demo .body { display: block; padding: 1rem 1.1rem 1.15rem; font: 0.95rem/1.6 var(--code); min-block-size: 4.6rem; }
+.prompt-demo .line { display: flex; gap: 0.6rem; }
+.prompt-demo .caret-mark { color: #ff9a3c; }
+.prompt-demo .typed::after { content: ""; display: inline-block; inline-size: 0.55em; block-size: 1.1em; margin-inline-start: 2px; vertical-align: -0.2em; background: #ff9a3c; animation: blink 1s steps(1) infinite; }
+.prompt-demo .done { display: flex; align-items: center; gap: 0.5rem; color: #7fc79a; opacity: 0; translate: 0 4px; transition: opacity 0.35s var(--ease), translate 0.35s var(--ease); }
+.prompt-demo .done.show { opacity: 1; translate: 0 0; }
+.prompt-demo .done svg { inline-size: 1rem; block-size: 1rem; flex: none; }
+@media (max-width: 640px) { .prompt-demo .body { font-size: 0.86rem; min-block-size: 7.4rem; } } /* prompts wrap here; a fixed height stops the page jumping */
+@keyframes blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .prompt-demo .typed::after { animation: none; } .prompt-demo, .prompt-demo .done { transition: none; } }
 @keyframes rise { from { opacity: 0; translate: 0 16px; } to { opacity: 1; translate: 0 0; } }
 @media (prefers-reduced-motion: no-preference) {
   .hero h1, .hero .lede, .hero .actions, .log { animation: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
@@ -201,6 +219,13 @@ section { padding-block: clamp(3.5rem, 8vw, 6rem); }
     </div>
     <div class="wrap hero-grid">
       <div>
+        <a class="prompt-demo" id="prompt-demo" href="make-videos-with-claude.html" aria-label="See a video Claude made from one plain-English prompt">
+          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span>claude</span><span class="state">Paused · click to see it</span></span>
+          <span class="body" aria-hidden="true">
+            <span class="line"><span class="caret-mark">&gt;</span><span class="typed">make a 45-second video on how plants make food</span></span>
+            <span class="done show"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span class="done-text">Rendered plants-photosynthesis.mp4</span></span>
+          </span>
+        </a>
         <h1>Learn Claude by <em>using</em> it.</h1>
         <p class="lede">A plain path from your first chat to AI agents that do real work, built around <strong>PIAIC's Certified Agentic AI Architect programme</strong>: five quarters, 11 exams and four Anthropic credentials. Start here, then follow Batch 91 week by week.</p>
         <div class="actions">
@@ -394,5 +419,49 @@ section { padding-block: clamp(3.5rem, 8vw, 6rem); }
   </div>
 </footer>
 <script src="site.js?v=2026-11-22" defer></script>
+<script>
+/* Hero prompt demo: types each prompt, shows its result, then moves on. Hover or keyboard focus
+   pauses it; the link follows the prompt on screen. With reduced motion it stays on the first prompt. */
+(function () {
+  var demo = document.getElementById('prompt-demo');
+  if (!demo || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var typed = demo.querySelector('.typed'), done = demo.querySelector('.done'), doneText = demo.querySelector('.done-text');
+  var steps = [
+    { p: 'make a 45-second video on how plants make food', d: 'Rendered plants-photosynthesis.mp4', href: 'make-videos-with-claude.html', label: 'See a video Claude made from one plain-English prompt' },
+    { p: 'build my first website', d: 'Your site is live', href: 'student-websites.html', label: 'See the websites students built with AI' },
+    { p: 'make a game from chapter 1', d: 'Class Quest is ready to play', href: '#batch-91', label: 'See the Batch 91 course, including Class Quest' },
+    { p: 'set up claude code on my laptop', d: 'Claude Code is ready', href: '#batch-91', label: 'See the Batch 91 course, including Claude Code setup' }
+  ];
+  var i = 0, n = steps[0].p.length, phase = 'hold', paused = false, timer;
+  // Pausing finishes the current prompt and shows its result, so a hover always reveals the outcome.
+  function pause(on) {
+    paused = on; clearTimeout(timer);
+    if (on) { var s = steps[i]; n = s.p.length; typed.textContent = s.p; done.classList.add('show'); phase = 'hold'; }
+    timer = setTimeout(tick, on ? 400 : 1200);
+  }
+  demo.addEventListener('pointerenter', function () { pause(true); });
+  demo.addEventListener('pointerleave', function () { pause(false); });
+  demo.addEventListener('focus', function () { pause(true); });
+  demo.addEventListener('blur', function () { pause(false); });
+  function show(step) { demo.href = step.href; demo.setAttribute('aria-label', step.label); doneText.textContent = step.d; }
+  function tick() {
+    if (paused || document.hidden) { timer = setTimeout(tick, 400); return; }
+    var s = steps[i], wait;
+    if (phase === 'type') {
+      n++; typed.textContent = s.p.slice(0, n);
+      if (n >= s.p.length) { phase = 'result'; wait = 450; } else { wait = 38 + Math.random() * 45; }
+    } else if (phase === 'result') {
+      done.classList.add('show'); phase = 'hold'; wait = 2600;
+    } else if (phase === 'hold') {
+      done.classList.remove('show'); phase = 'erase'; wait = 300;
+    } else {
+      n -= 3; typed.textContent = s.p.slice(0, Math.max(0, n));
+      if (n <= 0) { i = (i + 1) % steps.length; show(steps[i]); n = 0; phase = 'type'; wait = 350; } else { wait = 18; }
+    }
+    timer = setTimeout(tick, wait);
+  }
+  timer = setTimeout(tick, 2600);
+})();
+</script>
 </body>
 </html>
