@@ -37,3 +37,25 @@ describe("loginErrorMessage", () => {
     expect(loginErrorMessage({ code: "invalid_credentials", status: 400 })).toBe("Email or password is wrong.");
   });
 });
+
+import { unavailableMessage } from "@/lib/errors";
+
+describe("unavailableMessage", () => {
+  it("adds a short reference so the admin can tell what went wrong", () => {
+    expect(unavailableMessage({ code: "42501", message: "permission denied for table settings" })).toBe(
+      "Sign-up is unavailable right now. Please try again later. (Reference: 42501)",
+    );
+    expect(unavailableMessage({ message: "Invalid API key" })).toBe(
+      "Sign-up is unavailable right now. Please try again later. (Reference: invalid-api-key)",
+    );
+    expect(unavailableMessage(null)).toBe("Sign-up is unavailable right now. Please try again later. (Reference: no-settings-row)");
+  });
+  it("says when the secret key itself isn't accepted", () => {
+    expect(unavailableMessage({ code: "42501" }, false)).toBe(
+      "Sign-up is unavailable right now. Please try again later. (Reference: secret-key-not-accepted)",
+    );
+    expect(unavailableMessage({ code: "42501" }, true)).toBe(
+      "Sign-up is unavailable right now. Please try again later. (Reference: 42501)",
+    );
+  });
+});
