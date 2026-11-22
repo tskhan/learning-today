@@ -357,3 +357,16 @@ end;
 $$;
 create trigger classes_open_thread after insert or update of status on public.classes
   for each row execute function public.open_class_thread();
+
+-- Deleting a class also deletes its "Questions about Class N" thread
+-- (general threads that mention the class are kept and become general).
+create function public.close_class_thread() returns trigger
+language plpgsql security definer set search_path = ''
+as $$
+begin
+  delete from public.threads where class_id = old.id and is_class_thread;
+  return old;
+end;
+$$;
+create trigger classes_close_thread before delete on public.classes
+  for each row execute function public.close_class_thread();

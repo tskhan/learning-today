@@ -112,3 +112,25 @@ describe("triggers and seed", () => {
     expect(settings?.join_code).toBe("batch91-change-me");
   });
 });
+
+describe("deleting a class", () => {
+  it("removes its class thread but keeps general threads linked to it", async () => {
+    const cls = await createClassFixture({ status: "published" });
+    const m = await createMember();
+    const { data: linked } = await m.client
+      .from("threads")
+      .insert({ title: "About this class", body_md: "B", class_id: cls.classId })
+      .select("id")
+      .single();
+    const admin = adminClient();
+    const { error } = await admin.from("classes").delete().eq("id", cls.classId);
+    expect(error).toBeNull();
+    const { count: classThreads } = await admin
+      .from("threads")
+      .select("*", { count: "exact", head: true })
+      .eq("title", `Questions about Class ${cls.number}`);
+    expect(classThreads).toBe(0);
+    const { data: kept } = await admin.from("threads").select("id, class_id").eq("id", linked!.id).single();
+    expect(kept).toEqual({ id: linked!.id, class_id: null });
+  });
+});
