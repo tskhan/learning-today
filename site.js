@@ -1,9 +1,14 @@
-/* site.js: the one script shared by index.html, admin-links.html and student-websites.html.
+/* site.js: the one script shared by every page (index.html, admin-links.html,
+   student-websites.html, make-videos-with-claude.html and privacy.html).
 
-   What it does: shows the header links inline when they fit and collapses them into a
-   popover menu when they do not (measured, so there is no fixed breakpoint), closes the
-   menu after a link is chosen, and loads a small popover polyfill only in browsers that
-   have no native popover support.
+   What it does, in two parts:
+   1. Header: shows the header links inline when they fit and collapses them into a
+      popover menu when they do not (measured, so there is no fixed breakpoint), closes the
+      menu after a link is chosen, and loads a small popover polyfill only in browsers that
+      have no native popover support.
+   2. Motion effects: uses the Motion library (motion.dev, loaded from jsDelivr by a script tag
+      just before this file on every page) for scroll reveals, number count-ups and the
+      ranking bar fills. See the comment above that block, at the end of this file.
 
    It is a classic script, not a module, so the pages also work when opened from disk. */
 (function () {

@@ -1,18 +1,20 @@
 # learning-today.com
 
-A small static website for learning Claude, built around the **PIAIC Batch 91** class. It has a landing page, a document of every link the class admins posted, and a gallery of the websites the students built.
+A small static website for learning Claude, built around the **PIAIC Batch 91** class. It has a landing page, a document of every link the class admins posted, a gallery of the websites the students built, and a beginner's guide to making animated videos with Claude.
 
 **Live site:** https://learning-today.com
 
 > This is an independent learner site. PIAIC, Panaversity and Anthropic run the official programme, book and exams. This site only points to them and records what one class has covered. Check [piaic.org](https://www.piaic.org) for syllabus, fees and dates.
 
-## The three pages
+## The pages
 
 | Page | What it is |
 |---|---|
 | [`index.html`](index.html) | Landing page. A path for learning Claude, the PIAIC Batch 91 course details and five-quarter roadmap, five core documents with previews, and links to the two pages below. |
 | [`admin-links.html`](admin-links.html) | **Links shared in Class.** Every link the class admins posted in the Batch 91 group, each admin shown with a photo, with the story behind it from the chat and a description of the link itself. Repeated links are merged, important ones are starred, and the core course documents are labelled. It has download buttons for the Google Slides and Google Doc files, and a download for the practice CSV. |
-| [`student-websites.html`](student-websites.html) | A gallery of the 168 websites students posted (126 on Lovable, 42 on other platforms) with live previews, search, filters, and automated ratings out of 100 for concept, uniqueness, design and usability. Not indexed by search engines. |
+| [`student-websites.html`](student-websites.html) | A gallery of the 167 websites students posted (126 on Lovable, 41 on other platforms) with live previews, search, filters, and automated ratings out of 100 for concept, uniqueness, design and usability. Not indexed by search engines. |
+| [`make-videos-with-claude.html`](make-videos-with-claude.html) | **Make Videos with Claude.** A beginner's guide to making animated videos with Claude Code and Remotion skills: what to install, the one setup prompt, what to type for a first video, how the examples were built, tips and credits. Shows three example videos. |
+| [`privacy.html`](privacy.html) | What the site collects, which other companies see a visit, and how to ask for a change or removal. |
 
 ## Every file
 
@@ -21,9 +23,10 @@ A small static website for learning Claude, built around the **PIAIC Batch 91** 
 | `index.html` | The landing page (see above). |
 | `admin-links.html` | The Links shared in Class page (see above). The file keeps its original name so existing links keep working. |
 | `privacy.html` | The privacy page, linked from every page's footer. Says what the site collects (Google Analytics), which other companies see a visit (Google Fonts, the student site previews, outside links), and how to ask for a change or removal through GitHub issues. Update its date whenever the site's data use changes. |
-| `student-websites.html` | The student websites gallery (see above). Large, because it holds all 168 cards and the five rankings. |
-| `theme.css` | The shared design theme used by all three pages: colour tokens for light and dark mode, the fonts, the header and navigation, buttons and the footer. Changing a colour here changes it everywhere. Each page links it as `theme.css?v=DATE` (and `site.js?v=DATE`); after changing either file, update that date on every page so browsers fetch the new copy instead of a cached one. |
-| `site.js` | The one script all three pages share. It shows the header links inline when they fit and collapses them into a menu when they do not. It loads a small popover polyfill only in browsers that lack native support. |
+| `student-websites.html` | The student websites gallery (see above). Large, because it holds all 167 cards and the five rankings. |
+| `make-videos-with-claude.html` | The Make Videos with Claude guide (see above). |
+| `theme.css` | The shared design theme used by every page: colour tokens for light and dark mode, the fonts, the header and navigation, buttons and the footer. Changing a colour here changes it everywhere. Each page links it as `theme.css?v=DATE` (and `site.js?v=DATE`); after changing either file, update that date on every page so browsers fetch the new copy instead of a cached one. |
+| `site.js` | The one script every page shares, in two parts. **Header:** shows the header links inline when they fit and collapses them into a menu when they do not, and loads a small popover polyfill only in browsers that lack native support. **Motion effects:** below-the-fold sections rise into view as you scroll, the big numbers (home page and Links shared in Class) count up once, and the ranking bars on Student websites fill in. It uses [Motion](https://motion.dev) 14.14.0, which each page loads from jsDelivr in a script tag just before `site.js`. Content already on screen is never hidden, nothing animates with reduced motion turned on, everything shows normally if the CDN fails, and printing shows all content. To change the Motion version, edit that script tag on every page. |
 | `assets/logo.png` | The learning-today.com logo as a transparent image, shown in the header of every page on light backgrounds. |
 | `assets/logo-dark.png` | The same logo with the navy recoloured cream, so it stays readable on dark backgrounds. The header switches to it automatically in dark mode. |
 | `assets/logo.webp`, `assets/logo-dark.webp` | WebP copies of the two logos, about 40% smaller. Browsers that support WebP (nearly all) load these; the PNGs stay as the fallback. |
@@ -37,10 +40,12 @@ A small static website for learning Claude, built around the **PIAIC Batch 91** 
 | `assets/previews/class-quest.jpg` | Preview image of *AI Worker Quest*, the Chapter 1 game used in class. |
 | `assets/previews/claude-2-practical.jpg` | Preview image of the *Claude & ChatGPT 2.0: the practical* class slides. |
 | `assets/previews/coding-agents-practical.jpg` | Preview image of the *Build a website with a coding agent* class slides. |
+| `assets/videos/claude-anim.mp4`, `learning-today-promo.mp4` | The two example videos on the Make Videos with Claude page, made with Claude Code and Remotion. Each has a `-poster.jpg` still shown before it plays. |
+| `assets/videos/plants-photosynthesis.mp4` | The result video on the same page (how plants make food), with its `-poster.jpg`. |
 | `files/shaadi-expenses-sheet1.csv` | A small practice spreadsheet an admin shared in class: 12 made-up wedding expense lines with deliberate traps (a repeated line, a cancelled booking, a lowercase event name, pending items) for a checking exercise. Offered as a download from the Links shared in Class page. |
 | `CNAME` | Tells GitHub Pages to serve this repo at `learning-today.com`. Do not delete it. |
 | `robots.txt` | Tells search engines to skip the student websites page, and where the sitemap is. |
-| `sitemap.xml` | Lists the pages search engines should index (home, Links shared in Class and privacy). Update `lastmod` when a page changes, and add any new page here. |
+| `sitemap.xml` | Lists the pages search engines should index (home, Links shared in Class, Make Videos with Claude and privacy). Update `lastmod` when a page changes, and add any new page here. |
 | `.nojekyll` | Tells GitHub Pages to publish the files as they are, without running Jekyll. |
 | `README.md` | This file. |
 
@@ -59,14 +64,14 @@ The raw chat export is **not** in this repository, and nothing from it that iden
 
 ## Running it locally
 
-There is no build step and no dependency. Open `index.html` in a browser, or serve the folder:
+There is no build step and nothing to install. Open `index.html` in a browser, or serve the folder:
 
 ```bash
 python -m http.server 8000
 # then visit http://localhost:8000
 ```
 
-Fonts (Fraunces, Instrument Sans, DM Mono) load from Google Fonts, without blocking the first paint. The student gallery shows live previews of each student's site, so it needs an internet connection.
+The only outside code is loaded from CDNs: Motion from jsDelivr for the animations, and a popover polyfill from unpkg in older browsers. Fonts (Oswald for headings, Inter for text) load from Google Fonts without blocking the first paint. Offline, the pages still work, just without animations or the web fonts. The student gallery shows live previews of each student's site, so it needs an internet connection.
 
 ## Hosting and domain
 
@@ -81,9 +86,10 @@ HTTPS is enforced, and the certificate renews itself. A push to `main` redeploys
 
 ## Design and technical notes
 
-- One shared theme (paper and ink with a vermilion accent, green for student work) across all three pages.
+- One shared theme across every page: light grey grounds (near black in dark mode), charcoal ink, one orange accent, condensed uppercase Oswald headings and Inter text. Green marks student work.
 - Light and dark mode follow the device setting, using `color-scheme` and `light-dark()` with a media-query fallback.
-- The header uses a native popover for the narrow-screen menu. Links shared in Class and Student websites sit together under a Class resources dropdown (a `details` element) in the menu. Motion respects `prefers-reduced-motion`.
+- The header uses a native popover for the narrow-screen menu. Links shared in Class and Student websites sit together under a Class resources dropdown (a `details` element) in the menu. All animation respects `prefers-reduced-motion`.
+- Animation is layered: small CSS animations for the hero entrance, the hero's typing demo, the menu and the cards on Links shared in Class; Motion (in `site.js`) for scroll reveals, count-ups and ranking bars. The filterable card grid on Student websites is left unanimated so it never clashes with search and filters.
 - Previews of the class documents are screenshots, so they do not update if the originals change.
 
 ## Credits

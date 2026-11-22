@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- privacy.html: what the site collects (Google Analytics), which other companies see a visit (Google Fonts, the student site previews, links), and how to ask for something to be changed or removed. Shared styles: theme.css. Shared script: site.js. -->
+<!-- privacy.html: what the site collects (Google Analytics), which other companies see a visit (Google Fonts, jsDelivr, unpkg, the student site previews, links), and how to ask for something to be changed or removed. Shared styles: theme.css. Shared script: site.js, which also runs the scroll animations using Motion (loaded from jsDelivr just before it). -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -99,7 +99,7 @@ a:hover { background: var(--hot); color: var(--onhot); text-decoration-color: tr
 
 <main>
   <h1>Privacy</h1>
-  <p class="updated">Last updated 17 November 2026</p>
+  <p class="updated">Last updated 22 November 2026</p>
   <p class="lede">learning-today.com is a small learner site. It has <strong>no accounts, no forms and no sign-in</strong>, so it never asks you for your name, email or any other detail.</p>
   <p>This page says what the site does collect, which other companies see your visit, and how to ask for something to be changed or removed.</p>
 
@@ -111,6 +111,7 @@ a:hover { background: var(--hot); color: var(--onhot); text-decoration-color: tr
   <p>To show a page, your browser contacts other servers. Each of them can see your IP address and your browser details:</p>
   <ul>
     <li><strong>Google Fonts</strong> (fonts.googleapis.com and fonts.gstatic.com) supplies the typefaces.</li>
+    <li><strong>jsDelivr</strong> (cdn.jsdelivr.net) supplies Motion, the small open-source script that animates the pages as you scroll.</li>
     <li><strong>unpkg.com</strong> supplies a small script, only in older browsers that lack a built-in menu feature.</li>
     <li><strong>The student websites page</strong> shows a live preview of each student's own website. Loading the page therefore contacts those sites too (most are hosted on Lovable, Netlify, Vercel and similar). Their own privacy policies apply.</li>
     <li><strong>Links and downloads</strong> go to PIAIC, Panaversity, Anthropic, Google Docs and other sites. Their policies apply once you leave this one.</li>
@@ -143,6 +144,6 @@ a:hover { background: var(--hot); color: var(--onhot); text-decoration-color: tr
   </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/motion@14.14.0/dist/motion.js" defer></script>
-<script src="site.js?v=2026-11-22c" defer></script>
+<script src="site.js?v=2026-11-22d" defer></script>
 </body>
 </html>
