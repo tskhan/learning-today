@@ -185,7 +185,7 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
 <!-- Fonts load without blocking the first paint; text shows in a fallback font for a moment, then swaps. -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@300;400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@300;400;500;700&display=swap"></noscript>
-<link rel="stylesheet" href="theme.css?v=2026-11-22b">
+<link rel="stylesheet" href="theme.css?v=2026-11-22c">
 </head>
 <body id="top">
 <a class="skip" href="#main">Skip to the content</a>
@@ -209,8 +209,15 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
         <li><a href="#learn">Learn Claude</a></li>
         <li><a href="make-videos-with-claude.html">Make Videos with Claude</a></li>
         <li><a href="#batch-91">PIAIC Batch 91</a></li>
-        <li><a href="admin-links.html">Links shared in Class</a></li>
-        <li><a href="student-websites.html">Student websites</a></li>
+        <li class="menu-group">
+          <details>
+            <summary>Class resources</summary>
+            <ul>
+              <li><a href="admin-links.html">Links shared in Class</a></li>
+              <li><a href="student-websites.html">Student websites</a></li>
+            </ul>
+          </details>
+        </li>
         <li><a class="cta" href="https://portal.piaic.org/" rel="noopener">Enrol with PIAIC</a></li>
       </ul>
     </nav>
@@ -237,10 +244,10 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
         </div>
       </div>
       <div class="hero-side">
-      <p class="updated"><span class="mono">Last class update</span><time datetime="2026-11-15">15 November 2026</time></p>
+      <p class="updated"><span class="mono">Last class update</span><time datetime="2026-11-22">22 November 2026</time></p>
       <aside class="log" aria-labelledby="log-title">
         <h2 id="log-title">Batch 91, so far</h2>
-        <p class="mono">Class group, 20 Oct to 15 Nov 2026</p>
+        <p class="mono">Class group, 20 Oct to 22 Nov 2026</p>
         <ol>
           <li><time datetime="2026-10-20">20 Oct</time><span>Intro to AI, LLMs and agents. Students build their first websites on Lovable.</span></li>
           <li><time datetime="2026-10-25">25 Oct</time><span>Chapter 1 and its lab: from chatbots to AI workers.</span></li>
@@ -248,6 +255,10 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
           <li><time datetime="2026-11-02">2 Nov</time><span>Class Quest, a game built on Chapter 1.</span></li>
           <li><time datetime="2026-11-08">8 Nov</time><span>Claude and ChatGPT 2.0, the practical: handing AI a whole job.</span></li>
           <li><time datetime="2026-11-15">15 Nov</time><span>Coding agents: Claude Code and OpenCode setup.</span></li>
+          <li><time datetime="2026-11-16">16 Nov</time><span>Book chapters on the new way of working, and a call to build MCP Apps (Chapter 20).</span></li>
+          <li><time datetime="2026-11-19">19 Nov</time><span>Anthropic exams move to v1.1. Last PIAIC exams on v1.0 are 22 Nov.</span></li>
+          <li><time datetime="2026-11-20">20 Nov</time><span>Claude Projects redesigned: join the waitlist.</span></li>
+          <li><time datetime="2026-11-22">22 Nov</time><span>Lab 1 submission form re-shared, and the practical slides revisited.</span></li>
         </ol>
       </aside>
       </div>
@@ -389,19 +400,19 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
     <div class="wrap">
       <div class="section-head">
         <h2>Class resources</h2>
-        <p>Two documents built from the Batch 91 group, updated 15 Nov 2026. Open them on any device.</p>
+        <p>Two documents built from the Batch 91 group, updated 22 Nov 2026. Open them on any device.</p>
       </div>
       <div class="docs">
         <article class="doc">
           <p class="mono">For every student</p>
-          <p class="big" aria-hidden="true">31</p>
+          <p class="big" aria-hidden="true">42</p>
           <h3>Links shared in Class</h3>
-          <p>Every link the class admins shared, with the story behind it from the chat: what to read, what to watch, what to submit. The 13 that matter most are starred.</p>
+          <p>Every link the class admins shared, with the story behind it from the chat: what to read, what to watch, what to submit. The 15 that matter most are starred.</p>
           <a class="btn solid" href="admin-links.html">Open Links shared in Class</a>
         </article>
         <article class="doc students">
           <p class="mono">Made by the class</p>
-          <p class="big" aria-hidden="true">146</p>
+          <p class="big" aria-hidden="true">168</p>
           <h3>Student websites</h3>
           <p>The websites students built on Lovable and other platforms. Live previews, a search box, and a score out of 100 for concept, uniqueness, design and usability.</p>
           <a class="btn green" href="student-websites.html">Open the student websites</a>
@@ -424,7 +435,7 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
     </ul>
   </div>
 </footer>
-<script src="site.js?v=2026-11-22" defer></script>
+<script src="site.js?v=2026-11-22b" defer></script>
 <script>
 /* Hero prompt demo: types each prompt, shows its result, then moves on. Hover or keyboard focus
    pauses it; the link follows the prompt on screen. With reduced motion it stays on the first prompt. */
