@@ -1,6 +1,6 @@
 # Batch 91 Portal: design
 
-Date: 2026-11-22. Status: draft for approval.
+Date: 2026-11-22. Status: ready for owner approval.
 
 ## Intent and why
 
@@ -49,7 +49,7 @@ Attendance check-in, timetable, calendar, certificates, showcase approval flow, 
 
 - **Cost: free.** Vercel Hobby plan and Supabase Free plan. The subdomain is free, because the owner already owns learning-today.com.
 - **The existing static site stays as it is.** Its only changes are a "Log in / Join the batch" link in the header or menu, a short "Batch portal" mention on the home page, a privacy page update, and README/sitemap housekeeping. The portal is not added to `sitemap.xml`.
-- **Privacy.** The site will now hold students' names, emails and posts. `privacy.html` must be updated before launch to say what the portal stores, where (Supabase, Vercel), who can see it (batch members, the admin), and how to ask for removal. Students' emails are never shown to other students.
+- **Privacy.** The site will now hold students' names, emails and posts. `privacy.html` must be updated before launch to say what the portal stores, where (Supabase, Vercel; Resend for reset emails), who can see it (batch members, the admin), and how to ask for removal. Students' emails are never shown to other students.
 - **Same look.** The portal uses the same colours, fonts and light/dark modes as `theme.css` (grey and orange, Oswald headings, Inter text, square orange buttons), so it feels like one site.
 - **No secrets in the repo.** Keys live in Vercel and Supabase environment settings. Only the Supabase URL and the public "anon" key may reach the browser.
 - **The owner is not a developer.** Setup steps for Supabase, Vercel and DNS must be written as click-by-click instructions.
@@ -69,7 +69,7 @@ Attendance check-in, timetable, calendar, certificates, showcase approval flow, 
 
 - **Sign-up needs a batch join code.** The owner posts it in the class WhatsApp group. A sign-up with a wrong code is refused on the server. The owner can change the code from the admin screen at any time, and existing members are unaffected.
 - **Sign-up form:** full name, email, password, join code. Email confirmation is **off**, because the join code is the gate. Supabase's built-in email only delivers to members of the project's own Supabase organisation, not to students.
-- **Password reset:** OPEN, see the question at the end.
+- **Password reset (decided by the owner): automatic reset emails.** Students use "Forgot password?" and get a reset link by email. Supabase sends it through a free outside email service, set up as Supabase's custom SMTP. *(My call: Resend, whose free plan covers 3,000 emails a month and 100 a day, far more than a batch needs.)* Emails come from an address on learning-today.com, for example `no-reply@learning-today.com`, which needs Resend's DNS records added at the owner's DNS provider. The setup guide covers this click by click. *(My call: email confirmation stays off even with SMTP available, because the join code is the gate and it keeps sign-up to one step.)* As a fallback, admins can also generate a reset link for a member from Admin → Members.
 - **Roles:** `student` and `admin`. The owner is the first admin, set by hand in Supabase during setup. Admins can promote another member to admin later.
 - **Members only.** Every portal page except log-in, sign-up and password reset requires being signed in as an active member. A removed member cannot sign in or see anything.
 - **Removing a member** *(my call)*: "Remove" locks the person out, but keeps their posts and hand-ins visible under their name, so threads still make sense. "Delete permanently" (for privacy requests) deletes the account, profile, reviews, statuses and hand-ins. Their posts stay, with the author shown as "Former member". The privacy page promises exactly this.
@@ -139,7 +139,7 @@ The six classes already listed on the home page (18 Oct to 22 Nov 2026) are pre-
 - Code in this repo, in a `portal/` folder, on its own branch until approved. Vercel deploys that folder (its "Root Directory" setting) on every push to `main`. GitHub Pages will also publish the `portal/` source files as plain files. That is harmless, because there are no secrets in the repo, but `robots.txt` should disallow `/portal/`.
 - Stack: Next.js (App Router, TypeScript), Supabase (Auth plus Postgres plus row-level security, via the official SSR helpers), plain CSS using the same tokens as `theme.css`. No UI framework.
 - Database schema and policies are kept as SQL migration files in the repo, so the database can be recreated.
-- The owner gets a step-by-step setup guide: create the Supabase project and run the migrations, make themselves admin, create the Vercel project from the repo, add the environment variables, add the `portal` CNAME record at their DNS provider.
+- The owner gets a step-by-step setup guide: create the Supabase project and run the migrations, make themselves admin, create the Vercel project from the repo, add the environment variables, add the `portal` CNAME record at their DNS provider, and create a Resend account, verify the domain (DNS records) and connect it to Supabase as custom SMTP.
 
 ## Left to the builder
 
