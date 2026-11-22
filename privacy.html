@@ -91,6 +91,7 @@ a:hover { background: var(--hot); color: var(--onhot); text-decoration-color: tr
             </ul>
           </details>
         </li>
+        <li><a href="https://portal.learning-today.com/" rel="noopener">Batch portal</a></li>
         <li><a class="cta" href="https://portal.piaic.org/" rel="noopener">Enrol with PIAIC</a></li>
       </ul>
     </nav>
@@ -100,7 +101,7 @@ a:hover { background: var(--hot); color: var(--onhot); text-decoration-color: tr
 <main>
   <h1>Privacy</h1>
   <p class="updated">Last updated 22 November 2026</p>
-  <p class="lede">learning-today.com is a small learner site. It has <strong>no accounts, no forms and no sign-in</strong>, so it never asks you for your name, email or any other detail.</p>
+  <p class="lede">learning-today.com is a small learner site. Its public pages have <strong>no accounts, no forms and no sign-in</strong>, so they never ask you for your name, email or any other detail. The one exception is the members-only <a href="#portal">Batch 91 Portal</a>, explained below.</p>
   <p>This page says what the site does collect, which other companies see your visit, and how to ask for something to be changed or removed.</p>
 
   <h2>Analytics</h2>
@@ -122,6 +123,17 @@ a:hover { background: var(--hot); color: var(--onhot); text-decoration-color: tr
   <p>The student websites page links to sites that students built and posted in the class group. It shows each site's own public title and description. We remove phone numbers and email addresses that appear in those descriptions, and we do not publish who posted a link.</p>
   <p>The scores and ranks on that page are <strong>automated estimates</strong> made by measuring each page. They are not a grade or an assessment of any person.</p>
   <p>The photos beside the admins' names on the Links shared in Class page come from their official public pages (panaversity.org and aneeqkhatri.com).</p>
+
+  <h2 id="portal">The Batch 91 Portal</h2>
+  <p>The Batch 91 Portal at <a href="https://portal.learning-today.com/" rel="noopener">portal.learning-today.com</a> is a members-only space for PIAIC Batch 91 students. Joining needs the batch join code. If you sign up, it stores:</p>
+  <ul>
+    <li><strong>Your account:</strong> your name, your email and your password. The password is handled by Supabase and stored only in scrambled (hashed) form; nobody can read it.</li>
+    <li><strong>Your progress:</strong> which classes you have marked as reviewed and which homework you have marked done, with any hand-in link and note you add.</li>
+    <li><strong>Your posts:</strong> the discussions and replies you write.</li>
+  </ul>
+  <p><strong>Where it is kept:</strong> accounts and data are stored by <strong>Supabase</strong> (supabase.com). The portal itself is hosted by <strong>Vercel</strong> (vercel.com), which sees each visit like any web host. Password-reset emails are sent by <strong>Resend</strong> (resend.com). The portal uses a sign-in cookie to keep you logged in, and no analytics.</p>
+  <p><strong>Who sees what:</strong> other batch members can see your name, your posts and the links you hand in. Only the batch admins can see your email address. Nothing in the portal is public or shown to search engines.</p>
+  <p><strong>Leaving or removal:</strong> ask a batch admin (or open a GitHub issue as described below). An admin can <em>remove</em> an account, which locks it but keeps its posts so discussions still make sense, or <em>delete it permanently</em>, which erases the account, progress and hand-ins; any posts stay but are shown as written by &ldquo;Former member&rdquo;.</p>
 
   <h2>Asking for a change or removal</h2>
   <p>If you built one of the listed sites, appear in a photo here, or want anything corrected or taken down, open an issue on the site's <a href="https://github.com/tskhan/learning-today/issues" rel="noopener">GitHub page</a> and say which page and which item. Please do not put private details in a public issue. We will remove or change it promptly.</p>
