@@ -16,6 +16,7 @@ You will copy a few keys between websites. **Never paste a key into a chat, an e
 2. **Create the tables.** In the left menu open **SQL Editor** → **New query**.
    - Open [`portal/supabase/migrations/20261122000001_schema.sql`](supabase/migrations/20261122000001_schema.sql) on GitHub, click **Raw**, copy everything, paste it into the editor and click **Run**. It should say *Success. No rows returned*.
    - Make another **New query** and do the same with [`20261122000002_seed.sql`](supabase/migrations/20261122000002_seed.sql). This adds Classes 1–6 and the starting join code.
+   - Make a third **New query** and do the same with [`20261123000001_explicit_grants.sql`](supabase/migrations/20261123000001_explicit_grants.sql). This lets the portal's server use the tables (newer Supabase projects don't allow that automatically).
 3. **Turn off open sign-ups.** Go to **Authentication → Sign In / Providers**.
    - Turn **off** "Allow new users to sign up". (People join through the portal's own form, which checks the join code.)
    - Under **Email**, turn **off** "Confirm email". Click **Save**.
