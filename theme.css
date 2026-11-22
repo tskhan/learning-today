@@ -14,6 +14,8 @@
    beats the specificity of the pages' own :root token blocks.
    ========================================================================== */
 :root:not([data-never]) {
+  /* largest gap between two blocks on any page (the header-to-hero gap) */
+  --space-max: clamp(1.5rem, 4vw, 3.25rem);
   /* raw light and dark values */
   --paper-l: #ededed;   --paper-d: #141414;
   --paper2-l: #e2e2e2;  --paper2-d: #1e1e1e;
