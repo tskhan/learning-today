@@ -104,3 +104,14 @@ export async function loginAs(page: import("@playwright/test").Page, member: { e
   await page.getByRole("button", { name: "Log in" }).click();
   await page.waitForURL((url) => !url.pathname.startsWith("/login"));
 }
+
+/** Deletes every fixture class (number 1000 and up) so dashboard counts are predictable. */
+export async function clearFixtureClasses() {
+  const { error } = await adminClient().from("classes").delete().gte("number", 1000);
+  if (error) throw error;
+}
+
+export async function setJoinedAt(memberId: string, iso: string) {
+  const { error } = await adminClient().from("profiles").update({ joined_at: iso }).eq("id", memberId);
+  if (error) throw error;
+}

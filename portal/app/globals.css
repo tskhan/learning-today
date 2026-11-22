@@ -164,3 +164,14 @@ th { font: 700 0.75rem/1.3 var(--sans); letter-spacing: 0.06em; text-transform: 
 .thread-title:hover { color: var(--hot); }
 .post header { margin-block-end: 0.5rem; }
 .reply-form { margin-block-start: 0.5rem; }
+
+/* classes */
+.class-link { display: flex; flex-direction: column; gap: 0.2rem; color: var(--ink); }
+.class-link:hover { text-decoration: none; }
+.class-link:hover .class-title { color: var(--hot); }
+.class-title { font-weight: 600; font-size: 1.05rem; }
+.class-head h1 { margin-block: 0.25rem 0.5rem; }
+.materials a { font-weight: 600; }
+.hw-item { scroll-margin-block-start: calc(var(--header-h) + 1rem); }
+.hw-control { margin-block-start: 0.75rem; }
+.hw-list li { display: flex; flex-direction: column; gap: 0.15rem; }
