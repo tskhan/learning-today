@@ -46,7 +46,8 @@ a { color: inherit; }
 .mono { font: 500 0.78rem/1.3 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute); }
 
 /* last class update, top right */
-.hero-side { display: flex; flex-direction: column; align-items: flex-end; gap: clamp(1.2rem, 3vw, 2.2rem); }
+.hero-side { display: flex; flex-direction: column; align-items: flex-end; gap: clamp(1rem, 2.5vw, 1.5rem); }
+.hero-side .prompt-demo { align-self: stretch; max-inline-size: none; margin-block-end: 0; }
 .hero-side .log { align-self: stretch; }
 .updated { display: inline-flex; align-items: center; gap: 0.7rem; border: 1.5px solid var(--ink); border-radius: 99px; padding: 0.3rem 0.35rem 0.3rem 1rem; }
 .updated time { font: 600 0.95rem var(--sans); background: var(--hot); color: var(--onhot); border-radius: 99px; padding: 0.3rem 0.9rem; }
@@ -74,7 +75,7 @@ a { color: inherit; }
   .classes td::before { content: attr(data-label) ": "; font: 700 0.6875rem var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); }
 }
 .hero { padding-block: var(--space-max) 0; }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: var(--space-max); align-items: start; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: var(--space-max); align-items: center; }
 .hero h1 { font-weight: 800; font-size: clamp(2.8rem, 8vw, 6rem); line-height: 0.96; }
 .hero h1 em { font-style: normal; font-weight: 500; color: var(--hot); }
 .lede { margin-block: 1.6rem 2rem; max-inline-size: 52ch; font-size: clamp(1.1rem, 2vw, 1.3rem); color: var(--mute); }
@@ -255,13 +256,6 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
   <div class="hero">
     <div class="wrap hero-grid">
       <div>
-        <a class="prompt-demo" id="prompt-demo" href="make-videos-with-claude.html" aria-label="See a video Claude made from one plain-English prompt">
-          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span>claude</span><span class="state">Paused · click to see it</span></span>
-          <span class="body" aria-hidden="true">
-            <span class="line"><span class="caret-mark">&gt;</span><span class="typed">make a 45-second video on how plants make food</span></span>
-            <span class="out"><span class="row work"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="currentColor"/></svg><span>Writing a six-scene script</span></span><span class="row work"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="currentColor"/></svg><span>Drawing the characters in code</span></span><span class="row work"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="currentColor"/></svg><span>Recording a calm voiceover</span></span><span class="row work"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="currentColor"/></svg><span>Adding music and soft sound effects</span></span><span class="row done"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span>Rendered plants-photosynthesis.mp4 (45 s)</span></span></span>
-          </span>
-        </a>
         <h1>Learn Claude by <em>using</em> it.</h1>
         <p class="lede">A plain path from your first chat to AI agents that do real work, built around <strong>PIAIC's Certified Agentic AI Architect programme</strong>: five quarters, 11 exams and four Anthropic credentials. Start here, then follow Batch 91 week by week.</p>
         <div class="actions">
@@ -271,6 +265,13 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
       </div>
       <div class="hero-side">
       <p class="updated"><span class="mono">Last class update</span><time datetime="2026-11-22">22 November 2026</time></p>
+      <a class="prompt-demo" id="prompt-demo" href="make-videos-with-claude.html" aria-label="See a video Claude made from one plain-English prompt">
+          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><span>claude</span><span class="state">Paused · click to see it</span></span>
+          <span class="body" aria-hidden="true">
+            <span class="line"><span class="caret-mark">&gt;</span><span class="typed">make a 45-second video on how plants make food</span></span>
+            <span class="out"><span class="row work"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="currentColor"/></svg><span>Writing a six-scene script</span></span><span class="row work"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="currentColor"/></svg><span>Drawing the characters in code</span></span><span class="row work"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="currentColor"/></svg><span>Recording a calm voiceover</span></span><span class="row work"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3" fill="currentColor"/></svg><span>Adding music and soft sound effects</span></span><span class="row done"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5"/></svg><span>Rendered plants-photosynthesis.mp4 (45 s)</span></span></span>
+          </span>
+        </a>
       </div>
     </div>
   </div>
