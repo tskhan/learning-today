@@ -2,6 +2,8 @@
 
 A small static website for learning Claude, built around the **PIAIC Batch 91** class. It has a landing page, a document of every link the class admins posted, a gallery of the websites the students built, and a beginner's guide to making animated videos with Claude.
 
+The members-only **Batch 91 Portal** (class catch-up guides, homework tracking and discussions) lives in [`portal/`](portal/) and is served separately at https://portal.learning-today.com. It has its own [README](portal/README.md) and [setup guide](portal/SETUP.md).
+
 **Live site:** https://learning-today.com
 
 > This is an independent learner site. PIAIC, Panaversity and Anthropic run the official programme, book and exams. This site only points to them and records what one class has covered. Check [piaic.org](https://www.piaic.org) for syllabus, fees and dates.
@@ -15,6 +17,7 @@ A small static website for learning Claude, built around the **PIAIC Batch 91** 
 | [`student-websites.html`](student-websites.html) | A gallery of the 167 websites students posted (126 on Lovable, 41 on other platforms) with live previews, search, filters, and automated ratings out of 100 for concept, uniqueness, design and usability. Not indexed by search engines. |
 | [`make-videos-with-claude.html`](make-videos-with-claude.html) | **Make Videos with Claude.** A beginner's guide to making animated videos with Claude Code and Remotion skills: what to install, the one setup prompt, what to type for a first video, how the examples were built, tips and credits. Shows three example videos. |
 | [`privacy.html`](privacy.html) | What the site collects, which other companies see a visit, and how to ask for a change or removal. |
+| [Batch 91 Portal](https://portal.learning-today.com) | Members-only app for the batch: sign up with the join code, follow each class step by step, track and hand in homework, and ask questions in one discussion space. Admins publish class guides from a form. Source in `portal/`; it is a separate Next.js app on Vercel, not part of the static site. It will be linked as **Batch portal** in every page's menu and from a card in Class resources once it is live. |
 
 ## Every file
 
@@ -44,10 +47,12 @@ A small static website for learning Claude, built around the **PIAIC Batch 91** 
 | `assets/videos/plants-photosynthesis.mp4` | The result video on the same page (how plants make food), with its `-poster.jpg`. |
 | `files/shaadi-expenses-sheet1.csv` | A small practice spreadsheet an admin shared in class: 12 made-up wedding expense lines with deliberate traps (a repeated line, a cancelled booking, a lowercase event name, pending items) for a checking exercise. Offered as a download from the Links shared in Class page. |
 | `CNAME` | Tells GitHub Pages to serve this repo at `learning-today.com`. Do not delete it. |
-| `robots.txt` | Tells search engines to skip the student websites page, and where the sitemap is. |
+| `robots.txt` | Tells search engines to skip the student websites page, the `portal/` source and `docs/`, and where the sitemap is. |
 | `sitemap.xml` | Lists the pages search engines should index (home, Links shared in Class, Make Videos with Claude and privacy). Update `lastmod` when a page changes, and add any new page here. |
 | `.nojekyll` | Tells GitHub Pages to publish the files as they are, without running Jekyll. |
 | `README.md` | This file. |
+| `portal/` | The Batch 91 Portal app (Next.js + Supabase), deployed to Vercel with Root Directory `portal`. GitHub Pages also publishes these source files as plain files; that is harmless (no secrets) and `robots.txt` keeps them out of search. See [`portal/README.md`](portal/README.md). |
+| `docs/` | Design and build plan for the portal (`docs/superpowers/`). Kept out of search by `robots.txt`. |
 
 ## Where the content comes from
 
@@ -59,6 +64,8 @@ A small static website for learning Claude, built around the **PIAIC Batch 91** 
 The generator scripts are kept outside this repository because they work from the raw chat export. The pages here are the finished output.
 
 ## Privacy
+
+The static site has no accounts. The Batch 91 Portal does: what it stores, where, and who can see it is explained in the portal section of [`privacy.html`](privacy.html#portal).
 
 The raw chat export is **not** in this repository, and nothing from it that identifies a student is published: no phone numbers, no poster names, no emails. Phone numbers and emails that a student put on their own site are stripped from descriptions. Student names that appear are the ones those students put in their own public site titles.
 
