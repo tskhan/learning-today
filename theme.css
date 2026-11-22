@@ -317,3 +317,8 @@ body { background: radial-gradient(1200px 700px at 50% -10%, var(--card), var(--
 .site-header.is-wide .menu-group summary.is-current { color: var(--ink); }
 .site-header.is-wide .menu-group details ul { position: absolute; inset-block-start: 100%; inset-inline-start: 0; min-inline-size: 14rem; padding: 0.4rem; background: var(--paper); border: 1px solid var(--line); box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.45); z-index: 5; }
 .site-header.is-wide .menu-group details ul a { padding: 0 0.6rem; white-space: nowrap; }
+
+/* header and footer links never take a page's own link-hover background (it made the orange hover text unreadable) */
+.site-header a:hover, .site-header a:focus-visible, .site-footer a:hover, .site-footer a:focus-visible { background: none; text-decoration-color: currentColor; }
+.site-header .site-logo:hover, .site-header .site-logo:focus-visible { background: none; }
+.site-footer a:hover, .site-footer a:focus-visible { color: var(--hot); }
