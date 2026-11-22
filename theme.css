@@ -272,7 +272,7 @@ section, .controls { scroll-margin-block-start: calc(var(--header-h) + 3.5rem); 
 :root .videos video { border: 0; border-radius: 22px; box-shadow: 0 10px 40px -14px rgba(0, 0, 0, 0.35); }
 :root :is(th, td) { border-block-end-color: var(--line); }
 :root th { font-family: var(--sans); font-weight: 600; text-transform: none; letter-spacing: 0; font-size: 0.875rem; }
-:root .note { border-inline-start: 0; background: var(--paper2); border-radius: 14px; padding: 1rem 1.2rem; }
+:root .note { border-inline-start: 0; background: none; border-radius: 0; padding: 0; }
 :root .updated:not(:has(time)) { background: none; padding: 0; font: 600 0.875rem var(--sans); text-transform: none; letter-spacing: 0; }
 
 /* ==========================================================================
