@@ -56,9 +56,11 @@ a { color: inherit; }
 .pinned .tag { font: 700 0.75rem var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--hot); }
 .pinned p { margin: 0; flex: 1 1 22rem; }
 .pinned .btn { min-block-size: 40px; padding: 0.5rem 1.1rem; font-size: 0.9rem; }
-.log .ref { display: block; margin-block-start: 0.35rem; font-size: 0.82rem; color: var(--mute); }
-.log .ref a { display: block; color: var(--hot); text-decoration: none; overflow-wrap: anywhere; }
-.log .ref a:hover { text-decoration: underline; }
+/* each class lists the document it was taught from; the links are the point of the table */
+.log .cls { display: block; font: 700 0.75rem var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); margin-block-end: 0.25rem; }
+.log .doc-link { display: block; color: var(--hot); font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.log .doc-link + .doc-link { margin-block-start: 0.4rem; }
+.log .doc-link:hover { text-decoration-thickness: 2px; }
 .hero { padding-block: var(--space-max) 0; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: var(--space-max); align-items: start; }
 .hero h1 { font-weight: 800; font-size: clamp(2.8rem, 8vw, 6rem); line-height: 0.96; }
@@ -261,12 +263,12 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
         <h2 id="log-title">Batch 91, so far</h2>
         <p class="mono">Sunday classes, 18 Oct to 22 Nov 2026</p>
         <ol>
-          <li><time datetime="2026-10-18">18 Oct</time><span>Class 1. Intro to AI, LLMs and agents. Students build their first websites on Lovable.<small class="ref"><b>Reference:</b> <a href="https://docs.google.com/presentation/d/118LHEYY9VezecFmWQIVnVjbVDvseOJMxsZUe9W5oWwg/edit?usp=sharing" target="_blank" rel="noopener">Slides: Agentic AI Engineering, introductory session</a></small></span></li>
-          <li><time datetime="2026-10-25">25 Oct</time><span>Class 2. First look at the book, The AI Agent Factory, second edition.<small class="ref"><b>Reference:</b> <a href="https://agentfactory2.panaversity.org/" target="_blank" rel="noopener">The AI Agent Factory, 2nd edition</a></small></span></li>
-          <li><time datetime="2026-11-01">1 Nov</time><span>Class 3. Chapter 1: from chatbots to AI workers.<small class="ref"><b>Reference:</b> <a href="https://agentfactory2.panaversity.org/ai-worker-paradigm/from-chatbots-to-ai-workers/overview/" target="_blank" rel="noopener">Chapter 1 overview</a></small></span></li>
-          <li><time datetime="2026-11-08">8 Nov</time><span>Class 4. Chapter 1, continued.<small class="ref"><b>Reference:</b> <a href="https://agentfactory2.panaversity.org/ai-worker-paradigm/from-chatbots-to-ai-workers/overview/" target="_blank" rel="noopener">Chapter 1 overview</a></small></span></li>
-          <li><time datetime="2026-11-15">15 Nov</time><span>Class 5. Claude and ChatGPT 2.0, the practical, and coding agents: Claude Code and OpenCode setup.<small class="ref"><b>Reference:</b> <a href="https://claude.ai/artifact/77bKtX6VwqtNxNvx39wAVy?sk=DzBLtP6Nli-szRNlP3bJbg" target="_blank" rel="noopener">Class slides: Claude 2.0 Practical</a><a href="https://claude.ai/artifact/VoK6WtACCqGsijNXs4SS1K?sk=tYgJe9077QHkcGowqUkmTA" target="_blank" rel="noopener">Claude Code and OpenCode setup</a></small></span></li>
-          <li><time datetime="2026-11-22">22 Nov</time><span>Class 6. Tour of the apps, and the commands you can use in Claude.<small class="ref"><b>Reference:</b> <a href="https://agentfactory.panaversity.org/claude-and-chatgpt-2/tour/overview/" target="_blank" rel="noopener">Tour of the Apps</a></small></span></li>
+          <li><time datetime="2026-10-18">18 Oct</time><span><b class="cls">Class 1</b><a class="doc-link" href="https://docs.google.com/presentation/d/118LHEYY9VezecFmWQIVnVjbVDvseOJMxsZUe9W5oWwg/edit?usp=sharing" target="_blank" rel="noopener">Slides: Agentic AI Engineering, introductory session</a></span></li>
+          <li><time datetime="2026-10-25">25 Oct</time><span><b class="cls">Class 2</b><a class="doc-link" href="https://agentfactory2.panaversity.org/" target="_blank" rel="noopener">The AI Agent Factory, second edition</a></span></li>
+          <li><time datetime="2026-11-01">1 Nov</time><span><b class="cls">Class 3</b><a class="doc-link" href="https://agentfactory2.panaversity.org/ai-worker-paradigm/from-chatbots-to-ai-workers/overview/" target="_blank" rel="noopener">Chapter 1: From chatbots to AI workers</a></span></li>
+          <li><time datetime="2026-11-08">8 Nov</time><span><b class="cls">Class 4</b><a class="doc-link" href="https://agentfactory2.panaversity.org/ai-worker-paradigm/from-chatbots-to-ai-workers/overview/" target="_blank" rel="noopener">Chapter 1: From chatbots to AI workers</a></span></li>
+          <li><time datetime="2026-11-15">15 Nov</time><span><b class="cls">Class 5</b><a class="doc-link" href="https://claude.ai/artifact/77bKtX6VwqtNxNvx39wAVy?sk=DzBLtP6Nli-szRNlP3bJbg" target="_blank" rel="noopener">Class slides: Claude & ChatGPT 2.0, the practical</a><a class="doc-link" href="https://claude.ai/artifact/VoK6WtACCqGsijNXs4SS1K?sk=tYgJe9077QHkcGowqUkmTA" target="_blank" rel="noopener">Class slides: Claude Code and OpenCode setup</a></span></li>
+          <li><time datetime="2026-11-22">22 Nov</time><span><b class="cls">Class 6</b><a class="doc-link" href="https://agentfactory.panaversity.org/claude-and-chatgpt-2/tour/overview/" target="_blank" rel="noopener">Tour of the Apps</a></span></li>
         </ol>
       </aside>
       </div>
