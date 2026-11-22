@@ -156,7 +156,7 @@ section, .controls { scroll-margin-block-start: calc(var(--header-h) + 3.5rem); 
 .site-header.is-wide .site-menu a { min-block-size: 44px; padding: 0 0.5rem; font: 400 0.8125rem/1 var(--sans); letter-spacing: -0.01em; color: color-mix(in srgb, var(--ink) 80%, transparent); transition: color 0.2s; }
 .site-header.is-wide .site-menu a:hover { color: var(--ink); }
 .site-header.is-wide .site-menu a[aria-current="page"] { color: var(--ink); font-weight: 600; }
-.site-header.is-wide .site-menu .cta { min-block-size: 28px; margin-inline-start: 0.6rem; padding: 0.4rem 0.9rem; color: #fff; font-weight: 500; }
+.site-header.is-wide .site-menu .cta { min-block-size: 28px; margin-block-start: 0; margin-inline-start: 0.6rem; padding: 0.4rem 0.9rem; color: #fff; font-weight: 500; }
 .site-header.is-wide .site-menu .cta:hover { color: #fff; }
 [popover]:is(:popover-open, .\:popover-open) { display: block; }
 .site-header.is-wide .site-menu { display: flex; }
