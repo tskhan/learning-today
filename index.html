@@ -56,11 +56,24 @@ a { color: inherit; }
 .pinned .tag { font: 700 0.75rem var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--hot); }
 .pinned p { margin: 0; flex: 1 1 22rem; }
 .pinned .btn { min-block-size: 40px; padding: 0.5rem 1.1rem; font-size: 0.9rem; }
-/* each class lists the document it was taught from; the links are the point of the table */
-.log .cls { display: block; font: 700 0.75rem var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); margin-block-end: 0.25rem; }
-.log .doc-link { display: block; color: var(--hot); font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; overflow-wrap: anywhere; }
-.log .doc-link + .doc-link { margin-block-start: 0.4rem; }
-.log .doc-link:hover { text-decoration-thickness: 2px; }
+/* class table: class, date, what was covered, and the document taught from */
+.classes { inline-size: 100%; border-collapse: collapse; margin-block-start: 1.5rem; background: var(--paper2); border-radius: 12px; overflow: hidden; }
+.classes th, .classes td { text-align: start; vertical-align: top; padding: 0.9rem 1.1rem; border-block-end: 1px solid var(--line); }
+.classes thead th { font: 700 0.75rem var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); background: var(--card); }
+.classes tbody th { font-family: var(--serif); font-size: 1.4rem; inline-size: 5rem; color: var(--hot); }
+.classes td:nth-child(2) { white-space: nowrap; inline-size: 7rem; font: 600 0.95rem var(--sans); }
+.classes td:nth-child(3) { inline-size: 32%; }
+.classes td a { display: block; color: var(--hot); font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.classes td a + a { margin-block-start: 0.45rem; }
+.classes td a:hover { text-decoration-thickness: 2px; }
+.classes tbody tr:last-child > * { border-block-end: 0; }
+@media (max-width: 760px) {
+  .classes thead { position: absolute; clip-path: inset(50%); block-size: 1px; inline-size: 1px; overflow: hidden; }
+  .classes tr { display: block; padding: 0.9rem 1.1rem; border-block-end: 1px solid var(--line); }
+  .classes th, .classes td { display: block; padding: 0.2rem 0; border: 0; inline-size: auto !important; }
+  .classes td::before, .classes tbody th::before { content: attr(data-label) ": "; font: 700 0.7rem var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); }
+  .classes tbody th { font-size: 1.1rem; }
+}
 .hero { padding-block: var(--space-max) 0; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: var(--space-max); align-items: start; }
 .hero h1 { font-weight: 800; font-size: clamp(2.8rem, 8vw, 6rem); line-height: 0.96; }
@@ -259,21 +272,29 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
       </div>
       <div class="hero-side">
       <p class="updated"><span class="mono">Last class update</span><time datetime="2026-11-22">22 November 2026</time></p>
-      <aside class="log" aria-labelledby="log-title">
-        <h2 id="log-title">Batch 91, so far</h2>
-        <p class="mono">Sunday classes, 18 Oct to 22 Nov 2026</p>
-        <ol>
-          <li><time datetime="2026-10-18">18 Oct</time><span><b class="cls">Class 1</b><a class="doc-link" href="https://docs.google.com/presentation/d/118LHEYY9VezecFmWQIVnVjbVDvseOJMxsZUe9W5oWwg/edit?usp=sharing" target="_blank" rel="noopener">Slides: Agentic AI Engineering, introductory session</a></span></li>
-          <li><time datetime="2026-10-25">25 Oct</time><span><b class="cls">Class 2</b><a class="doc-link" href="https://agentfactory2.panaversity.org/" target="_blank" rel="noopener">The AI Agent Factory, second edition</a></span></li>
-          <li><time datetime="2026-11-01">1 Nov</time><span><b class="cls">Class 3</b><a class="doc-link" href="https://agentfactory2.panaversity.org/ai-worker-paradigm/from-chatbots-to-ai-workers/overview/" target="_blank" rel="noopener">Chapter 1: From chatbots to AI workers</a></span></li>
-          <li><time datetime="2026-11-08">8 Nov</time><span><b class="cls">Class 4</b><a class="doc-link" href="https://agentfactory2.panaversity.org/ai-worker-paradigm/from-chatbots-to-ai-workers/overview/" target="_blank" rel="noopener">Chapter 1: From chatbots to AI workers</a></span></li>
-          <li><time datetime="2026-11-15">15 Nov</time><span><b class="cls">Class 5</b><a class="doc-link" href="https://claude.ai/artifact/77bKtX6VwqtNxNvx39wAVy?sk=DzBLtP6Nli-szRNlP3bJbg" target="_blank" rel="noopener">Class slides: Claude & ChatGPT 2.0, the practical</a><a class="doc-link" href="https://claude.ai/artifact/VoK6WtACCqGsijNXs4SS1K?sk=tYgJe9077QHkcGowqUkmTA" target="_blank" rel="noopener">Class slides: Claude Code and OpenCode setup</a></span></li>
-          <li><time datetime="2026-11-22">22 Nov</time><span><b class="cls">Class 6</b><a class="doc-link" href="https://agentfactory.panaversity.org/claude-and-chatgpt-2/tour/overview/" target="_blank" rel="noopener">Tour of the Apps</a></span></li>
-        </ol>
-      </aside>
       </div>
     </div>
   </div>
+
+  <section id="classes">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="classes-title">Batch 91, so far</h2>
+        <p>Sunday classes, 18 Oct to 22 Nov 2026. Click a reference to read or open the material taught in that class.</p>
+      </div>
+      <table class="classes" aria-labelledby="classes-title">
+        <thead><tr><th scope="col">Class</th><th scope="col">Date</th><th scope="col">Covered</th><th scope="col">Reference material</th></tr></thead>
+        <tbody>
+          <tr><th scope="row" data-label="Class">1</th><td data-label="Date"><time datetime="2026-10-18">18 Oct</time></td><td data-label="Covered">Intro to AI, LLMs and agents. Students build their first websites on Lovable.</td><td data-label="Reference material"><a href="https://docs.google.com/presentation/d/118LHEYY9VezecFmWQIVnVjbVDvseOJMxsZUe9W5oWwg/edit?usp=sharing" target="_blank" rel="noopener">Slides: Agentic AI Engineering, introductory session</a></td></tr>
+          <tr><th scope="row" data-label="Class">2</th><td data-label="Date"><time datetime="2026-10-25">25 Oct</time></td><td data-label="Covered">First look at the book, The AI Agent Factory, second edition.</td><td data-label="Reference material"><a href="https://agentfactory2.panaversity.org/" target="_blank" rel="noopener">The AI Agent Factory, second edition</a></td></tr>
+          <tr><th scope="row" data-label="Class">3</th><td data-label="Date"><time datetime="2026-11-01">1 Nov</time></td><td data-label="Covered">Chapter 1: from chatbots to AI workers.</td><td data-label="Reference material"><a href="https://agentfactory2.panaversity.org/ai-worker-paradigm/from-chatbots-to-ai-workers/overview/" target="_blank" rel="noopener">Chapter 1: From chatbots to AI workers</a></td></tr>
+          <tr><th scope="row" data-label="Class">4</th><td data-label="Date"><time datetime="2026-11-08">8 Nov</time></td><td data-label="Covered">Chapter 1, continued.</td><td data-label="Reference material"><a href="https://agentfactory2.panaversity.org/ai-worker-paradigm/from-chatbots-to-ai-workers/overview/" target="_blank" rel="noopener">Chapter 1: From chatbots to AI workers</a></td></tr>
+          <tr><th scope="row" data-label="Class">5</th><td data-label="Date"><time datetime="2026-11-15">15 Nov</time></td><td data-label="Covered">Claude and ChatGPT 2.0, the practical, and coding agents: Claude Code and OpenCode setup.</td><td data-label="Reference material"><a href="https://claude.ai/artifact/77bKtX6VwqtNxNvx39wAVy?sk=DzBLtP6Nli-szRNlP3bJbg" target="_blank" rel="noopener">Class slides: Claude & ChatGPT 2.0, the practical</a><a href="https://claude.ai/artifact/VoK6WtACCqGsijNXs4SS1K?sk=tYgJe9077QHkcGowqUkmTA" target="_blank" rel="noopener">Class slides: Claude Code and OpenCode setup</a></td></tr>
+          <tr><th scope="row" data-label="Class">6</th><td data-label="Date"><time datetime="2026-11-22">22 Nov</time></td><td data-label="Covered">Tour of the apps, and the commands you can use in Claude.</td><td data-label="Reference material"><a href="https://agentfactory.panaversity.org/claude-and-chatgpt-2/tour/overview/" target="_blank" rel="noopener">Tour of the Apps</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
   <section id="core">
     <div class="wrap">
