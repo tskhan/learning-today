@@ -82,6 +82,10 @@ a { color: inherit; }
 .hero-bar { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 1.5rem; }
 .hero-bar .actions { flex-wrap: nowrap; margin: 0; }
 .hero-text .lede { margin-block-end: 0; }
+.btn.whatsapp { background: #1a7f4b; border-color: #1a7f4b; color: #fff; }
+.btn.whatsapp:hover { background: #15693e; border-color: #15693e; }
+.hero-bar .btn { padding: 0.7rem 1.1rem; font-size: 0.85rem; }
+.hero-bar .actions { gap: 0.6rem; }
 .hero-bar .updated { margin: 0; }
 @media (max-width: 640px) { .hero-bar .actions { flex-wrap: wrap; } }
 .hero h1 { font-weight: 800; font-size: clamp(2.8rem, 8vw, 6rem); line-height: 0.96; }
@@ -278,8 +282,9 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
       </div>
       <div class="hero-bar">
       <div class="actions">
-        <a class="btn solid" href="#batch-91">See the Batch 91 course</a>
-        <a class="btn ghost" href="#resources">Open the class resources</a>
+        <a class="btn solid" href="#batch-91">Batch 91 course</a>
+        <a class="btn ghost" href="#resources">Class resources</a>
+          <a class="btn whatsapp" href="https://whatsapp.com/channel/0029Vb9Gpxk7z4kWG9QUCm09" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.43 15.1L2 22l5.05-1.32A9.9 9.9 0 1 0 12.04 2Zm0 18.1a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3 .78.8-2.92-.2-.31a8.2 8.2 0 1 1 6.88 3.77Zm4.5-6.1c-.25-.12-1.46-.72-1.69-.8-.23-.09-.39-.12-.55.12-.17.25-.64.8-.78.96-.14.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.23-1.46-1.37-1.7-.14-.25-.02-.38.1-.5.11-.11.25-.29.37-.43.12-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.55-1.33-.76-1.82-.2-.48-.4-.41-.55-.42h-.47c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.24 3.75.59.25 1.05.4 1.41.52.6.19 1.13.16 1.56.1.48-.07 1.46-.6 1.67-1.18.2-.58.2-1.07.14-1.18-.06-.1-.23-.17-.48-.29Z"/></svg>Follow on WhatsApp</a>
       </div>
       <p class="updated"><span class="mono">Last class update</span><time datetime="2026-11-22">22 November 2026</time></p>
       </div>
