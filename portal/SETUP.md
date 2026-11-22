@@ -34,7 +34,7 @@ You will copy a few keys between websites. **Never paste a key into a chat, an e
 ## 2. Resend: the password-reset emails
 
 1. In [resend.com](https://resend.com) open **Domains → Add domain**, type `learning-today.com` and pick the region closest to you.
-2. Resend shows 3–4 DNS records (types **TXT** and **MX**). Add each one at the company where you manage `learning-today.com`'s DNS: the same place you'd change where the domain points. Copy the **Name** and **Value** exactly.
+2. Resend shows a few DNS records: a **TXT** record named `resend._domainkey`, and two **CNAME** records named `rsend` and `send` (older accounts may see TXT and MX instead). Try Resend's **Auto configure** button first. If it can't reach your DNS provider, add each record by hand where you manage `learning-today.com`'s DNS (GoDaddy: My Products → DNS → Add New Record). Copy the **Name** and **Value** exactly. Type only the short name (for example `send`), because GoDaddy adds `.learning-today.com` itself.
 3. Back in Resend, click **Verify DNS records**. It can take from a few minutes to a few hours. Wait until the domain shows **Verified**.
 4. Open **API Keys → Create API key**. Name it `supabase-smtp`, permission **Sending access**, domain `learning-today.com`. Copy the key (starts with `re_`). Resend shows it only once.
 5. Back in **Supabase → Authentication → Emails → SMTP Settings**, turn on **Enable custom SMTP** and fill in:
