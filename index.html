@@ -56,6 +56,9 @@ a { color: inherit; }
 .pinned .tag { font: 700 0.75rem var(--sans); letter-spacing: 0.1em; text-transform: uppercase; color: var(--hot); }
 .pinned p { margin: 0; flex: 1 1 22rem; }
 .pinned .btn { min-block-size: 40px; padding: 0.5rem 1.1rem; font-size: 0.9rem; }
+.log .ref { display: block; margin-block-start: 0.35rem; font-size: 0.82rem; color: var(--mute); }
+.log .ref a { display: block; color: var(--hot); text-decoration: none; overflow-wrap: anywhere; }
+.log .ref a:hover { text-decoration: underline; }
 .hero { padding-block: var(--space-max) 0; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: var(--space-max); align-items: start; }
 .hero h1 { font-weight: 800; font-size: clamp(2.8rem, 8vw, 6rem); line-height: 0.96; }
@@ -258,12 +261,12 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
         <h2 id="log-title">Batch 91, so far</h2>
         <p class="mono">Sunday classes, 18 Oct to 22 Nov 2026</p>
         <ol>
-          <li><time datetime="2026-10-18">18 Oct</time><span>First class: intro to AI, LLMs and agents. Students build their first websites on Lovable.</span></li>
-          <li><time datetime="2026-10-25">25 Oct</time><span>Chapter 1 and its lab: from chatbots to AI workers.</span></li>
-          <li><time datetime="2026-11-01">1 Nov</time><span>Claude Desktop as the class tool, the Class Quest game on Chapter 1, and the lab submission form.</span></li>
-          <li><time datetime="2026-11-08">8 Nov</time><span>Claude and ChatGPT 2.0, the practical: handing AI a whole job.</span></li>
-          <li><time datetime="2026-11-15">15 Nov</time><span>Coding agents: Claude Code and OpenCode setup.</span></li>
-          <li><time datetime="2026-11-22">22 Nov</time><span>Chapter 2 from the Claude 2.0 practical class slides, and the commands you can use in Claude. Last PIAIC exams on the v1.0 syllabus.</span></li>
+          <li><time datetime="2026-10-18">18 Oct</time><span>Class 1. Intro to AI, LLMs and agents. Students build their first websites on Lovable.<small class="ref"><b>Reference:</b> <a href="https://docs.google.com/presentation/d/118LHEYY9VezecFmWQIVnVjbVDvseOJMxsZUe9W5oWwg/edit?usp=sharing" target="_blank" rel="noopener">Slides: Agentic AI Engineering, introductory session</a></small></span></li>
+          <li><time datetime="2026-10-25">25 Oct</time><span>Class 2. First look at the book, The AI Agent Factory, second edition.<small class="ref"><b>Reference:</b> <a href="https://agentfactory2.panaversity.org/" target="_blank" rel="noopener">The AI Agent Factory, 2nd edition</a></small></span></li>
+          <li><time datetime="2026-11-01">1 Nov</time><span>Class 3. Chapter 1: from chatbots to AI workers.<small class="ref"><b>Reference:</b> <a href="https://agentfactory2.panaversity.org/ai-worker-paradigm/from-chatbots-to-ai-workers/overview/" target="_blank" rel="noopener">Chapter 1 overview</a></small></span></li>
+          <li><time datetime="2026-11-08">8 Nov</time><span>Class 4. Chapter 1, continued.<small class="ref"><b>Reference:</b> <a href="https://agentfactory2.panaversity.org/ai-worker-paradigm/from-chatbots-to-ai-workers/overview/" target="_blank" rel="noopener">Chapter 1 overview</a></small></span></li>
+          <li><time datetime="2026-11-15">15 Nov</time><span>Class 5. Claude and ChatGPT 2.0, the practical, and coding agents: Claude Code and OpenCode setup.<small class="ref"><b>Reference:</b> <a href="https://claude.ai/artifact/77bKtX6VwqtNxNvx39wAVy?sk=DzBLtP6Nli-szRNlP3bJbg" target="_blank" rel="noopener">Class slides: Claude 2.0 Practical</a><a href="https://claude.ai/artifact/VoK6WtACCqGsijNXs4SS1K?sk=tYgJe9077QHkcGowqUkmTA" target="_blank" rel="noopener">Claude Code and OpenCode setup</a></small></span></li>
+          <li><time datetime="2026-11-22">22 Nov</time><span>Class 6. Tour of the apps, and the commands you can use in Claude.<small class="ref"><b>Reference:</b> <a href="https://agentfactory.panaversity.org/claude-and-chatgpt-2/tour/overview/" target="_blank" rel="noopener">Tour of the Apps</a></small></span></li>
         </ol>
       </aside>
       </div>
@@ -326,7 +329,7 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
           <a class="shot" href="https://claude.ai/artifact/77bKtX6VwqtNxNvx39wAVy?sk=DzBLtP6Nli-szRNlP3bJbg" target="_blank" rel="noopener">
             <picture><source type="image/webp" srcset="assets/previews/claude-2-practical-640.webp 640w, assets/previews/claude-2-practical.webp 960w" sizes="(max-width: 860px) 92vw, 360px"><img src="assets/previews/claude-2-practical.jpg" width="960" height="600" loading="lazy" alt="Title slide of Claude and ChatGPT 2.0, the practical class: from download to handing AI a whole job"></picture>
           </a>
-          <p class="mono">Class slides, 8 Nov</p>
+          <p class="mono">Class 5 slides, 15 Nov</p>
           <h3>Claude and ChatGPT 2.0: the practical</h3>
           <p>23 slides from downloading Claude to handing AI a whole job. Write a brief, let the AI work on your files, check the result. Pick a practice lab: Brightline's payment run or the Big Shaadi payment day.</p>
           <a class="btn solid sm" href="https://claude.ai/artifact/77bKtX6VwqtNxNvx39wAVy?sk=DzBLtP6Nli-szRNlP3bJbg" target="_blank" rel="noopener">Open the slides</a>
@@ -335,7 +338,7 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
           <a class="shot" href="https://claude.ai/artifact/VoK6WtACCqGsijNXs4SS1K?sk=tYgJe9077QHkcGowqUkmTA" target="_blank" rel="noopener">
             <picture><source type="image/webp" srcset="assets/previews/coding-agents-practical-640.webp 640w, assets/previews/coding-agents-practical.webp 960w" sizes="(max-width: 860px) 92vw, 360px"><img src="assets/previews/coding-agents-practical.jpg" width="960" height="600" loading="lazy" alt="Title slide: Build a website with a coding agent, showing a terminal running OpenCode beside the finished page"></picture>
           </a>
-          <p class="mono">Class slides, 15 Nov</p>
+          <p class="mono">Class 5 slides, 15 Nov</p>
           <h3>Build a website with a coding agent</h3>
           <p>20 slides on moving the AI into a folder on your own computer. Install Node.js, pick Claude Code or OpenCode, install it with npm, then give it one brief and open the website it builds.</p>
           <a class="btn solid sm" href="https://claude.ai/artifact/VoK6WtACCqGsijNXs4SS1K?sk=tYgJe9077QHkcGowqUkmTA" target="_blank" rel="noopener">Open the slides</a>
