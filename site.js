@@ -49,6 +49,17 @@
   addEventListener('load', function () { update(true); });
   update(true);
 
+  /* In the inline layout the Class resources group is a dropdown: close it on outside click or Escape */
+  var group = menu.querySelector('.menu-group details');
+  if (group) {
+    document.addEventListener('click', function (event) {
+      if (header.classList.contains('is-wide') && group.open && !group.contains(event.target)) group.open = false;
+    });
+    group.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') { group.open = false; group.querySelector('summary').focus(); }
+    });
+  }
+
   /* A menu link should close the menu in the collapsed layout */
   menu.addEventListener('click', function (event) {
     if (event.target.closest('a') && menu.hasAttribute('popover') && menu.hidePopover) menu.hidePopover();
