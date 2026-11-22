@@ -57,3 +57,20 @@ test("dashboard works on a phone @phone", async ({ page }) => {
   const width = await page.evaluate(() => document.documentElement.scrollWidth);
   expect(width).toBeLessThanOrEqual(page.viewportSize()!.width);
 });
+
+test("every nav link fits on a phone, including Admin @phone", async ({ page }) => {
+  const admin = await createMember({ role: "admin" });
+  await loginAs(page, admin);
+  const vw = page.viewportSize()!.width;
+  for (const name of ["Dashboard", "Classes", "Discussions", "Admin"]) {
+    const box = await page.getByRole("navigation", { name: "Portal" }).getByRole("link", { name }).boundingBox();
+    expect(box, name).not.toBeNull();
+    expect(box!.x).toBeGreaterThanOrEqual(0);
+    expect(box!.x + box!.width).toBeLessThanOrEqual(vw);
+  }
+  const menu = await page.locator(".user-menu summary").boundingBox();
+  const adminLink = await page.getByRole("navigation", { name: "Portal" }).getByRole("link", { name: "Admin" }).boundingBox();
+  const overlaps = menu!.y < adminLink!.y + adminLink!.height && adminLink!.y < menu!.y + menu!.height &&
+    menu!.x < adminLink!.x + adminLink!.width && adminLink!.x < menu!.x + menu!.width;
+  expect(overlaps).toBe(false);
+});

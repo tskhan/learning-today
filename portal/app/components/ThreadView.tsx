@@ -20,9 +20,10 @@ interface ThreadRow extends Omit<PostRow, "author"> {
   class: { number: number; title: string } | null;
 }
 
-function PostCard({ kind, post, member, basePath, edit, threadTitle }: {
+function PostCard({ kind, post, member, basePath, edit, threadTitle, systemPost = false }: {
   kind: "thread" | "post";
   post: PostRow;
+  systemPost?: boolean;
   member: Member;
   basePath: string;
   edit?: string;
@@ -36,7 +37,7 @@ function PostCard({ kind, post, member, basePath, edit, threadTitle }: {
     <article className="post card" id={key}>
       <header className="spread small">
         <span>
-          <strong>{post.author?.full_name ?? "Former member"}</strong>{" "}
+          <strong>{post.author?.full_name ?? (systemPost ? "Batch 91 Portal" : "Former member")}</strong>{" "}
           <span className="muted">
             · <time dateTime={post.created_at}>{formatRelative(post.created_at)}</time>
             {post.edited_at ? " (edited)" : ""}
@@ -109,7 +110,7 @@ export async function ThreadView({ threadId, member, showTitle = true, basePath,
           ) : null}
         </div>
       ) : null}
-      <PostCard kind="thread" post={thread} member={member} basePath={path} edit={edit} threadTitle={thread.title} />
+      <PostCard kind="thread" post={thread} member={member} basePath={path} edit={edit} threadTitle={thread.title} systemPost={thread.is_class_thread} />
       <h2 className="small muted" style={{ fontFamily: "var(--sans)", fontWeight: 600 }}>
         {replies.length === 0 ? "No replies yet" : `${replies.length} ${replies.length === 1 ? "reply" : "replies"}`}
       </h2>

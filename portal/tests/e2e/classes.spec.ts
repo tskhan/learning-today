@@ -106,3 +106,11 @@ test("class guide works on a phone @phone", async ({ page }) => {
   const width = await page.evaluate(() => document.documentElement.scrollWidth);
   expect(width).toBeLessThanOrEqual(page.viewportSize()!.width);
 });
+
+test("class question threads opened by the system are signed by the portal, not 'Former member'", async ({ page }) => {
+  const m = await createMember();
+  await loginAs(page, m, "/classes/6");
+  const opening = page.locator("article.post").first();
+  await expect(opening.getByText("Batch 91 Portal")).toBeVisible();
+  await expect(opening.getByText("Former member")).toHaveCount(0);
+});
