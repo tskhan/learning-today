@@ -83,7 +83,7 @@ You will copy a few keys between websites. **Never paste a key into a chat, an e
 - Log out, click **Forgot password?** and make sure the email arrives (check spam the first time).
 - Open a class guide on your phone.
 - Ask one classmate to sign up and post a test question.
-- Then merge the branch so the **Batch portal** link appears on learning-today.com.
+- Then merge the branch so the **Sign-in** link appears in the learning-today.com menu.
 
 ## Good to know
 
