@@ -1,12 +1,44 @@
 # learning-today.com
 
-A small static website for learning Claude, built around the **PIAIC Batch 91** class. It has a landing page, a document of every link the class admins posted, a gallery of the websites the students built, and a beginner's guide to making animated videos with Claude.
+A website for learning Claude, built around the **PIAIC Batch 91** class, in two parts:
 
-The members-only **Batch 91 Portal** (class catch-up guides, homework tracking and discussions) lives in [`portal/`](portal/) and is served separately at https://portal.learning-today.com. It has its own [README](portal/README.md) and [setup guide](portal/SETUP.md).
+- **learning-today.com**, a static site: a landing page with the course roadmap and class timeline, every link the class admins shared, a gallery of the websites students built, and a beginner's guide to making animated videos with Claude.
+- **portal.learning-today.com**, the members-only **Batch 91 Portal**: students sign up with the batch join code, catch up on every class step by step, track their reading and homework, hand in work and ask questions in one discussion space. Admins publish class guides and manage members. The source is in [`portal/`](portal/), with its own [README](portal/README.md) and [setup guide](portal/SETUP.md).
 
-**Live site:** https://learning-today.com
+**Live:** https://learning-today.com · https://portal.learning-today.com
 
 > This is an independent learner site. PIAIC, Panaversity and Anthropic run the official programme, book and exams. This site only points to them and records what one class has covered. Check [piaic.org](https://www.piaic.org) for syllabus, fees and dates.
+
+## What's been built
+
+### The static site (frontend, GitHub Pages)
+
+- **Five pages** sharing one theme (`theme.css`) and one script (`site.js`): light and dark mode, condensed Oswald headings, one orange accent, and a header that shows its links inline when they fit and folds them into a menu when they do not.
+- **Header:** **Sign-in** is the first menu item, outlined in orange so it stands out, followed by the Class resources dropdown, Core documents, Learn Claude, Make Videos with Claude, PIAIC Batch 91 and Enrol with PIAIC. On wide screens the bar is centred over the page content: the logo starts where the content starts and the menu ends in line with the content's buttons.
+- **Home page:** a hero with a typing demo, a pinned practice quiz, a **Batch 91 Portal** card right after the hero, the Batch 91 class timeline, five core documents with previews, a Learn Claude path, the five-quarter roadmap and Class resources.
+- **Links shared in Class**, **Student websites** (167 sites with live previews, search, filters and automated ratings) and **Make Videos with Claude**, plus a privacy page that explains both the site and the portal.
+- Motion-based scroll reveals and count-ups that respect reduced motion, WebP images with fallbacks, a sitemap, and `robots.txt` that keeps the portal source, `docs/` and the student gallery out of search.
+
+### The Batch 91 Portal: frontend (Next.js on Vercel)
+
+- **Sign-in pages:** log in, join the batch (with the join code), forgot password and reset password. On wide screens each has a large learning-today logo with a short intro on the left and the form on the right; phones stack them.
+- **Dashboard:** a greeting with a one-line summary, overdue and due-next homework, optional catch-up homework for late joiners, the class list, and the latest discussions in a side column.
+- **Classes:** every published class with Reviewed or Not reviewed and homework progress. A **Your progress** card beside the list shows reading and homework bars and what to do next.
+- **Class guide:** what was discussed, the material, homework with deadlines and hand-in links, an "I've reviewed this class" checklist and classmates' work. The class's own question thread sits beside the guide on wide screens.
+- **Discussions:** threads with reply counts, pinning, class badges and a side card of every class's question thread. Posts support Markdown, rendered on the server and sanitised; authors can edit or delete their own posts and admins can remove any.
+- **Admin:** publish and edit class guides (with a Markdown preview), see who handed in what, manage members (make admin, remove and restore, send a one-time reset link, delete for good) and change the join code.
+- Forms keep what you typed when something is refused. All dates are in Pakistan time. Pages use the full width with side columns on desktop and a single column on phones.
+
+### The Batch 91 Portal: backend (Supabase)
+
+- **Logins** through Supabase Auth. Open sign-up is off; people join only through the portal's form, which checks the join code on the server. Password-reset emails go out through Resend from `no-reply@learning-today.com`.
+- **Postgres database** with nine tables: profiles, classes, class materials, homework, class reviews, homework status, threads, posts and settings.
+- **Every rule is enforced in the database** as well as in the app:
+  - Row-level security on every table, so only active members can read anything, students change only their own data and only admins publish.
+  - Column-level grants that limit what can be written.
+  - Triggers for the posting rate limit (10 posts in 10 minutes), required hand-in links, a question thread opened automatically for each published class (and closed when the class is deleted), thread activity, edit marks, and clearing ticks when a hand-in becomes required.
+- **Server-only secret key:** the secret key never reaches the browser. Redirects after login are checked against open-redirect tricks. A pasted Supabase URL with extra path is tolerated, and sign-up errors show a short reference code so problems can be traced in the Vercel logs.
+- **Tests:** unit tests for the logic, database tests for every rule and trigger against a local Supabase, and Playwright browser tests of every flow on desktop and phone. All three suites pass before a portal change is merged.
 
 ## The pages
 
@@ -95,7 +127,7 @@ HTTPS is enforced, and the certificate renews itself. A push to `main` redeploys
 
 - One shared theme across every page: light grey grounds (near black in dark mode), charcoal ink, one orange accent, condensed uppercase Oswald headings and Inter text. Green marks student work.
 - Light and dark mode follow the device setting, using `color-scheme` and `light-dark()` with a media-query fallback.
-- The header uses a native popover for the narrow-screen menu. Links shared in Class and Student websites sit together under a Class resources dropdown (a `details` element) in the menu. All animation respects `prefers-reduced-motion`.
+- The header uses a native popover for the narrow-screen menu. Links shared in Class and Student websites sit together under a Class resources dropdown (a `details` element), second in the menu after Sign-in. On wide screens the header row is padded so it lines up with the 1024px content column. All animation respects `prefers-reduced-motion`.
 - Animation is layered: small CSS animations for the hero entrance, the hero's typing demo, the menu and the cards on Links shared in Class; Motion (in `site.js`) for scroll reveals, count-ups and ranking bars. The filterable card grid on Student websites is left unanimated so it never clashes with search and filters.
 - Previews of the class documents are screenshots, so they do not update if the originals change.
 
