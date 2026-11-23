@@ -12,7 +12,7 @@ export function JoinCodeForm({ current }: { current: string }) {
       <div className="form-row">
         <label htmlFor="join_code">Join code</label>
         <input id="join_code" name="join_code" type="text" defaultValue={state?.values?.join_code ?? current} maxLength={64} autoComplete="off" required />
-        <span className="hint">Post the new code in the WhatsApp group. Existing members are not affected. Codes are not case-sensitive.</span>
+        <span className="hint">At least 10 characters, so it can&apos;t be guessed. Post the new code in the WhatsApp group. Existing members are not affected. Codes are not case-sensitive.</span>
       </div>
       <SubmitButton pendingText="Saving…">Save join code</SubmitButton>
     </form>

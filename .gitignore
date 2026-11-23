@@ -1,0 +1,9 @@
+# Never commit secrets: environment files hold keys (portal/.env.example is the only exception).
+.env*
+!.env.example
+!**/.env.example
+
+# Dependencies, build output and editor clutter
+node_modules/
+.DS_Store
+*.pem

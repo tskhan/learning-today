@@ -12,14 +12,14 @@ interface Row {
   class_date: string;
   title: string;
   status: "draft" | "published";
-  homework: Array<{ id: number; homework_status: Array<{ count: number }> }>;
+  homework: Array<{ id: number; homework_status: Array<{ user_id: string }> }>;
 }
 
 export default async function AdminClassesPage() {
   const supabase = await createClient();
   const { data } = await supabase
     .from("classes")
-    .select("id, number, class_date, title, status, homework(id, homework_status(count))")
+    .select("id, number, class_date, title, status, homework(id, homework_status(user_id))")
     .order("number", { ascending: false })
     .returns<Row[]>();
   const classes = data ?? [];
@@ -37,7 +37,8 @@ export default async function AdminClassesPage() {
           </thead>
           <tbody>
             {classes.map((c) => {
-              const handins = c.homework.reduce((n, h) => n + (h.homework_status?.[0]?.count ?? 0), 0);
+              // Counted from the rows: notes are private, so members (admins included) can only read some columns, and count(*) needs the whole table.
+              const handins = c.homework.reduce((n, h) => n + (h.homework_status?.length ?? 0), 0);
               return (
                 <tr key={c.id}>
                   <td>{c.number}</td>

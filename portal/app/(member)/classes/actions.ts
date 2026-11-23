@@ -43,11 +43,20 @@ export async function markHomework(_prev: FormState, fd: FormData): Promise<Form
   if (note.length > LIMITS.note) return { error: `Notes can be up to ${LIMITS.note} characters.` };
 
   const supabase = await createClient();
-  const { error } = await supabase.from("homework_status").upsert(
-    { user_id: member.id, homework_id: homeworkId, handin_url: handinUrl, note: note || null, done_at: new Date().toISOString() },
-    { onConflict: "user_id,homework_id" },
-  );
-  if (error) return { error: friendlyError(error) };
+  // Update first, then insert if there was nothing to update. (An upsert would need to read the
+  // note column, which members can't read: notes are private to their author.)
+  const values = { handin_url: handinUrl, note: note || null, done_at: new Date().toISOString() };
+  const updated = await supabase
+    .from("homework_status")
+    .update(values)
+    .eq("user_id", member.id)
+    .eq("homework_id", homeworkId)
+    .select("homework_id");
+  if (updated.error) return { error: friendlyError(updated.error) };
+  if (!updated.data?.length) {
+    const { error } = await supabase.from("homework_status").insert({ user_id: member.id, homework_id: homeworkId, ...values });
+    if (error) return { error: friendlyError(error) };
+  }
   refresh(returnTo);
   if (fd.get("editing") === "1") redirect(`${returnTo}#hw-${homeworkId}`);
   return { ok: "Saved." };

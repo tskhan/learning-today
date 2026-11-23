@@ -1,10 +1,11 @@
 import { expect, test, type Page } from "@playwright/test";
-import { adminClient, clearFixtureClasses, createClassFixture, createMember, loginAs } from "../helpers/members";
+import { adminClient, clearFixtureClasses, clearSignupAttempts, createClassFixture, createMember, loginAs } from "../helpers/members";
 
 test.beforeEach(async () => {
   await clearFixtureClasses();
   await adminClient().from("classes").delete().gte("number", 7).lt("number", 1000);
   await adminClient().from("settings").update({ join_code: "batch91-change-me" }).eq("id", 1);
+  await clearSignupAttempts();
 });
 
 test.afterAll(async () => {
@@ -197,7 +198,7 @@ test("change the join code", async ({ page, browser }) => {
   const admin = await createMember({ role: "admin" });
   await loginAs(page, admin, "/admin/settings");
   await page.waitForLoadState("networkidle");
-  await page.getByLabel("Join code").fill("NEWCODE1");
+  await page.getByLabel("Join code").fill("NEWCODE-2026");
   await page.getByRole("button", { name: "Save join code" }).click();
   await expect(page.getByText("Join code saved.")).toBeVisible();
 
@@ -214,7 +215,7 @@ test("change the join code", async ({ page, browser }) => {
   };
   await signup("batch91-change-me");
   await expect(sp.getByText("That join code isn't right.")).toBeVisible();
-  await signup("newcode1");
+  await signup("newcode-2026");
   await expect(sp).toHaveURL("/");
   await ctx.close();
 });

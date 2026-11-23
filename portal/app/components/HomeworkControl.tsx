@@ -74,6 +74,7 @@ export function HomeworkControl({ homeworkId, handinExpected, status, editing, r
       <div className="form-row">
         <label htmlFor={`note-${homeworkId}`}>Note (optional)</label>
         <input id={`note-${homeworkId}`} name="note" type="text" maxLength={500} defaultValue={state?.values?.note ?? status?.note ?? ""} />
+        <span className="hint">Only you can see your note. Classmates see your link.</span>
       </div>
       <div className="row">
         <SubmitButton pendingText="Handing in…">Hand in</SubmitButton>

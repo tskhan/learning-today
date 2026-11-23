@@ -1,5 +1,9 @@
 import { expect, test } from "@playwright/test";
-import { adminClient, clearFixtureClasses, createClassFixture, createMember, loginAs } from "../helpers/members";
+import { adminClient, clearFixtureClasses, clearSignupAttempts, createClassFixture, createMember, loginAs } from "../helpers/members";
+
+test.beforeEach(async () => {
+  await clearSignupAttempts();
+});
 
 test("a wrong join code keeps name, email and code (password is cleared)", async ({ page }) => {
   await page.goto("/signup");

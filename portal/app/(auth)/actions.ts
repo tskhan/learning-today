@@ -1,9 +1,11 @@
 "use server";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { cleanText, LIMITS } from "@/lib/limits";
 import { field, safeNext, type FormState } from "@/lib/forms";
+import { ipFromHeaders, JOIN_CODE_LIMIT, recordWrongCode, tooManyWrongCodes } from "@/lib/signup-throttle";
 import { loginErrorMessage, REMOVED_MESSAGE as REMOVED, unavailableMessage } from "@/lib/errors";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -26,11 +28,16 @@ export async function signUp(_prev: FormState, fd: FormData): Promise<FormState>
     const keyRejected = keyError?.status === 401 || keyError?.status === 403;
     return { error: unavailableMessage(settingsError, !keyRejected) };
   }
+  const ip = ipFromHeaders(await headers());
+  if (await tooManyWrongCodes(admin, ip)) {
+    return { error: `Too many wrong join codes from your network. Wait ${JOIN_CODE_LIMIT.minutes} minutes, then try again.` };
+  }
   if (joinCode.toLowerCase() !== settings.join_code.trim().toLowerCase()) {
+    await recordWrongCode(admin, ip);
     return { error: "That join code isn't right. Ask in the Batch 91 WhatsApp group for the current code." };
   }
 
-  const { error: createError } = await admin.auth.admin.createUser({
+  const { data: created, error: createError } = await admin.auth.admin.createUser({
     email,
     password,
     email_confirm: true,
@@ -42,6 +49,14 @@ export async function signUp(_prev: FormState, fd: FormData): Promise<FormState>
     }
     if (createError.code === "weak_password") return { error: "Choose a stronger password." };
     console.error("signUp: createUser failed", createError);
+    return { error: "We couldn't create your account. Please try again." };
+  }
+
+  // The database starts every new account as removed; only this form, after checking the join code, activates it.
+  const { error: activateError } = await admin.from("profiles").update({ status: "active" }).eq("id", created.user.id);
+  if (activateError) {
+    console.error("signUp: could not activate the new account", activateError);
+    await admin.auth.admin.deleteUser(created.user.id);
     return { error: "We couldn't create your account. Please try again." };
   }
 
