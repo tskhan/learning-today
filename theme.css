@@ -329,3 +329,10 @@ body { background: radial-gradient(1200px 700px at 50% -10%, var(--card), var(--
 .site-header.is-wide .menu-group summary::after { inline-size: 0.42em; block-size: 0.42em; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg) translateY(-0.1em); }
 .site-header.is-wide .menu-group details[open] > summary::after { transform: rotate(-135deg) translateY(-0.1em); }
 .menu-group details { margin: 0; padding: 0; }
+
+/* Batch portal: first in the menu and outlined in orange so it stands out from the plain links */
+.site-header .site-menu .portal-link { color: var(--hot); }
+.site-header .site-menu .portal-link::before { content: ""; inline-size: 0.5em; block-size: 0.5em; margin-inline-end: 0.45em; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+.site-header.is-wide .site-menu .portal-link { min-block-size: 32px; margin-inline-end: 0.5rem; padding: 0.5rem 0.8rem; border: 1.5px solid var(--hot); border-radius: 2px; color: var(--hot); font-weight: 700; letter-spacing: 0.08em; transition: background 0.2s, color 0.2s; }
+.site-header.is-wide .site-menu .portal-link:hover { background: var(--hot); color: var(--onhot, #fff); }
+@media (forced-colors: active) { .site-header .site-menu .portal-link { border-color: LinkText; } }
