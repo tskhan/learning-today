@@ -16,7 +16,7 @@ export default async function ThreadPage({ params, searchParams }: {
   const threadId = Number(id);
   if (!Number.isInteger(threadId) || threadId <= 0) notFound();
   return (
-    <div className="stack">
+    <div className="stack narrow">
       <p className="small"><Link href="/discussions">← All discussions</Link></p>
       <ThreadView threadId={threadId} member={member} edit={edit} />
     </div>

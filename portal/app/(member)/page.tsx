@@ -32,7 +32,7 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
       .from("threads")
       .select("id, title, last_activity_at")
       .order("last_activity_at", { ascending: false })
-      .limit(5),
+      .limit(8),
   ]);
   const firstName = member.fullName.split(/\s+/)[0];
   const nothingOwed = progress.due.length === 0 && progress.overdue.length === 0;
@@ -45,56 +45,61 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
         <p className="muted">{summaryLine(progress)}</p>
       </div>
 
-      {progress.overdue.length > 0 ? (
-        <section>
-          <h2>Overdue</h2>
-          <HomeworkList items={progress.overdue} className="overdue-list" badge="badge-overdue" />
-        </section>
-      ) : null}
+      <div className="split">
+        <div className="stack">
+          {progress.overdue.length > 0 ? (
+            <section>
+              <h2>Overdue</h2>
+              <HomeworkList items={progress.overdue} className="overdue-list" badge="badge-overdue" />
+            </section>
+          ) : null}
 
-      {progress.due.length > 0 ? (
-        <section>
-          <h2>Due next</h2>
-          <HomeworkList items={progress.due} className="due-list" badge="badge-due" />
-        </section>
-      ) : null}
+          {progress.due.length > 0 ? (
+            <section>
+              <h2>Due next</h2>
+              <HomeworkList items={progress.due} className="due-list" badge="badge-due" />
+            </section>
+          ) : null}
 
-      {nothingOwed ? <p className="notice">You&apos;re all caught up.</p> : null}
+          {nothingOwed ? <p className="notice">You&apos;re all caught up.</p> : null}
 
-      {progress.catchup.length > 0 ? (
-        <section>
-          <h2>Catch-up (optional)</h2>
-          <p className="small muted">Homework set before you joined. Worth doing, but never counted as late.</p>
-          <HomeworkList items={progress.catchup} className="catchup-list" badge="badge-catchup" />
-        </section>
-      ) : null}
+          {progress.catchup.length > 0 ? (
+            <section>
+              <h2>Catch-up (optional)</h2>
+              <p className="small muted">Homework set before you joined. Worth doing, but never counted as late.</p>
+              <HomeworkList items={progress.catchup} className="catchup-list" badge="badge-catchup" />
+            </section>
+          ) : null}
 
-      <section>
-        <div className="spread">
-          <h2>Classes</h2>
-          <Link href="/classes" className="small">All classes</Link>
+          <section>
+            <div className="spread">
+              <h2>Classes</h2>
+              <Link href="/classes" className="small">All classes</Link>
+            </div>
+            <ClassList classes={classes} reviewed={reviewed} done={done} />
+          </section>
         </div>
-        <ClassList classes={classes} reviewed={reviewed} done={done} />
-      </section>
-
-      <section>
-        <div className="spread">
-          <h2>Latest discussions</h2>
-          <Link href="/discussions" className="small">All discussions</Link>
-        </div>
-        {(threadsRes.data ?? []).length === 0 ? (
-          <p className="muted">No discussions yet.</p>
-        ) : (
-          <ul className="list">
-            {(threadsRes.data ?? []).map((t) => (
-              <li key={t.id}>
-                <Link href={`/discussions/${t.id}`} className="thread-title">{t.title}</Link>
-                <span className="small muted">active {formatRelative(t.last_activity_at)}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-      </section>
+        <aside>
+          <section className="card">
+            <div className="spread">
+              <h2>Latest discussions</h2>
+              <Link href="/discussions" className="small">All discussions</Link>
+            </div>
+            {(threadsRes.data ?? []).length === 0 ? (
+              <p className="muted">No discussions yet.</p>
+            ) : (
+              <ul className="side-list">
+                {(threadsRes.data ?? []).map((t) => (
+                  <li key={t.id}>
+                    <Link href={`/discussions/${t.id}`} className="thread-title">{t.title}</Link>
+                    <span className="small muted">active {formatRelative(t.last_activity_at)}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+        </aside>
+      </div>
     </div>
   );
 }

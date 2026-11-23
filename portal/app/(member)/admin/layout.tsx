@@ -4,7 +4,7 @@ import { requireAdmin } from "@/lib/auth";
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   await requireAdmin();
   return (
-    <div className="stack">
+    <div className="stack admin">
       <nav aria-label="Admin" className="admin-nav row">
         <Link href="/admin/classes">Classes</Link>
         <Link href="/admin/handins">Hand-ins</Link>

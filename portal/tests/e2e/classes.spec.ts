@@ -114,3 +114,23 @@ test("class question threads opened by the system are signed by the portal, not 
   await expect(opening.getByText("Batch 91 Portal")).toBeVisible();
   await expect(opening.getByText("Former member")).toHaveCount(0);
 });
+
+test("classes page shows reading progress beside the list and points to the next class", async ({ page }) => {
+  const m = await createMember();
+  const { data: first } = await adminClient().from("classes").select("id, number").eq("number", 1).single();
+  await m.client.from("class_reviews").insert({ user_id: m.id, class_id: first!.id });
+  await loginAs(page, m, "/classes");
+  const panel = page.getByRole("region", { name: "Your progress" });
+  await expect(panel).toBeVisible();
+  await expect(panel.getByText(/^1 of \d+ classes$/)).toBeVisible();
+  // the oldest class not yet reviewed is the next step
+  await expect(panel.getByRole("link", { name: /^Class 2:/ })).toBeVisible();
+});
+
+test("class guide puts the question thread beside the guide on wide screens", async ({ page }) => {
+  const m = await createMember();
+  await loginAs(page, m, "/classes/6");
+  const guide = await page.getByRole("heading", { name: "What was discussed" }).boundingBox();
+  const questions = await page.getByRole("heading", { name: "Questions about this class" }).boundingBox();
+  expect(questions!.x).toBeGreaterThan(guide!.x + guide!.width);
+});

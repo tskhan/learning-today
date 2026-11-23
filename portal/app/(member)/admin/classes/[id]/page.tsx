@@ -30,7 +30,7 @@ export default async function EditClassPage({ params }: { params: Promise<{ id: 
   if (!cls) notFound();
   const byPos = <T extends { position: number; id: number }>(a: T, b: T) => a.position - b.position || a.id - b.id;
   return (
-    <div className="stack">
+    <div className="stack narrow">
       <div className="spread">
         <h1>Edit Class {cls.number}</h1>
         <Link className="small" href={`/classes/${cls.number}`}>View as students see it</Link>

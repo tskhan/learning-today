@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { loadProgress } from "@/lib/progress";
 import { summaryLine } from "@/lib/status";
 import { ClassList } from "@/app/components/ClassList";
+import { ProgressPanel } from "@/app/components/ProgressPanel";
 
 export const metadata: Metadata = { title: "Classes" };
 
@@ -17,7 +18,12 @@ export default async function ClassesPage() {
         <h1>Classes</h1>
         <p className="muted">{summaryLine(progress)}. Missed a class? Open it to catch up.</p>
       </div>
-      <ClassList classes={classes} reviewed={reviewed} done={done} />
+      <div className="split">
+        <ClassList classes={classes} reviewed={reviewed} done={done} />
+        <aside className="side">
+          <ProgressPanel classes={classes} reviewed={reviewed} progress={progress} />
+        </aside>
+      </div>
     </div>
   );
 }

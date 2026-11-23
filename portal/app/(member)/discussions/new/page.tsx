@@ -14,7 +14,7 @@ export default async function NewThreadPage({ searchParams }: { searchParams: Pr
   const classes = data ?? [];
   const defaultClassId = classes.find((c) => String(c.number) === classParam)?.id;
   return (
-    <div className="stack">
+    <div className="stack narrow">
       <p className="small"><Link href="/discussions">← All discussions</Link></p>
       <h1>New discussion</h1>
       <NewThreadForm classes={classes} defaultClassId={defaultClassId} />
