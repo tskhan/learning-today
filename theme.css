@@ -340,6 +340,12 @@ body { background: radial-gradient(1200px 700px at 50% -10%, var(--card), var(--
 /* Wide header: end the menu where the page content's buttons end, so "Enrol with PIAIC" lines up with
    the right edge of buttons in the content column (such as Take the quiz). The header row is wider than
    the content column (--wrap), so pull its right end in by half the difference, plus the content boxes'
-   1.2rem padding and 1px border, minus the menu link's own 0.42rem padding. Padding percentages
+   1.2rem padding and 1px border, minus the menu link's own 0.32rem padding. Padding percentages
    resolve against the full header width, the same width --wrap is based on. */
-.site-header.is-wide .header-inner { padding-inline-end: calc((min(1180px, 100% - 2.5rem) - min(1024px, 100% - 2.5rem)) / 2 + 0.78rem + 1px); }
+/* The logo starts where the content starts, so the bar sits centred over the content column. If the
+   menu is a few pixels too long at some width it runs into the right padding rather than wrapping. */
+.site-header.is-wide .header-inner {
+  padding-inline-start: calc((min(1180px, 100% - 2.5rem) - min(1024px, 100% - 2.5rem)) / 2);
+  padding-inline-end: calc((min(1180px, 100% - 2.5rem) - min(1024px, 100% - 2.5rem)) / 2 + 0.88rem + 1px);
+}
+.site-header.is-wide .site-menu a, .site-header.is-wide .menu-group summary { padding-inline: 0.32rem; }

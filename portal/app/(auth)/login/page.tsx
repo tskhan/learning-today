@@ -9,9 +9,8 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
   return (
     <div className="stack">
       <div>
-        <p className="kicker">PIAIC Batch 91</p>
         <h1>Log in</h1>
-        <p className="muted">Follow each class step by step, track your homework and ask classmates questions.</p>
+        <p className="muted">Welcome back. Log in with the email you joined with.</p>
       </div>
       {removed ? (
         <p className="error" role="alert">This account has been removed. Contact the batch admin if you think this is a mistake.</p>
