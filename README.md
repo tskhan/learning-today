@@ -17,7 +17,7 @@ The members-only **Batch 91 Portal** (class catch-up guides, homework tracking a
 | [`student-websites.html`](student-websites.html) | A gallery of the 167 websites students posted (126 on Lovable, 41 on other platforms) with live previews, search, filters, and automated ratings out of 100 for concept, uniqueness, design and usability. Not indexed by search engines. |
 | [`make-videos-with-claude.html`](make-videos-with-claude.html) | **Make Videos with Claude.** A beginner's guide to making animated videos with Claude Code and Remotion skills: what to install, the one setup prompt, what to type for a first video, how the examples were built, tips and credits. Shows three example videos. |
 | [`privacy.html`](privacy.html) | What the site collects, which other companies see a visit, and how to ask for a change or removal. |
-| [Batch 91 Portal](https://portal.learning-today.com) | Members-only app for the batch: sign up with the join code, follow each class step by step, track and hand in homework, and ask questions in one discussion space. Admins publish class guides from a form. Source in `portal/`; it is a separate Next.js app on Vercel, not part of the static site. Linked as **Batch portal** in every page's menu and from a card in Class resources. |
+| [Batch 91 Portal](https://portal.learning-today.com) | Members-only app for the batch: sign up with the join code, follow each class step by step, track and hand in homework, and ask questions in one discussion space. Admins publish class guides from a form. Source in `portal/`; it is a separate Next.js app on Vercel, not part of the static site. Linked as **Sign-in**, first in every page's menu, and from a card right after the home page hero. |
 
 ## Every file
 
