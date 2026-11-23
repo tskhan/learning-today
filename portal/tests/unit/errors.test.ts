@@ -59,3 +59,11 @@ describe("unavailableMessage", () => {
     );
   });
 });
+
+describe("unavailableMessage for a wrong Supabase URL", () => {
+  it("points at the URL, not the key", () => {
+    expect(unavailableMessage({ code: "PGRST125", message: "Invalid path specified in request URL" }, true)).toBe(
+      "Sign-up is unavailable right now. Please try again later. (Reference: supabase-url-wrong)",
+    );
+  });
+});
