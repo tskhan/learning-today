@@ -23,7 +23,8 @@ export async function signUp(_prev: FormState, fd: FormData): Promise<FormState>
     // Is the secret key itself accepted? (A wrong key and missing grants both look like "permission denied".)
     const { error: keyError } = await admin.auth.admin.listUsers({ page: 1, perPage: 1 });
     console.error("signUp: could not read the join code from settings", { settingsError, keyError });
-    return { error: unavailableMessage(settingsError, !keyError) };
+    const keyRejected = keyError?.status === 401 || keyError?.status === 403;
+    return { error: unavailableMessage(settingsError, !keyRejected) };
   }
   if (joinCode.toLowerCase() !== settings.join_code.trim().toLowerCase()) {
     return { error: "That join code isn't right. Ask in the Batch 91 WhatsApp group for the current code." };

@@ -27,7 +27,8 @@ export function loginErrorMessage(e: { status?: number; code?: string } | null |
  */
 export function unavailableMessage(e: { code?: string; message?: string } | null | undefined, keyAccepted = true): string {
   let ref = "no-settings-row";
-  if (!keyAccepted) ref = "secret-key-not-accepted";
+  if (e?.code === "PGRST125") ref = "supabase-url-wrong";
+  else if (!keyAccepted) ref = "secret-key-not-accepted";
   else if (e?.code) ref = e.code;
   else if (e?.message) ref = /api key/i.test(e.message) ? "invalid-api-key" : e.message.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 40);
   return `Sign-up is unavailable right now. Please try again later. (Reference: ${ref})`;
