@@ -336,3 +336,10 @@ body { background: radial-gradient(1200px 700px at 50% -10%, var(--card), var(--
 .site-header.is-wide .site-menu .portal-link { min-block-size: 32px; margin-inline-end: 0.5rem; padding: 0.5rem 0.8rem; border: 1.5px solid var(--hot); border-radius: 2px; color: var(--hot); font-weight: 700; letter-spacing: 0.08em; transition: background 0.2s, color 0.2s; }
 .site-header.is-wide .site-menu .portal-link:hover { background: var(--hot); color: var(--onhot, #fff); }
 @media (forced-colors: active) { .site-header .site-menu .portal-link { border-color: LinkText; } }
+
+/* Wide header: end the menu where the page content's buttons end, so "Enrol with PIAIC" lines up with
+   the right edge of buttons in the content column (such as Take the quiz). The header row is wider than
+   the content column (--wrap), so pull its right end in by half the difference, plus the content boxes'
+   1.2rem padding and 1px border, minus the menu link's own 0.42rem padding. Padding percentages
+   resolve against the full header width, the same width --wrap is based on. */
+.site-header.is-wide .header-inner { padding-inline-end: calc((min(1180px, 100% - 2.5rem) - min(1024px, 100% - 2.5rem)) / 2 + 0.78rem + 1px); }
