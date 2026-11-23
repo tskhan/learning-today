@@ -92,7 +92,7 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 
 - **Course details:** the PIAIC programme page ([piaic.org](https://www.piaic.org)) and the Panaversity exam page for PCAO-F.
 - **Links shared in Class and the Batch 91 timeline:** an export of the class WhatsApp group (22 Nov 2026). Each link was matched to the conversation around it, and each document was opened and summarised.
-- **Student websites:** links students posted in the same group. Titles and descriptions come from each site's own public page.
+- **Student websites:** links students posted in the same group (export of 23 Nov 2026), plus one site added on request that was shared outside it. Titles and descriptions come from each site's own public page.
 - **Ratings:** each site was opened in headless Chrome at desktop and phone width and measured. The scores are **automated estimates, not a teacher's grade**. They read what a page does, not the effort or learning behind it.
 
 The generator scripts are kept outside this repository because they work from the raw chat export. The pages here are the finished output.
