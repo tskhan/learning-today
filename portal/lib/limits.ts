@@ -1,4 +1,4 @@
-export const LIMITS = { name: 80, title: 150, body: 5000, note: 500, joinCodeMin: 4, joinCodeMax: 64 } as const;
+export const LIMITS = { name: 80, title: 150, body: 5000, note: 500, joinCodeMin: 10, joinCodeMax: 64 } as const;
 
 /** The trimmed URL if it is a valid http(s) URL, otherwise null. */
 export function validateHttpUrl(input: string): string | null {

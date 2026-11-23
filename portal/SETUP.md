@@ -17,9 +17,11 @@ You will copy a few keys between websites. **Never paste a key into a chat, an e
    - Open [`portal/supabase/migrations/20261122000001_schema.sql`](supabase/migrations/20261122000001_schema.sql) on GitHub, click **Raw**, copy everything, paste it into the editor and click **Run**. It should say *Success. No rows returned*.
    - Make another **New query** and do the same with [`20261122000002_seed.sql`](supabase/migrations/20261122000002_seed.sql). This adds Classes 1–6 and the starting join code.
    - Make a third **New query** and do the same with [`20261123000001_explicit_grants.sql`](supabase/migrations/20261123000001_explicit_grants.sql). This lets the portal's server use the tables (newer Supabase projects don't allow that automatically).
+   - Make a fourth **New query** and do the same with [`20261123000002_security_hardening.sql`](supabase/migrations/20261123000002_security_hardening.sql). This limits join-code guessing, keeps hand-in notes private, and starts any account not made by the portal's join form as removed.
 3. **Turn off open sign-ups.** Go to **Authentication → Sign In / Providers**.
    - Turn **off** "Allow new users to sign up". (People join through the portal's own form, which checks the join code.)
    - Under **Email**, turn **off** "Confirm email". Click **Save**.
+   - Under **Email**, set **Minimum password length** to **8** and turn **on** "Secure password change". Click **Save**.
 4. **Tell Supabase where the portal lives.** Go to **Authentication → URL Configuration**.
    - Site URL: `https://portal.learning-today.com`
    - Redirect URLs → **Add URL**: `https://portal.learning-today.com/auth/confirm`
@@ -76,7 +78,7 @@ You will copy a few keys between websites. **Never paste a key into a chat, an e
 1. Open https://portal.learning-today.com/signup and sign up with your own name and email, using the join code `batch91-change-me`.
 2. In **Supabase → Table Editor → profiles**, find your row, double-click the **role** cell, change `student` to `admin` and press Enter.
 3. Reload the portal. You'll now see **Admin** in the menu.
-4. **Change the join code straight away:** Admin → Settings. The starting code is visible in the project's public code, so pick a new one and post it in the Batch 91 WhatsApp group.
+4. **Change the join code straight away:** Admin → Settings. The starting code is visible in the project's public code, so pick a new one of at least 10 characters (for example two words and a number, like `river-lamp-2026`) and post it in the Batch 91 WhatsApp group.
 
 ## 6. Check it works
 
@@ -91,4 +93,6 @@ You will copy a few keys between websites. **Never paste a key into a chat, an e
 - **Adding a class:** after each class, go to Admin → Classes → New class, fill in what was discussed, the material and any homework, and set it to Published.
 - **Someone forgot their password and the email didn't arrive:** Admin → Members → **Reset link** next to their name, then send them the link on WhatsApp. It works once.
 - **Another admin:** Admin → Members → **Make admin**.
+- **"Too many wrong join codes from your network":** after 10 wrong join codes from one network in 15 minutes, sign-up pauses there for 15 minutes. Students on the same mobile network can share an address, so if several mistype the code, ask them to wait and copy it exactly.
+- **Someone signed up but sees "This account has been removed":** accounts made any way other than the portal's join form start as removed. If you know them, Admin → Members → **Restore**.
 - **"Too many log-ins right now":** everyone's log-ins share the limit from step 1.6. If students see this message, wait 5 minutes, or raise the limit in Supabase → Authentication → Rate Limits.

@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- privacy.html: what the site collects (Google Analytics), which other companies see a visit (Google Fonts, jsDelivr, unpkg, the student site previews, links), and how to ask for something to be changed or removed. Shared styles: theme.css. Shared script: site.js, which also runs the scroll animations using Motion (loaded from jsDelivr just before it). -->
+<!-- privacy.html: what the site collects (Google Analytics), which other companies see a visit (Google Fonts, jsDelivr, the student site previews, links), and how to ask for something to be changed or removed. Shared styles: theme.css. Shared script: site.js, which also runs the scroll animations using Motion (loaded from jsDelivr just before it). -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -100,7 +100,7 @@ a:hover { background: var(--hot); color: var(--onhot); text-decoration-color: tr
 
 <main>
   <h1>Privacy</h1>
-  <p class="updated">Last updated 22 November 2026</p>
+  <p class="updated">Last updated 23 November 2026</p>
   <p class="lede">learning-today.com is a small learner site. Its public pages have <strong>no accounts, no forms and no sign-in</strong>, so they never ask you for your name, email or any other detail. The one exception is the members-only <a href="#portal">Batch 91 Portal</a>, explained below.</p>
   <p>This page says what the site does collect, which other companies see your visit, and how to ask for something to be changed or removed.</p>
 
@@ -113,7 +113,6 @@ a:hover { background: var(--hot); color: var(--onhot); text-decoration-color: tr
   <ul>
     <li><strong>Google Fonts</strong> (fonts.googleapis.com and fonts.gstatic.com) supplies the typefaces.</li>
     <li><strong>jsDelivr</strong> (cdn.jsdelivr.net) supplies Motion, the small open-source script that animates the pages as you scroll.</li>
-    <li><strong>unpkg.com</strong> supplies a small script, only in older browsers that lack a built-in menu feature.</li>
     <li><strong>The student websites page</strong> shows a live preview of each student's own website. Loading the page therefore contacts those sites too (most are hosted on Lovable, Netlify, Vercel and similar). Their own privacy policies apply.</li>
     <li><strong>Links and downloads</strong> go to PIAIC, Panaversity, Anthropic, Google Docs and other sites. Their policies apply once you leave this one.</li>
   </ul>
@@ -132,7 +131,7 @@ a:hover { background: var(--hot); color: var(--onhot); text-decoration-color: tr
     <li><strong>Your posts:</strong> the discussions and replies you write.</li>
   </ul>
   <p><strong>Where it is kept:</strong> accounts and data are stored by <strong>Supabase</strong> (supabase.com). The portal itself is hosted by <strong>Vercel</strong> (vercel.com), which sees each visit like any web host. Password-reset emails are sent by <strong>Resend</strong> (resend.com). The portal uses a sign-in cookie to keep you logged in, and no analytics.</p>
-  <p><strong>Who sees what:</strong> other batch members can see your name, your posts and the links you hand in. Only the batch admins can see your email address. Nothing in the portal is public or shown to search engines.</p>
+  <p><strong>Who sees what:</strong> other batch members can see your name, your posts and the links you hand in. Notes you add to a hand-in are private to you. Only the batch admins can see your email address. Wrong join codes are logged with the network address they came from, for 24 hours, to stop guessing. Nothing in the portal is public or shown to search engines.</p>
   <p><strong>Leaving or removal:</strong> ask a batch admin (or open a GitHub issue as described below). An admin can <em>remove</em> an account, which locks it but keeps its posts so discussions still make sense, or <em>delete it permanently</em>, which erases the account, progress and hand-ins; any posts stay but are shown as written by &ldquo;Former member&rdquo;.</p>
 
   <h2>Asking for a change or removal</h2>
@@ -155,7 +154,7 @@ a:hover { background: var(--hot); color: var(--onhot); text-decoration-color: tr
     </ul>
   </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/motion@14.14.0/dist/motion.js" defer></script>
-<script src="site.js?v=2026-11-22d" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/motion@14.14.0/dist/motion.js" integrity="sha384-h780inJe2b0CurpoaBazVbWeqDdoRKVyEJr6FKch+CK4v6XkrP0WzW/FINvvvUKw" crossorigin="anonymous" defer></script>
+<script src="site.js?v=2026-11-23a" defer></script>
 </body>
 </html>

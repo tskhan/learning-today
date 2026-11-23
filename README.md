@@ -31,13 +31,13 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 
 ### The Batch 91 Portal: backend (Supabase)
 
-- **Logins** through Supabase Auth. Open sign-up is off; people join only through the portal's form, which checks the join code on the server. Password-reset emails go out through Resend from `no-reply@learning-today.com`.
+- **Logins** through Supabase Auth. Open sign-up is off; people join only through the portal's form, which checks the join code on the server. After 10 wrong join codes from one network in 15 minutes, sign-up pauses there. As a backstop, every new account starts as removed, and only the join form activates it. Password-reset emails go out through Resend from `no-reply@learning-today.com`.
 - **Postgres database** with nine tables: profiles, classes, class materials, homework, class reviews, homework status, threads, posts and settings.
 - **Every rule is enforced in the database** as well as in the app:
   - Row-level security on every table, so only active members can read anything, students change only their own data and only admins publish.
-  - Column-level grants that limit what can be written.
+  - Column-level grants that limit what can be written, and keep hand-in notes private to their author (classmates see only the link).
   - Triggers for the posting rate limit (10 posts in 10 minutes), required hand-in links, a question thread opened automatically for each published class (and closed when the class is deleted), thread activity, edit marks, and clearing ticks when a hand-in becomes required.
-- **Server-only secret key:** the secret key never reaches the browser. Redirects after login are checked against open-redirect tricks. A pasted Supabase URL with extra path is tolerated, and sign-up errors show a short reference code so problems can be traced in the Vercel logs.
+- **Server-only secret key:** the secret key never reaches the browser. Every response carries security headers, so the portal can't be framed by another site (clickjacking). Redirects after login are checked against open-redirect tricks. A pasted Supabase URL with extra path is tolerated, and sign-up errors show a short reference code so problems can be traced in the Vercel logs.
 - **Tests:** unit tests for the logic, database tests for every rule and trigger against a local Supabase, and Playwright browser tests of every flow on desktop and phone. All three suites pass before a portal change is merged.
 
 ## The pages
@@ -61,7 +61,7 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 | `student-websites.html` | The student websites gallery (see above). Large, because it holds all 167 cards and the five rankings. |
 | `make-videos-with-claude.html` | The Make Videos with Claude guide (see above). |
 | `theme.css` | The shared design theme used by every page: colour tokens for light and dark mode, the fonts, the header and navigation, buttons and the footer. Changing a colour here changes it everywhere. Each page links it as `theme.css?v=DATE` (and `site.js?v=DATE`); after changing either file, update that date on every page so browsers fetch the new copy instead of a cached one. |
-| `site.js` | The one script every page shares, in two parts. **Header:** shows the header links inline when they fit and collapses them into a menu when they do not, and loads a small popover polyfill only in browsers that lack native support. **Motion effects:** below-the-fold sections rise into view as you scroll, the big numbers (home page and Links shared in Class) count up once, and the ranking bars on Student websites fill in. It uses [Motion](https://motion.dev) 14.14.0, which each page loads from jsDelivr in a script tag just before `site.js`. Content already on screen is never hidden, nothing animates with reduced motion turned on, everything shows normally if the CDN fails, and printing shows all content. To change the Motion version, edit that script tag on every page. |
+| `site.js` | The one script every page shares, in two parts. **Header:** shows the header links inline when they fit and collapses them into a menu when they do not, and loads a small, self-hosted popover polyfill only in browsers that lack native support. **Motion effects:** below-the-fold sections rise into view as you scroll, the big numbers (home page and Links shared in Class) count up once, and the ranking bars on Student websites fill in. It uses [Motion](https://motion.dev) 14.14.0, which each page loads from jsDelivr in a script tag just before `site.js`. Content already on screen is never hidden, nothing animates with reduced motion turned on, everything shows normally if the CDN fails, and printing shows all content. The tag carries an `integrity` hash, so browsers refuse a copy that differs from Motion 14.14.0. To change the Motion version, edit that script tag on every page and replace the hash (sha384 of the new `dist/motion.js`). |
 | `assets/logo.png` | The learning-today.com logo as a transparent image, shown in the header of every page on light backgrounds. |
 | `assets/logo-dark.png` | The same logo with the navy recoloured cream, so it stays readable on dark backgrounds. The header switches to it automatically in dark mode. |
 | `assets/logo.webp`, `assets/logo-dark.webp` | WebP copies of the two logos, about 40% smaller. Browsers that support WebP (nearly all) load these; the PNGs stay as the fallback. |
@@ -77,10 +77,12 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 | `assets/previews/coding-agents-practical.jpg` | Preview image of the *Build a website with a coding agent* class slides. |
 | `assets/videos/claude-anim.mp4`, `learning-today-promo.mp4` | The two example videos on the Make Videos with Claude page, made with Claude Code and Remotion. Each has a `-poster.jpg` still shown before it plays. |
 | `assets/videos/plants-photosynthesis.mp4` | The result video on the same page (how plants make food), with its `-poster.jpg`. |
+| `assets/vendor/popover-polyfill-0.5.2.min.js` | The [popover polyfill](https://github.com/oddbird/popover-polyfill) (BSD-3-Clause, licence in `popover-polyfill-LICENSE.txt` beside it), loaded by `site.js` only in older browsers without native popovers. Served from this site instead of a CDN. |
 | `files/shaadi-expenses-sheet1.csv` | A small practice spreadsheet an admin shared in class: 12 made-up wedding expense lines with deliberate traps (a repeated line, a cancelled booking, a lowercase event name, pending items) for a checking exercise. Offered as a download from the Links shared in Class page. |
 | `CNAME` | Tells GitHub Pages to serve this repo at `learning-today.com`. Do not delete it. |
 | `robots.txt` | Tells search engines to skip the student websites page, the `portal/` source and `docs/`, and where the sitemap is. |
 | `sitemap.xml` | Lists the pages search engines should index (home, Links shared in Class, Make Videos with Claude and privacy). Update `lastmod` when a page changes, and add any new page here. |
+| `.gitignore` | Keeps `.env` files (which hold keys) and `node_modules` out of the repository. |
 | `.nojekyll` | Tells GitHub Pages to publish the files as they are, without running Jekyll. |
 | `README.md` | This file. |
 | `portal/` | The Batch 91 Portal app (Next.js + Supabase), deployed to Vercel with Root Directory `portal`. GitHub Pages also publishes these source files as plain files; that is harmless (no secrets) and `robots.txt` keeps them out of search. See [`portal/README.md`](portal/README.md). |
@@ -110,7 +112,7 @@ python -m http.server 8000
 # then visit http://localhost:8000
 ```
 
-The only outside code is loaded from CDNs: Motion from jsDelivr for the animations, and a popover polyfill from unpkg in older browsers. Fonts (Oswald for headings, Inter for text) load from Google Fonts without blocking the first paint. Offline, the pages still work, just without animations or the web fonts. The student gallery shows live previews of each student's site, so it needs an internet connection.
+The only outside code is Motion, loaded from jsDelivr for the animations with an integrity hash so the browser refuses any changed copy. The popover polyfill that older browsers need is served from this site (`assets/vendor/`). Fonts (Oswald for headings, Inter for text) load from Google Fonts without blocking the first paint. Offline, the pages still work, just without animations or the web fonts. The student gallery shows live previews of each student's site, so it needs an internet connection.
 
 ## Hosting and domain
 

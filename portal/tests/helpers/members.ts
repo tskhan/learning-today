@@ -42,13 +42,11 @@ export async function createMember(opts: {
   });
   if (error || !data.user) throw error ?? new Error("createUser failed");
   const id = data.user.id;
-  if (opts.role || opts.status) {
-    const patch: Record<string, string> = {};
-    if (opts.role) patch.role = opts.role;
-    if (opts.status) patch.status = opts.status;
-    const { error: e2 } = await admin.from("profiles").update(patch).eq("id", id);
-    if (e2) throw e2;
-  }
+  // Like the join form: new accounts start removed and are activated once created.
+  const patch: Record<string, string> = { status: opts.status ?? "active" };
+  if (opts.role) patch.role = opts.role;
+  const { error: e2 } = await admin.from("profiles").update(patch).eq("id", id);
+  if (e2) throw e2;
   const client = anonClient();
   const { error: e3 } = await client.auth.signInWithPassword({ email, password });
   if (e3) throw e3;
@@ -114,4 +112,9 @@ export async function clearFixtureClasses() {
 export async function setJoinedAt(memberId: string, iso: string) {
   const { error } = await adminClient().from("profiles").update({ joined_at: iso }).eq("id", memberId);
   if (error) throw error;
+}
+
+/** Forget wrong join code attempts, so sign-up tests never trip the guessing limit. */
+export async function clearSignupAttempts(): Promise<void> {
+  await adminClient().from("signup_attempts").delete().gte("id", 0);
 }

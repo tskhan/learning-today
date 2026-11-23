@@ -4,7 +4,7 @@
    What it does, in two parts:
    1. Header: shows the header links inline when they fit and collapses them into a
       popover menu when they do not (measured, so there is no fixed breakpoint), closes the
-      menu after a link is chosen, and loads a small popover polyfill only in browsers that
+      menu after a link is chosen, and loads a small, self-hosted popover polyfill only in browsers that
       have no native popover support.
    2. Motion effects: uses the Motion library (motion.dev, loaded from jsDelivr by a script tag
       just before this file on every page) for scroll reveals, number count-ups and the
@@ -12,9 +12,10 @@
 
    It is a classic script, not a module, so the pages also work when opened from disk. */
 (function () {
-  /* Popover polyfill, loaded only where the browser has no native popover */
+  /* Popover polyfill, loaded only where the browser has no native popover. It is served from this
+     site (assets/vendor, BSD-3-Clause licence alongside) rather than a CDN, so nobody else can change it. */
   if (!Object.hasOwn(HTMLElement.prototype, 'popover')) {
-    import('https://unpkg.com/@oddbird/popover-polyfill@0.5.2/dist/popover.min.js');
+    import('./assets/vendor/popover-polyfill-0.5.2.min.js');
   }
 
   var header = document.querySelector('.site-header');

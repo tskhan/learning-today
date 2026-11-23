@@ -1,6 +1,10 @@
 import { expect, test } from "@playwright/test";
-import { adminClient, createMember, loginAs } from "../helpers/members";
+import { adminClient, clearSignupAttempts, createMember, loginAs } from "../helpers/members";
 import { latestLinkTo } from "../helpers/mailpit";
+
+test.beforeEach(async () => {
+  await clearSignupAttempts();
+});
 
 function uniqueEmail() {
   return `e2e${Date.now()}${Math.floor(Math.random() * 1000)}@test.dev`;

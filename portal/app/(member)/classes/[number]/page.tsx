@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requireMember } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { homeworkState } from "@/lib/status";
 import { formatDate, formatDateTime } from "@/lib/time";
 import { Markdown } from "@/app/components/Markdown";
@@ -20,6 +21,8 @@ interface ClassRow {
   class_materials: Array<{ id: number; label: string; url: string; position: number }>;
   homework: Array<{ id: number; title: string; instructions_md: string; deadline: string | null; handin_expected: boolean; position: number }>;
 }
+
+type StatusRow = { user_id: string; homework_id: number; handin_url: string | null; profile: { full_name: string } | null };
 
 const STATE_LABEL = { done: "Done", due: "Due", overdue: "Overdue", catchup: "Catch-up (optional)" } as const;
 
@@ -50,23 +53,28 @@ export default async function ClassGuidePage({ params, searchParams }: {
   const homework = [...cls.homework].sort((a, b) => a.position - b.position || a.id - b.id);
   const homeworkIds = homework.map((h) => h.id);
 
-  const [reviewRes, statusRes, threadRes] = await Promise.all([
+  const [reviewRes, statusRes, threadRes, notesRes] = await Promise.all([
     supabase.from("class_reviews").select("class_id").eq("user_id", member.id).eq("class_id", cls.id).maybeSingle(),
     homeworkIds.length
       ? supabase
           .from("homework_status")
-          .select("user_id, homework_id, handin_url, note, profile:profiles(full_name)")
+          .select("user_id, homework_id, handin_url, profile:profiles(full_name)")
           .in("homework_id", homeworkIds)
           .order("done_at", { ascending: true })
-          .returns<Array<{ user_id: string; homework_id: number; handin_url: string | null; note: string | null; profile: { full_name: string } | null }>>()
-      : Promise.resolve({ data: [] as Array<{ user_id: string; homework_id: number; handin_url: string | null; note: string | null; profile: { full_name: string } | null }> }),
+          .returns<StatusRow[]>()
+      : Promise.resolve({ data: [] as StatusRow[] }),
     supabase.from("threads").select("id").eq("class_id", cls.id).eq("is_class_thread", true).maybeSingle(),
+    // Notes are private to their author, so only this member's own notes are read (on the server).
+    homeworkIds.length
+      ? createAdminClient().from("homework_status").select("homework_id, note").eq("user_id", member.id).in("homework_id", homeworkIds)
+      : Promise.resolve({ data: [] as Array<{ homework_id: number; note: string | null }> }),
   ]);
 
   const reviewed = Boolean(reviewRes.data);
   const statuses = statusRes.data ?? [];
   const mine = new Map<number, MyStatus>();
-  for (const s of statuses) if (s.user_id === member.id) mine.set(s.homework_id, { handinUrl: s.handin_url, note: s.note });
+  const myNotes = new Map((notesRes.data ?? []).map((n) => [n.homework_id, n.note]));
+  for (const s of statuses) if (s.user_id === member.id) mine.set(s.homework_id, { handinUrl: s.handin_url, note: myNotes.get(s.homework_id) ?? null });
   const path = `/classes/${cls.number}`;
   const handinHomework = homework.filter((h) => h.handin_expected);
   const now = new Date();
