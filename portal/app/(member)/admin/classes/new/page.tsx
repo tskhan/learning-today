@@ -9,7 +9,7 @@ export default async function NewClassPage() {
   const { data } = await supabase.from("classes").select("number").order("number", { ascending: false }).lt("number", 1000).limit(1);
   const nextNumber = (data?.[0]?.number ?? 0) + 1;
   return (
-    <div className="stack">
+    <div className="stack narrow">
       <h1>New class</h1>
       <ClassForm
         initial={{ id: null, number: String(nextNumber), classDate: "", title: "", summary: "", status: "draft", materials: [], homework: [] }}

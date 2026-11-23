@@ -13,7 +13,7 @@ export default async function ProfilePage() {
   const supabase = await createClient();
   const { progress } = await loadProgress(supabase, member);
   return (
-    <div className="stack">
+    <div className="stack narrow">
       <h1>Profile</h1>
       <div className="card stack">
         <ProfileForm fullName={member.fullName} />

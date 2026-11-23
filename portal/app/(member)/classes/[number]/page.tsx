@@ -84,106 +84,111 @@ export default async function ClassGuidePage({ params, searchParams }: {
         </div>
       </header>
 
-      <section className="card">
-        <h2>What was discussed</h2>
-        {cls.summary_md.trim() ? <Markdown md={cls.summary_md} /> : <p className="muted">No summary yet.</p>}
-      </section>
+      <div className="split split-guide">
+        <div className="stack">
+          <section className="card">
+            <h2>What was discussed</h2>
+            {cls.summary_md.trim() ? <Markdown md={cls.summary_md} /> : <p className="muted">No summary yet.</p>}
+          </section>
 
-      {materials.length > 0 ? (
-        <section className="card">
-          <h2>Material</h2>
-          <ul className="materials">
-            {materials.map((m) => (
-              <li key={m.id}><a href={m.url} target="_blank" rel="noopener">{m.label}</a></li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
+          {materials.length > 0 ? (
+            <section className="card">
+              <h2>Material</h2>
+              <ul className="materials">
+                {materials.map((m) => (
+                  <li key={m.id}><a href={m.url} target="_blank" rel="noopener">{m.label}</a></li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
 
-      <section>
-        <h2>Homework</h2>
-        {homework.length === 0 ? (
-          <p className="muted">No homework for this class.</p>
-        ) : (
-          <div className="stack">
-            {homework.map((h) => {
-              const state = homeworkState(h, mine.has(h.id), member.joinedAt, now);
-              return (
-                <article key={h.id} id={`hw-${h.id}`} className="card hw-item">
-                  <h3>{h.title}</h3>
-                  <p className="row small" style={{ marginBlockEnd: "0.5rem" }}>
-                    <span className={`badge badge-${state}`}>{STATE_LABEL[state]}</span>
-                    <span className="muted">{h.deadline ? `Deadline: ${formatDateTime(h.deadline)}` : "No deadline"}</span>
-                  </p>
-                  {h.instructions_md.trim() ? <Markdown md={h.instructions_md} /> : null}
-                  <HomeworkControl
-                    homeworkId={h.id}
-                    handinExpected={h.handin_expected}
-                    status={mine.get(h.id) ?? null}
-                    editing={edit === `hw-${h.id}`}
-                    returnTo={path}
-                  />
-                </article>
-              );
-            })}
-          </div>
-        )}
-      </section>
+          <section>
+            <h2>Homework</h2>
+            {homework.length === 0 ? (
+              <p className="muted">No homework for this class.</p>
+            ) : (
+              <div className="stack">
+                {homework.map((h) => {
+                  const state = homeworkState(h, mine.has(h.id), member.joinedAt, now);
+                  return (
+                    <article key={h.id} id={`hw-${h.id}`} className="card hw-item">
+                      <h3>{h.title}</h3>
+                      <p className="row small" style={{ marginBlockEnd: "0.5rem" }}>
+                        <span className={`badge badge-${state}`}>{STATE_LABEL[state]}</span>
+                        <span className="muted">{h.deadline ? `Deadline: ${formatDateTime(h.deadline)}` : "No deadline"}</span>
+                      </p>
+                      {h.instructions_md.trim() ? <Markdown md={h.instructions_md} /> : null}
+                      <HomeworkControl
+                        homeworkId={h.id}
+                        handinExpected={h.handin_expected}
+                        status={mine.get(h.id) ?? null}
+                        editing={edit === `hw-${h.id}`}
+                        returnTo={path}
+                      />
+                    </article>
+                  );
+                })}
+              </div>
+            )}
+          </section>
 
-      <section className="card">
-        <h2>Your checklist</h2>
-        <form action={setReviewed} className="row">
-          <input type="hidden" name="class_id" value={cls.id} />
-          <input type="hidden" name="return_to" value={path} />
-          <input type="hidden" name="reviewed" value={reviewed ? "false" : "true"} />
-          {reviewed ? (
-            <>
-              <span className="badge badge-done">You&apos;ve reviewed this class</span>
-              <button type="submit" className="link-button">Undo review</button>
-            </>
-          ) : (
-            <button type="submit" className="btn">I&apos;ve reviewed this class</button>
-          )}
-        </form>
-      </section>
+          <section className="card">
+            <h2>Your checklist</h2>
+            <form action={setReviewed} className="row">
+              <input type="hidden" name="class_id" value={cls.id} />
+              <input type="hidden" name="return_to" value={path} />
+              <input type="hidden" name="reviewed" value={reviewed ? "false" : "true"} />
+              {reviewed ? (
+                <>
+                  <span className="badge badge-done">You&apos;ve reviewed this class</span>
+                  <button type="submit" className="link-button">Undo review</button>
+                </>
+              ) : (
+                <button type="submit" className="btn">I&apos;ve reviewed this class</button>
+              )}
+            </form>
+          </section>
 
-      {handinHomework.length > 0 ? (
-        <section className="classmates-work">
-          <h2>Classmates&apos; work</h2>
-          <div className="stack">
-            {handinHomework.map((h) => {
-              const handins = statuses.filter((s) => s.homework_id === h.id && s.handin_url);
-              return (
-                <div key={h.id} className="card">
-                  <h3>{h.title}</h3>
-                  {handins.length === 0 ? (
-                    <p className="muted">No hand-ins yet.</p>
-                  ) : (
-                    <ul>
-                      {handins.map((s) => (
-                        <li key={s.user_id}>
-                          {s.profile?.full_name ?? "Former member"}:{" "}
-                          <a href={s.handin_url!} target="_blank" rel="noopener nofollow">{s.handin_url}</a>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </section>
-      ) : null}
-
-      {threadRes.data ? (
-        <section className="section">
-          <div className="spread">
-            <h2>Questions about this class</h2>
-            <Link className="small" href={`/discussions/${threadRes.data.id}`}>Open full discussion</Link>
-          </div>
-          <ThreadView threadId={threadRes.data.id} member={member} showTitle={false} basePath={path} edit={edit} />
-        </section>
-      ) : null}
+          {handinHomework.length > 0 ? (
+            <section className="classmates-work">
+              <h2>Classmates&apos; work</h2>
+              <div className="stack">
+                {handinHomework.map((h) => {
+                  const handins = statuses.filter((s) => s.homework_id === h.id && s.handin_url);
+                  return (
+                    <div key={h.id} className="card">
+                      <h3>{h.title}</h3>
+                      {handins.length === 0 ? (
+                        <p className="muted">No hand-ins yet.</p>
+                      ) : (
+                        <ul>
+                          {handins.map((s) => (
+                            <li key={s.user_id}>
+                              {s.profile?.full_name ?? "Former member"}:{" "}
+                              <a href={s.handin_url!} target="_blank" rel="noopener nofollow">{s.handin_url}</a>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          ) : null}
+        </div>
+        <aside className="stack">
+          {threadRes.data ? (
+            <section className="class-questions">
+              <div className="spread">
+                <h2>Questions about this class</h2>
+                <Link className="small" href={`/discussions/${threadRes.data.id}`}>Open full discussion</Link>
+              </div>
+              <ThreadView threadId={threadRes.data.id} member={member} showTitle={false} basePath={path} edit={edit} />
+            </section>
+          ) : null}
+        </aside>
+      </div>
     </div>
   );
 }
