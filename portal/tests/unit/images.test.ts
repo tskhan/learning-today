@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { droppedImages, isImagePath, MAX_IMAGES, parseImageList } from "@/lib/images";
+import { droppedImages, isImagePath, MAX_IMAGES, parseImageList, sniffImageType } from "@/lib/images";
 
 const me = "11111111-2222-3333-4444-555555555555";
 const other = "99999999-8888-7777-6666-555555555555";
@@ -30,5 +30,20 @@ describe("picture lists from forms", () => {
   });
   it("finds the pictures an edit removed", () => {
     expect(droppedImages([pic(me, 1), pic(me, 2)], [pic(me, 2), pic(me, 3)])).toEqual([pic(me, 1)]);
+  });
+});
+
+describe("sniffImageType", () => {
+  const bytes = (...b: number[]) => new Uint8Array([...b, ...new Array(16).fill(0)]);
+  it("recognises PNG, JPEG and WebP from their first bytes", () => {
+    expect(sniffImageType(bytes(0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a))).toBe("image/png");
+    expect(sniffImageType(bytes(0xff, 0xd8, 0xff, 0xe0))).toBe("image/jpeg");
+    expect(sniffImageType(bytes(0x52, 0x49, 0x46, 0x46, 1, 2, 3, 4, 0x57, 0x45, 0x42, 0x50))).toBe("image/webp");
+  });
+  it("refuses anything else, whatever it is called", () => {
+    expect(sniffImageType(new TextEncoder().encode("<svg onload=alert(1)>"))).toBeNull();
+    expect(sniffImageType(new TextEncoder().encode("<html><script>"))).toBeNull();
+    expect(sniffImageType(bytes(0x52, 0x49, 0x46, 0x46, 1, 2, 3, 4, 0x41, 0x56, 0x49, 0x20))).toBeNull(); // AVI
+    expect(sniffImageType(new Uint8Array())).toBeNull();
   });
 });
