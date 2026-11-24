@@ -8,6 +8,7 @@ import { homeworkState } from "@/lib/status";
 import { formatDate, formatDateTime } from "@/lib/time";
 import { Markdown } from "@/app/components/Markdown";
 import { ThreadView } from "@/app/components/ThreadView";
+import { PostImages } from "@/app/components/PostImages";
 import { HomeworkControl, type MyStatus } from "@/app/components/HomeworkControl";
 import { setReviewed } from "../actions";
 
@@ -17,9 +18,10 @@ interface ClassRow {
   class_date: string;
   title: string;
   summary_md: string;
+  summary_images: string[];
   status: "draft" | "published";
   class_materials: Array<{ id: number; label: string; url: string; position: number }>;
-  homework: Array<{ id: number; title: string; instructions_md: string; deadline: string | null; handin_expected: boolean; position: number }>;
+  homework: Array<{ id: number; title: string; instructions_md: string; images: string[]; deadline: string | null; handin_expected: boolean; position: number }>;
 }
 
 type StatusRow = { user_id: string; homework_id: number; handin_url: string | null; profile: { full_name: string } | null };
@@ -33,18 +35,18 @@ export async function generateMetadata({ params }: { params: Promise<{ number: s
 
 export default async function ClassGuidePage({ params, searchParams }: {
   params: Promise<{ number: string }>;
-  searchParams: Promise<{ edit?: string }>;
+  searchParams: Promise<{ edit?: string; reply?: string }>;
 }) {
   const member = await requireMember();
   const { number } = await params;
-  const { edit } = await searchParams;
+  const { edit, reply } = await searchParams;
   const classNumber = Number(number);
   if (!Number.isInteger(classNumber) || classNumber <= 0) notFound();
 
   const supabase = await createClient();
   const { data: cls } = await supabase
     .from("classes")
-    .select("id, number, class_date, title, summary_md, status, class_materials(id, label, url, position), homework(id, title, instructions_md, deadline, handin_expected, position)")
+    .select("id, number, class_date, title, summary_md, summary_images, status, class_materials(id, label, url, position), homework(id, title, instructions_md, images, deadline, handin_expected, position)")
     .eq("number", classNumber)
     .maybeSingle<ClassRow>();
   if (!cls) notFound();
@@ -96,7 +98,8 @@ export default async function ClassGuidePage({ params, searchParams }: {
         <div className="stack">
           <section className="card">
             <h2>What was discussed</h2>
-            {cls.summary_md.trim() ? <Markdown md={cls.summary_md} /> : <p className="muted">No summary yet.</p>}
+            {cls.summary_md.trim() ? <Markdown md={cls.summary_md} /> : cls.summary_images.length ? null : <p className="muted">No summary yet.</p>}
+            <PostImages paths={cls.summary_images} />
           </section>
 
           {materials.length > 0 ? (
@@ -126,6 +129,7 @@ export default async function ClassGuidePage({ params, searchParams }: {
                         <span className="muted">{h.deadline ? `Deadline: ${formatDateTime(h.deadline)}` : "No deadline"}</span>
                       </p>
                       {h.instructions_md.trim() ? <Markdown md={h.instructions_md} /> : null}
+                      <PostImages paths={h.images} />
                       <HomeworkControl
                         homeworkId={h.id}
                         handinExpected={h.handin_expected}
@@ -192,7 +196,7 @@ export default async function ClassGuidePage({ params, searchParams }: {
                 <h2>Questions about this class</h2>
                 <Link className="small" href={`/discussions/${threadRes.data.id}`}>Open full discussion</Link>
               </div>
-              <ThreadView threadId={threadRes.data.id} member={member} showTitle={false} basePath={path} edit={edit} />
+              <ThreadView threadId={threadRes.data.id} member={member} showTitle={false} basePath={path} edit={edit} reply={reply} />
             </section>
           ) : null}
         </aside>

@@ -39,7 +39,7 @@ test("a refused reply keeps what was typed", async ({ page }) => {
   await page.getByLabel("Your reply").fill("A long, careful answer I don't want to lose");
   await page.getByRole("button", { name: "Reply" }).click();
   await expect(page.getByText("You're posting very fast.")).toBeVisible();
-  await expect(page.getByLabel("Your reply")).toHaveValue("A long, careful answer I don't want to lose");
+  await expect(page.getByLabel("Your reply")).toHaveText("A long, careful answer I don't want to lose");
 });
 
 test("a refused new discussion keeps title, message and class", async ({ page }) => {
@@ -53,7 +53,7 @@ test("a refused new discussion keeps title, message and class", async ({ page })
   await page.getByRole("button", { name: "Post discussion" }).click();
   await expect(page.getByText("Titles can be up to 150 characters.")).toBeVisible();
   await expect(page.getByLabel("Title")).toHaveValue("x".repeat(151));
-  await expect(page.getByLabel("Message")).toHaveValue("My message body");
+  await expect(page.getByLabel("Message")).toHaveText("My message body");
   await expect(page.getByLabel("About a class (optional)").locator("option:checked")).toHaveText("Class 5: Chapter 1 and coding agents");
 });
 
@@ -64,12 +64,11 @@ test("a refused edit keeps the edited text", async ({ page }) => {
   await loginAs(page, a, `/discussions/${thread!.id}?edit=post-${post!.id}`);
   await page.waitForLoadState("networkidle");
   const box = page.getByLabel("Edit your reply");
-  await box.evaluate((el: HTMLTextAreaElement) => el.removeAttribute("maxlength"));
   const long = "y".repeat(5001);
   await box.fill(long);
   await page.getByRole("button", { name: "Save" }).click();
   await expect(page.getByText("Messages can be up to 5,000 characters.")).toBeVisible();
-  await expect(box).toHaveValue(long);
+  await expect(box).toHaveText(long);
 });
 
 test("a refused hand-in keeps the typed link and note", async ({ page }) => {

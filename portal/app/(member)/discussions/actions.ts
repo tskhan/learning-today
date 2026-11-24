@@ -8,6 +8,8 @@ import { friendlyError } from "@/lib/errors";
 import { field, safeNext, type FormState } from "@/lib/forms";
 import { LIMITS } from "@/lib/limits";
 import { withError } from "@/lib/flash";
+import { droppedImages, parseImageList } from "@/lib/images";
+import { removeImages } from "@/lib/images-server";
 
 function checkTitle(raw: string): { value?: string; error?: string } {
   const value = raw.trim();
@@ -16,9 +18,10 @@ function checkTitle(raw: string): { value?: string; error?: string } {
   return { value };
 }
 
-function checkBody(raw: string): { value?: string; error?: string } {
+/** A message's text. Replies may be pictures only (`allowEmpty`), like a photo without a caption. */
+function checkBody(raw: string, allowEmpty = false): { value?: string; error?: string } {
   const value = raw.trim();
-  if (!value) return { error: "Write a message first." };
+  if (!value && !allowEmpty) return { error: "Write a message first." };
   if (value.length > LIMITS.body) return { error: `Messages can be up to ${LIMITS.body.toLocaleString("en")} characters.` };
   return { value };
 }
@@ -30,18 +33,20 @@ function refresh(...paths: string[]) {
 }
 
 export async function createThread(_prev: FormState, fd: FormData): Promise<FormState> {
-  await requireMember();
+  const member = await requireMember();
   const title = checkTitle(field(fd, "title"));
   if (title.error) return { error: title.error };
   const body = checkBody(field(fd, "body"));
   if (body.error) return { error: body.error };
+  const images = parseImageList(field(fd, "images"), member.id);
+  if ("error" in images) return { error: images.error };
   const classIdRaw = field(fd, "class_id");
   const classId = classIdRaw ? Number(classIdRaw) : null;
 
   const supabase = await createClient();
   const { data, error } = await supabase
     .from("threads")
-    .insert({ title: title.value, body_md: body.value, class_id: Number.isFinite(classId) ? classId : null })
+    .insert({ title: title.value, body_md: body.value, images: images.value, class_id: Number.isFinite(classId) ? classId : null })
     .select("id")
     .single();
   if (error || !data) return { error: friendlyError(error) };
@@ -50,38 +55,54 @@ export async function createThread(_prev: FormState, fd: FormData): Promise<Form
 }
 
 export async function replyToThread(_prev: FormState, fd: FormData): Promise<FormState> {
-  await requireMember();
+  const member = await requireMember();
   const threadId = Number(field(fd, "thread_id"));
-  const body = checkBody(field(fd, "body"));
-  if (body.error) return { error: body.error };
+  const returnTo = safeNext(fd.get("return_to"));
+  const images = parseImageList(field(fd, "images"), member.id);
+  if ("error" in images) return { error: images.error };
+  const body = checkBody(field(fd, "body"), images.value.length > 0);
+  if (body.error) return { error: body.error === "Write a message first." ? "Write a message or add a picture first." : body.error };
+  const replyToRaw = Number(field(fd, "reply_to"));
+  const replyTo = Number.isInteger(replyToRaw) && replyToRaw > 0 ? replyToRaw : null;
+
   const supabase = await createClient();
-  const { error } = await supabase.from("posts").insert({ thread_id: threadId, body_md: body.value });
-  if (error) return { error: friendlyError(error) };
-  refresh(`/discussions/${threadId}`, safeNext(fd.get("return_to")));
-  return { ok: "Reply posted." };
+  const { data, error } = await supabase
+    .from("posts")
+    .insert({ thread_id: threadId, body_md: body.value, images: images.value, reply_to: replyTo, quoted: replyTo !== null })
+    .select("id")
+    .single();
+  if (error || !data) return { error: friendlyError(error) };
+  refresh(`/discussions/${threadId}`, returnTo);
+  // Back to the discussion without the quote, scrolled to the new reply.
+  redirect(`${returnTo}#post-${data.id}`);
 }
 
 export async function editPost(_prev: FormState, fd: FormData): Promise<FormState> {
-  await requireMember();
+  const member = await requireMember();
   const kind = field(fd, "kind");
   const id = Number(field(fd, "id"));
   const returnTo = safeNext(fd.get("return_to"));
-  const body = checkBody(field(fd, "body"));
+  const images = parseImageList(field(fd, "images"), member.id);
+  if ("error" in images) return { error: images.error };
+  const body = checkBody(field(fd, "body"), kind !== "thread" && images.value.length > 0);
   if (body.error) return { error: body.error };
   const supabase = await createClient();
+  const table = kind === "thread" ? "threads" : "posts";
+  const { data: before } = await supabase.from(table).select("images").eq("id", id).maybeSingle<{ images: string[] }>();
 
   let result;
   if (kind === "thread") {
     const title = checkTitle(field(fd, "title"));
     if (title.error) return { error: title.error };
-    result = await supabase.from("threads").update({ title: title.value, body_md: body.value }).eq("id", id).select("id");
+    result = await supabase.from("threads").update({ title: title.value, body_md: body.value, images: images.value }).eq("id", id).select("id");
   } else {
-    result = await supabase.from("posts").update({ body_md: body.value }).eq("id", id).select("id");
+    result = await supabase.from("posts").update({ body_md: body.value, images: images.value }).eq("id", id).select("id");
   }
   if (result.error) return { error: friendlyError(result.error) };
   if (!result.data?.length) return { error: "You can only edit your own posts." };
+  await removeImages(droppedImages(before?.images ?? [], images.value));
   refresh(returnTo);
-  redirect(returnTo);
+  redirect(`${returnTo}#${kind === "thread" ? "thread" : "post"}-${id}`);
 }
 
 export async function deletePost(fd: FormData): Promise<void> {
@@ -90,12 +111,24 @@ export async function deletePost(fd: FormData): Promise<void> {
   const id = Number(field(fd, "id"));
   const returnTo = safeNext(fd.get("return_to"));
   const supabase = await createClient();
+  // The pictures of what's being deleted (for a discussion: its own and all its replies'),
+  // so their files can be deleted too.
+  const pictures: string[] = [];
+  if (kind === "thread") {
+    const { data: t } = await supabase.from("threads").select("images").eq("id", id).maybeSingle<{ images: string[] }>();
+    const { data: ps } = await supabase.from("posts").select("images").eq("thread_id", id).returns<Array<{ images: string[] }>>();
+    pictures.push(...(t?.images ?? []), ...(ps ?? []).flatMap((p) => p.images));
+  } else {
+    const { data: p } = await supabase.from("posts").select("images").eq("id", id).maybeSingle<{ images: string[] }>();
+    pictures.push(...(p?.images ?? []));
+  }
   // Row-level security quietly skips rows you may not delete, so check that one was deleted.
   const { data, error } = kind === "thread"
     ? await supabase.from("threads").delete().eq("id", id).select("id")
     : await supabase.from("posts").delete().eq("id", id).select("id");
   if (error) redirect(withError(returnTo, "save_failed"));
   if (!data?.length) redirect(withError(returnTo, "not_yours"));
+  await removeImages(pictures);
   if (kind === "thread") {
     refresh();
     redirect("/discussions");

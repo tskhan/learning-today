@@ -14,6 +14,9 @@ const securityHeaders = [
 // Every portal page depends on the signed-in member, so pages render per
 // request. Cache Components is left off to keep that model simple.
 const nextConfig: NextConfig = {
+  // Pictures are shrunk in the browser to well under 1.5 MB (the server refuses more), so 2 MB
+  // leaves room for the rest of the form.
+  experimental: { serverActions: { bodySizeLimit: "2mb" } },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

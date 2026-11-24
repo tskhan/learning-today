@@ -44,8 +44,13 @@ test("reply and see the reply count", async ({ page, browser }) => {
 
 test("markdown renders and scripts do not", async ({ page }) => {
   const a = await createMember();
-  await loginAs(page, a);
-  await startThread(page, `Markdown ${Date.now()}`, "**bold** text\n\n<script>window.__x=1</script>\n\n[link](https://a.dev)");
+  // Saved straight to the database, as an old post or a hand-made request would be.
+  const { data: thread } = await a.client
+    .from("threads")
+    .insert({ title: `Markdown ${Date.now()}`, body_md: "**bold** text\n\n<script>window.__x=1</script>\n\n[link](https://a.dev)" })
+    .select("id")
+    .single();
+  await loginAs(page, a, `/discussions/${thread!.id}`);
   await expect(page.locator(".prose strong", { hasText: "bold" })).toBeVisible();
   expect(await page.evaluate(() => (window as unknown as { __x?: number }).__x)).toBeUndefined();
   await expect(page.locator('.prose a[href="https://a.dev"]')).toHaveAttribute("target", "_blank");

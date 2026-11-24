@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { renderMarkdown } from "@/lib/markdown";
+import { excerpt, renderMarkdown } from "@/lib/markdown";
 
 describe("renderMarkdown", () => {
   it("renders formatting and strips scripts", () => {
@@ -28,5 +28,23 @@ describe("renderMarkdown", () => {
     const html = renderMarkdown("- one\n- two\n\nline a\nline b");
     expect(html).toContain("<li>one</li>");
     expect(html).toContain("<br");
+  });
+});
+
+describe("editor output", () => {
+  it("keeps underline from the editor, and nothing else in that tag", () => {
+    expect(renderMarkdown("<u>lined</u> text")).toBe("<p><u>lined</u> text</p>");
+    expect(renderMarkdown('<u onclick="x()">lined</u>')).toBe("<p><u>lined</u></p>");
+  });
+  it("never lets a picture into the text (pictures are attachments)", () => {
+    expect(renderMarkdown("![x](https://evil.example/x.png)")).not.toContain("<img");
+  });
+});
+
+describe("excerpt for quoting", () => {
+  it("is plain, single-line text, shortened with an ellipsis", () => {
+    expect(excerpt("**Bold** and <u>lined</u>\n\n- item")).toBe("Bold and lined item");
+    expect(excerpt("x".repeat(200), 20)).toBe(`${"x".repeat(19)}…`);
+    expect(excerpt("a < b & c")).toBe("a < b & c");
   });
 });

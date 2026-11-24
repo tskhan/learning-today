@@ -18,13 +18,13 @@ async function createClass7(page: Page) {
   await page.getByLabel("Class number").fill("7");
   await page.getByLabel("Date").fill("2026-11-29");
   await page.getByLabel("Title").fill("Agents in practice");
-  await page.getByLabel("What was discussed").fill("## Topics\n- agents");
+  await page.getByLabel("What was discussed").pressSequentially("## Topics\n- agents");
   await page.getByRole("button", { name: "Add material" }).click();
   await page.getByLabel("Material label").fill("Slides: agents");
   await page.getByLabel("Material link").fill("https://example.com/slides");
   await page.getByRole("button", { name: "Add homework" }).click();
   await page.getByLabel("Homework title").fill("Build an agent");
-  await page.getByLabel("Instructions").fill("Use **Claude Code**.");
+  await page.getByLabel("Instructions").pressSequentially("Use **Claude Code**.");
   await page.getByLabel("Deadline (Pakistan time)").fill("2026-12-06T23:59");
   await page.getByLabel("Hand-in link expected?").selectOption("yes");
   await page.getByRole("button", { name: "Save class" }).click();
@@ -38,16 +38,16 @@ test("students cannot open admin", async ({ page }) => {
   await expect(page).toHaveURL("/");
 });
 
-test("create, preview and publish a class with homework", async ({ page, browser }) => {
+test("create and publish a class with homework", async ({ page, browser }) => {
   const admin = await createMember({ role: "admin" });
   const student = await createMember();
   await loginAs(page, admin);
 
+  // The editor formats as you type: "## " becomes a heading straight away.
   await page.goto("/admin/classes/new");
   await page.waitForLoadState("networkidle");
-  await page.getByLabel("What was discussed").fill("## Topics\n- agents");
-  await page.getByRole("button", { name: "Preview summary" }).click();
-  await expect(page.locator(".preview h2", { hasText: "Topics" })).toBeVisible();
+  await page.getByLabel("What was discussed").pressSequentially("## Topics");
+  await expect(page.locator(".rich-content h2", { hasText: "Topics" })).toBeVisible();
 
   await createClass7(page);
   const row = page.locator("tr", { hasText: "Agents in practice" });
