@@ -1,0 +1,26 @@
+# Dependabot version updates for the Batch 91 Portal (portal/package.json).
+# Security fixes are handled separately and straight away by "Dependabot security updates"
+# (repo Settings → Advanced Security); this file only adds routine, non-urgent updates.
+#
+# Once a month (on the 1st), minor and patch updates come as ONE grouped pull request. Major updates
+# (which can need code changes) come as separate pull requests, at most three open at a time.
+# Vercel builds a preview of each pull request; merge it if the preview works and the
+# portal's tests pass (cd portal && npm test).
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/portal"
+    schedule:
+      interval: "monthly"
+      time: "06:00"
+      timezone: "Asia/Karachi"
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "portal"
+      include: "scope"
+    groups:
+      portal-minor-and-patch:
+        applies-to: version-updates
+        update-types:
+          - "minor"
+          - "patch"

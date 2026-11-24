@@ -88,6 +88,7 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 | `portal/` | The Batch 91 Portal app (Next.js + Supabase), deployed to Vercel with Root Directory `portal`. GitHub Pages also publishes these source files as plain files; that is harmless (no secrets) and `robots.txt` keeps them out of search. See [`portal/README.md`](portal/README.md). |
 | `docs/` | Design and build plan for the portal (`docs/superpowers/`), and [`docs/student-gallery.md`](docs/student-gallery.md), the rules the student gallery generator must follow. Kept out of search by `robots.txt`. |
 | `tools/check-student-gallery.mjs` | Checks that `student-websites.html` is consistent (counts, scores, ranks, tables, and the totals on the home page and in this README). Run `node tools/check-student-gallery.mjs` after regenerating the gallery; the portal's unit tests run it too. Kept out of search by `robots.txt`. |
+| `.github/dependabot.yml` | Dependabot's routine updates for the portal's npm packages: once a month, minor and patch updates in one grouped pull request, majors separately. Security fixes come straight away through the repo's Dependabot security updates setting. |
 | `CLAUDE.md` | Short notes Claude Code reads automatically in this repo, including how to regenerate the gallery. |
 
 ## Where the content comes from
