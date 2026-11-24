@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { requireAdmin } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { formatDate } from "@/lib/time";
 import { setClassStatus } from "../actions";
@@ -16,6 +17,8 @@ interface Row {
 }
 
 export default async function AdminClassesPage() {
+  // Checked here as well as in the admin layout: a layout isn't re-run on every page change.
+  await requireAdmin();
   const supabase = await createClient();
   const { data } = await supabase
     .from("classes")

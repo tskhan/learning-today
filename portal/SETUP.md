@@ -18,6 +18,7 @@ You will copy a few keys between websites. **Never paste a key into a chat, an e
    - Make another **New query** and do the same with [`20261122000002_seed.sql`](supabase/migrations/20261122000002_seed.sql). This adds Classes 1–6 and the starting join code.
    - Make a third **New query** and do the same with [`20261123000001_explicit_grants.sql`](supabase/migrations/20261123000001_explicit_grants.sql). This lets the portal's server use the tables (newer Supabase projects don't allow that automatically).
    - Make a fourth **New query** and do the same with [`20261123000002_security_hardening.sql`](supabase/migrations/20261123000002_security_hardening.sql). This limits join-code guessing, keeps hand-in notes private, and starts any account not made by the portal's join form as removed.
+   - Make a fifth **New query** and do the same with [`20261124000001_portal_improvements.sql`](supabase/migrations/20261124000001_portal_improvements.sql). This saves each class all-or-nothing, hides a class's question thread while the class is a draft, and renames the thread when a class is renumbered.
 3. **Turn off open sign-ups.** Go to **Authentication → Sign In / Providers**.
    - Turn **off** "Allow new users to sign up". (People join through the portal's own form, which checks the join code.)
    - Under **Email**, turn **off** "Confirm email". Click **Save**.
@@ -88,6 +89,8 @@ You will copy a few keys between websites. **Never paste a key into a chat, an e
 - Then merge the branch so the **Sign-in** link appears in the learning-today.com menu.
 
 ## Good to know
+
+- **Updating the database later:** each new file in `supabase/migrations/` says at the top whether to run it before or after merging the matching change. Run it once, in the SQL Editor, in date order.
 
 - **Free projects sleep.** Supabase pauses a free project after 7 days with no visits. If the portal stops loading after a quiet week, open your Supabase dashboard and click **Restore project**. Weekly classes normally keep it awake.
 - **Adding a class:** after each class, go to Admin → Classes → New class, fill in what was discussed, the material and any homework, and set it to Published.

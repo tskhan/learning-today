@@ -121,7 +121,7 @@ test("remove and restore a member", async ({ page, browser }) => {
   await loginAs(page, admin, "/admin/members");
   const row = () => page.locator("tr", { hasText: s.email });
   await row().getByRole("button", { name: "Remove" }).click();
-  await expect(row().getByText("removed")).toBeVisible();
+  await expect(row().getByText("removed", { exact: true })).toBeVisible();
 
   await sp.goto("/");
   await expect(sp).toHaveURL(/\/login\?removed=1/);
@@ -131,7 +131,7 @@ test("remove and restore a member", async ({ page, browser }) => {
   await expect(sp.getByText("This account has been removed.")).toBeVisible();
 
   await row().getByRole("button", { name: "Restore" }).click();
-  await expect(row().getByText("active")).toBeVisible();
+  await expect(row().getByText("active", { exact: true })).toBeVisible();
   await loginAs(sp, s);
   await expect(sp).toHaveURL("/");
   await ctx.close();

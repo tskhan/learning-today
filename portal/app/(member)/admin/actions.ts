@@ -8,6 +8,7 @@ import { friendlyError } from "@/lib/errors";
 import { field, type FormState } from "@/lib/forms";
 import { LIMITS, validateHttpUrl } from "@/lib/limits";
 import { renderMarkdown } from "@/lib/markdown";
+import { withError } from "@/lib/flash";
 import { karachiInputToISO } from "@/lib/time";
 
 function all(fd: FormData, name: string): string[] {
@@ -86,36 +87,26 @@ export async function saveClass(_prev: FormState, fd: FormData): Promise<FormSta
     });
   }
 
+  // One database call, one transaction: if any part fails, nothing is saved.
   const supabase = await createClient();
-  const row = { number, class_date: classDate, title, summary_md: summary, status };
-  let classId = id;
-  if (id) {
-    const { error } = await supabase.from("classes").update(row).eq("id", id);
-    if (error) return { error: error.code === "23505" ? `Class ${number} already exists.` : friendlyError(error) };
-  } else {
-    const { data, error } = await supabase.from("classes").insert(row).select("id").single();
-    if (error || !data) return { error: error?.code === "23505" ? `Class ${number} already exists.` : friendlyError(error) };
-    classId = data.id;
-  }
-
-  // Materials are replaced wholesale.
-  await supabase.from("class_materials").delete().eq("class_id", classId);
-  if (materials.length) {
-    const { error } = await supabase.from("class_materials").insert(materials.map((m) => ({ ...m, class_id: classId })));
-    if (error) return { error: friendlyError(error) };
-  }
-
-  // Homework is updated in place so existing hand-ins survive edits.
-  const keepIds = homework.filter((h) => h.id).map((h) => h.id as number);
-  const { data: existing } = await supabase.from("homework").select("id").eq("class_id", classId);
-  const removeIds = (existing ?? []).map((h) => h.id as number).filter((hid) => !keepIds.includes(hid));
-  if (removeIds.length) await supabase.from("homework").delete().in("id", removeIds);
-  for (const h of homework) {
-    const values = { title: h.title, instructions_md: h.instructions_md, deadline: h.deadline, handin_expected: h.handin_expected, position: h.position };
-    const { error } = h.id
-      ? await supabase.from("homework").update(values).eq("id", h.id).eq("class_id", classId)
-      : await supabase.from("homework").insert({ ...values, class_id: classId });
-    if (error) return { error: friendlyError(error) };
+  const { error } = await supabase.rpc("save_class", {
+    p_id: id,
+    p_number: number,
+    p_class_date: classDate,
+    p_title: title,
+    p_summary_md: summary,
+    p_status: status,
+    p_materials: materials,
+    p_homework: homework,
+  });
+  if (error) {
+    if (error.code === "23505") return { error: `Class ${number} already exists.` };
+    if (error.code === "P0002") return { error: "That class no longer exists. Go back to Classes and start again." };
+    if (error.code === "PGRST202") {
+      console.error("saveClass: save_class() is missing; run the latest SQL file from portal/SETUP.md", error);
+      return { error: "The database needs its latest update before classes can be saved. See portal/SETUP.md." };
+    }
+    return { error: friendlyError(error) };
   }
 
   refreshClasses();
@@ -127,7 +118,9 @@ export async function setClassStatus(fd: FormData): Promise<void> {
   const id = Number(field(fd, "id"));
   const status = field(fd, "status") === "published" ? "published" : "draft";
   const supabase = await createClient();
-  await supabase.from("classes").update({ status }).eq("id", id);
+  const { data, error } = await supabase.from("classes").update({ status }).eq("id", id).select("id");
+  if (error) redirect(withError("/admin/classes", "save_failed"));
+  if (!data?.length) redirect(withError("/admin/classes", "gone"));
   refreshClasses();
 }
 
@@ -152,10 +145,16 @@ export async function setMemberStatus(fd: FormData): Promise<void> {
   const me = await requireAdmin();
   const userId = field(fd, "user_id");
   const status = field(fd, "status") === "removed" ? "removed" : "active";
-  if (userId === me.id) return;
+  if (userId === me.id) redirect(withError("/admin/members", "self"));
   const admin = createAdminClient();
-  await admin.from("profiles").update({ status }).eq("id", userId);
-  await admin.auth.admin.updateUserById(userId, { ban_duration: status === "removed" ? "876000h" : "none" });
+  // Block or unblock their login first; only then change the profile, so the two never disagree.
+  const { error: banError } = await admin.auth.admin.updateUserById(userId, { ban_duration: status === "removed" ? "876000h" : "none" });
+  if (banError) redirect(withError("/admin/members", banError.status === 404 ? "gone" : "save_failed"));
+  const { data, error } = await admin.from("profiles").update({ status }).eq("id", userId).select("id");
+  if (error || !data?.length) {
+    await admin.auth.admin.updateUserById(userId, { ban_duration: status === "removed" ? "none" : "876000h" });
+    redirect(withError("/admin/members", error ? "save_failed" : "gone"));
+  }
   refreshMembers();
 }
 
@@ -163,8 +162,10 @@ export async function setMemberRole(fd: FormData): Promise<void> {
   const me = await requireAdmin();
   const userId = field(fd, "user_id");
   const role = field(fd, "role") === "admin" ? "admin" : "student";
-  if (userId === me.id) return;
-  await createAdminClient().from("profiles").update({ role }).eq("id", userId);
+  if (userId === me.id) redirect(withError("/admin/members", "self"));
+  const { data, error } = await createAdminClient().from("profiles").update({ role }).eq("id", userId).select("id");
+  if (error) redirect(withError("/admin/members", "save_failed"));
+  if (!data?.length) redirect(withError("/admin/members", "gone"));
   refreshMembers();
 }
 

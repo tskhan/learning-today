@@ -6,6 +6,7 @@ import { requireMember } from "@/lib/auth";
 import { friendlyError } from "@/lib/errors";
 import { field, safeNext, type FormState } from "@/lib/forms";
 import { LIMITS, validateHttpUrl } from "@/lib/limits";
+import { withError } from "@/lib/flash";
 
 function refresh(returnTo: string) {
   revalidatePath("/");
@@ -18,13 +19,13 @@ export async function setReviewed(fd: FormData): Promise<void> {
   const classId = Number(field(fd, "class_id"));
   const returnTo = safeNext(fd.get("return_to"));
   const supabase = await createClient();
-  if (field(fd, "reviewed") === "true") {
-    await supabase
-      .from("class_reviews")
-      .upsert({ user_id: member.id, class_id: classId }, { onConflict: "user_id,class_id", ignoreDuplicates: true });
-  } else {
-    await supabase.from("class_reviews").delete().eq("user_id", member.id).eq("class_id", classId);
-  }
+  const { error } =
+    field(fd, "reviewed") === "true"
+      ? await supabase
+          .from("class_reviews")
+          .upsert({ user_id: member.id, class_id: classId }, { onConflict: "user_id,class_id", ignoreDuplicates: true })
+      : await supabase.from("class_reviews").delete().eq("user_id", member.id).eq("class_id", classId);
+  if (error) redirect(withError(`${returnTo}#checklist`, "save_failed"));
   refresh(returnTo);
 }
 
@@ -67,6 +68,7 @@ export async function unmarkHomework(fd: FormData): Promise<void> {
   const homeworkId = Number(field(fd, "homework_id"));
   const returnTo = safeNext(fd.get("return_to"));
   const supabase = await createClient();
-  await supabase.from("homework_status").delete().eq("user_id", member.id).eq("homework_id", homeworkId);
+  const { error } = await supabase.from("homework_status").delete().eq("user_id", member.id).eq("homework_id", homeworkId);
+  if (error) redirect(withError(`${returnTo}#hw-${homeworkId}`, "save_failed"));
   refresh(returnTo);
 }

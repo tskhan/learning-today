@@ -114,6 +114,9 @@ export async function setNewPassword(_prev: FormState, fd: FormData): Promise<Fo
   const { error } = await supabase.auth.updateUser({ password });
   if (error) {
     if (error.code === "same_password") return { error: "Choose a password different from your old one." };
+    if (error.code === "reauthentication_needed") {
+      return { error: "For your safety, a password can only be changed soon after logging in. Use \"Forgot password?\" on the login page to get a reset link." };
+    }
     return { error: "We couldn't save your new password. Please try again." };
   }
   redirect("/?reset=1");

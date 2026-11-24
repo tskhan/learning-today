@@ -27,7 +27,7 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 - **Class guide:** what was discussed, the material, homework with deadlines and hand-in links, an "I've reviewed this class" checklist and classmates' work. The class's own question thread sits beside the guide on wide screens.
 - **Discussions:** threads with reply counts, pinning, class badges and a side card of every class's question thread. Posts support Markdown, rendered on the server and sanitised; authors can edit or delete their own posts and admins can remove any.
 - **Admin:** publish and edit class guides (with a Markdown preview), see who handed in what, manage members (make admin, remove and restore, send a one-time reset link, delete for good) and change the join code.
-- Forms keep what you typed when something is refused. All dates are in Pakistan time. Pages use the full width with side columns on desktop and a single column on phones.
+- Forms keep what you typed when something is refused, and one-click buttons (Publish, Pin, Delete, Remove) show a message if they can't do their job instead of failing silently. Saving a class is all-or-nothing. All dates are in Pakistan time. Pages use the full width with side columns on desktop and a single column on phones.
 
 ### The Batch 91 Portal: backend (Supabase)
 
@@ -36,7 +36,7 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 - **Every rule is enforced in the database** as well as in the app:
   - Row-level security on every table, so only active members can read anything, students change only their own data and only admins publish.
   - Column-level grants that limit what can be written, and keep hand-in notes private to their author (classmates see only the link).
-  - Triggers for the posting rate limit (10 posts in 10 minutes), required hand-in links, a question thread opened automatically for each published class (and closed when the class is deleted), thread activity, edit marks, and clearing ticks when a hand-in becomes required.
+  - Triggers for the posting rate limit (10 posts in 10 minutes), required hand-in links, a question thread opened automatically for each published class (hidden while the class is a draft, renamed if the class is renumbered, and closed when the class is deleted), thread activity, edit marks, and clearing ticks when a hand-in becomes required.
 - **Server-only secret key:** the secret key never reaches the browser. Every response carries security headers, so the portal can't be framed by another site (clickjacking). Redirects after login are checked against open-redirect tricks. A pasted Supabase URL with extra path is tolerated, and sign-up errors show a short reference code so problems can be traced in the Vercel logs.
 - **Tests:** unit tests for the logic, database tests for every rule and trigger against a local Supabase, and Playwright browser tests of every flow on desktop and phone. All three suites pass before a portal change is merged.
 
