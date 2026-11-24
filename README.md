@@ -7,6 +7,13 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 
 **Live:** https://learning-today.com · https://portal.learning-today.com
 
+| | Static site | Batch 91 Portal |
+|---|---|---|
+| Address | https://learning-today.com | https://portal.learning-today.com |
+| Built with | Plain HTML, CSS and JavaScript (no build step); [Motion](https://motion.dev) 14.14 for animations | Next.js 16.4, React 19.3, TypeScript, Supabase (Auth + Postgres), `marked` 18 + `sanitize-html` for Markdown |
+| Hosted on | GitHub Pages, from `main` | Vercel (Root Directory `portal`), from `main`; Resend sends its emails |
+| Tested with | `tools/check-student-gallery.mjs` and link checks in the portal's unit tests | Vitest 5 (unit and database), Playwright 1.65 (browser), Supabase CLI 3 (local database) |
+
 > This is an independent learner site. PIAIC, Panaversity and Anthropic run the official programme, book and exams. This site only points to them and records what one class has covered. Check [piaic.org](https://www.piaic.org) for syllabus, fees and dates.
 
 ## What's been built
@@ -16,13 +23,14 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 - **Five pages** sharing one theme (`theme.css`) and one script (`site.js`): light and dark mode, condensed Oswald headings, one orange accent, and a header that shows its links inline when they fit and folds them into a menu when they do not.
 - **Header:** **Sign-in** is the first menu item, outlined in orange so it stands out, followed by the Class resources dropdown, Core documents, Learn Claude, Make Videos with Claude, PIAIC Batch 91 and Enrol with PIAIC. On wide screens the bar is centred over the page content: the logo starts where the content starts and the menu ends in line with the content's buttons.
 - **Home page:** a hero with a typing demo, a pinned practice quiz, a **Batch 91 Portal** card right after the hero, the Batch 91 class timeline, five core documents with previews, a Learn Claude path, the five-quarter roadmap and Class resources.
-- **Links shared in Class**, **Student websites** (177 sites with live previews, search, filters and automated ratings) and **Make Videos with Claude**, plus a privacy page that explains both the site and the portal.
+- **Links shared in Class**, **Student websites** (177 sites with live previews, search, kind-of-site filters, automated ratings and five rankings) and **Make Videos with Claude**, plus a privacy page that explains both the site and the portal.
+- **Student gallery checks:** the gallery is generated outside this repo; [`docs/student-gallery.md`](docs/student-gallery.md) sets the rules (every count, rank and filter is computed from the final list of cards; ranks count only rated sites) and `node tools/check-student-gallery.mjs` checks them.
 - Motion-based scroll reveals and count-ups that respect reduced motion, WebP images with fallbacks, a sitemap, and `robots.txt` that keeps the portal source, `docs/` and the student gallery out of search.
 
 ### The Batch 91 Portal: frontend (Next.js on Vercel)
 
 - **Sign-in pages:** log in, join the batch (with the join code), forgot password and reset password. On wide screens each has a large learning-today logo with a short intro on the left and the form on the right; phones stack them.
-- **Dashboard:** a greeting with a one-line summary, overdue and due-next homework, optional catch-up homework for late joiners, the class list, and the latest discussions in a side column.
+- **Dashboard:** "Welcome, Name" on a member's first day and "Welcome back, Name" after that, a one-line summary, overdue and due-next homework, optional catch-up homework for late joiners, the class list, and the latest discussions in a side column.
 - **Classes:** every published class with Reviewed or Not reviewed and homework progress. A **Your progress** card beside the list shows reading and homework bars and what to do next.
 - **Class guide:** what was discussed, the material, homework with deadlines and hand-in links, an "I've reviewed this class" checklist and classmates' work. The class's own question thread sits beside the guide on wide screens.
 - **Discussions:** threads with reply counts, pinning, class badges and a side card of every class's question thread. Posts support Markdown, rendered on the server and sanitised; authors can edit or delete their own posts and admins can remove any.
@@ -32,13 +40,13 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 ### The Batch 91 Portal: backend (Supabase)
 
 - **Logins** through Supabase Auth. Open sign-up is off; people join only through the portal's form, which checks the join code on the server. After 10 wrong join codes from one network in 15 minutes, sign-up pauses there. As a backstop, every new account starts as removed, and only the join form activates it. Password-reset emails go out through Resend from `no-reply@learning-today.com`.
-- **Postgres database** with nine tables: profiles, classes, class materials, homework, class reviews, homework status, threads, posts and settings.
+- **Postgres database** with ten tables: profiles, classes, class materials, homework, class reviews, homework status, threads, posts, settings (the join code) and signup attempts (wrong join codes, kept 24 hours). Saving a class goes through one `save_class()` function in a single transaction. The five migration files are listed, with when to run each, in [`portal/README.md`](portal/README.md#the-database-supabasemigrations).
 - **Every rule is enforced in the database** as well as in the app:
   - Row-level security on every table, so only active members can read anything, students change only their own data and only admins publish.
   - Column-level grants that limit what can be written, and keep hand-in notes private to their author (classmates see only the link).
   - Triggers for the posting rate limit (10 posts in 10 minutes), required hand-in links, a question thread opened automatically for each published class (hidden while the class is a draft, renamed if the class is renumbered, and closed when the class is deleted), thread activity, edit marks, and clearing ticks when a hand-in becomes required.
 - **Server-only secret key:** the secret key never reaches the browser. Every response carries security headers, so the portal can't be framed by another site (clickjacking). Redirects after login are checked against open-redirect tricks. A pasted Supabase URL with extra path is tolerated, and sign-up errors show a short reference code so problems can be traced in the Vercel logs.
-- **Tests:** unit tests for the logic, database tests for every rule and trigger against a local Supabase, and Playwright browser tests of every flow on desktop and phone. All three suites pass before a portal change is merged.
+- **Tests:** unit tests for the logic (Vitest 5), database tests for every rule and trigger against a local Supabase (Supabase CLI 3), and Playwright browser tests of every flow on desktop and phone. All three suites pass before a portal change is merged.
 
 ## The pages
 
@@ -80,7 +88,7 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 | `assets/vendor/popover-polyfill-0.5.2.min.js` | The [popover polyfill](https://github.com/oddbird/popover-polyfill) (BSD-3-Clause, licence in `popover-polyfill-LICENSE.txt` beside it), loaded by `site.js` only in older browsers without native popovers. Served from this site instead of a CDN. |
 | `files/shaadi-expenses-sheet1.csv` | A small practice spreadsheet an admin shared in class: 12 made-up wedding expense lines with deliberate traps (a repeated line, a cancelled booking, a lowercase event name, pending items) for a checking exercise. Offered as a download from the Links shared in Class page. |
 | `CNAME` | Tells GitHub Pages to serve this repo at `learning-today.com`. Do not delete it. |
-| `robots.txt` | Tells search engines to skip the student websites page, the `portal/` source and `docs/`, and where the sitemap is. |
+| `robots.txt` | Tells search engines to skip the student websites page, the `portal/` source, `docs/` and `tools/`, and where the sitemap is. |
 | `sitemap.xml` | Lists the pages search engines should index (home, Links shared in Class, Make Videos with Claude and privacy). Update `lastmod` when a page changes, and add any new page here. |
 | `.gitignore` | Keeps `.env` files (which hold keys) and `node_modules` out of the repository. |
 | `.nojekyll` | Tells GitHub Pages to publish the files as they are, without running Jekyll. |
@@ -89,7 +97,7 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 | `docs/` | Design and build plan for the portal (`docs/superpowers/`), and [`docs/student-gallery.md`](docs/student-gallery.md), the rules the student gallery generator must follow. Kept out of search by `robots.txt`. |
 | `tools/check-student-gallery.mjs` | Checks that `student-websites.html` is consistent (counts, scores, ranks, tables, and the totals on the home page and in this README). Run `node tools/check-student-gallery.mjs` after regenerating the gallery; the portal's unit tests run it too. Kept out of search by `robots.txt`. |
 | `.github/dependabot.yml` | Dependabot's routine updates for the portal's npm packages: once a month, minor and patch updates in one grouped pull request, majors separately. Security fixes come straight away through the repo's Dependabot security updates setting. |
-| `CLAUDE.md` | Short notes Claude Code reads automatically in this repo, including how to regenerate the gallery. |
+| `CLAUDE.md` | Short notes Claude Code reads automatically in this repo: how to regenerate the gallery, testing in cloud sessions, and the rules for migrations and updates. |
 
 ## Where the content comes from
 
@@ -127,6 +135,14 @@ Hosted free on **GitHub Pages** from the `main` branch, root folder. DNS is at G
 | CNAME | `www` | `tskhan.github.io` |
 
 HTTPS is enforced, and the certificate renews itself. A push to `main` redeploys the site in about a minute.
+
+## Keeping it healthy
+
+- **How changes go live:** every change is a pull request into `main`. Merging it redeploys learning-today.com (GitHub Pages, about a minute) and the portal (Vercel, a minute or two; Vercel also builds a preview of each pull request). Portal database changes are SQL files run once in the Supabase SQL Editor, before or after the merge as the file says.
+- **GitHub security features** (repo Settings → Advanced Security): CodeQL code scanning (default setup, runs on every push and pull request), secret scanning with push protection, Dependabot alerts and security updates, and private vulnerability reporting.
+- **Package updates:** [`.github/dependabot.yml`](.github/dependabot.yml) opens the portal's routine updates on the 1st of each month (minor and patch grouped, majors separately); security fixes arrive straight away. Test each one before merging, as described in [`portal/README.md`](portal/README.md#updating-packages). TypeScript major updates are held back until `typescript-eslint` supports TypeScript 7.
+- **Weekly:** after each Sunday class, add its guide in the portal (Admin → Classes → New class → Published) and a row to the "Batch 91, so far" table on the home page, and update "Last class update".
+- **Free plans:** Supabase pauses a free project after 7 days with no visits; if the portal stops loading after a quiet week, open the Supabase dashboard and click **Restore project**.
 
 ## Design and technical notes
 
