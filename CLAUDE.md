@@ -18,6 +18,9 @@ and only commit when it prints `OK`. Fix problems in the generator, not by editi
 ## Portal
 - Tests: `cd portal && npm test` (unit, database and browser; see portal/README.md). `npm run lint` is the type check plus ESLint.
 - In a Claude Code cloud container: start Docker with `(dockerd > /tmp/dockerd.log 2>&1 &)` before `npm run db:start`, and run browser tests with `PW_CHROMIUM_PATH=/opt/pw-browsers/chromium` (the pre-installed Chromium).
+- Class emails: publishing a class emails members once through Resend (`lib/notify.ts`, needs `RESEND_API_KEY`). Browser tests send them to a stand-in server (port 54399, set in `playwright.config.ts`); never point tests at the real Resend.
+- Pictures live in the private `post-images` storage bucket; delete their files whenever the message, discussion or class using them is deleted (`removeImages`).
+- Use the portal's own dialogs (`app/components/Modal.tsx`), never `window.confirm`, `prompt` or `alert`.
 - Database changes go in a new file in `portal/supabase/migrations/` that says at the top whether to run it before or after merging; never edit one that has already run. Add the file to the table in portal/README.md and to SETUP.md.
 - Dependabot pull requests: test each one before merging (merge it into a copy of `main`, then `npm ci`, `npm run lint`, `npm test`, `npx next build`). The project installs with `legacy-peer-deps`, so a new peer dependency must be added to `package.json` explicitly. TypeScript majors are ignored until `typescript-eslint` supports TypeScript 7 (see `.github/dependabot.yml`).
 

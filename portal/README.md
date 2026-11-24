@@ -60,16 +60,17 @@ Each file says at the top whether to run it in the live project's SQL Editor **b
 | `app/(member)/` | Everything behind the login: dashboard (`page.tsx`), `classes/`, `discussions/`, `profile/`, `admin/` |
 | `app/components/` | Header and nav, thread view, the message editor with pictures (`Composer`), pictures in messages and the in-page viewer (`PostImages`, `ImageGallery`), dialogs on the native `<dialog>` (`Modal`, `ConfirmButton`), homework control, progress card, the error banner (`FlashError`), forms |
 | `app/actions/` | Server actions shared across pages: picture upload and discard (`images.ts`) |
-| `lib/` | `auth` (member and admin guards), `progress` and `status` (due, overdue, catch-up), `greeting`, `flash` (error codes and messages), `signup-throttle`, `markdown` (rendering and quote excerpts), `images` and `images-server` (picture rules, signed links, clean-up), `shrink-image` (in the browser), `time`, `limits`, `errors`, `forms`, and `supabase/` clients |
+| `lib/` | `auth` (member and admin guards), `progress` and `status` (due, overdue, catch-up), `greeting`, `flash` (error codes and messages), `signup-throttle`, `markdown` (rendering and quote excerpts), `images` and `images-server` (picture rules, signed links, clean-up), `shrink-image` (in the browser), `notify` and `class-email` (the new-class email and sending it once), `time`, `limits`, `errors`, `forms`, and `supabase/` clients |
 | `proxy.ts` | Refreshes the login cookie and sends signed-out visitors to `/login` |
 | `supabase/` | Local stack config (`config.toml`), the reset-email template and the migrations |
 | `tests/unit/` | Logic, plus checks on the main site: menu links and the student gallery (`../tools/check-student-gallery.mjs`) |
 | `tests/db/` | Every database rule and trigger, against the local stack |
-| `tests/e2e/` | Browser tests of every flow (Playwright) |
+| `tests/e2e/` | Browser tests of every flow (Playwright). Class emails go to a stand-in for Resend on port 54399 that `notifications.spec.ts` runs (set in `playwright.config.ts`), never to the real service. |
+| `tests/helpers/` | Test members and classes (`members.ts`), the local inbox (`mailpit.ts`), and generated PNG pictures (`png.ts`) |
 
 ## Running it locally
 
-Needs Node 22 and Docker (only for the local database; the live portal doesn't use Docker).
+Needs Node 22 and Docker (only for the local database; the live portal doesn't use Docker). Locally no class emails are sent unless you set `RESEND_API_KEY` in `.env.local`; without it, publishing just skips the email and Admin → Classes offers **Email members**.
 
 ```bash
 npm install
