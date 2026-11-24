@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { connection } from "next/server";
 import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
 
@@ -18,7 +19,9 @@ export const viewport: Viewport = {
   ],
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  // Every page is rendered per visit, so each gets its own Content-Security-Policy nonce.
+  await connection();
   return (
     <html lang="en" className={`${inter.variable} ${oswald.variable}`}>
       <body>

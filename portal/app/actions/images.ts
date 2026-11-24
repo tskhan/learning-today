@@ -3,7 +3,8 @@ import { randomUUID } from "node:crypto";
 import { requireMember } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { IMAGE_BUCKET, IMAGE_TYPES, isImagePath, MAX_IMAGE_BYTES, MAX_UPLOADS_PER_HOUR, sniffImageType, type AttachedImage } from "@/lib/images";
-import { signedImageUrls } from "@/lib/images-server";
+import { after } from "next/server";
+import { signedImageUrls, sweepUnusedImages } from "@/lib/images-server";
 
 /**
  * Uploads one picture (already shrunk in the browser) into the member's own folder. The upload
@@ -35,6 +36,8 @@ export async function uploadImage(fd: FormData): Promise<AttachedImage | { error
     console.error("uploadImage failed", error);
     return { error: "That picture couldn't be uploaded. Please try again." };
   }
+  // Tidy up pictures nobody used, after answering.
+  after(sweepUnusedImages);
   const url = (await signedImageUrls([path])).get(path) ?? "";
   return { path, url };
 }

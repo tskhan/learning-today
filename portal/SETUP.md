@@ -21,6 +21,7 @@ You will copy a few keys between websites. **Never paste a key into a chat, an e
    - Make a fifth **New query** and do the same with [`20261124000001_portal_improvements.sql`](supabase/migrations/20261124000001_portal_improvements.sql). This saves each class all-or-nothing, hides a class's question thread while the class is a draft, and renames the thread when a class is renumbered.
    - Make a sixth **New query** and do the same with [`20261124000002_rich_posts.sql`](supabase/migrations/20261124000002_rich_posts.sql). This adds pictures in messages and class guides (it creates the private `post-images` storage bucket for you) and replies that quote an earlier reply.
    - Make a seventh **New query** and do the same with [`20261124000003_class_notifications.sql`](supabase/migrations/20261124000003_class_notifications.sql). This lets the portal email members when a new class guide is published, and adds the "New" badge and the email switch in Profile.
+   - Make an eighth **New query** and do the same with [`20261124000004_picture_cleanup.sql`](supabase/migrations/20261124000004_picture_cleanup.sql). This keeps each member's picture files private to them (pictures still show to everyone in the portal) and lets the portal delete pictures nobody used.
 3. **Turn off open sign-ups.** Go to **Authentication → Sign In / Providers**.
    - Turn **off** "Allow new users to sign up". (People join through the portal's own form, which checks the join code.)
    - Under **Email**, turn **off** "Confirm email". Click **Save**.
