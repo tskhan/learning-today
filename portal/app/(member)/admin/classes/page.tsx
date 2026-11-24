@@ -3,7 +3,7 @@ import Link from "next/link";
 import { requireAdmin } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { formatDate } from "@/lib/time";
-import { setClassStatus } from "../actions";
+import { emailClassMembers, setClassStatus } from "../actions";
 
 export const metadata: Metadata = { title: "Admin: classes" };
 
@@ -13,6 +13,7 @@ interface Row {
   class_date: string;
   title: string;
   status: "draft" | "published";
+  notified_at: string | null;
   homework: Array<{ id: number; homework_status: Array<{ user_id: string }> }>;
 }
 
@@ -22,7 +23,7 @@ export default async function AdminClassesPage() {
   const supabase = await createClient();
   const { data } = await supabase
     .from("classes")
-    .select("id, number, class_date, title, status, homework(id, homework_status(user_id))")
+    .select("id, number, class_date, title, status, notified_at, homework(id, homework_status(user_id))")
     .order("number", { ascending: false })
     .returns<Row[]>();
   const classes = data ?? [];
@@ -32,11 +33,11 @@ export default async function AdminClassesPage() {
         <h1>Classes</h1>
         <Link className="btn" href="/admin/classes/new">New class</Link>
       </div>
-      <p className="small muted">After each class, add its guide here: what was discussed, the material and any homework. Publish it when it&apos;s ready.</p>
+      <p className="small muted">After each class, add its guide here: what was discussed, the material and any homework. Publish it when it&apos;s ready: members get an email the first time a class is published (unless they turned class emails off in their profile).</p>
       <div className="table-wrap">
         <table>
           <thead>
-            <tr><th>#</th><th>Class</th><th>Status</th><th>Done / handed in</th><th>Actions</th></tr>
+            <tr><th>#</th><th>Class</th><th>Status</th><th>Members emailed</th><th>Done / handed in</th><th>Actions</th></tr>
           </thead>
           <tbody>
             {classes.map((c) => {
@@ -52,6 +53,19 @@ export default async function AdminClassesPage() {
                   </td>
                   <td>
                     {c.status === "published" ? <span className="badge badge-done">Published</span> : <span className="badge">Draft</span>}
+                  </td>
+                  <td>
+                    {c.status !== "published" ? (
+                      <span className="small muted">When published</span>
+                    ) : c.notified_at ? (
+                      <span className="small">{formatDate(c.notified_at)}</span>
+                    ) : (
+                      <form action={emailClassMembers}>
+                        <input type="hidden" name="id" value={c.id} />
+                        <span className="small muted">Not yet </span>
+                        <button type="submit" className="link-button">Email members</button>
+                      </form>
+                    )}
                   </td>
                   <td>{c.homework.length ? handins : <span className="muted">No homework</span>}</td>
                   <td>

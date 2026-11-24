@@ -8,6 +8,7 @@ interface ClassRow {
   number: number;
   title: string;
   class_date: string;
+  published_at: string | null;
   homework: Array<{ id: number; title: string; deadline: string | null; handin_expected: boolean; position: number }>;
 }
 
@@ -21,7 +22,7 @@ export async function loadProgress(supabase: SupabaseClient, member: Member, now
   const [classesRes, reviewsRes, doneRes] = await Promise.all([
     supabase
       .from("classes")
-      .select("id, number, title, class_date, homework(id, title, deadline, handin_expected, position)")
+      .select("id, number, title, class_date, published_at, homework(id, title, deadline, handin_expected, position)")
       .eq("status", "published")
       .order("number", { ascending: false })
       .returns<ClassRow[]>(),
@@ -33,6 +34,7 @@ export async function loadProgress(supabase: SupabaseClient, member: Member, now
     number: c.number,
     title: c.title,
     classDate: c.class_date,
+    publishedAt: c.published_at,
     homework: [...(c.homework ?? [])]
       .sort((a, b) => a.position - b.position || a.id - b.id)
       .map((h) => ({

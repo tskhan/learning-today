@@ -9,6 +9,7 @@ The members-only portal for PIAIC Batch 91 at **https://portal.learning-today.co
 
 **Students**
 - **Join and log in:** join with the batch join code (checked on the server; after 10 wrong codes from one network in 15 minutes, sign-up pauses there), log in, reset a forgotten password by email. The sign-in pages show a large learning-today logo beside the form on wide screens.
+- **New class guides:** members get an email the first time a class guide is published (summary, homework, a link), unless they turn it off in Profile; the class shows a **New** badge, and the dashboard a banner, for a week or until they review it.
 - **Dashboard:** "Welcome, Name" on the day they join and "Welcome back, Name" after that; overdue and due-next homework, optional catch-up homework for late joiners, the class list, and the latest discussions in a side column.
 - **Classes:** every published class with Reviewed / Not reviewed and homework progress, and a **Your progress** card (reading and homework bars, what to do next).
 - **Class guide:** what was discussed, the material, homework with deadlines, hand-in links and a private note, "I've reviewed this class", classmates' work, and the class's question thread beside the guide on wide screens.
@@ -27,7 +28,7 @@ Deleting asks in the portal's own dialog (never the browser's pop-up). One-click
 | Part | Details |
 |---|---|
 | App | **Next.js 16.4** (App Router, TypeScript, React 19.3, `proxy.ts`), deployed on **Vercel** with Root Directory `portal`. Plain CSS in `app/globals.css`, using the main site's colours and fonts. |
-| Data and logins | **Supabase**: Auth for accounts, Postgres for data, through `@supabase/ssr` and `@supabase/supabase-js`. Password-reset emails go out through **Resend**. The secret key is only used on the server (`lib/supabase/admin.ts` is `server-only`). |
+| Data and logins | **Supabase**: Auth for accounts, Postgres for data, through `@supabase/ssr` and `@supabase/supabase-js`. Password-reset emails go out through **Resend** (Supabase's SMTP settings); new-class emails through Resend's API (`lib/notify.ts`, `lib/class-email.ts`, `RESEND_API_KEY`), sent after the admin's save has answered (`after()`), once per class (`classes.notified_at`). The secret key is only used on the server (`lib/supabase/admin.ts` is `server-only`). |
 | Rules | Enforced **in the database** as well as in the app: row-level security on every table, column-level grants (hand-in notes are readable only by their author), picture lists (at most 4, members' own uploads only), quoted replies in the same discussion only, and triggers for the posting limit, required hand-in links, class question threads (opened on publish, hidden while a class is a draft, renamed on renumbering, closed on delete) and edit marks. New accounts start as removed; only the join form activates them. Saving a class goes through one `save_class_with_images()` function, in one transaction. |
 | Editor and Markdown | **Tiptap 3.33** (`@tiptap/react`, `starter-kit`, `markdown`, pinned) in `app/components/Composer.tsx`, saving **Markdown**. On the server it's rendered with `marked` 18 and sanitised with `sanitize-html` (`lib/markdown.ts`): no scripts, images or styles, only http(s) and mailto links; `<u>` is allowed for underline. |
 | Pictures | A private **Supabase Storage** bucket, `post-images`: members can see pictures, each member uploads only into their own folder, the uploader or an admin deletes. Pictures are shown through signed links that last an hour (`lib/images-server.ts`), and their files are deleted with the message, discussion or class (or when removed in an edit). Uploads go through a server action (`app/actions/images.ts`, 2 MB request limit). |
@@ -46,6 +47,7 @@ Ten tables: `profiles`, `classes`, `class_materials`, `homework`, `class_reviews
 | `20261123000002_security_hardening.sql` | Join-code attempt log, new accounts start removed, private hand-in notes |
 | `20261124000001_portal_improvements.sql` | `save_class()`, hidden draft-class threads, renaming threads on renumbering |
 | `20261124000002_rich_posts.sql` | Pictures (columns, the `post-images` bucket and its rules), quoted replies, picture-only replies, `save_class_with_images()` |
+| `20261124000003_class_notifications.sql` | `classes.published_at` (New badge), `classes.notified_at` (each class emailed once; old classes count as done), `profiles.email_new_classes` (the Profile switch) |
 
 Each file says at the top whether to run it in the live project's SQL Editor **before or after** merging the matching code. Never edit a file that has already run; add a new one.
 

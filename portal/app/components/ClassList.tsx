@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ClassRef } from "@/lib/status";
+import { isNewClass, type ClassRef } from "@/lib/status";
 import { formatDate } from "@/lib/time";
 
 export function ClassList({ classes, reviewed, done }: { classes: ClassRef[]; reviewed: Set<number>; done: Set<number> }) {
@@ -14,6 +14,7 @@ export function ClassList({ classes, reviewed, done }: { classes: ClassRef[]; re
               <span className="small muted">Class {c.number} · {formatDate(c.classDate)}</span>
               <span className="class-title">{c.title}</span>
               <span className="row small">
+                {isNewClass(c, reviewed) ? <span className="badge badge-new">New</span> : null}
                 {reviewed.has(c.id) ? <span className="badge badge-done">Reviewed</span> : <span className="badge">Not reviewed</span>}
                 {c.homework.length > 0 ? <span className="muted">Homework: {hwDone} of {c.homework.length} done</span> : null}
               </span>

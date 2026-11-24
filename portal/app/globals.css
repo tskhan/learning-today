@@ -322,3 +322,9 @@ dialog::backdrop { overflow: hidden; overscroll-behavior: contain; background: r
   .toolbar .tool { min-inline-size: 32px; padding-inline: 0.3rem; }
   .toolbar .sep { margin-inline: 0.1rem; }
 }
+
+/* new class guides */
+.badge-new { color: #fff; background: var(--btn); border-color: var(--btn); }
+.new-class { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 0.75rem; color: var(--ink); border-inline-start: 4px solid var(--btn); }
+.new-class:hover { text-decoration: none; border-color: var(--btn); }
+.new-class .new-class-go { margin-inline-start: auto; color: var(--hot); font-weight: 600; }

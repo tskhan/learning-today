@@ -1,5 +1,6 @@
 "use server";
 import { revalidatePath } from "next/cache";
+import { after } from "next/server";
 import { redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
@@ -10,6 +11,7 @@ import { LIMITS, validateHttpUrl } from "@/lib/limits";
 import { withError } from "@/lib/flash";
 import { droppedImages, parseImageList } from "@/lib/images";
 import { removeImages } from "@/lib/images-server";
+import { notifyNewClass } from "@/lib/notify";
 import { karachiInputToISO } from "@/lib/time";
 
 function all(fd: FormData, name: string): string[] {
@@ -24,7 +26,7 @@ function refreshClasses() {
 interface HomeworkInput { id: number | null; title: string; instructions_md: string; images: string[]; deadline: string | null; handin_expected: boolean; position: number }
 
 export async function saveClass(_prev: FormState, fd: FormData): Promise<FormState> {
-  await requireAdmin();
+  const me = await requireAdmin();
   const idRaw = field(fd, "id");
   const id = idRaw ? Number(idRaw) : null;
   const number = Number(field(fd, "number"));
@@ -92,7 +94,7 @@ export async function saveClass(_prev: FormState, fd: FormData): Promise<FormSta
   // One database call, one transaction: if any part fails, nothing is saved.
   const supabase = await createClient();
   const picturesBefore = id ? await classPictures(id) : [];
-  const { error } = await supabase.rpc("save_class_with_images", {
+  const { data: savedId, error } = await supabase.rpc("save_class_with_images", {
     p_id: id,
     p_number: number,
     p_class_date: classDate,
@@ -114,6 +116,8 @@ export async function saveClass(_prev: FormState, fd: FormData): Promise<FormSta
   }
   // Pictures taken out of the summary or homework (or with removed homework) are deleted.
   await removeImages(droppedImages(picturesBefore, [...summaryImages.value, ...homework.flatMap((h) => h.images)]));
+  // The first time a class is published, email the members (after the page has answered).
+  if (status === "published" && typeof savedId === "number") after(() => notifyNewClass(savedId, { exclude: me.id }));
 
   refreshClasses();
   redirect("/admin/classes");
@@ -130,13 +134,14 @@ async function classPictures(classId: number): Promise<string[]> {
 }
 
 export async function setClassStatus(fd: FormData): Promise<void> {
-  await requireAdmin();
+  const me = await requireAdmin();
   const id = Number(field(fd, "id"));
   const status = field(fd, "status") === "published" ? "published" : "draft";
   const supabase = await createClient();
   const { data, error } = await supabase.from("classes").update({ status }).eq("id", id).select("id");
   if (error) redirect(withError("/admin/classes", "save_failed"));
   if (!data?.length) redirect(withError("/admin/classes", "gone"));
+  if (status === "published") after(() => notifyNewClass(id, { exclude: me.id }));
   refreshClasses();
 }
 
@@ -158,6 +163,18 @@ export async function deleteClass(_prev: FormState, fd: FormData): Promise<FormS
   if (error) return { error: friendlyError(error) };
   await removeImages(pictures);
   refreshClasses();
+  redirect("/admin/classes");
+}
+
+/** Admin → Classes: "Email members" for a published class whose email hasn't gone out yet. */
+export async function emailClassMembers(fd: FormData): Promise<void> {
+  const me = await requireAdmin();
+  const id = Number(field(fd, "id"));
+  const result = await notifyNewClass(id, { exclude: me.id });
+  refreshClasses();
+  if (result.status === "skipped" && result.reason === "no-key") redirect(withError("/admin/classes", "email_off"));
+  if (result.status === "skipped" && result.reason === "not-published") redirect(withError("/admin/classes", "gone"));
+  if (result.status === "failed") redirect(withError("/admin/classes", "email_failed"));
   redirect("/admin/classes");
 }
 

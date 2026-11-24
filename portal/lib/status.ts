@@ -14,6 +14,8 @@ export interface ClassRef {
   number: number;
   title: string;
   classDate: string;
+  /** When it was first published (null for old data); drives the "New" badge. */
+  publishedAt?: string | null;
   homework: HomeworkRef[];
 }
 
@@ -75,4 +77,14 @@ export function summaryLine(p: Progress): string {
   const anyHomework = p.doneCount + p.due.length + p.overdue.length + p.catchup.length > 0;
   if (anyHomework && p.due.length === 0 && p.overdue.length === 0 && p.catchup.length === 0) line += " · all homework done";
   return line;
+}
+
+/** How long a class counts as new. */
+export const NEW_FOR_DAYS = 7;
+
+/** A class is "new" for a member for a week after it's first published, until they've reviewed it. */
+export function isNewClass(c: Pick<ClassRef, "id" | "publishedAt">, reviewed: Set<number>, now: Date = new Date()): boolean {
+  if (!c.publishedAt || reviewed.has(c.id)) return false;
+  const age = now.getTime() - new Date(c.publishedAt).getTime();
+  return age >= 0 && age < NEW_FOR_DAYS * 24 * 60 * 60 * 1000;
 }

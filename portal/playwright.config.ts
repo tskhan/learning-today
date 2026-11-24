@@ -16,6 +16,9 @@ export default defineConfig({
     command: "npm run dev",
     url: "http://localhost:3000/",
     reuseExistingServer: true,
+    // Class emails go to a stand-in for Resend that the notification tests run (port 54399),
+    // never to the real service.
+    env: { RESEND_API_KEY: "test-key", RESEND_API_URL: "http://127.0.0.1:54399/emails/batch" },
     timeout: 180_000,
   },
   projects: [

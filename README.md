@@ -30,6 +30,7 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 ### The Batch 91 Portal: frontend (Next.js on Vercel)
 
 - **Sign-in pages:** log in, join the batch (with the join code), forgot password and reset password. On wide screens each has a large learning-today logo with a short intro on the left and the form on the right; phones stack them.
+- **New class guides:** an email to members the first time a class guide is published (they can turn it off in Profile), and a **New** badge and dashboard banner for a week.
 - **Dashboard:** "Welcome, Name" on a member's first day and "Welcome back, Name" after that, a one-line summary, overdue and due-next homework, optional catch-up homework for late joiners, the class list, and the latest discussions in a side column.
 - **Classes:** every published class with Reviewed or Not reviewed and homework progress. A **Your progress** card beside the list shows reading and homework bars and what to do next.
 - **Class guide:** what was discussed, the material, homework with deadlines and hand-in links, an "I've reviewed this class" checklist and classmates' work. The class's own question thread sits beside the guide on wide screens.
@@ -40,7 +41,7 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 
 ### The Batch 91 Portal: backend (Supabase)
 
-- **Logins** through Supabase Auth. Open sign-up is off; people join only through the portal's form, which checks the join code on the server. After 10 wrong join codes from one network in 15 minutes, sign-up pauses there. As a backstop, every new account starts as removed, and only the join form activates it. Password-reset emails go out through Resend from `no-reply@learning-today.com`.
+- **Logins** through Supabase Auth. Open sign-up is off; people join only through the portal's form, which checks the join code on the server. After 10 wrong join codes from one network in 15 minutes, sign-up pauses there. As a backstop, every new account starts as removed, and only the join form activates it. Password-reset emails, and an email when a new class guide is published, go out through Resend from `no-reply@learning-today.com`.
 - **Postgres database** with ten tables: profiles, classes, class materials, homework, class reviews, homework status, threads, posts, settings (the join code) and signup attempts (wrong join codes, kept 24 hours). Saving a class goes through one `save_class_with_images()` function in a single transaction. Pictures live in a private Supabase Storage bucket (`post-images`): members only, signed links, each member uploads into their own folder, and files are deleted with their message or class. The five migration files are listed, with when to run each, in [`portal/README.md`](portal/README.md#the-database-supabasemigrations).
 - **Every rule is enforced in the database** as well as in the app:
   - Row-level security on every table, so only active members can read anything, students change only their own data and only admins publish.

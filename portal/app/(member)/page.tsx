@@ -2,7 +2,7 @@ import Link from "next/link";
 import { requireMember } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { loadProgress } from "@/lib/progress";
-import { summaryLine, type HomeworkRef } from "@/lib/status";
+import { isNewClass, summaryLine, type HomeworkRef } from "@/lib/status";
 import { greeting } from "@/lib/greeting";
 import { formatDateTime, formatRelative } from "@/lib/time";
 import { ClassList } from "@/app/components/ClassList";
@@ -37,6 +37,8 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
   ]);
   const firstName = member.fullName.split(/\s+/)[0];
   const nothingOwed = progress.due.length === 0 && progress.overdue.length === 0;
+  // The newest class guide this member hasn't read yet (published in the last week).
+  const fresh = classes.find((c) => isNewClass(c, reviewed));
 
   return (
     <div className="stack">
@@ -45,6 +47,16 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
         <h1>{greeting(firstName, member.joinedAt)}</h1>
         <p className="muted">{summaryLine(progress)}</p>
       </div>
+
+      {fresh ? (
+        <Link className="new-class card" href={`/classes/${fresh.number}`}>
+          <span className="badge badge-new">New</span>
+          <span>
+            <strong>Class {fresh.number} guide is up:</strong> {fresh.title}
+          </span>
+          <span className="new-class-go" aria-hidden="true">Read it →</span>
+        </Link>
+      ) : null}
 
       <div className="split">
         <div className="stack">
