@@ -1,17 +1,20 @@
 "use client";
 import Link from "next/link";
 import { useActionState, useState, useTransition } from "react";
-import { previewMarkdown, saveClass } from "../actions";
+import { saveClass } from "../actions";
 import { FormMessage } from "@/app/components/FormMessage";
+import { Composer } from "@/app/components/Composer";
+import type { AttachedImage } from "@/lib/images";
 
 export interface MaterialRow { key: string; label: string; url: string }
-export interface HomeworkRow { key: string; id: number | null; title: string; instructions: string; deadline: string; handin: boolean }
+export interface HomeworkRow { key: string; id: number | null; title: string; instructions: string; images: AttachedImage[]; deadline: string; handin: boolean }
 export interface ClassFormValues {
   id: number | null;
   number: string;
   classDate: string;
   title: string;
   summary: string;
+  summaryImages: AttachedImage[];
   status: "draft" | "published";
   materials: MaterialRow[];
   homework: HomeworkRow[];
@@ -25,7 +28,6 @@ export function ClassForm({ initial }: { initial: ClassFormValues }) {
   const [, startSave] = useTransition();
   const [materials, setMaterials] = useState<MaterialRow[]>(initial.materials);
   const [homework, setHomework] = useState<HomeworkRow[]>(initial.homework);
-  const [summary, setSummary] = useState(initial.summary);
   // Fields are controlled so an error message never wipes what the admin typed.
   const [number, setNumber] = useState(initial.number);
   const [classDate, setClassDate] = useState(initial.classDate);
@@ -35,8 +37,6 @@ export function ClassForm({ initial }: { initial: ClassFormValues }) {
     setMaterials((rows) => rows.map((r, j) => (j === i ? { ...r, ...patch } : r)));
   const setHw = (i: number, patch: Partial<HomeworkRow>) =>
     setHomework((rows) => rows.map((r, j) => (j === i ? { ...r, ...patch } : r)));
-  const [preview, setPreview] = useState<string | null>(null);
-  const [previewing, startPreview] = useTransition();
 
   return (
     <form
@@ -70,22 +70,17 @@ export function ClassForm({ initial }: { initial: ClassFormValues }) {
         <label htmlFor="title">Title</label>
         <input id="title" name="title" type="text" maxLength={150} value={title} onChange={(e) => setTitle(e.target.value)} required />
       </div>
-      <div className="form-row">
-        <label htmlFor="summary_md">What was discussed</label>
-        <textarea id="summary_md" name="summary_md" rows={10} value={summary} onChange={(e) => setSummary(e.target.value)} />
-        <span className="hint">Markdown works: ## headings, - lists, **bold**, [links](https://…).</span>
-        <div>
-          <button
-            type="button"
-            className="btn-quiet"
-            disabled={previewing}
-            onClick={() => startPreview(async () => setPreview(await previewMarkdown(summary)))}
-          >
-            Preview summary
-          </button>
-        </div>
-      </div>
-      {preview !== null ? <div className="preview prose" dangerouslySetInnerHTML={{ __html: preview || "<p>(empty)</p>" }} /> : null}
+      {/* The editor keeps its own text and pictures, so an error never wipes them. */}
+      <Composer
+        id="summary_md"
+        label="What was discussed"
+        name="summary_md"
+        imagesName="summary_images"
+        initialMarkdown={initial.summary}
+        initialImages={initial.summaryImages}
+        headings
+        minHeight="12rem"
+      />
 
       <fieldset className="section" style={{ border: 0, padding: 0 }}>
         <legend><h2>Material</h2></legend>
@@ -118,10 +113,15 @@ export function ClassForm({ initial }: { initial: ClassFormValues }) {
               <label htmlFor={`ht-${h.key}`}>Homework title</label>
               <input id={`ht-${h.key}`} name="hw_title" type="text" maxLength={150} value={h.title} onChange={(e) => setHw(i, { title: e.target.value })} />
             </div>
-            <div className="form-row">
-              <label htmlFor={`hi-${h.key}`}>Instructions</label>
-              <textarea id={`hi-${h.key}`} name="hw_instructions" rows={4} value={h.instructions} onChange={(e) => setHw(i, { instructions: e.target.value })} />
-            </div>
+            <Composer
+              id={`hi-${h.key}`}
+              label="Instructions"
+              name="hw_instructions"
+              imagesName="hw_images"
+              initialMarkdown={h.instructions}
+              initialImages={h.images}
+              minHeight="5rem"
+            />
             <div className="row" style={{ alignItems: "flex-start" }}>
               <div className="form-row" style={{ flex: "1 1 12rem" }}>
                 <label htmlFor={`hd-${h.key}`}>Deadline (Pakistan time)</label>
@@ -152,7 +152,7 @@ export function ClassForm({ initial }: { initial: ClassFormValues }) {
         <button
           type="button"
           className="btn-quiet"
-          onClick={() => setHomework([...homework, { key: newKey(), id: null, title: "", instructions: "", deadline: "", handin: false }])}
+          onClick={() => setHomework([...homework, { key: newKey(), id: null, title: "", instructions: "", images: [], deadline: "", handin: false }])}
         >
           Add homework
         </button>

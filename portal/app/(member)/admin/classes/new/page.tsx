@@ -15,7 +15,7 @@ export default async function NewClassPage() {
     <div className="stack narrow">
       <h1>New class</h1>
       <ClassForm
-        initial={{ id: null, number: String(nextNumber), classDate: "", title: "", summary: "", status: "draft", materials: [], homework: [] }}
+        initial={{ id: null, number: String(nextNumber), classDate: "", title: "", summary: "", summaryImages: [], status: "draft", materials: [], homework: [] }}
       />
     </div>
   );

@@ -7,8 +7,9 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { friendlyError } from "@/lib/errors";
 import { field, type FormState } from "@/lib/forms";
 import { LIMITS, validateHttpUrl } from "@/lib/limits";
-import { renderMarkdown } from "@/lib/markdown";
 import { withError } from "@/lib/flash";
+import { droppedImages, parseImageList } from "@/lib/images";
+import { removeImages } from "@/lib/images-server";
 import { karachiInputToISO } from "@/lib/time";
 
 function all(fd: FormData, name: string): string[] {
@@ -19,13 +20,8 @@ function refreshClasses() {
   revalidatePath("/", "layout");
 }
 
-/** Renders a Markdown preview for the class form. */
-export async function previewMarkdown(md: string): Promise<string> {
-  await requireAdmin();
-  return renderMarkdown(md);
-}
 
-interface HomeworkInput { id: number | null; title: string; instructions_md: string; deadline: string | null; handin_expected: boolean; position: number }
+interface HomeworkInput { id: number | null; title: string; instructions_md: string; images: string[]; deadline: string | null; handin_expected: boolean; position: number }
 
 export async function saveClass(_prev: FormState, fd: FormData): Promise<FormState> {
   await requireAdmin();
@@ -41,6 +37,8 @@ export async function saveClass(_prev: FormState, fd: FormData): Promise<FormSta
   if (!/^\d{4}-\d{2}-\d{2}$/.test(classDate)) return { error: "Enter the class date." };
   if (!title) return { error: "Give the class a title." };
   if (title.length > LIMITS.title) return { error: `Titles can be up to ${LIMITS.title} characters.` };
+  const summaryImages = parseImageList(field(fd, "summary_images"));
+  if ("error" in summaryImages) return { error: `Summary pictures: ${summaryImages.error}` };
 
   const materials: Array<{ label: string; url: string; position: number }> = [];
   const labels = all(fd, "material_label");
@@ -62,11 +60,14 @@ export async function saveClass(_prev: FormState, fd: FormData): Promise<FormSta
   const hwInstructions = all(fd, "hw_instructions");
   const hwDeadlines = all(fd, "hw_deadline");
   const hwHandins = all(fd, "hw_handin");
+  const hwImages = all(fd, "hw_images");
   for (let i = 0; i < hwTitles.length; i++) {
     const hwTitle = hwTitles[i].trim();
     const instructions = hwInstructions[i] ?? "";
     const deadlineRaw = (hwDeadlines[i] ?? "").trim();
-    if (!hwTitle && !instructions.trim() && !deadlineRaw && !hwIds[i]) continue;
+    const pictures = parseImageList(hwImages[i] ?? "");
+    if ("error" in pictures) return { error: `Homework ${i + 1} pictures: ${pictures.error}` };
+    if (!hwTitle && !instructions.trim() && !deadlineRaw && !hwIds[i] && pictures.value.length === 0) continue;
     if (!hwTitle) return { error: `Homework ${i + 1} needs a title.` };
     if (hwTitle.length > LIMITS.title) return { error: `Homework titles can be up to ${LIMITS.title} characters.` };
     let deadline: string | null = null;
@@ -81,6 +82,7 @@ export async function saveClass(_prev: FormState, fd: FormData): Promise<FormSta
       id: hwIds[i] ? Number(hwIds[i]) : null,
       title: hwTitle,
       instructions_md: instructions,
+      images: pictures.value,
       deadline,
       handin_expected: hwHandins[i] === "yes",
       position: homework.length,
@@ -89,12 +91,14 @@ export async function saveClass(_prev: FormState, fd: FormData): Promise<FormSta
 
   // One database call, one transaction: if any part fails, nothing is saved.
   const supabase = await createClient();
-  const { error } = await supabase.rpc("save_class", {
+  const picturesBefore = id ? await classPictures(id) : [];
+  const { error } = await supabase.rpc("save_class_with_images", {
     p_id: id,
     p_number: number,
     p_class_date: classDate,
     p_title: title,
     p_summary_md: summary,
+    p_summary_images: summaryImages.value,
     p_status: status,
     p_materials: materials,
     p_homework: homework,
@@ -103,14 +107,26 @@ export async function saveClass(_prev: FormState, fd: FormData): Promise<FormSta
     if (error.code === "23505") return { error: `Class ${number} already exists.` };
     if (error.code === "P0002") return { error: "That class no longer exists. Go back to Classes and start again." };
     if (error.code === "PGRST202") {
-      console.error("saveClass: save_class() is missing; run the latest SQL file from portal/SETUP.md", error);
+      console.error("saveClass: save_class_with_images() is missing; run the latest SQL file from portal/SETUP.md", error);
       return { error: "The database needs its latest update before classes can be saved. See portal/SETUP.md." };
     }
     return { error: friendlyError(error) };
   }
+  // Pictures taken out of the summary or homework (or with removed homework) are deleted.
+  await removeImages(droppedImages(picturesBefore, [...summaryImages.value, ...homework.flatMap((h) => h.images)]));
 
   refreshClasses();
   redirect("/admin/classes");
+}
+
+/** Every picture a class uses: its summary's and its homework's. */
+async function classPictures(classId: number): Promise<string[]> {
+  const { data } = await createAdminClient()
+    .from("classes")
+    .select("summary_images, homework(images)")
+    .eq("id", classId)
+    .maybeSingle<{ summary_images: string[]; homework: Array<{ images: string[] }> }>();
+  return [...(data?.summary_images ?? []), ...(data?.homework ?? []).flatMap((h) => h.images)];
 }
 
 export async function setClassStatus(fd: FormData): Promise<void> {
@@ -131,8 +147,16 @@ export async function deleteClass(_prev: FormState, fd: FormData): Promise<FormS
   const { data: cls } = await supabase.from("classes").select("number").eq("id", id).maybeSingle();
   if (!cls) return { error: "That class no longer exists." };
   if (field(fd, "confirm").trim() !== String(cls.number)) return { error: `Type ${cls.number} to confirm.` };
+  // The class's pictures, and those in its question thread (deleted with the class), go too.
+  const admin = createAdminClient();
+  const { data: thread } = await admin.from("threads").select("id, images").eq("class_id", id).eq("is_class_thread", true).maybeSingle<{ id: number; images: string[] }>();
+  const { data: replies } = thread
+    ? await admin.from("posts").select("images").eq("thread_id", thread.id).returns<Array<{ images: string[] }>>()
+    : { data: [] as Array<{ images: string[] }> };
+  const pictures = [...(await classPictures(id)), ...(thread?.images ?? []), ...(replies ?? []).flatMap((r) => r.images)];
   const { error } = await supabase.from("classes").delete().eq("id", id);
   if (error) return { error: friendlyError(error) };
+  await removeImages(pictures);
   refreshClasses();
   redirect("/admin/classes");
 }

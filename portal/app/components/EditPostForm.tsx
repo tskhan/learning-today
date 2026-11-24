@@ -4,15 +4,19 @@ import { useKeptActionState } from "./useKeptActionState";
 import { editPost } from "@/app/(member)/discussions/actions";
 import { FormMessage } from "./FormMessage";
 import { SubmitButton } from "./SubmitButton";
+import { Composer } from "./Composer";
+import { keptImages } from "./keptImages";
+import type { AttachedImage } from "@/lib/images";
 
-export function EditPostForm({ kind, id, title, body, returnTo }: {
+export function EditPostForm({ kind, id, title, body, images, returnTo }: {
   kind: "thread" | "post";
   id: number;
   title?: string;
   body: string;
+  images: AttachedImage[];
   returnTo: string;
 }) {
-  const [state, action] = useKeptActionState(editPost, ["title", "body"]);
+  const [state, action] = useKeptActionState(editPost, ["title", "body", "images"]);
   return (
     <form action={action}>
       <FormMessage state={state} />
@@ -25,10 +29,14 @@ export function EditPostForm({ kind, id, title, body, returnTo }: {
           <input id={`edit-title-${id}`} name="title" type="text" defaultValue={state?.values?.title ?? title} maxLength={150} required />
         </div>
       ) : null}
-      <div className="form-row">
-        <label htmlFor={`edit-body-${kind}-${id}`}>{kind === "thread" ? "Edit your post" : "Edit your reply"}</label>
-        <textarea id={`edit-body-${kind}-${id}`} name="body" defaultValue={state?.values?.body ?? body} maxLength={5000} required rows={5} />
-      </div>
+      <Composer
+        id={`edit-body-${kind}-${id}`}
+        label={kind === "thread" ? "Edit your post" : "Edit your reply"}
+        name="body"
+        imagesName="images"
+        initialMarkdown={state?.values?.body ?? body}
+        initialImages={state?.values?.images ? keptImages(state.values.images) : images}
+      />
       <div className="row">
         <SubmitButton pendingText="Saving…">Save</SubmitButton>
         <Link className="btn-quiet" href={returnTo}>Cancel</Link>

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { requireAdmin } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { isoToKarachiInput } from "@/lib/time";
+import { signedImageUrls } from "@/lib/images-server";
 import { ClassForm } from "../ClassForm";
 import { DeleteClassForm } from "./DeleteClassForm";
 
@@ -15,9 +16,10 @@ interface Row {
   class_date: string;
   title: string;
   summary_md: string;
+  summary_images: string[];
   status: "draft" | "published";
   class_materials: Array<{ id: number; label: string; url: string; position: number }>;
-  homework: Array<{ id: number; title: string; instructions_md: string; deadline: string | null; handin_expected: boolean; position: number }>;
+  homework: Array<{ id: number; title: string; instructions_md: string; images: string[]; deadline: string | null; handin_expected: boolean; position: number }>;
 }
 
 export default async function EditClassPage({ params }: { params: Promise<{ id: string }> }) {
@@ -27,11 +29,13 @@ export default async function EditClassPage({ params }: { params: Promise<{ id: 
   const supabase = await createClient();
   const { data: cls } = await supabase
     .from("classes")
-    .select("id, number, class_date, title, summary_md, status, class_materials(id, label, url, position), homework(id, title, instructions_md, deadline, handin_expected, position)")
+    .select("id, number, class_date, title, summary_md, summary_images, status, class_materials(id, label, url, position), homework(id, title, instructions_md, images, deadline, handin_expected, position)")
     .eq("id", Number(id))
     .maybeSingle<Row>();
   if (!cls) notFound();
   const byPos = <T extends { position: number; id: number }>(a: T, b: T) => a.position - b.position || a.id - b.id;
+  const urls = await signedImageUrls([...cls.summary_images, ...cls.homework.flatMap((h) => h.images)]);
+  const withUrls = (paths: string[]) => paths.flatMap((p) => (urls.get(p) ? [{ path: p, url: urls.get(p)! }] : []));
   return (
     <div className="stack narrow">
       <div className="spread">
@@ -45,6 +49,7 @@ export default async function EditClassPage({ params }: { params: Promise<{ id: 
           classDate: cls.class_date,
           title: cls.title,
           summary: cls.summary_md,
+          summaryImages: withUrls(cls.summary_images),
           status: cls.status,
           materials: [...cls.class_materials].sort(byPos).map((m) => ({ key: `m${m.id}`, label: m.label, url: m.url })),
           homework: [...cls.homework].sort(byPos).map((h) => ({
@@ -52,6 +57,7 @@ export default async function EditClassPage({ params }: { params: Promise<{ id: 
             id: h.id,
             title: h.title,
             instructions: h.instructions_md,
+            images: withUrls(h.images),
             deadline: h.deadline ? isoToKarachiInput(h.deadline) : "",
             handin: h.handin_expected,
           })),

@@ -251,3 +251,46 @@ th { font: 700 0.75rem/1.3 var(--sans); letter-spacing: 0.06em; text-transform: 
 .danger-zone { border-color: var(--danger); }
 details.inline-confirm summary { cursor: pointer; color: var(--danger); min-block-size: 44px; display: inline-flex; align-items: center; }
 .sr-only { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* compose box: formatting toolbar, editor, pictures */
+.composer-box { border: 1px solid var(--line); border-radius: 4px; background: var(--paper); }
+.composer-box:focus-within { border-color: var(--btn); box-shadow: 0 0 0 2px color-mix(in srgb, var(--btn) 30%, transparent); }
+.toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.15rem; padding: 0.25rem; border-block-end: 1px solid var(--line); background: var(--card); border-radius: 4px 4px 0 0; }
+.toolbar .tool { min-inline-size: 36px; min-block-size: 36px; padding: 0 0.45rem; border: 1px solid transparent; border-radius: 4px; background: none; color: var(--ink); font: 600 0.95rem/1 var(--sans); cursor: pointer; }
+.toolbar .tool:hover { border-color: var(--line); }
+.toolbar .tool.on { background: color-mix(in srgb, var(--btn) 16%, transparent); border-color: color-mix(in srgb, var(--btn) 45%, transparent); color: var(--hot); }
+.toolbar .tool[disabled] { opacity: 0.5; cursor: default; }
+.toolbar .sep { inline-size: 1px; block-size: 22px; background: var(--line); margin-inline: 0.25rem; }
+.rich-content { padding: 0.6rem 0.75rem; outline: none; overflow-wrap: anywhere; }
+.rich-content:focus { outline: none; }
+.rich-content p.is-editor-empty:first-child::before { content: attr(data-placeholder); color: var(--mute); float: left; block-size: 0; pointer-events: none; }
+.attachments { list-style: none; margin: 0.5rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.attachments li { position: relative; inline-size: 84px; block-size: 84px; border-radius: 6px; overflow: hidden; border: 1px solid var(--line); background: var(--paper2); }
+.attachments img { inline-size: 100%; block-size: 100%; object-fit: cover; display: block; }
+.attachments .remove { position: absolute; inset-block-start: 2px; inset-inline-end: 2px; inline-size: 28px; block-size: 28px; border-radius: 50%; border: 0; background: rgb(0 0 0 / 0.65); color: #fff; font-size: 1.1rem; line-height: 1; cursor: pointer; }
+.attachments .uploading { display: grid; place-items: center; font-size: 0.75rem; color: var(--mute); }
+.composer-actions { gap: 0.25rem 0.75rem; }
+.composer-actions .link-button { min-block-size: 36px; }
+.composer-actions .link-button[disabled] { color: var(--mute); cursor: default; }
+
+/* pictures in messages and class guides */
+.post-images { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.4rem; margin-block-start: 0.75rem; max-inline-size: 32rem; }
+.post-images.count-1 { grid-template-columns: minmax(0, 1fr); }
+.post-images a { display: block; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); background: var(--paper2); }
+.post-images img { display: block; inline-size: 100%; block-size: 100%; max-block-size: 22rem; object-fit: cover; }
+.post-images.count-1 img { object-fit: contain; block-size: auto; }
+
+/* replying to a particular message */
+.quote { display: flex; flex-direction: column; gap: 0.1rem; margin-block-end: 0.6rem; padding: 0.45rem 0.7rem; border-inline-start: 3px solid var(--hot); border-radius: 4px; background: var(--paper2); color: var(--ink); font-size: 0.9rem; }
+.quote:hover { text-decoration: none; background: color-mix(in srgb, var(--hot) 8%, var(--paper2)); }
+.quote strong { color: var(--hot); font-size: 0.8rem; }
+.quote span { color: var(--mute); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.quote-gone { color: var(--mute); font-style: italic; }
+.replying-to { display: flex; justify-content: space-between; gap: 1rem; align-items: center; padding: 0.5rem 0.75rem; margin-block-end: 0.5rem; border-inline-start: 3px solid var(--hot); background: var(--paper2); border-radius: 4px; font-size: 0.9rem; }
+.post:target { box-shadow: 0 0 0 2px var(--hot); transition: box-shadow 0.3s; }
+.post, .reply-form { scroll-margin-block-start: calc(var(--header-h) + 1rem); }
+@media (max-width: 560px) {
+  .toolbar { gap: 0; }
+  .toolbar .tool { min-inline-size: 32px; padding-inline: 0.3rem; }
+  .toolbar .sep { margin-inline: 0.1rem; }
+}

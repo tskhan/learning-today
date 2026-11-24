@@ -10,7 +10,7 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 | | Static site | Batch 91 Portal |
 |---|---|---|
 | Address | https://learning-today.com | https://portal.learning-today.com |
-| Built with | Plain HTML, CSS and JavaScript (no build step); [Motion](https://motion.dev) 14.14 for animations | Next.js 16.4, React 19.3, TypeScript, Supabase (Auth + Postgres), `marked` 18 + `sanitize-html` for Markdown |
+| Built with | Plain HTML, CSS and JavaScript (no build step); [Motion](https://motion.dev) 14.14 for animations | Next.js 16.4, React 19.3, TypeScript, Supabase (Auth, Postgres, Storage for pictures), Tiptap 3.33 editor saving Markdown, `marked` 18 + `sanitize-html` |
 | Hosted on | GitHub Pages, from `main` | Vercel (Root Directory `portal`), from `main`; Resend sends its emails |
 | Tested with | `tools/check-student-gallery.mjs` and link checks in the portal's unit tests | Vitest 5 (unit and database), Playwright 1.65 (browser), Supabase CLI 3 (local database) |
 
@@ -33,14 +33,15 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 - **Dashboard:** "Welcome, Name" on a member's first day and "Welcome back, Name" after that, a one-line summary, overdue and due-next homework, optional catch-up homework for late joiners, the class list, and the latest discussions in a side column.
 - **Classes:** every published class with Reviewed or Not reviewed and homework progress. A **Your progress** card beside the list shows reading and homework bars and what to do next.
 - **Class guide:** what was discussed, the material, homework with deadlines and hand-in links, an "I've reviewed this class" checklist and classmates' work. The class's own question thread sits beside the guide on wide screens.
-- **Discussions:** threads with reply counts, pinning, class badges and a side card of every class's question thread. Posts support Markdown, rendered on the server and sanitised; authors can edit or delete their own posts and admins can remove any.
-- **Admin:** publish and edit class guides (with a Markdown preview), see who handed in what, manage members (make admin, remove and restore, send a one-time reset link, delete for good) and change the join code.
+- **Discussions:** threads with reply counts, pinning, class badges and a side card of every class's question thread. Authors can edit or delete their own posts and admins can remove any.
+- **Writing:** a formatting-as-you-type editor (bold, italic, underline, strikethrough, lists, quote, code, links), saved as Markdown and sanitised on the server. Up to 4 pictures per message, pasted, dropped or picked, shrunk in the browser and shown under the message. **Reply** on any reply quotes it at the top of the new one, like WhatsApp.
+- **Admin:** publish and edit class guides (the same editor and pictures for the summary and each homework), see who handed in what, manage members (make admin, remove and restore, send a one-time reset link, delete for good) and change the join code.
 - Forms keep what you typed when something is refused, and one-click buttons (Publish, Pin, Delete, Remove) show a message if they can't do their job instead of failing silently. Saving a class is all-or-nothing. All dates are in Pakistan time. Pages use the full width with side columns on desktop and a single column on phones.
 
 ### The Batch 91 Portal: backend (Supabase)
 
 - **Logins** through Supabase Auth. Open sign-up is off; people join only through the portal's form, which checks the join code on the server. After 10 wrong join codes from one network in 15 minutes, sign-up pauses there. As a backstop, every new account starts as removed, and only the join form activates it. Password-reset emails go out through Resend from `no-reply@learning-today.com`.
-- **Postgres database** with ten tables: profiles, classes, class materials, homework, class reviews, homework status, threads, posts, settings (the join code) and signup attempts (wrong join codes, kept 24 hours). Saving a class goes through one `save_class()` function in a single transaction. The five migration files are listed, with when to run each, in [`portal/README.md`](portal/README.md#the-database-supabasemigrations).
+- **Postgres database** with ten tables: profiles, classes, class materials, homework, class reviews, homework status, threads, posts, settings (the join code) and signup attempts (wrong join codes, kept 24 hours). Saving a class goes through one `save_class_with_images()` function in a single transaction. Pictures live in a private Supabase Storage bucket (`post-images`): members only, signed links, each member uploads into their own folder, and files are deleted with their message or class. The five migration files are listed, with when to run each, in [`portal/README.md`](portal/README.md#the-database-supabasemigrations).
 - **Every rule is enforced in the database** as well as in the app:
   - Row-level security on every table, so only active members can read anything, students change only their own data and only admins publish.
   - Column-level grants that limit what can be written, and keep hand-in notes private to their author (classmates see only the link).
