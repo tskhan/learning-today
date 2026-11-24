@@ -1,11 +1,12 @@
 # learning-today.com robots.txt
 # Everything may be crawled except three things:
 # - the student websites page, which lists students' own sites and their automated ratings;
-# - the Batch 91 Portal's source code (portal/) and the planning documents (docs/), which are not pages.
+# - the Batch 91 Portal's source code (portal/), the planning documents (docs/) and the checking tools (tools/), which are not pages.
 User-agent: *
 Allow: /
 Disallow: /student-websites.html
 Disallow: /portal/
 Disallow: /docs/
+Disallow: /tools/
 
 Sitemap: https://learning-today.com/sitemap.xml
