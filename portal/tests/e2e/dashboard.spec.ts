@@ -48,7 +48,19 @@ test("profile name change shows in the greeting", async ({ page }) => {
   await page.getByRole("button", { name: "Save name" }).click();
   await expect(page.getByText("Name saved.")).toBeVisible();
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: "Welcome back, Zara" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Welcome, Zara" })).toBeVisible();
+});
+
+test("a new member is welcomed; someone who joined earlier is welcomed back", async ({ page }) => {
+  const fresh = await createMember({ name: "Nida New" });
+  await loginAs(page, fresh);
+  await expect(page.getByRole("heading", { name: "Welcome, Nida", exact: true })).toBeVisible();
+
+  const returning = await createMember({ name: "Omar Old" });
+  await setJoinedAt(returning.id, iso(-3));
+  await page.context().clearCookies();
+  await loginAs(page, returning);
+  await expect(page.getByRole("heading", { name: "Welcome back, Omar", exact: true })).toBeVisible();
 });
 
 test("dashboard works on a phone @phone", async ({ page }) => {

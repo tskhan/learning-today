@@ -3,6 +3,7 @@ import { requireMember } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { loadProgress } from "@/lib/progress";
 import { summaryLine, type HomeworkRef } from "@/lib/status";
+import { greeting } from "@/lib/greeting";
 import { formatDateTime, formatRelative } from "@/lib/time";
 import { ClassList } from "@/app/components/ClassList";
 
@@ -41,7 +42,7 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
     <div className="stack">
       {reset ? <p className="notice" role="status">Your password has been changed.</p> : null}
       <div>
-        <h1>Welcome back, {firstName}</h1>
+        <h1>{greeting(firstName, member.joinedAt)}</h1>
         <p className="muted">{summaryLine(progress)}</p>
       </div>
 
