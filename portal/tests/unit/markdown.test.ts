@@ -46,5 +46,7 @@ describe("excerpt for quoting", () => {
     expect(excerpt("**Bold** and <u>lined</u>\n\n- item")).toBe("Bold and lined item");
     expect(excerpt("x".repeat(200), 20)).toBe(`${"x".repeat(19)}…`);
     expect(excerpt("a < b & c")).toBe("a < b & c");
+    // Decoded once only: text that reads "&lt;" stays "&lt;".
+    expect(excerpt("write `&lt;` for <")).toBe("write &lt; for <");
   });
 });

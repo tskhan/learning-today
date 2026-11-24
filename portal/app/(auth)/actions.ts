@@ -5,10 +5,10 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { cleanText, LIMITS } from "@/lib/limits";
 import { field, safeNext, type FormState } from "@/lib/forms";
+import { isEmail } from "@/lib/email-address";
 import { ipFromHeaders, JOIN_CODE_LIMIT, recordWrongCode, tooManyWrongCodes } from "@/lib/signup-throttle";
 import { loginErrorMessage, REMOVED_MESSAGE as REMOVED, unavailableMessage } from "@/lib/errors";
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function signUp(_prev: FormState, fd: FormData): Promise<FormState> {
   const fullName = cleanText(field(fd, "full_name"), LIMITS.name);
@@ -16,7 +16,7 @@ export async function signUp(_prev: FormState, fd: FormData): Promise<FormState>
   const password = field(fd, "password");
   const joinCode = field(fd, "join_code").trim();
   if (!fullName) return { error: `Enter your full name (up to ${LIMITS.name} characters).` };
-  if (!EMAIL_RE.test(email)) return { error: "Enter a valid email address." };
+  if (!isEmail(email)) return { error: "Enter a valid email address." };
   if (password.length < 8) return { error: "Choose a password of at least 8 characters." };
 
   const admin = createAdminClient();
@@ -95,7 +95,7 @@ export async function logOut(): Promise<void> {
 
 export async function requestReset(_prev: FormState, fd: FormData): Promise<FormState> {
   const email = field(fd, "email").trim().toLowerCase();
-  if (!EMAIL_RE.test(email)) return { error: "Enter a valid email address." };
+  if (!isEmail(email)) return { error: "Enter a valid email address." };
   const supabase = await createClient();
   await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/auth/confirm?next=/reset-password`,

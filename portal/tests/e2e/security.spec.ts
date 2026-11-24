@@ -20,6 +20,38 @@ test("every page refuses to be framed by another site", async ({ request }) => {
   }
 });
 
+test("pages only run their own scripts (Content-Security-Policy with a fresh nonce)", async ({ page }) => {
+  const violations: string[] = [];
+  page.on("console", (msg) => {
+    if (/Content Security Policy/i.test(msg.text())) violations.push(msg.text());
+  });
+  const first = await page.goto("/login");
+  const csp = first!.headers()["content-security-policy"];
+  const nonce = /'nonce-([^']+)'/.exec(csp)?.[1];
+  expect(nonce).toBeTruthy();
+  expect(csp).toContain("'strict-dynamic'");
+  expect(csp).toContain("object-src 'none'");
+  // Next.js marks its own scripts with the nonce, so the page still works…
+  expect(await page.locator(`script[nonce]`).count()).toBeGreaterThan(0);
+  await page.getByLabel("Email").fill("x@y.z");
+  expect(violations).toEqual([]);
+  // …but injected markup can't run code (the usual way an XSS attack would get in).
+  const ran = await page.evaluate(async () => {
+    const w = window as unknown as { injected?: boolean };
+    w.injected = false;
+    const div = document.createElement("div");
+    div.innerHTML = '<img src="data:," onerror="window.injected = true"><a id="js" href="javascript:window.injected=true">x</a>';
+    document.body.appendChild(div);
+    (div.querySelector("#js") as HTMLAnchorElement).click();
+    await new Promise((r) => setTimeout(r, 100));
+    return w.injected;
+  });
+  expect(ran).toBe(false);
+  expect(violations.length).toBeGreaterThan(0);
+  const again = await page.request.get("/login");
+  expect(again.headers()["content-security-policy"]).not.toContain(`'nonce-${nonce}'`);
+});
+
 test("guessing join codes is stopped after the limit, even with the right code", async ({ page }) => {
   test.setTimeout(120_000);
   const email = `guess${Date.now()}@test.dev`;

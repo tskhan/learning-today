@@ -65,13 +65,21 @@ describe("rich posts (24 Nov 2026)", () => {
     expect((await removed.client.storage.from("post-images").upload(pathFor(removed.id), png(), { contentType: "image/png" })).error).not.toBeNull();
   });
 
-  it("members can see pictures; visitors and removed members can't", async () => {
+  it("members read only their own picture files (others' come as signed links); admins read all", async () => {
     const m = await createMember();
     const path = pathFor(m.id);
     await m.client.storage.from("post-images").upload(path, png(), { contentType: "image/png" });
+    expect((await m.client.storage.from("post-images").download(path)).error).toBeNull();
 
     const classmate = await createMember();
-    expect((await classmate.client.storage.from("post-images").download(path)).error).toBeNull();
+    expect((await classmate.client.storage.from("post-images").download(path)).error).not.toBeNull();
+    const { data: listed } = await classmate.client.storage.from("post-images").list(m.id);
+    expect(listed ?? []).toEqual([]);
+    const admin = await createMember({ role: "admin" });
+    expect((await admin.client.storage.from("post-images").download(path)).error).toBeNull();
+    // what the portal shows: a signed link made on the server
+    const { data: signed } = await adminClient().storage.from("post-images").createSignedUrl(path, 60);
+    expect((await fetch(signed!.signedUrl)).status).toBe(200);
     expect((await anonClient().storage.from("post-images").download(path)).error).not.toBeNull();
     const removed = await createMember({ status: "removed" });
     expect((await removed.client.storage.from("post-images").download(path)).error).not.toBeNull();
@@ -87,9 +95,34 @@ describe("rich posts (24 Nov 2026)", () => {
     await classmate.client.storage.from("post-images").remove([path]);
     expect(await exists()).toBe(true);
 
+    const removed = await createMember();
+    const theirs = pathFor(removed.id);
+    await removed.client.storage.from("post-images").upload(theirs, png(), { contentType: "image/png" });
+    await adminClient().from("profiles").update({ status: "removed" }).eq("id", removed.id);
+    await removed.client.storage.from("post-images").remove([theirs]);
+    expect((await adminClient().storage.from("post-images").download(theirs)).error).toBeNull();
+
     const admin = await createMember({ role: "admin" });
     await admin.client.storage.from("post-images").remove([path]);
     expect(await exists()).toBe(false);
+  });
+
+  it("unused_images lists pictures nothing uses, for the server only", async () => {
+    const m = await createMember();
+    const used = pathFor(m.id);
+    const unused = pathFor(m.id);
+    for (const p of [used, unused]) await m.client.storage.from("post-images").upload(p, png(), { contentType: "image/png" });
+    await m.client.from("threads").insert({ title: "Uses a picture", body_md: "B", images: [used] });
+
+    const { data, error } = await adminClient().rpc("unused_images", { p_older_than: "0 seconds", p_limit: 100000 });
+    expect(error).toBeNull();
+    expect(data).toContain(unused);
+    expect(data).not.toContain(used);
+    const { data: recent } = await adminClient().rpc("unused_images", { p_limit: 100000 });
+    expect(recent).not.toContain(unused); // under two days old: left alone
+
+    expect((await m.client.rpc("unused_images")).error).not.toBeNull();
+    expect((await anonClient().rpc("unused_images")).error).not.toBeNull();
   });
 
   it("save_class_with_images saves the class's and each homework's pictures, all-or-nothing", async () => {

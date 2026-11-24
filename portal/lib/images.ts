@@ -11,6 +11,21 @@ export const MAX_IMAGE_SIDE = 1600;
 export const IMAGE_TYPES: Record<string, "webp" | "jpg" | "png"> = { "image/webp": "webp", "image/jpeg": "jpg", "image/png": "png" };
 
 /** A picture as the compose box keeps it: the stored path, and a short-lived link to show it. */
+/** Most pictures one member can upload in an hour (stops a script filling the storage). */
+export const MAX_UPLOADS_PER_HOUR = 40;
+
+/**
+ * The picture type a file really is, from its first bytes (PNG, JPEG or WebP), or null. The type a
+ * browser sends with an upload is only a label, so the server checks the content itself.
+ */
+export function sniffImageType(bytes: Uint8Array): keyof typeof IMAGE_TYPES | null {
+  const starts = (sig: number[], at = 0) => sig.every((b, i) => bytes[at + i] === b);
+  if (starts([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a])) return "image/png";
+  if (starts([0xff, 0xd8, 0xff])) return "image/jpeg";
+  if (starts([0x52, 0x49, 0x46, 0x46]) && starts([0x57, 0x45, 0x42, 0x50], 8)) return "image/webp";
+  return null;
+}
+
 export interface AttachedImage { path: string; url: string }
 
 const PATH_RE = /^[0-9a-f-]{36}\/[0-9a-f-]{36}\.(webp|jpg|png)$/;

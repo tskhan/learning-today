@@ -22,6 +22,19 @@ export async function signedImageUrls(paths: string[]): Promise<Map<string, stri
   return urls;
 }
 
+/**
+ * Deletes picture files nobody used: uploaded over two days ago and not in any message, class or
+ * homework (say, added to a message that was never sent). Runs after uploads; at most 100 at a time.
+ */
+export async function sweepUnusedImages(): Promise<void> {
+  const { data, error } = await createAdminClient().rpc("unused_images");
+  if (error) {
+    console.error("sweepUnusedImages failed", error);
+    return;
+  }
+  await removeImages((data ?? []) as string[]);
+}
+
 /** Deletes picture files that nothing uses any more. Best effort: a failure is logged, not shown. */
 export async function removeImages(paths: string[]): Promise<void> {
   const unique = [...new Set(paths)].filter(Boolean);

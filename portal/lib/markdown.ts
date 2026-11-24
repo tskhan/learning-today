@@ -27,7 +27,8 @@ export function renderMarkdown(md: string): string {
 /** Plain text of a message, shortened, for quoting it in a reply. */
 export function excerpt(md: string, max = 120): string {
   const text = sanitizeHtml(renderMarkdown(md), { allowedTags: [], allowedAttributes: {} })
-    .replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+    // Decode &amp; last, so text such as "&amp;lt;" stays "&lt;" (no double unescaping).
+    .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, "&")
     .replace(/\s+/g, " ")
     .trim();
   return text.length > max ? `${text.slice(0, max - 1).trimEnd()}…` : text;

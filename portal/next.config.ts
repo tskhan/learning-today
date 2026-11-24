@@ -2,10 +2,11 @@ import type { NextConfig } from "next";
 
 // Sent with every response: the portal can't be shown inside another site's frame (stops
 // clickjacking), browsers don't guess file types, links to other sites don't carry the full
-// portal address, and the page can't ask for the camera, microphone or location.
+// portal address, and the page can't ask for the camera, microphone or location. Pages also get a
+// full Content-Security-Policy with a per-visit nonce from proxy.ts (lib/csp.ts), which also
+// refuses framing.
 const securityHeaders = [
   { key: "X-Frame-Options", value: "DENY" },
-  { key: "Content-Security-Policy", value: "frame-ancestors 'none'" },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
