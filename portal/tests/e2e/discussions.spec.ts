@@ -81,8 +81,8 @@ test("author can edit and delete own reply; others don't see the controls", asyn
   await expect(edited).toBeVisible();
   await expect(edited.getByText("(edited)")).toBeVisible();
 
-  page.once("dialog", (d) => d.accept());
   await edited.getByRole("button", { name: "Delete" }).click();
+  await page.getByRole("dialog").getByRole("button", { name: "Delete" }).click();
   await expect(page.getByText("Second version")).toHaveCount(0);
 });
 
@@ -113,8 +113,8 @@ test("admin can pin and delete any thread", async ({ page, browser }) => {
 
   await pageAdmin.goto(`/discussions/${id2}`);
   await pageAdmin.waitForLoadState("networkidle");
-  pageAdmin.once("dialog", (d) => d.accept());
   await pageAdmin.locator("article.post").first().getByRole("button", { name: "Delete" }).click();
+  await pageAdmin.getByRole("dialog").getByRole("button", { name: "Delete" }).click();
   await expect(pageAdmin).toHaveURL("/discussions");
   await expect(pageAdmin.getByRole("link", { name: title2 })).toHaveCount(0);
   await ctx.close();

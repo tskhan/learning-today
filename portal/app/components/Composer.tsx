@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { EditorContent, useEditor, type Editor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { Markdown } from "@tiptap/markdown";
@@ -7,6 +7,7 @@ import { Placeholder } from "@tiptap/extension-placeholder";
 import { discardImage, uploadImage } from "@/app/actions/images";
 import { MAX_IMAGES, type AttachedImage } from "@/lib/images";
 import { shrinkImage } from "@/lib/shrink-image";
+import { useModal } from "./Modal";
 
 /**
  * A message box: formatting as you type (bold, italic, underline, lists, links…) and up to four
@@ -234,6 +235,8 @@ function Toolbar({ editor, headings }: { editor: Editor | null; headings: boolea
       {text}
     </button>
   );
+  const [linkOpen, setLinkOpen] = useState(false);
+  const [linkValue, setLinkValue] = useState("");
   const chain = () => editor!.chain().focus();
   const is = (name: string, attrs?: Record<string, unknown>) => Boolean(editor?.isActive(name, attrs));
   return (
@@ -249,16 +252,80 @@ function Toolbar({ editor, headings }: { editor: Editor | null; headings: boolea
       {button("Quote", "❝", is("blockquote"), () => chain().toggleBlockquote().run())}
       {button("Code", "</>", is("code"), () => chain().toggleCode().run())}
       {button("Link", "🔗", is("link"), () => {
-        const current = (editor?.getAttributes("link").href as string | undefined) ?? "";
-        const href = window.prompt("Link address (starting with https://). Leave empty to remove the link.", current);
-        if (href === null) return;
-        if (!href.trim()) {
-          chain().extendMarkRange("link").unsetLink().run();
-          return;
-        }
-        const url = /^https?:\/\//i.test(href.trim()) ? href.trim() : `https://${href.trim()}`;
-        chain().extendMarkRange("link").setLink({ href: url }).run();
+        setLinkValue((editor?.getAttributes("link").href as string | undefined) ?? "");
+        setLinkOpen(true);
       })}
+      <LinkDialog
+        open={linkOpen}
+        value={linkValue}
+        hasLink={is("link")}
+        onChange={setLinkValue}
+        onCancel={() => setLinkOpen(false)}
+        onRemove={() => {
+          setLinkOpen(false);
+          chain().extendMarkRange("link").unsetLink().run();
+        }}
+        onSave={() => {
+          setLinkOpen(false);
+          const href = linkValue.trim();
+          if (!href) {
+            chain().extendMarkRange("link").unsetLink().run();
+            return;
+          }
+          const url = /^(https?:\/\/|mailto:)/i.test(href) ? href : `https://${href}`;
+          chain().extendMarkRange("link").setLink({ href: url }).run();
+        }}
+      />
     </div>
+  );
+}
+
+/** The Link button's box: the address to link the selected text to. */
+function LinkDialog({ open, value, hasLink, onChange, onCancel, onRemove, onSave }: {
+  open: boolean;
+  value: string;
+  hasLink: boolean;
+  onChange: (v: string) => void;
+  onCancel: () => void;
+  onRemove: () => void;
+  onSave: () => void;
+}) {
+  const ref = useRef<HTMLDialogElement>(null);
+  useModal(ref, open, onCancel);
+  const titleId = useId();
+  const inputId = useId();
+  return (
+    <dialog ref={ref} className="modal" aria-labelledby={titleId} {...({ closedby: "any" } as object)}>
+      {open ? (
+        <>
+          <h1 id={titleId}>{hasLink ? "Edit link" : "Add a link"}</h1>
+          <div className="form-row">
+            <label htmlFor={inputId}>Link address</label>
+            <input
+              id={inputId}
+              type="url"
+              inputMode="url"
+              placeholder="https://…"
+              value={value}
+              autoFocus
+              onChange={(e) => onChange(e.target.value)}
+              onKeyDown={(e) => {
+                // This box sits inside the message form: Enter saves the link, not the message.
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  onSave();
+                }
+              }}
+            />
+            <span className="hint">Select some text first to turn it into a link.</span>
+          </div>
+          <div className="modal-actions">
+            {hasLink ? <button type="button" className="link-button danger" onClick={onRemove}>Remove link</button> : null}
+            <button type="button" className="btn-quiet" onClick={onCancel}>Cancel</button>
+            <button type="button" className="btn" onClick={onSave}>{hasLink ? "Save link" : "Add link"}</button>
+          </div>
+        </>
+      ) : null}
+    </dialog>
   );
 }

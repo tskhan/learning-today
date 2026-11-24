@@ -4,6 +4,7 @@ import { useActionState, useState, useTransition } from "react";
 import { saveClass } from "../actions";
 import { FormMessage } from "@/app/components/FormMessage";
 import { Composer } from "@/app/components/Composer";
+import { ConfirmDialog } from "@/app/components/Modal";
 import type { AttachedImage } from "@/lib/images";
 
 export interface MaterialRow { key: string; label: string; url: string }
@@ -35,6 +36,7 @@ export function ClassForm({ initial }: { initial: ClassFormValues }) {
   const [status, setStatus] = useState(initial.status);
   const setMaterial = (i: number, patch: Partial<MaterialRow>) =>
     setMaterials((rows) => rows.map((r, j) => (j === i ? { ...r, ...patch } : r)));
+  const [removing, setRemoving] = useState<number | null>(null);
   const setHw = (i: number, patch: Partial<HomeworkRow>) =>
     setHomework((rows) => rows.map((r, j) => (j === i ? { ...r, ...patch } : r)));
 
@@ -141,8 +143,9 @@ export function ClassForm({ initial }: { initial: ClassFormValues }) {
               type="button"
               className="link-button danger"
               onClick={() => {
-                if (h.id && !window.confirm("Remove this homework? Everyone's hand-ins for it will be deleted when you save.")) return;
-                setHomework(homework.filter((_, j) => j !== i));
+                // Saved homework may have hand-ins: ask first. New, unsaved homework just goes.
+                if (h.id) setRemoving(i);
+                else setHomework(homework.filter((_, j) => j !== i));
               }}
             >
               Remove homework
@@ -157,6 +160,18 @@ export function ClassForm({ initial }: { initial: ClassFormValues }) {
           Add homework
         </button>
       </fieldset>
+
+      <ConfirmDialog
+        open={removing !== null}
+        title="Remove this homework?"
+        message="Everyone's hand-ins for it will be deleted when you save the class."
+        confirmLabel="Remove"
+        onCancel={() => setRemoving(null)}
+        onConfirm={() => {
+          setHomework((rows) => rows.filter((_, j) => j !== removing));
+          setRemoving(null);
+        }}
+      />
 
       <div className="row section">
         <button type="submit" className="btn" disabled={saving}>{saving ? "Saving…" : "Save class"}</button>

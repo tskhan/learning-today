@@ -13,14 +13,14 @@ The members-only portal for PIAIC Batch 91 at **https://portal.learning-today.co
 - **Classes:** every published class with Reviewed / Not reviewed and homework progress, and a **Your progress** card (reading and homework bars, what to do next).
 - **Class guide:** what was discussed, the material, homework with deadlines, hand-in links and a private note, "I've reviewed this class", classmates' work, and the class's question thread beside the guide on wide screens.
 - **Discussions:** threads with reply counts, pinned threads, class badges and quick links to every class's question thread. Authors edit or delete their own posts.
-- **Writing a message:** a formatting-as-you-type editor (bold, italic, underline, strikethrough, lists, quote, code, links) and up to 4 pictures per message, pasted (Ctrl+V), dropped or picked with 📎. Pictures are shrunk in the browser (1600 px, WebP) before upload, which also drops hidden details such as location, and are shown under the message; a reply can be pictures only.
+- **Writing a message:** a formatting-as-you-type editor (bold, italic, underline, strikethrough, lists, quote, code, links) and up to 4 pictures per message, pasted (Ctrl+V), dropped or picked with 📎. Pictures are shrunk in the browser (1600 px, WebP) before upload, which also drops hidden details such as location, and are shown under the message; a reply can be pictures only. Hovering a picture shows a magnifier; clicking opens it large in the page (← → between pictures; Esc, a click outside or × closes).
 - **Replying to a particular message:** Reply on any reply quotes it (author and first line) at the top of the new reply, linking back to it, like WhatsApp; if the original is deleted the quote says so.
 
 **Admins** (Admin in the menu)
 - Publish, edit, unpublish and delete class guides, with the same editor and pictures for "What was discussed" (with headings) and each homework's instructions. Saving is all-or-nothing.
 - See who handed in what; manage members (make admin, remove and restore, one-time reset link, delete for good); change the join code (at least 10 characters).
 
-One-click buttons (Publish, Pin, Delete, Remove, Reviewed, Undo) show a message if they can't do their job, and forms keep what was typed when something is refused. All dates are shown and entered in Pakistan time.
+Deleting asks in the portal's own dialog (never the browser's pop-up). One-click buttons (Publish, Pin, Delete, Remove, Reviewed, Undo) show a message if they can't do their job, and forms keep what was typed when something is refused. All dates are shown and entered in Pakistan time.
 
 ## How it's built
 
@@ -56,7 +56,7 @@ Each file says at the top whether to run it in the live project's SQL Editor **b
 | `app/(auth)/` | Log in, join the batch, forgot and reset password (`actions.ts` has the server actions) |
 | `app/auth/confirm/` | Opens password-reset links |
 | `app/(member)/` | Everything behind the login: dashboard (`page.tsx`), `classes/`, `discussions/`, `profile/`, `admin/` |
-| `app/components/` | Header and nav, thread view, the message editor with pictures (`Composer`), pictures in messages (`PostImages`), homework control, progress card, the error banner (`FlashError`), forms |
+| `app/components/` | Header and nav, thread view, the message editor with pictures (`Composer`), pictures in messages and the in-page viewer (`PostImages`, `ImageGallery`), dialogs on the native `<dialog>` (`Modal`, `ConfirmButton`), homework control, progress card, the error banner (`FlashError`), forms |
 | `app/actions/` | Server actions shared across pages: picture upload and discard (`images.ts`) |
 | `lib/` | `auth` (member and admin guards), `progress` and `status` (due, overdue, catch-up), `greeting`, `flash` (error codes and messages), `signup-throttle`, `markdown` (rendering and quote excerpts), `images` and `images-server` (picture rules, signed links, clean-up), `shrink-image` (in the browser), `time`, `limits`, `errors`, `forms`, and `supabase/` clients |
 | `proxy.ts` | Refreshes the login cookie and sends signed-out visitors to `/login` |

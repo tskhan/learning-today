@@ -73,7 +73,12 @@ function PostCard({ kind, post, member, basePath, edit, threadTitle, systemPost 
                 <input type="hidden" name="kind" value={kind} />
                 <input type="hidden" name="id" value={post.id} />
                 <input type="hidden" name="return_to" value={basePath} />
-                <ConfirmButton message={kind === "thread" ? "Delete this discussion and all its replies?" : "Delete this reply?"}>
+                <ConfirmButton
+                  title={kind === "thread" ? "Delete this discussion?" : "Delete this reply?"}
+                  message={kind === "thread"
+                    ? "All its replies and pictures will be deleted too. This can't be undone."
+                    : "Its pictures will be deleted too. This can't be undone."}
+                >
                   Delete
                 </ConfirmButton>
               </form>
