@@ -20,6 +20,7 @@ You will copy a few keys between websites. **Never paste a key into a chat, an e
    - Make a fourth **New query** and do the same with [`20261123000002_security_hardening.sql`](supabase/migrations/20261123000002_security_hardening.sql). This limits join-code guessing, keeps hand-in notes private, and starts any account not made by the portal's join form as removed.
    - Make a fifth **New query** and do the same with [`20261124000001_portal_improvements.sql`](supabase/migrations/20261124000001_portal_improvements.sql). This saves each class all-or-nothing, hides a class's question thread while the class is a draft, and renames the thread when a class is renumbered.
    - Make a sixth **New query** and do the same with [`20261124000002_rich_posts.sql`](supabase/migrations/20261124000002_rich_posts.sql). This adds pictures in messages and class guides (it creates the private `post-images` storage bucket for you) and replies that quote an earlier reply.
+   - Make a seventh **New query** and do the same with [`20261124000003_class_notifications.sql`](supabase/migrations/20261124000003_class_notifications.sql). This lets the portal email members when a new class guide is published, and adds the "New" badge and the email switch in Profile.
 3. **Turn off open sign-ups.** Go to **Authentication → Sign In / Providers**.
    - Turn **off** "Allow new users to sign up". (People join through the portal's own form, which checks the join code.)
    - Under **Email**, turn **off** "Confirm email". Click **Save**.
@@ -50,6 +51,7 @@ You will copy a few keys between websites. **Never paste a key into a chat, an e
    - Username: `resend`
    - Password: the Resend key from step 4
    - Click **Save**.
+6. **A key for the new-class emails.** Back in Resend, **API Keys → Create API key** again: name it `portal-class-emails`, permission **Sending access**, domain `learning-today.com`. Copy it (shown once) for the `RESEND_API_KEY` variable in step 3. (If the portal is already live: Vercel → your project → **Settings → Environment Variables → Add**, name `RESEND_API_KEY`, mark it **Sensitive**, then **Deployments → … → Redeploy**.)
 
 ## 3. Vercel: hosting the portal
 
@@ -57,7 +59,7 @@ You will copy a few keys between websites. **Never paste a key into a chat, an e
 2. On the configure screen:
    - **Root Directory:** click **Edit** and choose `portal`.
    - Framework preset: **Next.js** (Vercel picks it automatically).
-   - Open **Environment Variables** and add these four:
+   - Open **Environment Variables** and add these five:
 
      | Name | Value |
      |---|---|
@@ -65,6 +67,7 @@ You will copy a few keys between websites. **Never paste a key into a chat, an e
      | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | your `sb_publishable_…` key |
      | `SUPABASE_SECRET_KEY` | your `sb_secret_…` key |
      | `NEXT_PUBLIC_SITE_URL` | `https://portal.learning-today.com` |
+     | `RESEND_API_KEY` | a Resend API key for the new-class emails (see step 2.6); mark it **Sensitive** |
 
 3. Click **Deploy** and wait for the confetti. Vercel gives you a temporary address ending in `.vercel.app`.
 4. Under **Settings → Git**, check that the **Production Branch** is `main`. From now on, every change merged into `main` updates the portal automatically.
@@ -90,6 +93,8 @@ You will copy a few keys between websites. **Never paste a key into a chat, an e
 - Then merge the branch so the **Sign-in** link appears in the learning-today.com menu.
 
 ## Good to know
+
+- **New-class emails:** the first time a class guide is published, every active member who hasn't turned it off in Profile gets an email (the admin who published it doesn't). Admin → Classes shows when members were emailed; if sending failed or `RESEND_API_KEY` wasn't set yet, an **Email members** button appears there. Old classes are never announced. Resend's free plan sends up to 100 emails a day and 3,000 a month, enough for one email per class to a batch of under 100.
 
 - **Updating the database later:** each new file in `supabase/migrations/` says at the top whether to run it before or after merging the matching change. Run it once, in the SQL Editor, in date order.
 

@@ -8,6 +8,8 @@ export const FLASH_MESSAGES = {
   gone: "That item no longer exists, so nothing was changed.",
   not_yours: "You can only change your own posts.",
   self: "You can't change your own role or status. Ask another admin.",
+  email_off: "Class emails aren't set up yet: add RESEND_API_KEY in Vercel (see portal/SETUP.md), then try again.",
+  email_failed: "The class email couldn't be sent. Check RESEND_API_KEY in Vercel, then try again.",
 } as const;
 
 export type FlashCode = keyof typeof FLASH_MESSAGES;
