@@ -113,8 +113,8 @@ test("replying to a particular reply quotes it and links back; deleting the orig
   await expect(quote).toHaveAttribute("href", `#${originalId}`);
 
   // delete the original: the quote says it was deleted
-  page.once("dialog", (d) => d.accept());
   await page.locator("article.post").nth(1).getByRole("button", { name: "Delete" }).click();
+  await page.getByRole("dialog").getByRole("button", { name: "Delete" }).click();
   await expect(page.getByText("Original message was deleted")).toBeVisible();
 });
 
@@ -139,8 +139,8 @@ test("deleting a reply deletes its pictures; editing can remove a picture", asyn
   expect((await stored("posts", postId)).images).toEqual([second]);
   await expect.poll(() => fileExists(first)).toBe(false);
 
-  page.once("dialog", (d) => d.accept());
   await page.locator(`#post-${postId}`).getByRole("button", { name: "Delete" }).click();
+  await page.getByRole("dialog").getByRole("button", { name: "Delete" }).click();
   await expect(page.locator(`#post-${postId}`)).toHaveCount(0);
   await expect.poll(() => fileExists(second)).toBe(false);
 });
