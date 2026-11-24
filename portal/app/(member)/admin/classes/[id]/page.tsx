@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { requireAdmin } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { isoToKarachiInput } from "@/lib/time";
 import { ClassForm } from "../ClassForm";
@@ -20,6 +21,8 @@ interface Row {
 }
 
 export default async function EditClassPage({ params }: { params: Promise<{ id: string }> }) {
+  // Checked here as well as in the admin layout: a layout isn't re-run on every page change.
+  await requireAdmin();
   const { id } = await params;
   const supabase = await createClient();
   const { data: cls } = await supabase

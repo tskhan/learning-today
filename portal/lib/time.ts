@@ -2,10 +2,14 @@
 const ZONE = "Asia/Karachi";
 const OFFSET = "+05:00";
 
-/** "2026-11-30T23:59" typed in Pakistan time → "2026-11-30T18:59:00.000Z". */
+/**
+ * "2026-11-30T23:59" typed in Pakistan time → "2026-11-30T18:59:00.000Z". Some browsers send
+ * seconds too ("2026-11-30T23:59:00" or "…:00.000"); those are accepted.
+ */
 export function karachiInputToISO(local: string): string {
-  if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(local)) throw new Error(`Not a date and time: ${local}`);
-  const date = new Date(`${local}:00${OFFSET}`);
+  const m = /^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2})(?::(\d{2})(?:\.\d{1,3})?)?$/.exec(local);
+  if (!m) throw new Error(`Not a date and time: ${local}`);
+  const date = new Date(`${m[1]}:${m[2] ?? "00"}${OFFSET}`);
   if (Number.isNaN(date.getTime())) throw new Error(`Not a date and time: ${local}`);
   return date.toISOString();
 }

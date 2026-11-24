@@ -7,6 +7,7 @@ import { requireAdmin, requireMember } from "@/lib/auth";
 import { friendlyError } from "@/lib/errors";
 import { field, safeNext, type FormState } from "@/lib/forms";
 import { LIMITS } from "@/lib/limits";
+import { withError } from "@/lib/flash";
 
 function checkTitle(raw: string): { value?: string; error?: string } {
   const value = raw.trim();
@@ -89,12 +90,16 @@ export async function deletePost(fd: FormData): Promise<void> {
   const id = Number(field(fd, "id"));
   const returnTo = safeNext(fd.get("return_to"));
   const supabase = await createClient();
+  // Row-level security quietly skips rows you may not delete, so check that one was deleted.
+  const { data, error } = kind === "thread"
+    ? await supabase.from("threads").delete().eq("id", id).select("id")
+    : await supabase.from("posts").delete().eq("id", id).select("id");
+  if (error) redirect(withError(returnTo, "save_failed"));
+  if (!data?.length) redirect(withError(returnTo, "not_yours"));
   if (kind === "thread") {
-    await supabase.from("threads").delete().eq("id", id);
     refresh();
     redirect("/discussions");
   }
-  await supabase.from("posts").delete().eq("id", id);
   refresh(returnTo);
   redirect(returnTo);
 }
@@ -103,6 +108,8 @@ export async function setPinned(fd: FormData): Promise<void> {
   await requireAdmin();
   const threadId = Number(field(fd, "thread_id"));
   const pinned = field(fd, "pinned") === "true";
-  await createAdminClient().from("threads").update({ pinned }).eq("id", threadId);
+  const { data, error } = await createAdminClient().from("threads").update({ pinned }).eq("id", threadId).select("id");
+  if (error) redirect(withError(`/discussions/${threadId}`, "save_failed"));
+  if (!data?.length) redirect(withError("/discussions", "gone"));
   refresh(`/discussions/${threadId}`);
 }

@@ -140,7 +140,7 @@ export default async function ClassGuidePage({ params, searchParams }: {
             )}
           </section>
 
-          <section className="card">
+          <section className="card" id="checklist">
             <h2>Your checklist</h2>
             <form action={setReviewed} className="row">
               <input type="hidden" name="class_id" value={cls.id} />

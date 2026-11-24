@@ -5,6 +5,11 @@ describe("Pakistan time", () => {
   it("converts a deadline typed in Pakistan time to UTC", () => {
     expect(karachiInputToISO("2026-11-30T23:59")).toBe("2026-11-30T18:59:00.000Z");
   });
+  it("accepts a deadline that the browser sent with seconds", () => {
+    expect(karachiInputToISO("2026-11-30T23:59:00")).toBe("2026-11-30T18:59:00.000Z");
+    expect(karachiInputToISO("2026-11-30T23:59:30.000")).toBe("2026-11-30T18:59:30.000Z");
+    expect(() => karachiInputToISO("2026-11-30T23:59:5")).toThrow();
+  });
   it("converts back for edit forms", () => {
     expect(isoToKarachiInput("2026-11-30T18:59:00.000Z")).toBe("2026-11-30T23:59");
     expect(isoToKarachiInput("2026-11-30T20:30:00+00:00")).toBe("2026-12-01T01:30");

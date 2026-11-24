@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { requireAdmin } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { formatDateTime } from "@/lib/time";
 
@@ -8,6 +9,8 @@ interface ClassRow { id: number; number: number; title: string; status: string }
 interface HomeworkRow { id: number; title: string; deadline: string | null; handin_expected: boolean; position: number }
 
 export default async function HandinsPage({ searchParams }: { searchParams: Promise<{ class?: string }> }) {
+  // Checked here as well as in the admin layout: a layout isn't re-run on every page change.
+  await requireAdmin();
   const { class: classParam } = await searchParams;
   const supabase = await createClient();
   const { data: classesData } = await supabase.from("classes").select("id, number, title, status").order("number", { ascending: false }).returns<ClassRow[]>();
