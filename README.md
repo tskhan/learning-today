@@ -86,7 +86,9 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 | `.nojekyll` | Tells GitHub Pages to publish the files as they are, without running Jekyll. |
 | `README.md` | This file. |
 | `portal/` | The Batch 91 Portal app (Next.js + Supabase), deployed to Vercel with Root Directory `portal`. GitHub Pages also publishes these source files as plain files; that is harmless (no secrets) and `robots.txt` keeps them out of search. See [`portal/README.md`](portal/README.md). |
-| `docs/` | Design and build plan for the portal (`docs/superpowers/`). Kept out of search by `robots.txt`. |
+| `docs/` | Design and build plan for the portal (`docs/superpowers/`), and [`docs/student-gallery.md`](docs/student-gallery.md), the rules the student gallery generator must follow. Kept out of search by `robots.txt`. |
+| `tools/check-student-gallery.mjs` | Checks that `student-websites.html` is consistent (counts, scores, ranks, tables, and the totals on the home page and in this README). Run `node tools/check-student-gallery.mjs` after regenerating the gallery; the portal's unit tests run it too. Kept out of search by `robots.txt`. |
+| `CLAUDE.md` | Short notes Claude Code reads automatically in this repo, including how to regenerate the gallery. |
 
 ## Where the content comes from
 
@@ -95,7 +97,7 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 - **Student websites:** links students posted in the same group (export of 23 Nov 2026), plus one site added on request that was shared outside it. Titles and descriptions come from each site's own public page.
 - **Ratings:** each site was opened in headless Chrome at desktop and phone width and measured. The scores are **automated estimates, not a teacher's grade**. They read what a page does, not the effort or learning behind it.
 
-The generator scripts are kept outside this repository because they work from the raw chat export. The pages here are the finished output.
+The generator scripts are kept outside this repository because they work from the raw chat export. The pages here are the finished output. The student gallery generator must follow [`docs/student-gallery.md`](docs/student-gallery.md), and every regenerated gallery must pass `node tools/check-student-gallery.mjs`.
 
 ## Privacy
 
