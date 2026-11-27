@@ -29,3 +29,14 @@ describe("student websites gallery (rules in docs/student-gallery.md)", () => {
     expect(problems.some((p) => p.includes("of 175, should be"))).toBe(true);
   });
 });
+
+describe("shared page parts", () => {
+  it("refuses a gallery with an old site.js date or the Motion script", () => {
+    const index = read("index.html");
+    const gallery = read("student-websites.html");
+    const oldScript = gallery.replace(/site\.js\?v=[^"]*/, "site.js?v=2000-01-01");
+    expect(checkGallery({ gallery: oldScript, index }).problems.join(" ")).toMatch(/site\.js script tag/);
+    const withMotion = gallery.replace("</body>", '<script src="https://cdn.jsdelivr.net/npm/motion@14.14.0/dist/motion.js"></script></body>');
+    expect(checkGallery({ gallery: withMotion, index }).problems.join(" ")).toMatch(/jsDelivr/);
+  });
+});

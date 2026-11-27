@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- make-videos-with-claude.html: beginner guide to making animated videos with Claude Code + Remotion skills, with two example videos (assets/videos/). Shared styles: theme.css. Shared script: site.js, which also runs the scroll animations using Motion (loaded from jsDelivr just before it). -->
+<!-- make-videos-with-claude.html: beginner guide to making animated videos with Claude Code + Remotion skills, with two example videos (assets/videos/). Shared styles: theme.css. Shared script: site.js, which also runs the scroll animations (with the browser's own animation API, no library). -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -83,9 +83,9 @@ th { font-family: var(--mono); font-size: 0.8rem; text-transform: uppercase; let
   <div class="header-inner">
     <a class="site-logo" href="index.html">
       <picture>
-        <source srcset="assets/logo-dark.webp" media="(prefers-color-scheme: dark)" type="image/webp">
+        <source srcset="assets/logo-dark-1x.webp 1x, assets/logo-dark-2x.webp 2x, assets/logo-dark-3x.webp 3x" media="(prefers-color-scheme: dark)" type="image/webp">
         <source srcset="assets/logo-dark.png" media="(prefers-color-scheme: dark)">
-        <source srcset="assets/logo.webp" type="image/webp">
+        <source srcset="assets/logo-1x.webp 1x, assets/logo-2x.webp 2x, assets/logo-3x.webp 3x" type="image/webp">
         <img src="assets/logo.png" width="219" height="50" alt="learning-today.com, home" fetchpriority="high">
       </picture>
     </a>
@@ -225,7 +225,6 @@ th { font-family: var(--mono); font-size: 0.8rem; text-transform: uppercase; let
     </ul>
   </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/motion@14.14.0/dist/motion.js" integrity="sha384-h780inJe2b0CurpoaBazVbWeqDdoRKVyEJr6FKch+CK4v6XkrP0WzW/FINvvvUKw" crossorigin="anonymous" defer></script>
-<script src="site.js?v=2026-11-23a" defer></script>
+<script src="site.js?v=2026-11-27a" defer></script>
 </body>
 </html>

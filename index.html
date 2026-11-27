@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- index.html: the landing page for learning-today.com. A path for learning Claude, the PIAIC Batch 91 course details and five-quarter roadmap, five core documents with previews, and links to the Links shared in Class and student websites pages. Shared styles: theme.css. Shared script: site.js, which also runs the scroll animations using Motion (loaded from jsDelivr just before it). -->
+<!-- index.html: the landing page for learning-today.com. A path for learning Claude, the PIAIC Batch 91 course details and five-quarter roadmap, five core documents with previews, and links to the Links shared in Class and student websites pages. Shared styles: theme.css. Shared script: site.js, which also runs the scroll animations (with the browser's own animation API, no library). -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -227,9 +227,9 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
   <div class="header-inner">
     <a class="site-logo" href="index.html">
       <picture>
-        <source srcset="assets/logo-dark.webp" media="(prefers-color-scheme: dark)" type="image/webp">
+        <source srcset="assets/logo-dark-1x.webp 1x, assets/logo-dark-2x.webp 2x, assets/logo-dark-3x.webp 3x" media="(prefers-color-scheme: dark)" type="image/webp">
         <source srcset="assets/logo-dark.png" media="(prefers-color-scheme: dark)">
-        <source srcset="assets/logo.webp" type="image/webp">
+        <source srcset="assets/logo-1x.webp 1x, assets/logo-2x.webp 2x, assets/logo-3x.webp 3x" type="image/webp">
         <img src="assets/logo.png" width="219" height="50" alt="learning-today.com, home" fetchpriority="high">
       </picture>
     </a>
@@ -332,7 +332,7 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
 
       <article class="feature">
         <a class="shot" href="https://agentfactory2.panaversity.org/" target="_blank" rel="noopener">
-          <picture><source type="image/webp" srcset="assets/previews/coursebook-640.webp 640w, assets/previews/coursebook.webp 960w" sizes="(max-width: 860px) 92vw, 600px"><img src="assets/previews/coursebook.jpg" width="960" height="582" loading="lazy" alt="Home page of The AI Agent Factory: the book on a sunlit desk beside the headline Education for the AI Worker Economy"></picture>
+          <picture><source type="image/webp" srcset="assets/previews/coursebook-360.webp 360w, assets/previews/coursebook-480.webp 480w, assets/previews/coursebook-640.webp 640w, assets/previews/coursebook-800.webp 800w, assets/previews/coursebook.webp 960w" sizes="(max-width: 860px) calc(100vw - 40px), 500px"><img src="assets/previews/coursebook.jpg" width="960" height="582" loading="lazy" alt="Home page of The AI Agent Factory: the book on a sunlit desk beside the headline Education for the AI Worker Economy"></picture>
         </a>
         <div class="doc-body">
           <p class="mono">Main coursebook</p>
@@ -349,7 +349,7 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
 
       <article class="feature flip">
         <a class="shot" href="https://docs.google.com/presentation/d/118LHEYY9VezecFmWQIVnVjbVDvseOJMxsZUe9W5oWwg/edit?usp=sharing" target="_blank" rel="noopener">
-          <picture><source type="image/webp" srcset="assets/previews/intro-slides-640.webp 640w, assets/previews/intro-slides.webp 960w" sizes="(max-width: 860px) 92vw, 600px"><img src="assets/previews/intro-slides.jpg" width="960" height="540" loading="lazy" alt="First slide of the introductory session: Welcome to Agentic AI Engineering, for beginners with no prior coding"></picture>
+          <picture><source type="image/webp" srcset="assets/previews/intro-slides-360.webp 360w, assets/previews/intro-slides-480.webp 480w, assets/previews/intro-slides-640.webp 640w, assets/previews/intro-slides-800.webp 800w, assets/previews/intro-slides.webp 960w" sizes="(max-width: 860px) calc(100vw - 40px), 500px"><img src="assets/previews/intro-slides.jpg" width="960" height="540" loading="lazy" alt="First slide of the introductory session: Welcome to Agentic AI Engineering, for beginners with no prior coding"></picture>
         </a>
         <div class="doc-body">
           <p class="mono">For beginners</p>
@@ -368,7 +368,7 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
       <div class="class-grid">
         <article class="mini-doc">
           <a class="shot" href="https://claude.ai/artifact/HjZE9nV8mndGoQ27uruEea?sk=e3GCNOAtwTOfj25IwDJLtQ" target="_blank" rel="noopener">
-            <picture><source type="image/webp" srcset="assets/previews/class-quest-640.webp 640w, assets/previews/class-quest.webp 960w" sizes="(max-width: 860px) 92vw, 360px"><img src="assets/previews/class-quest.jpg" width="960" height="600" loading="lazy" alt="AI Worker Quest: a game with a pixel robot guide called Bitto, teaching Chapter 1 by playing"></picture>
+            <picture><source type="image/webp" srcset="assets/previews/class-quest-360.webp 360w, assets/previews/class-quest-480.webp 480w, assets/previews/class-quest-640.webp 640w, assets/previews/class-quest-800.webp 800w, assets/previews/class-quest.webp 960w" sizes="(max-width: 860px) calc(100vw - 40px), 324px"><img src="assets/previews/class-quest.jpg" width="960" height="600" loading="lazy" alt="AI Worker Quest: a game with a pixel robot guide called Bitto, teaching Chapter 1 by playing"></picture>
           </a>
           <p class="mono">Chapter 1 game</p>
           <h3>AI Worker Quest</h3>
@@ -377,7 +377,7 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
         </article>
         <article class="mini-doc">
           <a class="shot" href="https://claude.ai/artifact/VoK6WtACCqGsijNXs4SS1K?sk=tYgJe9077QHkcGowqUkmTA" target="_blank" rel="noopener">
-            <picture><source type="image/webp" srcset="assets/previews/coding-agents-practical-640.webp 640w, assets/previews/coding-agents-practical.webp 960w" sizes="(max-width: 860px) 92vw, 360px"><img src="assets/previews/coding-agents-practical.jpg" width="960" height="600" loading="lazy" alt="Title slide: Build a website with a coding agent, showing a terminal running OpenCode beside the finished page"></picture>
+            <picture><source type="image/webp" srcset="assets/previews/coding-agents-practical-360.webp 360w, assets/previews/coding-agents-practical-480.webp 480w, assets/previews/coding-agents-practical-640.webp 640w, assets/previews/coding-agents-practical-800.webp 800w, assets/previews/coding-agents-practical.webp 960w" sizes="(max-width: 860px) calc(100vw - 40px), 324px"><img src="assets/previews/coding-agents-practical.jpg" width="960" height="600" loading="lazy" alt="Title slide: Build a website with a coding agent, showing a terminal running OpenCode beside the finished page"></picture>
           </a>
           <p class="mono">Class 5 slides, 15 Nov</p>
           <h3>Build a website with a coding agent</h3>
@@ -386,7 +386,7 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
         </article>
         <article class="mini-doc">
           <a class="shot" href="https://claude.ai/artifact/77bKtX6VwqtNxNvx39wAVy?sk=DzBLtP6Nli-szRNlP3bJbg" target="_blank" rel="noopener">
-            <picture><source type="image/webp" srcset="assets/previews/claude-2-practical-640.webp 640w, assets/previews/claude-2-practical.webp 960w" sizes="(max-width: 860px) 92vw, 360px"><img src="assets/previews/claude-2-practical.jpg" width="960" height="600" loading="lazy" alt="Title slide of Claude and ChatGPT 2.0, the practical class: from download to handing AI a whole job"></picture>
+            <picture><source type="image/webp" srcset="assets/previews/claude-2-practical-360.webp 360w, assets/previews/claude-2-practical-480.webp 480w, assets/previews/claude-2-practical-640.webp 640w, assets/previews/claude-2-practical-800.webp 800w, assets/previews/claude-2-practical.webp 960w" sizes="(max-width: 860px) calc(100vw - 40px), 324px"><img src="assets/previews/claude-2-practical.jpg" width="960" height="600" loading="lazy" alt="Title slide of Claude and ChatGPT 2.0, the practical class: from download to handing AI a whole job"></picture>
           </a>
           <p class="mono">Class 5 slides, 15 Nov</p>
           <h3>Claude and ChatGPT 2.0: the practical</h3>
@@ -493,8 +493,7 @@ main > section:last-child, .batch, section:has(+ .batch) { padding-block-end: va
     </ul>
   </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/motion@14.14.0/dist/motion.js" integrity="sha384-h780inJe2b0CurpoaBazVbWeqDdoRKVyEJr6FKch+CK4v6XkrP0WzW/FINvvvUKw" crossorigin="anonymous" defer></script>
-<script src="site.js?v=2026-11-23a" defer></script>
+<script src="site.js?v=2026-11-27a" defer></script>
 <script>
 /* Hero prompt demo: types each prompt, shows its result, then moves on. Hover or keyboard focus
    pauses it; the link follows the prompt on screen. With reduced motion it stays on the first prompt. */

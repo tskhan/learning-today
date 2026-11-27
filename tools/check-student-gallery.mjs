@@ -156,7 +156,18 @@ export function checkGallery({ gallery, index = null, readme = null }) {
   if (index !== null) {
     const big = index.match(/<p class="big" aria-hidden="true">(\d+)<\/p>\s*<h3>Student websites<\/h3>/);
     if (!big || Number(big[1]) !== total) fail(`index.html's Student websites card says ${big?.[1] ?? "?"}, there are ${total}.`);
+
+    // ---- parts shared with every page: copied exactly from index.html ----------------------
+    for (const [re, label] of [
+      [/<a class="site-logo"[\s\S]*?<\/a>/, "the header logo (with its 1x/2x/3x pictures)"],
+      [/<link rel="stylesheet" href="theme\.css\?v=[^"]*">/, "the theme.css link (same ?v= date)"],
+      [/<script src="site\.js\?v=[^"]*" defer><\/script>/, "the site.js script tag (same ?v= date)"],
+    ]) {
+      const want = index.match(re)?.[0];
+      if (want && !gallery.includes(want)) fail(`${label} differs from index.html; copy it from there.`);
+    }
   }
+  if (/cdn\.jsdelivr\.net|motion@/.test(gallery)) fail("The page loads a script from jsDelivr (Motion). The animations are in site.js now; remove that script tag.");
   if (readme !== null) {
     const lovable = platCount.get("Lovable") ?? 0;
     for (const [re, want, label] of [

@@ -43,6 +43,12 @@ The general rule behind both: **every number on the page is computed from the fi
 - Filter chips: one per kind of site (`data-cat`), each showing how many cards have it; no chip for a kind with no cards.
 - Footer: `Compiled from the Batch 91 chat export of <date>.`
 
+### Shared page parts (from November 27, 2026)
+Copy these from `index.html` exactly, so the gallery looks and loads like every other page (the checker compares them):
+- the header logo `<a class="site-logo">…</a>`, whose `<source>` tags list `assets/logo-1x.webp 1x, assets/logo-2x.webp 2x, assets/logo-3x.webp 3x` (and the same for `logo-dark-`);
+- `<link rel="stylesheet" href="theme.css?v=…">` and `<script src="site.js?v=…" defer></script>`, with the same `?v=` dates as `index.html`;
+- **no** Motion `<script>` from `cdn.jsdelivr.net`: `site.js` does the scroll animations itself now. The page loads no script from another site except Google Analytics.
+
 ### Elsewhere in the repo
 When the total changes, also update (the checker verifies the first two):
 - `index.html`: the big number on the Student websites card.

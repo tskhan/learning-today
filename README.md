@@ -10,7 +10,7 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 | | Static site | Batch 91 Portal |
 |---|---|---|
 | Address | https://learning-today.com | https://portal.learning-today.com |
-| Built with | Plain HTML, CSS and JavaScript (no build step); [Motion](https://motion.dev) 14.14 for animations | Next.js 16.4, React 19.3, TypeScript, Supabase (Auth, Postgres, Storage for pictures), Tiptap 3.33 editor saving Markdown, `marked` 18 + `sanitize-html` |
+| Built with | Plain HTML, CSS and JavaScript (no build step, no libraries); the browser's own Web Animations API for animations | Next.js 16.4, React 19.3, TypeScript, Supabase (Auth, Postgres, Storage for pictures), Tiptap 3.33 editor saving Markdown, `marked` 18 + `sanitize-html` |
 | Hosted on | GitHub Pages, from `main` | Vercel (Root Directory `portal`), from `main`; Resend sends its emails |
 | Tested with | `tools/check-student-gallery.mjs` and link checks in the portal's unit tests | Vitest 5 (unit and database), Playwright 1.65 (browser), Supabase CLI 3 (local database) |
 
@@ -25,7 +25,7 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 - **Home page:** a hero with a typing demo, a pinned practice quiz, a **Batch 91 Portal** card right after the hero, the Batch 91 class timeline, five core documents with previews, a Learn Claude path, the five-quarter roadmap and Class resources.
 - **Links shared in Class**, **Student websites** (177 sites with live previews, search, kind-of-site filters, automated ratings and five rankings) and **Make Videos with Claude**, plus a privacy page that explains both the site and the portal.
 - **Student gallery checks:** the gallery is generated outside this repo; [`docs/student-gallery.md`](docs/student-gallery.md) sets the rules (every count, rank and filter is computed from the final list of cards; ranks count only rated sites) and `node tools/check-student-gallery.mjs` checks them.
-- Motion-based scroll reveals and count-ups that respect reduced motion, WebP images with fallbacks, a sitemap, and `robots.txt` that keeps the portal source, `docs/` and the student gallery out of search.
+- Scroll reveals and count-ups (Web Animations API) that respect reduced motion, WebP images in several sizes with fallbacks, a sitemap, and `robots.txt` that keeps the portal source, `docs/` and the student gallery out of search.
 
 ### The Batch 91 Portal: frontend (Next.js on Vercel)
 
@@ -72,11 +72,11 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 | `student-websites.html` | The student websites gallery (see above). Large, because it holds all 177 cards and the five rankings. |
 | `make-videos-with-claude.html` | The Make Videos with Claude guide (see above). |
 | `theme.css` | The shared design theme used by every page: colour tokens for light and dark mode, the fonts, the header and navigation, buttons and the footer. Changing a colour here changes it everywhere. Each page links it as `theme.css?v=DATE` (and `site.js?v=DATE`); after changing either file, update that date on every page so browsers fetch the new copy instead of a cached one. |
-| `site.js` | The one script every page shares, in two parts. **Header:** shows the header links inline when they fit and collapses them into a menu when they do not, and loads a small, self-hosted popover polyfill only in browsers that lack native support. **Motion effects:** below-the-fold sections rise into view as you scroll, the big numbers (home page and Links shared in Class) count up once, and the ranking bars on Student websites fill in. It uses [Motion](https://motion.dev) 14.14.0, which each page loads from jsDelivr in a script tag just before `site.js`. Content already on screen is never hidden, nothing animates with reduced motion turned on, everything shows normally if the CDN fails, and printing shows all content. The tag carries an `integrity` hash, so browsers refuse a copy that differs from Motion 14.14.0. To change the Motion version, edit that script tag on every page and replace the hash (sha384 of the new `dist/motion.js`). |
+| `site.js` | The one script every page shares, in two parts. **Header:** shows the header links inline when they fit and collapses them into a menu when they do not, and loads a small, self-hosted popover polyfill only in browsers that lack native support. **Motion effects:** below-the-fold sections rise into view as you scroll, the big numbers (home page and Links shared in Class) count up once, and the ranking bars on Student websites fill in. They use the browser's own Web Animations API and IntersectionObserver, with no library and nothing loaded from another site. Content already on screen is never hidden, nothing animates with reduced motion turned on or in browsers without these APIs, and printing shows all content. It never measures the page while it runs (sizes and positions come from ResizeObserver and IntersectionObserver), so loading it doesn't force an extra layout. |
 | `assets/logo.png` | The learning-today.com logo as a transparent image, shown in the header of every page on light backgrounds. |
 | `assets/logo-dark.png` | The same logo with the navy recoloured cream, so it stays readable on dark backgrounds. The header switches to it automatically in dark mode. |
-| `assets/logo.webp`, `assets/logo-dark.webp` | WebP copies of the two logos, about 40% smaller. Browsers that support WebP (nearly all) load these; the PNGs stay as the fallback. |
-| `assets/previews/*.webp`, `assets/previews/*-640.webp` | WebP copies of each preview image at 960 px and 640 px wide. The home page lets the browser pick the size it needs; the JPGs below stay as the fallback. |
+| `assets/logo-1x.webp`, `-2x`, `-3x` (and `logo-dark-…`) | WebP copies of the two logos at the header's size (123×28) for ordinary, sharp and very sharp screens; each browser loads the one it needs (3–13 KB instead of 21 KB). The PNGs stay as the fallback. `logo.webp` and `logo-dark.webp` are the full-size copies, kept for reference. |
+| `assets/previews/*-360.webp`, `-480`, `-640`, `-800` and `*.webp` (960) | WebP copies of each preview image at five widths. The home page tells the browser how wide each picture shows (`sizes`) and it picks the smallest that is sharp enough; the JPGs below stay as the fallback. Made from the JPGs at WebP quality 80. |
 | `assets/icon-192.png` | Square 192 px icon: the book-and-arrow mark on a white tile. Used as a browser tab icon on high-resolution screens. |
 | `favicon.ico` | The browser tab icon (16, 32 and 48 px versions of the same mark). |
 | `apple-touch-icon.png` | 180 px icon used when the site is added to an iPhone or iPad home screen. |
@@ -126,7 +126,7 @@ python -m http.server 8000
 # then visit http://localhost:8000
 ```
 
-The only outside code is Motion, loaded from jsDelivr for the animations with an integrity hash so the browser refuses any changed copy. The popover polyfill that older browsers need is served from this site (`assets/vendor/`). Fonts (Oswald for headings, Inter for text) load from Google Fonts without blocking the first paint. Offline, the pages still work, just without animations or the web fonts. The student gallery shows live previews of each student's site, so it needs an internet connection.
+No outside code runs on the pages except Google Analytics: the animations are in `site.js`, and the popover polyfill that older browsers need is served from this site (`assets/vendor/`). Fonts (Oswald for headings, Inter for text) load from Google Fonts without blocking the first paint. Offline, the pages still work, just without the web fonts. The student gallery shows live previews of each student's site, so it needs an internet connection.
 
 ## Hosting and domain
 
@@ -153,7 +153,7 @@ HTTPS is enforced, and the certificate renews itself. A push to `main` redeploys
 - One shared theme across every page: light grey grounds (near black in dark mode), charcoal ink, one orange accent, condensed uppercase Oswald headings and Inter text. Green marks student work.
 - Light and dark mode follow the device setting, using `color-scheme` and `light-dark()` with a media-query fallback.
 - The header uses a native popover for the narrow-screen menu. Links shared in Class and Student websites sit together under a Class resources dropdown (a `details` element), second in the menu after Sign-in. On wide screens the header row is padded so it lines up with the 1024px content column. All animation respects `prefers-reduced-motion`.
-- Animation is layered: small CSS animations for the hero entrance, the hero's typing demo, the menu and the cards on Links shared in Class; Motion (in `site.js`) for scroll reveals, count-ups and ranking bars. The filterable card grid on Student websites is left unanimated so it never clashes with search and filters.
+- Animation is layered: small CSS animations for the hero entrance, the hero's typing demo, the menu and the cards on Links shared in Class; the Web Animations API (in `site.js`) for scroll reveals, count-ups and ranking bars. The filterable card grid on Student websites is left unanimated so it never clashes with search and filters.
 - Previews of the class documents are screenshots, so they do not update if the originals change.
 
 ## Credits
