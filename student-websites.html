@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- student-websites.html: a gallery of the websites Batch 91 students built, with live previews, search, filters and automated ratings out of 100 for concept, uniqueness, design and usability. Ratings are estimates, not a teacher's grade. Shared styles: theme.css. Shared script: site.js, which also runs the scroll animations using Motion (loaded from jsDelivr just before it). -->
+<!-- student-websites.html: a gallery of the websites Batch 91 students built, with live previews, search, filters and automated ratings out of 100 for concept, uniqueness, design and usability. Ratings are estimates, not a teacher's grade. Shared styles: theme.css. Shared script: site.js, which also runs the scroll animations (with the browser's own animation API, no library). -->
 <html lang="en" data-type="gallery">
 <head>
 <meta charset="utf-8">
@@ -203,9 +203,9 @@ footer{padding:80px 0 64px;color:var(--mute);font:400 .9rem var(--sans)}
   <div class="header-inner">
     <a class="site-logo" href="index.html">
       <picture>
-        <source srcset="assets/logo-dark.webp" media="(prefers-color-scheme: dark)" type="image/webp">
+        <source srcset="assets/logo-dark-1x.webp 1x, assets/logo-dark-2x.webp 2x, assets/logo-dark-3x.webp 3x" media="(prefers-color-scheme: dark)" type="image/webp">
         <source srcset="assets/logo-dark.png" media="(prefers-color-scheme: dark)">
-        <source srcset="assets/logo.webp" type="image/webp">
+        <source srcset="assets/logo-1x.webp 1x, assets/logo-2x.webp 2x, assets/logo-3x.webp 3x" type="image/webp">
         <img src="assets/logo.png" width="219" height="50" alt="learning-today.com, home" fetchpriority="high">
       </picture>
     </a>
@@ -345,7 +345,6 @@ document.querySelectorAll('.showall').forEach(function(b){b.addEventListener('cl
     <p class="foot-note">Compiled from the Batch 91 chat export of 23 Nov 2026. Cards show the live page; a site that blocks embedding or was offline when checked shows a plain tile. Scores are automated estimates, not a teacher's grade.</p>
   </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/motion@14.14.0/dist/motion.js" integrity="sha384-h780inJe2b0CurpoaBazVbWeqDdoRKVyEJr6FKch+CK4v6XkrP0WzW/FINvvvUKw" crossorigin="anonymous" defer></script>
-<script src="site.js?v=2026-11-23a" defer></script>
+<script src="site.js?v=2026-11-27a" defer></script>
 </body>
 </html>

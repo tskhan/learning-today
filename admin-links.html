@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- admin-links.html (Links shared in Class): every link the Batch 91 class admins posted, with the story behind it from the chat and a description of the link itself. Repeated links are merged, key ones are starred, and Google Slides and Docs files have download buttons. Shared styles: theme.css. Shared script: site.js, which also runs the scroll animations using Motion (loaded from jsDelivr just before it). -->
+<!-- admin-links.html (Links shared in Class): every link the Batch 91 class admins posted, with the story behind it from the chat and a description of the link itself. Repeated links are merged, key ones are starred, and Google Slides and Docs files have download buttons. Shared styles: theme.css. Shared script: site.js, which also runs the scroll animations (with the browser's own animation API, no library). -->
 <html lang="en"><head><meta charset="utf-8">
 <!-- Google Analytics (GA4). The page view is queued at once, but the Google script itself
      loads only after the page has finished loading (2.5 s later) or at the visitor's first
@@ -146,9 +146,9 @@ details[open] summary::before{content:"\2212  "}
   <div class="header-inner">
     <a class="site-logo" href="index.html">
       <picture>
-        <source srcset="assets/logo-dark.webp" media="(prefers-color-scheme: dark)" type="image/webp">
+        <source srcset="assets/logo-dark-1x.webp 1x, assets/logo-dark-2x.webp 2x, assets/logo-dark-3x.webp 3x" media="(prefers-color-scheme: dark)" type="image/webp">
         <source srcset="assets/logo-dark.png" media="(prefers-color-scheme: dark)">
-        <source srcset="assets/logo.webp" type="image/webp">
+        <source srcset="assets/logo-1x.webp 1x, assets/logo-2x.webp 2x, assets/logo-3x.webp 3x" type="image/webp">
         <img src="assets/logo.png" width="219" height="50" alt="learning-today.com, home" fetchpriority="high">
       </picture>
     </a>
@@ -211,6 +211,5 @@ document.querySelectorAll('section').forEach(function(s){s.classList.toggle('hid
     <p class="foot-note">Compiled from the Batch 91 chat export of 15 Nov 2026.</p>
   </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/motion@14.14.0/dist/motion.js" integrity="sha384-h780inJe2b0CurpoaBazVbWeqDdoRKVyEJr6FKch+CK4v6XkrP0WzW/FINvvvUKw" crossorigin="anonymous" defer></script>
-<script src="site.js?v=2026-11-23a" defer></script>
+<script src="site.js?v=2026-11-27a" defer></script>
 </body></html>
