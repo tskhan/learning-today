@@ -27,7 +27,7 @@ test("parsePage reads the committed page", () => {
 });
 
 test("searchText reproduces every card's data-q", () => {
-  const decode = (x) => x.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
+  const decode = (x) => x.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&#x27;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&");
   const qs = [...page.matchAll(/<li class="site"[^>]*data-q="([^"]*)"/g)].map((x) => decode(x[1]));
   const m = parsePage(page);
   assert.equal(qs.length, m.cards.length);
