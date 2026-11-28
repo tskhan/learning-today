@@ -48,3 +48,11 @@ test("the export date defaults to the last message's date, not the last link's",
   assert.equal(lastMessageDate(text), "2026-10-25");
   assert.equal(lastMessageDate(fixture("chat-monthfirst.txt")), "2026-10-23");
 });
+
+test("existing links keep their order; new links are added at the end, oldest first", () => {
+  const existing = { exportDate: "2026-10-21", links: [
+    { url: "https://z-first.lovable.app", firstPosted: "2026-10-19", lastPosted: "2026-10-19", times: 1 },
+    { url: "https://a-second.lovable.app", firstPosted: "2026-10-18", lastPosted: "2026-10-18", times: 1 }] };
+  const { links } = mergeLinks(existing, [{ url: "https://new-late.lovable.app", date: "2026-10-25" }, { url: "https://new-early.lovable.app", date: "2026-10-22" }], []);
+  assert.deepEqual(links.map((l) => l.url), ["https://z-first.lovable.app", "https://a-second.lovable.app", "https://new-early.lovable.app", "https://new-late.lovable.app"]);
+});

@@ -117,7 +117,12 @@ export function mergeLinks(existing, found, removed) {
   }
   for (const [url, n] of counts) byUrl.get(url).times = Math.max(byUrl.get(url).times ?? 1, n);
   for (const url of removedSet) byUrl.delete(url);
-  const links = [...byUrl.values()].sort((a, b) => a.firstPosted.localeCompare(b.firstPosted) || a.url.localeCompare(b.url));
+  // Saved links keep their order (it is the order cards appear in); new ones go at the end, oldest first.
+  const addedSet = new Set(added);
+  const kept = [...byUrl.values()].filter((l) => !addedSet.has(l.url));
+  const fresh = [...byUrl.values()].filter((l) => addedSet.has(l.url))
+    .sort((a, b) => a.firstPosted.localeCompare(b.firstPosted) || a.url.localeCompare(b.url));
+  const links = [...kept, ...fresh];
   return { links, added, skipped };
 }
 
