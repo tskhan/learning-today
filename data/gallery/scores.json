@@ -1,0 +1,4593 @@
+{
+  "methodVersion": 1,
+  "rubricVersion": 1,
+  "sites": {
+    "https://agentic-ai-answer-studio.lovable.app": {
+      "methodVersion": 0,
+      "title": "Ayan Memon: Agentic AI Engineer | Autonomous AI Agents",
+      "description": "Senior Agentic AI engineer building autonomous AI agents, multi-agent systems, RAG and AI automation for businesses.",
+      "host": "agentic-ai-answer-studio.lovable.app",
+      "platform": "Lovable",
+      "color": "#0b6159",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 84,
+        "concept": 99,
+        "uniqueness": 72,
+        "design": 83,
+        "usability": 84,
+        "kind": "Portfolio"
+      }
+    },
+    "https://agentsphere-ai.lovable.app": {
+      "methodVersion": 0,
+      "title": "AgentVerse AI: The Future of Agentic Intelligence",
+      "description": "Learn how Agentic AI systems plan, reason, use tools and complete tasks autonomously, with an interactive agent simulation.",
+      "host": "agentsphere-ai.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 84,
+        "concept": 91,
+        "uniqueness": 72,
+        "design": 88,
+        "usability": 85,
+        "kind": "Learning"
+      }
+    },
+    "https://ahmed-memon-finance-portfolio.lovable.app": {
+      "methodVersion": 0,
+      "title": "Ahmed Memon | Accounts Officer Portfolio",
+      "description": "Ahmed Memon, Accounts Officer with 3–5 years of experience in bookkeeping, AP/AR, reconciliation, financial reporting, budgeting and payroll.",
+      "host": "ahmed-memon-finance-portfolio.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 75,
+        "concept": 79,
+        "uniqueness": 62,
+        "design": 79,
+        "usability": 81,
+        "kind": "Portfolio"
+      }
+    },
+    "https://ali-authentic-ai-factory.lovable.app": {
+      "methodVersion": 0,
+      "title": "Ali Uz Zaman: Agentic AI Engineering",
+      "description": "Student of Agentic AI Engineering building the Authentic AI Factory, AI Employees that work.",
+      "host": "ali-authentic-ai-factory.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 73,
+        "concept": 70,
+        "uniqueness": 63,
+        "design": 76,
+        "usability": 82,
+        "kind": "Portfolio"
+      }
+    },
+    "https://amna-sahar-gallery-keeper.lovable.app": {
+      "methodVersion": 0,
+      "title": "Amna Sahar: AI Developer & Designer",
+      "description": "Portfolio of Amna Sahar: agentic AI, voice agents, full-stack web and luxury brand design.",
+      "host": "amna-sahar-gallery-keeper.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 85,
+        "concept": 89,
+        "uniqueness": 71,
+        "design": 94,
+        "usability": 85,
+        "kind": "Portfolio"
+      }
+    },
+    "https://bright-company-story.lovable.app": {
+      "methodVersion": 0,
+      "title": "Waheed & Co.: Liquid Cargo Carrier, Karachi",
+      "description": "Waheed & Co. delivers petroleum (POL) by owned and contract bowsers to depots, OMCs and customer sites all over Pakistan.",
+      "host": "bright-company-story.lovable.app",
+      "platform": "Lovable",
+      "color": "#0b6159",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 79,
+        "concept": 81,
+        "uniqueness": 67,
+        "design": 85,
+        "usability": 83,
+        "kind": "Business"
+      }
+    },
+    "https://chroma-vision-gallery.lovable.app": {
+      "methodVersion": 0,
+      "title": "CCTV Experts by Talha Shahid | Hikvision Camera Installation",
+      "description": "Hikvision CCTV camera packages with professional installation. 4 and 8 camera systems for homes and businesses.",
+      "host": "chroma-vision-gallery.lovable.app",
+      "platform": "Lovable",
+      "color": "#6e2610",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 74,
+        "concept": 58,
+        "uniqueness": 68,
+        "design": 84,
+        "usability": 88,
+        "kind": "Real estate"
+      }
+    },
+    "https://data-doctor-future.lovable.app": {
+      "methodVersion": 0,
+      "title": "DataDoctor - AI-Powered Data Science Tool",
+      "description": "DataDoctor uses advanced AI to analyze, clean, and transform your datasets, delivering actionable insights in seconds.",
+      "host": "data-doctor-future.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 86,
+        "concept": 88,
+        "uniqueness": 76,
+        "design": 91,
+        "usability": 88,
+        "kind": "App or game"
+      }
+    },
+    "https://ember-afterglow-studio.lovable.app": {
+      "methodVersion": 0,
+      "title": "Ember Studio: Independent digital studio",
+      "description": "Ember is an independent studio crafting websites, AI products and brands built for clarity and scale.",
+      "host": "ember-afterglow-studio.lovable.app",
+      "platform": "Lovable",
+      "color": "#7a5000",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 82,
+        "concept": 90,
+        "uniqueness": 77,
+        "design": 82,
+        "usability": 81,
+        "kind": "Business"
+      }
+    },
+    "https://fourstep-karachi-homefinder.lovable.app": {
+      "methodVersion": 0,
+      "title": "FourStep Realty: Find Your Dream Home",
+      "description": "Explore beautiful homes in Karachi, Lahore and Islamabad with FourStep Realty.",
+      "host": "fourstep-karachi-homefinder.lovable.app",
+      "platform": "Lovable",
+      "color": "#0b6159",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 80,
+        "concept": 81,
+        "uniqueness": 70,
+        "design": 89,
+        "usability": 81,
+        "kind": "Real estate"
+      }
+    },
+    "https://hamzabawani.lovable.app": {
+      "methodVersion": 0,
+      "title": "Muhammad Hamza Bawani | Full-Stack Developer",
+      "description": "Explore the interactive portfolio of Muhammad Hamza Bawani, a frontend-focused Full-Stack Developer specializing in React.js, Next.js, Angular, and mo",
+      "q": "muhammad hamza bawani | full-stack developer explore the interactive portfolio of muhammad hamza bawani, a frontend-focused full-stack developer specializing in react.js, next.js, angular, and modern web experiences. hamzabawani.lovable.app lovable portfolio",
+      "host": "hamzabawani.lovable.app",
+      "platform": "Lovable",
+      "color": "#6e2610",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 76,
+        "concept": 72,
+        "uniqueness": 66,
+        "design": 82,
+        "usability": 82,
+        "kind": "Portfolio"
+      }
+    },
+    "https://hanzala-ai-introduction.lovable.app": {
+      "methodVersion": 0,
+      "title": "Hanzala: Aspiring Agentic AI Developer & FDE",
+      "description": "Hanzala is a student and aspiring Agentic AI Developer and Forward Deployed Engineer, interested in accountancy, finance and tech.",
+      "host": "hanzala-ai-introduction.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 69,
+        "concept": 61,
+        "uniqueness": 60,
+        "design": 77,
+        "usability": 78,
+        "kind": "Portfolio"
+      }
+    },
+    "https://imran-print-and-paper-house.lovable.app": {
+      "methodVersion": 0,
+      "title": "Imran Book House & Complete Printing Solutions | Printing in Orangi Town, Karach",
+      "description": "Photocopying, colour printing, business cards, flyers, binding, flex printing and bulk school printing in Orangi Town, Karachi. Get a quote on WhatsAp",
+      "q": "imran book house & complete printing solutions | printing in orangi town, karachi photocopying, colour printing, business cards, flyers, binding, flex printing and bulk school printing in orangi town, karachi. get a quote on whatsapp. imran-print-and-paper-house.lovable.app lovable learning",
+      "host": "imran-print-and-paper-house.lovable.app",
+      "platform": "Lovable",
+      "color": "#7a5000",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 74,
+        "concept": 84,
+        "uniqueness": 56,
+        "design": 71,
+        "usability": 85,
+        "kind": "Learning"
+      }
+    },
+    "https://ishaq-khan-logistics-marine.lovable.app": {
+      "methodVersion": 0,
+      "title": "Ishaq Khan: Marine Engineering & Operations Professional",
+      "description": "15+ years in marine engineering, fleet operations and petroleum logistics. Based in Karachi, Pakistan.",
+      "host": "ishaq-khan-logistics-marine.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 79,
+        "concept": 84,
+        "uniqueness": 65,
+        "design": 78,
+        "usability": 88,
+        "kind": "Portfolio"
+      }
+    },
+    "https://jasmineforwardingdocumentation.lovable.app": {
+      "methodVersion": 0,
+      "title": "Together We Can: Zelvoriq Global Freight",
+      "description": "Zelvoriq Global Freight: sea, air, road, rail and courier shipping booked, managed and tracked for you. Connecting Business. Moving the World.",
+      "host": "jasmineforwardingdocumentation.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 78,
+        "concept": 76,
+        "uniqueness": 57,
+        "design": 93,
+        "usability": 86,
+        "kind": "Business"
+      }
+    },
+    "https://junaid-home-finder.lovable.app": {
+      "methodVersion": 0,
+      "title": "Muhammad Junaid | Real Estate Consultant in Pakistan",
+      "description": "Buy, sell, rent or invest in property with personalized guidance from Muhammad Junaid.",
+      "host": "junaid-home-finder.lovable.app",
+      "platform": "Lovable",
+      "color": "#6e2610",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 82,
+        "concept": 79,
+        "uniqueness": 68,
+        "design": 93,
+        "usability": 86,
+        "kind": "Real estate"
+      }
+    },
+    "https://mart-glow-admin.lovable.app": {
+      "methodVersion": 0,
+      "title": "Luxury Beauty Mart | Premium Cosmetics With Cash on Delivery",
+      "description": "Shop authentic luxury makeup, skincare, hair care, fragrance and beauty kits at Luxury Beauty Mart. Cash on Delivery only, delivered within 12 hours.",
+      "host": "mart-glow-admin.lovable.app",
+      "platform": "Lovable",
+      "color": "#0b6159",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 87,
+        "concept": 91,
+        "uniqueness": 81,
+        "design": 97,
+        "usability": 80,
+        "kind": "Shop"
+      }
+    },
+    "https://moodtunes-music.lovable.app": {
+      "methodVersion": 0,
+      "title": "MoodTunes: Feel Every Beat. Discover Every Mood.",
+      "description": "Discover music by mood, explore genres from around the world, and earn points as you listen.",
+      "host": "moodtunes-music.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 78,
+        "concept": 55,
+        "uniqueness": 88,
+        "design": 86,
+        "usability": 82,
+        "kind": "Other"
+      }
+    },
+    "https://motives-of-life.lovable.app": {
+      "methodVersion": 0,
+      "title": "Rise Within: Tanim Zaman & Imtinan Ahmed",
+      "description": "A fan tribute to motivational speakers Tanim Zaman and Imtinan Ahmed.",
+      "host": "motives-of-life.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 70,
+        "concept": 49,
+        "uniqueness": 69,
+        "design": 73,
+        "usability": 88,
+        "kind": "Other"
+      }
+    },
+    "https://muhammadrayyankhan-portfolio.lovable.app": {
+      "methodVersion": 0,
+      "title": "Muhammad Rayyan Khan: WordPress Developer, Web Designer & SEO Specialist",
+      "description": "Portfolio of Muhammad Rayyan Khan: professional WordPress websites, clean web design, on-page & off-page SEO, keyword research and content optimizatio",
+      "q": "muhammad rayyan khan: wordpress developer, web designer & seo specialist portfolio of muhammad rayyan khan: professional wordpress websites, clean web design, on-page & off-page seo, keyword research and content optimization. muhammadrayyankhan-portfolio.lovable.app lovable portfolio",
+      "host": "muhammadrayyankhan-portfolio.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 86,
+        "concept": 97,
+        "uniqueness": 74,
+        "design": 89,
+        "usability": 84,
+        "kind": "Portfolio"
+      }
+    },
+    "https://nexusai-workspace.lovable.app": {
+      "methodVersion": 0,
+      "title": "NEXUS AI: Beyond Chat. Into Action.",
+      "description": "An intelligent AI agent that plans, reasons, and executes tasks to achieve your goals.",
+      "host": "nexusai-workspace.lovable.app",
+      "platform": "Lovable",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 73,
+        "concept": 61,
+        "uniqueness": 68,
+        "design": 83,
+        "usability": 81,
+        "kind": "App or game"
+      }
+    },
+    "https://sac-enterprises.lovable.app": {
+      "methodVersion": 0,
+      "title": "SAC Enterprises: Screw Air Compressor Parts, All Brands",
+      "description": "Genuine and compatible screw air compressor parts for Atlas Copco, Ingersoll Rand, Sullair, Kaeser and more. Request a quote today.",
+      "host": "sac-enterprises.lovable.app",
+      "platform": "Lovable",
+      "color": "#6e2610",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 74,
+        "concept": 61,
+        "uniqueness": 79,
+        "design": 74,
+        "usability": 84,
+        "kind": "Other"
+      }
+    },
+    "https://saimverse.lovable.app": {
+      "methodVersion": 0,
+      "title": "SaimVerse Minecraft Server: Join saimverse.progamer.me",
+      "description": "Join SaimVerse, the Minecraft server by Saimkiller13. Copy the IP, vote for keys and ranks, and play with the community.",
+      "host": "saimverse.lovable.app",
+      "platform": "Lovable",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 76,
+        "concept": 61,
+        "uniqueness": 75,
+        "design": 81,
+        "usability": 88,
+        "kind": "App or game"
+      }
+    },
+    "https://saqib-public-school.lovable.app": {
+      "methodVersion": 0,
+      "title": "Saqib Public School & Coaching System: Baldia Town, Karachi",
+      "description": "Quality schooling from Class 1 to Matric, coaching and an Agentic AI course in Baldia Town, Karachi.",
+      "host": "saqib-public-school.lovable.app",
+      "platform": "Lovable",
+      "color": "#0c5079",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 87,
+        "concept": 97,
+        "uniqueness": 69,
+        "design": 97,
+        "usability": 84,
+        "kind": "Learning"
+      }
+    },
+    "https://shahmeer-hearth-co.lovable.app": {
+      "methodVersion": 0,
+      "title": "Hearth & Co: Modern goods for everyday living",
+      "description": "Discover featured products, new arrivals and special offers at Hearth & Co.",
+      "host": "shahmeer-hearth-co.lovable.app",
+      "platform": "Lovable",
+      "color": "#7a5000",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 79,
+        "concept": 72,
+        "uniqueness": 65,
+        "design": 97,
+        "usability": 82,
+        "kind": "Other"
+      }
+    },
+    "https://shahzaman-game-verse.lovable.app": {
+      "methodVersion": 0,
+      "title": "Shahzaman Khan: Gamer. Competitor. Gaming Enthusiast.",
+      "description": "The gaming portfolio of Shahzaman Khan, CS2, PUBG Mobile, Tekken and EA Sports FC.",
+      "host": "shahzaman-game-verse.lovable.app",
+      "platform": "Lovable",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 78,
+        "concept": 78,
+        "uniqueness": 68,
+        "design": 87,
+        "usability": 80,
+        "kind": "Shop"
+      }
+    },
+    "https://standout-profile-space.lovable.app": {
+      "methodVersion": 0,
+      "title": "Awan Group | Transport for Mining, Oil, Gas & Coal",
+      "description": "Awan Group provides safe, reliable transport and logistics for the mining, oil, gas and coal industries across Pakistan.",
+      "host": "standout-profile-space.lovable.app",
+      "platform": "Lovable",
+      "color": "#a03a08",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 80,
+        "concept": 80,
+        "uniqueness": 69,
+        "design": 89,
+        "usability": 82,
+        "kind": "Business"
+      }
+    },
+    "https://syedhuzaifa.lovable.app": {
+      "methodVersion": 0,
+      "title": "Essentique: Luxury Perfumes | Your Scents, Your Signature",
+      "description": "Discover Essentique luxury fragrances for men, women and unisex. Find your signature scent.",
+      "host": "syedhuzaifa.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 79,
+        "concept": 71,
+        "uniqueness": 70,
+        "design": 97,
+        "usability": 77,
+        "kind": "Shop"
+      }
+    },
+    "https://tajweed-beautiful-recitation.lovable.app": {
+      "methodVersion": 0,
+      "title": "Al-Bayan Academy: Quranic Tajweed Classes",
+      "description": "Learn to recite the Quran beautifully with qualified Tajweed teachers. Classes for adults, sisters and children.",
+      "host": "tajweed-beautiful-recitation.lovable.app",
+      "platform": "Lovable",
+      "color": "#0c5079",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 75,
+        "concept": 69,
+        "uniqueness": 68,
+        "design": 74,
+        "usability": 88,
+        "kind": "Learning"
+      }
+    },
+    "https://taskwise-report-recraft.lovable.app": {
+      "methodVersion": 0,
+      "title": "Aurum & Hide: Luxury Watches & Leather Wallets",
+      "description": "Discover refined watches and handcrafted leather wallets from Aurum & Hide.",
+      "host": "taskwise-report-recraft.lovable.app",
+      "platform": "Lovable",
+      "color": "#7a5000",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 74,
+        "concept": 67,
+        "uniqueness": 62,
+        "design": 87,
+        "usability": 82,
+        "kind": "Shop"
+      }
+    },
+    "https://ubaidmayari.lovable.app": {
+      "methodVersion": 0,
+      "title": "Ubaid Salim Mayari: Blockchain & Full Stack Developer",
+      "description": "Ubaid Salim Mayari's portfolio: smart contracts, Web3 applications and enterprise fintech development in Karachi, Pakistan.",
+      "host": "ubaidmayari.lovable.app",
+      "platform": "Lovable",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 73,
+        "concept": 86,
+        "uniqueness": 51,
+        "design": 72,
+        "usability": 83,
+        "kind": "Portfolio"
+      }
+    },
+    "https://ubaidraza.lovable.app": {
+      "methodVersion": 0,
+      "title": "Muhammad Ubaid: Agentic AI Developer, Karachi",
+      "description": "Muhammad Ubaid is an Agentic AI enthusiast and developer based in PIB Colony, Karachi, Pakistan.",
+      "host": "ubaidraza.lovable.app",
+      "platform": "Lovable",
+      "color": "#365510",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 60,
+        "concept": 41,
+        "uniqueness": 66,
+        "design": 59,
+        "usability": 74,
+        "kind": "Portfolio"
+      }
+    },
+    "https://uzair-siddiqui.lovable.app": {
+      "methodVersion": 0,
+      "title": "Uzair Siddiqui: Area Manager & Banking Leader",
+      "description": "18+ years in retail and Islamic banking across the UK, UAE and Pakistan. Area Manager at Soneri Bank, leading a PKR 24 billion portfolio.",
+      "host": "uzair-siddiqui.lovable.app",
+      "platform": "Lovable",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 70,
+        "concept": 73,
+        "uniqueness": 65,
+        "design": 64,
+        "usability": 79,
+        "kind": "App or game"
+      }
+    },
+    "https://veltrestore.lovable.app": {
+      "methodVersion": 0,
+      "title": "VELTRÉ: Modern Essential T-Shirts",
+      "description": "Shop VELTRÉ: modern essential T-shirts in seven colours and five fits.",
+      "host": "veltrestore.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 79,
+        "concept": 74,
+        "uniqueness": 68,
+        "design": 97,
+        "usability": 78,
+        "kind": "Shop"
+      }
+    },
+    "https://vexoris.lovable.app": {
+      "methodVersion": 0,
+      "title": "Adaptive Decision-Making in Changing Environments | GENESIS-X",
+      "description": "GENESIS-X is a simulation study comparing how decision-making strategies cope when reward probabilities change over time.",
+      "host": "vexoris.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 72,
+        "concept": 57,
+        "uniqueness": 76,
+        "design": 64,
+        "usability": 89,
+        "kind": "App or game"
+      }
+    },
+    "https://website-studio-spark.lovable.app": {
+      "methodVersion": 0,
+      "title": "Global Talent Network by Nadia | Recruitment, Training & Social Media",
+      "description": "Your premier partner for international recruitment, corporate workforce training, and data-driven social media growth.",
+      "host": "website-studio-spark.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 76,
+        "concept": 62,
+        "uniqueness": 72,
+        "design": 81,
+        "usability": 89,
+        "kind": "Business"
+      }
+    },
+    "https://wholespark.lovable.app": {
+      "methodVersion": 0,
+      "title": "WholeSpark: Wholesale Products at Unbeatable Prices",
+      "description": "Shop bulk wholesale products with low MOQs, tiered discounts and fast delivery.",
+      "host": "wholespark.lovable.app",
+      "platform": "Lovable",
+      "color": "#a03a08",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 81,
+        "concept": 76,
+        "uniqueness": 67,
+        "design": 94,
+        "usability": 87,
+        "kind": "Shop"
+      }
+    },
+    "https://yamna.lovable.app": {
+      "methodVersion": 0,
+      "title": "Yamna Khatoon: Agricultural Research Scientist",
+      "description": "Yamna Khatoon, Agricultural Research Scientist exploring AI-driven agri-tech, climate-smart agriculture and food safety. Plant pathology, extension an",
+      "q": "yamna khatoon: agricultural research scientist yamna khatoon, agricultural research scientist exploring ai-driven agri-tech, climate-smart agriculture and food safety. plant pathology, extension and regulatory experience in pakistan. yamna.lovable.app lovable food & drink",
+      "host": "yamna.lovable.app",
+      "platform": "Lovable",
+      "color": "#7a5000",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 84,
+        "concept": 97,
+        "uniqueness": 75,
+        "design": 84,
+        "usability": 81,
+        "kind": "Food & drink"
+      }
+    },
+    "https://yasir-afzal-ai-showcase.lovable.app": {
+      "methodVersion": 0,
+      "title": "Muhammad Afzal Soomro: AI Full-Stack & Frontend Engineer",
+      "description": "AI-driven full-stack developer in Karachi building practical web apps, FastAPI backends and AI-powered systems.",
+      "host": "yasir-afzal-ai-showcase.lovable.app",
+      "platform": "Lovable",
+      "color": "#0b6159",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 79,
+        "concept": 87,
+        "uniqueness": 58,
+        "design": 83,
+        "usability": 89,
+        "kind": "Portfolio"
+      }
+    },
+    "https://yesmesalman.lovable.app": {
+      "methodVersion": 0,
+      "title": "Salman Saleem: Casual Gamer",
+      "description": "Games, clips, gear and stats from Salman Saleem, a casual gamer balancing virtual and real life.",
+      "host": "yesmesalman.lovable.app",
+      "platform": "Lovable",
+      "color": "#365510",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 79,
+        "concept": 67,
+        "uniqueness": 80,
+        "design": 84,
+        "usability": 84,
+        "kind": "Shop"
+      }
+    },
+    "https://aayankasmani.lovable.app": {
+      "methodVersion": 0,
+      "title": "AK Designer: Graphic & UI/UX Designer, Karachi",
+      "description": "AK Designer: Graphic and UI/UX designer turning bold ideas into seamless digital products, prototypes and brand identities. Open for hire.",
+      "host": "aayankasmani.lovable.app",
+      "platform": "Lovable",
+      "color": "#6e2610",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 77,
+        "concept": 85,
+        "uniqueness": 54,
+        "design": 86,
+        "usability": 84,
+        "kind": "Portfolio"
+      }
+    },
+    "https://abdulsamadmayari.lovable.app": {
+      "methodVersion": 0,
+      "title": "Abdul Samad: Architect & Interior Designer, Karachi",
+      "description": "Portfolio of Abdul Samad, architect and interior designer with 9+ years in architecture, interiors, landscape and furniture design.",
+      "host": "abdulsamadmayari.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 76,
+        "concept": 71,
+        "uniqueness": 70,
+        "design": 78,
+        "usability": 87,
+        "kind": "Portfolio"
+      }
+    },
+    "https://aiprofessionaldev.lovable.app": {
+      "methodVersion": 0,
+      "title": "Muhammad Khalid: Forward Deployment Engineer",
+      "description": "Muhammad Khalid is a Forward Deployment Engineer: he embeds with teams, prototypes fast, and ships AI-backed systems that survive production.",
+      "host": "aiprofessionaldev.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 81,
+        "concept": 85,
+        "uniqueness": 67,
+        "design": 84,
+        "usability": 88,
+        "kind": "Portfolio"
+      }
+    },
+    "https://artful-artist-atelier.lovable.app": {
+      "methodVersion": 0,
+      "title": "Shahzeb Baloch: Graphic Designer & Commission Artist",
+      "description": "Professional graphic designer and commission artist: logos, PFPs, banners, intros and VTuber models.",
+      "host": "artful-artist-atelier.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 77,
+        "concept": 68,
+        "uniqueness": 73,
+        "design": 87,
+        "usability": 80,
+        "kind": "Portfolio"
+      }
+    },
+    "https://bestonlinetutor.lovable.app": {
+      "methodVersion": 0,
+      "title": "Best Tutor Online: Home & Online Tutors for Every Class",
+      "description": "Find verified home and online tutors for Class 1 to A-Levels, O-Levels, Matric, Inter and university. Send your inquiry in 30 seconds.",
+      "host": "bestonlinetutor.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 80,
+        "concept": 72,
+        "uniqueness": 78,
+        "design": 83,
+        "usability": 85,
+        "kind": "Real estate"
+      }
+    },
+    "https://cargo-logistics.lovable.app": {
+      "methodVersion": 0,
+      "title": "Karachi Sea & Air Logistics: Freight Forwarding Pakistan & Worldwide",
+      "description": "Track shipments, calculate freight, book cargo and manage payments. Air, ocean, road and rail logistics from Pakistan to the world.",
+      "host": "cargo-logistics.lovable.app",
+      "platform": "Lovable",
+      "color": "#a03a08",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 79,
+        "concept": 81,
+        "uniqueness": 63,
+        "design": 94,
+        "usability": 79,
+        "kind": "Business"
+      }
+    },
+    "https://cricketic.lovable.app": {
+      "methodVersion": 0,
+      "title": "Silly Point: Cricket Facts You Didn't Know",
+      "description": "Surprising, record-breaking and strange facts from the history of cricket.",
+      "host": "cricketic.lovable.app",
+      "platform": "Lovable",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 81,
+        "concept": 74,
+        "uniqueness": 77,
+        "design": 94,
+        "usability": 80,
+        "kind": "Other"
+      }
+    },
+    "https://fintech-finora.lovable.app": {
+      "methodVersion": 0,
+      "title": "Finora: Make Smarter Financial Decisions",
+      "description": "Discover, compare and understand financial products in one place, with clear information and free calculators.",
+      "host": "fintech-finora.lovable.app",
+      "platform": "Lovable",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 83,
+        "concept": 88,
+        "uniqueness": 73,
+        "design": 86,
+        "usability": 85,
+        "kind": "Other"
+      }
+    },
+    "https://hair-craft-elegance.lovable.app": {
+      "methodVersion": 0,
+      "title": "Imran Bashir Saloon | Luxury Men's Grooming",
+      "description": "Experience premium men",
+      "host": "hair-craft-elegance.lovable.app",
+      "platform": "Lovable",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 80,
+        "concept": 77,
+        "uniqueness": 67,
+        "design": 89,
+        "usability": 89,
+        "kind": "Other"
+      }
+    },
+    "https://khs-service-finder.lovable.app": {
+      "methodVersion": 0,
+      "title": "KHS: Find, Compare & Hire Home Experts in Karachi",
+      "description": "Compare trusted plumbers, AC technicians, electricians and more across Karachi by price, rating and area.",
+      "host": "khs-service-finder.lovable.app",
+      "platform": "Lovable",
+      "color": "#365510",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 86,
+        "concept": 91,
+        "uniqueness": 84,
+        "design": 86,
+        "usability": 85,
+        "kind": "Real estate"
+      }
+    },
+    "https://nexorastudio-daim.lovable.app": {
+      "methodVersion": 0,
+      "title": "NEXORA AI: Practical AI Automation for Modern Business",
+      "description": "A startup concept offering AI chatbots, workflow automation, and customer support automation for small and medium-sized businesses.",
+      "host": "nexorastudio-daim.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 85,
+        "concept": 100,
+        "uniqueness": 69,
+        "design": 86,
+        "usability": 85,
+        "kind": "App or game"
+      }
+    },
+    "https://nidapirmuhammad.lovable.app": {
+      "methodVersion": 0,
+      "title": "Nida: Educator & Data Analyst | Karachi",
+      "description": "Personal portfolio of Nida, secondary school teacher, data analyst and Python learner based in Karachi, Pakistan.",
+      "host": "nidapirmuhammad.lovable.app",
+      "platform": "Lovable",
+      "color": "#365510",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 75,
+        "concept": 77,
+        "uniqueness": 65,
+        "design": 71,
+        "usability": 86,
+        "kind": "Learning"
+      }
+    },
+    "https://professionalaa.lovable.app": {
+      "methodVersion": 0,
+      "title": "Professional: Solutions for Your Business Growth",
+      "description": "Reliable HR, administration, industrial relations, security and workplace safety solutions tailored to help your organization grow.",
+      "host": "professionalaa.lovable.app",
+      "platform": "Lovable",
+      "color": "#0c5079",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 78,
+        "concept": 91,
+        "uniqueness": 67,
+        "design": 73,
+        "usability": 81,
+        "kind": "Business"
+      }
+    },
+    "https://quran-learner-lantern.lovable.app": {
+      "methodVersion": 0,
+      "title": "Online Quran Classes 24/7 | Quran Learners Academy",
+      "description": "Learn Quran online with qualified male and female teachers. One-to-one Tajweed, Hifz online and Noorani Qaida classes for kids and adults in the USA, ",
+      "q": "online quran classes 24/7 | quran learners academy learn quran online with qualified male and female teachers. one-to-one tajweed, hifz online and noorani qaida classes for kids and adults in the usa, uk, canada and worldwide. free trial. quran-learner-lantern.lovable.app lovable shop",
+      "host": "quran-learner-lantern.lovable.app",
+      "platform": "Lovable",
+      "color": "#a03a08",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 79,
+        "concept": 92,
+        "uniqueness": 50,
+        "design": 90,
+        "usability": 83,
+        "kind": "Shop"
+      }
+    },
+    "https://rafaysheikh-portfolio.lovable.app": {
+      "methodVersion": 0,
+      "title": "Rafay Sheikh: Developer & UI/UX Designer",
+      "description": "I design and build clean, reliable web applications, from interface to database.",
+      "host": "rafaysheikh-portfolio.lovable.app",
+      "platform": "Lovable",
+      "color": "#6e2610",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 78,
+        "concept": 86,
+        "uniqueness": 60,
+        "design": 87,
+        "usability": 78,
+        "kind": "Portfolio"
+      }
+    },
+    "https://red-thread-data-portfolio.lovable.app": {
+      "methodVersion": 0,
+      "title": "Raif Rashid | Data Science Portfolio",
+      "description": "Meet Raif Rashid, a data science student and aspiring intern building practical skills in Python, analytics, statistics, SQL, and machine learning.",
+      "host": "red-thread-data-portfolio.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 77,
+        "concept": 92,
+        "uniqueness": 66,
+        "design": 72,
+        "usability": 78,
+        "kind": "Learning"
+      }
+    },
+    "https://roshniplanner.lovable.app": {
+      "methodVersion": 0,
+      "title": "Roshni: Plan your power cut before it plans you",
+      "description": "See how long your battery really lasts during load-shedding, which appliances drain it, and which backup fits your home.",
+      "host": "roshniplanner.lovable.app",
+      "platform": "Lovable",
+      "color": "#365510",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 80,
+        "concept": 81,
+        "uniqueness": 80,
+        "design": 79,
+        "usability": 82,
+        "kind": "Real estate"
+      }
+    },
+    "https://task-tuned-algorithm-visualizer.lovable.app": {
+      "methodVersion": 0,
+      "title": "AlgoFlow: Build & Visualize Algorithms",
+      "description": "Create algorithms step by step and watch the flowchart update instantly.",
+      "host": "task-tuned-algorithm-visualizer.lovable.app",
+      "platform": "Lovable",
+      "color": "#0b6159",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 66,
+        "concept": 53,
+        "uniqueness": 68,
+        "design": 66,
+        "usability": 77,
+        "kind": "Other"
+      }
+    },
+    "https://umar-atif-dev.lovable.app": {
+      "methodVersion": 0,
+      "title": "Umar Atif: MERN Stack Developer | Aspiring AI Engineer",
+      "description": "Portfolio of Umar Atif, a MERN Stack Developer from Karachi, Pakistan, now learning AI and Agentic AI.",
+      "host": "umar-atif-dev.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 78,
+        "concept": 89,
+        "uniqueness": 58,
+        "design": 82,
+        "usability": 81,
+        "kind": "Learning"
+      }
+    },
+    "https://yumna-atta-portfolio.lovable.app": {
+      "methodVersion": 0,
+      "title": "Yumna Atta: Software Engineering Student, SMIU Karachi",
+      "description": "Portfolio of Yumna Atta, Software Engineering student at Sindh Madressatul Islam University, Karachi.",
+      "host": "yumna-atta-portfolio.lovable.app",
+      "platform": "Lovable",
+      "color": "#a03a08",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 73,
+        "concept": 84,
+        "uniqueness": 56,
+        "design": 66,
+        "usability": 87,
+        "kind": "Portfolio"
+      }
+    },
+    "https://abdulwahab761.lovable.app": {
+      "methodVersion": 0,
+      "title": "NOIR: Beyond Ordinary",
+      "description": "NOIR is an independent digital studio designing the unimagined, immersive brands, real-time 3D worlds and award-winning interaction design.",
+      "host": "abdulwahab761.lovable.app",
+      "platform": "Lovable",
+      "color": "#365510",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 78,
+        "concept": 78,
+        "uniqueness": 67,
+        "design": 90,
+        "usability": 78,
+        "kind": "Business"
+      }
+    },
+    "https://athlete-gear.lovable.app": {
+      "methodVersion": 0,
+      "title": "STRIDE: Sports Equipment & Accessories",
+      "description": "Gear for athletes: cricket, football, basketball, tennis, badminton, swimming, boxing, golf, cycling and fitness gear at honest prices.",
+      "host": "athlete-gear.lovable.app",
+      "platform": "Lovable",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 85,
+        "concept": 77,
+        "uniqueness": 83,
+        "design": 94,
+        "usability": 86,
+        "kind": "Shop"
+      }
+    },
+    "https://azhanarshad.lovable.app": {
+      "methodVersion": 0,
+      "title": "Azhan Arshad",
+      "description": "Personal portfolio of Azhan Arshad.",
+      "host": "azhanarshad.lovable.app",
+      "platform": "Lovable",
+      "color": "#6e2610",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 73,
+        "concept": 65,
+        "uniqueness": 64,
+        "design": 78,
+        "usability": 84,
+        "kind": "Portfolio"
+      }
+    },
+    "https://id-preview--9ef2cf37-6def-51e9-b78a-318c8b3354ba.lovable.app": {
+      "methodVersion": 0,
+      "title": "Id Preview 9ef2cf37 6def 51e9 B78a 318c8b3354ba",
+      "description": "",
+      "host": "id-preview--9ef2cf37-6def-51e9-b78a-318c8b3354ba.lovable.app",
+      "platform": "Lovable",
+      "color": "#6e2610",
+      "embeddable": false,
+      "status": "offline",
+      "lastOkAt": null,
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "kind": "Other"
+      }
+    },
+    "https://muhammad-zaid1999.lovable.app": {
+      "methodVersion": 0,
+      "title": "Muhammad Zaid: MERN Stack Developer",
+      "description": "Portfolio of Muhammad Zaid, a MERN stack developer in Karachi building complete web applications with React, Next.js, Node.js and NestJS.",
+      "host": "muhammad-zaid1999.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 83,
+        "concept": 96,
+        "uniqueness": 59,
+        "design": 92,
+        "usability": 84,
+        "kind": "Portfolio"
+      }
+    },
+    "https://nayabtalentbridge.lovable.app": {
+      "methodVersion": 0,
+      "title": "Talent Bridge: Connecting Talent with Opportunity",
+      "description": "Discover local artisans, students and home-based creators and shop unique handmade products.",
+      "host": "nayabtalentbridge.lovable.app",
+      "platform": "Lovable",
+      "color": "#0b6159",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 82,
+        "concept": 80,
+        "uniqueness": 69,
+        "design": 97,
+        "usability": 81,
+        "kind": "Real estate"
+      }
+    },
+    "https://nooruddin.lovable.app": {
+      "methodVersion": 0,
+      "title": "NoorUddin: AI Student & Agentic AI Developer",
+      "description": "I build AI agents that automate real work. Projects, skills, and upcoming AI courses by NoorUddin from Karachi.",
+      "host": "nooruddin.lovable.app",
+      "platform": "Lovable",
+      "color": "#7a5000",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 81,
+        "concept": 84,
+        "uniqueness": 78,
+        "design": 76,
+        "usability": 86,
+        "kind": "Learning"
+      }
+    },
+    "https://pakistan-hospital-finder.lovable.app": {
+      "methodVersion": 0,
+      "title": "Pakistan Hospital Finder: Find the Right Hospital, Closer to You",
+      "description": "Search hospitals across Karachi, Lahore, Islamabad, Rawalpindi and Peshawar by city, specialty and type.",
+      "host": "pakistan-hospital-finder.lovable.app",
+      "platform": "Lovable",
+      "color": "#6e2610",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 80,
+        "concept": 70,
+        "uniqueness": 77,
+        "design": 88,
+        "usability": 84,
+        "kind": "App or game"
+      }
+    },
+    "https://personal-building-place.lovable.app": {
+      "methodVersion": 0,
+      "title": "Baseline Co Ltd.: Cables & Electrical Services, Karachi",
+      "description": "LV, MV and fiber cables plus installation, jointing, testing and maintenance in Karachi.",
+      "host": "personal-building-place.lovable.app",
+      "platform": "Lovable",
+      "color": "#365510",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 72,
+        "concept": 65,
+        "uniqueness": 68,
+        "design": 76,
+        "usability": 81,
+        "kind": "Business"
+      }
+    },
+    "https://quran-learners-worldwide.lovable.app": {
+      "methodVersion": 0,
+      "title": "Quran Learners Academy | Online Quran Classes 24/7",
+      "description": "Learn the Holy Quran online with male and female teachers, 24/7, in English and Urdu. Book a free trial class today.",
+      "host": "quran-learners-worldwide.lovable.app",
+      "platform": "Lovable",
+      "color": "#0b6159",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 77,
+        "concept": 91,
+        "uniqueness": 54,
+        "design": 80,
+        "usability": 82,
+        "kind": "Learning"
+      }
+    },
+    "https://screenshot-to-spark-409.lovable.app": {
+      "methodVersion": 0,
+      "title": "Imran Book House & Printing | Photocopy Shop in Orangi Town Karachi",
+      "description": "Photocopying, color printing, books, stationery, business cards and graphic design in Orangi Town, Karachi. Order easily on WhatsApp.",
+      "host": "screenshot-to-spark-409.lovable.app",
+      "platform": "Lovable",
+      "color": "#6e2610",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 81,
+        "concept": 97,
+        "uniqueness": 61,
+        "design": 84,
+        "usability": 82,
+        "kind": "Shop"
+      }
+    },
+    "https://x-m.lovable.app": {
+      "methodVersion": 0,
+      "title": "Axiom Arcade: Level Up Your Math",
+      "description": "Play your way from fractions to derivatives. Adaptive math games with XP, levels, streaks and achievements, progress saved in your browser.",
+      "host": "x-m.lovable.app",
+      "platform": "Lovable",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 79,
+        "concept": 74,
+        "uniqueness": 80,
+        "design": 80,
+        "usability": 82,
+        "kind": "Learning"
+      }
+    },
+    "https://axan-hotel.lovable.app": {
+      "methodVersion": 0,
+      "title": "Aurelis Grand Hotel: A World Apart. A Stay Beyond.",
+      "description": "A five-star boutique sanctuary where exceptional hospitality meets timeless design. Suites, villas, fine dining and spa on the edge of the sea.",
+      "host": "axan-hotel.lovable.app",
+      "platform": "Lovable",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 86,
+        "concept": 89,
+        "uniqueness": 77,
+        "design": 96,
+        "usability": 81,
+        "kind": "Food & drink"
+      }
+    },
+    "https://bismillah-toys-and-trikes.lovable.app": {
+      "methodVersion": 0,
+      "title": "Bismillah Toys And Trikes",
+      "description": "",
+      "host": "bismillah-toys-and-trikes.lovable.app",
+      "platform": "Lovable",
+      "color": "#1a6447",
+      "embeddable": false,
+      "status": "offline",
+      "lastOkAt": null,
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "kind": "Shop"
+      }
+    },
+    "https://compute-history-verse.lovable.app": {
+      "methodVersion": 0,
+      "title": "Digital Era House: The Evolution of Computers",
+      "description": "An interactive journey through computing history: pioneers, historical machines, modern hardware and future concepts.",
+      "host": "compute-history-verse.lovable.app",
+      "platform": "Lovable",
+      "color": "#365510",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 55,
+        "concept": 37,
+        "uniqueness": 66,
+        "design": 40,
+        "usability": 78,
+        "kind": "Other"
+      }
+    },
+    "https://hammadraees.lovable.app": {
+      "methodVersion": 0,
+      "title": "Hammad Raees: Sales Team Lead | Web, Design & Ebooks",
+      "description": "Hammad Raees is a Karachi-based Sales Team Lead closing web, design and ebook deals on Upwork and beyond.",
+      "host": "hammadraees.lovable.app",
+      "platform": "Lovable",
+      "color": "#0b6159",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 76,
+        "concept": 77,
+        "uniqueness": 55,
+        "design": 82,
+        "usability": 89,
+        "kind": "Other"
+      }
+    },
+    "https://luxe-mobile-store.lovable.app": {
+      "methodVersion": 0,
+      "title": "LuxeCell: Premium Mobile Store",
+      "description": "Shop sealed flagship smartphones, iPhone, Samsung, BlackBerry, Android, Vivo and Oppo, with next-day delivery and a 2-year warranty.",
+      "host": "luxe-mobile-store.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 79,
+        "concept": 88,
+        "uniqueness": 83,
+        "design": 81,
+        "usability": 64,
+        "kind": "Shop"
+      }
+    },
+    "https://nippon-pakistan-auto-hub.lovable.app": {
+      "methodVersion": 0,
+      "title": "Nippon Pakistan Auto Hub",
+      "description": "",
+      "host": "nippon-pakistan-auto-hub.lovable.app",
+      "platform": "Lovable",
+      "color": "#1a6447",
+      "embeddable": false,
+      "status": "offline",
+      "lastOkAt": null,
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "kind": "Business"
+      }
+    },
+    "https://noorkarachipropertyhub.lovable.app": {
+      "methodVersion": 0,
+      "title": "Muhammad Junaid | Real Estate Consultant in Karachi: Noor Property Hub",
+      "description": "Buy, sell or rent property in Gulshan-e-Iqbal, Gulistan-e-Jauhar, Scheme 33 and DHA City Karachi with trusted consultant Muhammad Junaid.",
+      "host": "noorkarachipropertyhub.lovable.app",
+      "platform": "Lovable",
+      "color": "#6e2610",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 82,
+        "concept": 86,
+        "uniqueness": 63,
+        "design": 97,
+        "usability": 80,
+        "kind": "Real estate"
+      }
+    },
+    "https://penta-karachi-builders.lovable.app": {
+      "methodVersion": 0,
+      "title": "Penta Estate: Builders, Contractors & Engineers in Karachi",
+      "description": "Penta Estate, Scheme 33 Karachi: property, construction, contracting, engineering and web development services.",
+      "host": "penta-karachi-builders.lovable.app",
+      "platform": "Lovable",
+      "color": "#7a5000",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 75,
+        "concept": 75,
+        "uniqueness": 60,
+        "design": 78,
+        "usability": 88,
+        "kind": "Real estate"
+      }
+    },
+    "https://screenshot-sprite-studio-47.lovable.app": {
+      "methodVersion": 0,
+      "title": "Beautitrend: Curated Skincare, Accessories & Lifestyle",
+      "description": "Shop a considered edit of skincare, accessories and lifestyle pieces. Free returns and secure checkout.",
+      "host": "screenshot-sprite-studio-47.lovable.app",
+      "platform": "Lovable",
+      "color": "#365510",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 84,
+        "concept": 90,
+        "uniqueness": 72,
+        "design": 97,
+        "usability": 78,
+        "kind": "Shop"
+      }
+    },
+    "https://syncsai.lovable.app": {
+      "methodVersion": 0,
+      "title": "SyncAi: Custom AI Systems That Reclaim Lost Revenue",
+      "description": "Enterprise AI & automation agency. Revenue Leak Audit first, then surgical automation.",
+      "host": "syncsai.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 85,
+        "concept": 90,
+        "uniqueness": 85,
+        "design": 86,
+        "usability": 80,
+        "kind": "Business"
+      }
+    },
+    "https://zaiqa-karachi-menu.lovable.app": {
+      "methodVersion": 0,
+      "title": "Zaiqa Restaurant: Authentic Pakistani Cuisine in Karachi",
+      "description": "Charcoal BBQ, karahi, nihari and Karachi biryani at Zaiqa Restaurant, DHA Karachi.",
+      "host": "zaiqa-karachi-menu.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 73,
+        "concept": 58,
+        "uniqueness": 70,
+        "design": 83,
+        "usability": 81,
+        "kind": "Food & drink"
+      }
+    },
+    "https://aiwafood.lovable.app": {
+      "methodVersion": 0,
+      "title": "AIWA Foods: Pure Hydration. Trusted Quality. | Karachi",
+      "description": "Shop SALSABEEL and NEXTLAY bottled drinking water in 500ml, 1.5L and 6L. Retail and wholesale delivery across Karachi.",
+      "host": "aiwafood.lovable.app",
+      "platform": "Lovable",
+      "color": "#a03a08",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 83,
+        "concept": 82,
+        "uniqueness": 73,
+        "design": 97,
+        "usability": 80,
+        "kind": "Food & drink"
+      }
+    },
+    "https://anshrakhanporfolio.lovable.app": {
+      "methodVersion": 0,
+      "title": "Anshra Khan: Software Engineering Undergraduate & AI Enthusiast",
+      "description": "Hi, I'm Anshra Khan, a Software Engineering undergraduate passionate about AI, web development and problem-solving.",
+      "host": "anshrakhanporfolio.lovable.app",
+      "platform": "Lovable",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 72,
+        "concept": 63,
+        "uniqueness": 59,
+        "design": 79,
+        "usability": 86,
+        "kind": "Portfolio"
+      }
+    },
+    "https://arsal-scent-atlas.lovable.app": {
+      "methodVersion": 0,
+      "title": "Arsalan Ahmed Khan: Arabic & French Perfumes in Pakistan",
+      "description": "Luxury Arabic oud, attar and French perfumes by Arsalan Ahmed Khan. Free delivery across Pakistan, order on WhatsApp with Cash on Delivery.",
+      "host": "arsal-scent-atlas.lovable.app",
+      "platform": "Lovable",
+      "color": "#0c5079",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 79,
+        "concept": 71,
+        "uniqueness": 70,
+        "design": 91,
+        "usability": 84,
+        "kind": "Shop"
+      }
+    },
+    "https://bari-blueprint-journey.lovable.app": {
+      "methodVersion": 0,
+      "title": "BARI: Digital Portfolio | ADSE Student & Aspiring Developer",
+      "description": "Personal portfolio of an ADSE student at Aptech and aspiring software developer.",
+      "host": "bari-blueprint-journey.lovable.app",
+      "platform": "Lovable",
+      "color": "#a03a08",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 81,
+        "concept": 86,
+        "uniqueness": 64,
+        "design": 92,
+        "usability": 83,
+        "kind": "Portfolio"
+      }
+    },
+    "https://boundary-bash-arena.lovable.app": {
+      "methodVersion": 0,
+      "title": "Floodlit Cricket: Play T20, ODI & Test cricket online",
+      "description": "A tactical cricket game: pick deliveries and shots ball by ball. International teams, custom squads, vs CPU or friends online.",
+      "host": "boundary-bash-arena.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 71,
+        "concept": 51,
+        "uniqueness": 77,
+        "design": 74,
+        "usability": 83,
+        "kind": "App or game"
+      }
+    },
+    "https://career-story-spotlight.lovable.app": {
+      "methodVersion": 0,
+      "title": "Zohaib Khan: AI Filmmaker & Creative Storyteller",
+      "description": "CV of Zohaib Khan, Higgsfield-certified AI filmmaker turning ideas into cinematic stories with AI.",
+      "host": "career-story-spotlight.lovable.app",
+      "platform": "Lovable",
+      "color": "#6e2610",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 80,
+        "concept": 85,
+        "uniqueness": 64,
+        "design": 81,
+        "usability": 88,
+        "kind": "Portfolio"
+      }
+    },
+    "https://clicksafe-piaic.lovable.app": {
+      "methodVersion": 0,
+      "title": "ClickSafe: Think Before You Click",
+      "description": "Learn to spot online scams, phishing messages, fake prizes and unsafe links with free interactive challenges, a quiz and a URL detective.",
+      "host": "clicksafe-piaic.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 82,
+        "concept": 78,
+        "uniqueness": 79,
+        "design": 82,
+        "usability": 88,
+        "kind": "Learning"
+      }
+    },
+    "https://danial-zain.lovable.app": {
+      "methodVersion": 0,
+      "title": "Danial Zain: UI/UX Designer & Digital Designer",
+      "description": "Danial Zain is a UI/UX and digital designer with 7+ years of agency experience designing websites, SaaS products and dashboards for international team",
+      "q": "danial zain: ui/ux designer & digital designer danial zain is a ui/ux and digital designer with 7+ years of agency experience designing websites, saas products and dashboards for international teams. danial-zain.lovable.app lovable portfolio",
+      "host": "danial-zain.lovable.app",
+      "platform": "Lovable",
+      "color": "#365510",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 82,
+        "concept": 100,
+        "uniqueness": 59,
+        "design": 88,
+        "usability": 80,
+        "kind": "Portfolio"
+      }
+    },
+    "https://hovercrafted-personal-brand.lovable.app": {
+      "methodVersion": 0,
+      "title": "Muhammad Azlan: IT Sales & Business Development",
+      "description": "Senior Business Development Executive helping agencies win web design & development projects through bidding, proposals and client acquisition.",
+      "host": "hovercrafted-personal-brand.lovable.app",
+      "platform": "Lovable",
+      "color": "#365510",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 74,
+        "concept": 80,
+        "uniqueness": 53,
+        "design": 75,
+        "usability": 88,
+        "kind": "Other"
+      }
+    },
+    "https://icecard.lovable.app": {
+      "methodVersion": 0,
+      "title": "ICE Card: Your medical info, one scan away",
+      "description": "Make a free emergency QR code for your phone lock screen. Helpers scan it to see your blood type, allergies and who to call.",
+      "host": "icecard.lovable.app",
+      "platform": "Lovable",
+      "color": "#0c5079",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 75,
+        "concept": 61,
+        "uniqueness": 77,
+        "design": 73,
+        "usability": 88,
+        "kind": "App or game"
+      }
+    },
+    "https://imran-wali-creator-hub.lovable.app": {
+      "methodVersion": 0,
+      "title": "Muhammad Imran Wali: Banker & Digital Creator",
+      "description": "VP eCIB Reporting at Meezan Bank, RPA & AI enthusiast, and digital creator of AI videos, poetry and Pakistan updates. Leave a review.",
+      "host": "imran-wali-creator-hub.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 72,
+        "concept": 74,
+        "uniqueness": 71,
+        "design": 64,
+        "usability": 81,
+        "kind": "Portfolio"
+      }
+    },
+    "https://journey-in-a-nutshell.lovable.app": {
+      "methodVersion": 0,
+      "title": "Maaz Ali: Accounting & Finance Professional in Karachi",
+      "description": "Maaz Ali helps companies keep accurate books: reconciliations, payables, tax compliance and period-end close. 6+ years of experience.",
+      "host": "journey-in-a-nutshell.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 74,
+        "concept": 70,
+        "uniqueness": 67,
+        "design": 77,
+        "usability": 80,
+        "kind": "Business"
+      }
+    },
+    "https://khanzada-candle-soap-co.lovable.app": {
+      "methodVersion": 0,
+      "title": "SF Khanzada: Handmade Candles & Soaps in Karachi",
+      "description": "SF Khanzada ke handmade candles aur natural soaps, haath se banaye, sukoon bhari khushboo. Apni pasand batayein aur WhatsApp par order karein.",
+      "host": "khanzada-candle-soap-co.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 74,
+        "concept": 53,
+        "uniqueness": 76,
+        "design": 84,
+        "usability": 85,
+        "kind": "Other"
+      }
+    },
+    "https://littlewonder-pk-kids-shop.lovable.app": {
+      "methodVersion": 0,
+      "title": "LittleWonder.pk: Everything Your Little One Loves",
+      "description": "Pakistan's premium kids store: safe toys, baby clothes, school items and essentials. Free delivery over Rs. 3,000 and Cash on Delivery.",
+      "host": "littlewonder-pk-kids-shop.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 85,
+        "concept": 85,
+        "uniqueness": 75,
+        "design": 97,
+        "usability": 83,
+        "kind": "Shop"
+      }
+    },
+    "https://lively-work-gallery.lovable.app": {
+      "methodVersion": 0,
+      "title": "Rao Ezan Raza: Full-Stack Developer",
+      "description": "Portfolio of Rao Ezan Raza, BSCS student and MERN stack developer in Karachi building responsive React web apps.",
+      "host": "lively-work-gallery.lovable.app",
+      "platform": "Lovable",
+      "color": "#a03a08",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 76,
+        "concept": 87,
+        "uniqueness": 58,
+        "design": 71,
+        "usability": 86,
+        "kind": "Portfolio"
+      }
+    },
+    "https://mariam-amtullah.lovable.app": {
+      "methodVersion": 0,
+      "title": "Mariam Amtullah: Software Engineering Student & Aspiring Developer",
+      "description": "Mariam Amtullah is a Software Engineering student at Salim Habib University, Karachi, building practical software with C#, Java and web technologies.",
+      "host": "mariam-amtullah.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 78,
+        "concept": 87,
+        "uniqueness": 61,
+        "design": 82,
+        "usability": 81,
+        "kind": "Portfolio"
+      }
+    },
+    "https://matbakh-e-mashriq.lovable.app": {
+      "methodVersion": 0,
+      "title": "Masalay, Spice Powders & Pastes in Karachi | Matbakh-e-Mashriq",
+      "description": "Shop masalay, spice powders, sauces and pastes from Matbakh-e-Mashriq, delivered across Karachi and Pakistan.",
+      "host": "matbakh-e-mashriq.lovable.app",
+      "platform": "Lovable",
+      "color": "#0c5079",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 77,
+        "concept": 73,
+        "uniqueness": 60,
+        "design": 89,
+        "usability": 87,
+        "kind": "Food & drink"
+      }
+    },
+    "https://muhammad-anus.lovable.app": {
+      "methodVersion": 0,
+      "title": "Muhammad Anus: Senior CMS Developer & AI Engineering",
+      "description": "Portfolio of Muhammad Anus: Senior CMS Developer building digital experiences and expanding into AI agents, Python, MCP and API integrations.",
+      "host": "muhammad-anus.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 81,
+        "concept": 94,
+        "uniqueness": 74,
+        "design": 73,
+        "usability": 82,
+        "kind": "Portfolio"
+      }
+    },
+    "https://nexora-intelligent-solutions.lovable.app": {
+      "methodVersion": 0,
+      "title": "NEXORA AI: AI Solutions & Custom Software Development",
+      "description": "NEXORA AI builds custom software, AI agents, CRM systems, business automation and modern web applications.",
+      "host": "nexora-intelligent-solutions.lovable.app",
+      "platform": "Lovable",
+      "color": "#0b6159",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 78,
+        "concept": 85,
+        "uniqueness": 64,
+        "design": 86,
+        "usability": 78,
+        "kind": "App or game"
+      }
+    },
+    "https://pakistani-plate-stories.lovable.app": {
+      "methodVersion": 0,
+      "title": "Dastarkhwan: Pakistani Recipes & Food Stories",
+      "description": "Authentic Pakistani recipes with photos: biryani, karahi, nihari, seekh kebab and more.",
+      "host": "pakistani-plate-stories.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 72,
+        "concept": 57,
+        "uniqueness": 75,
+        "design": 71,
+        "usability": 85,
+        "kind": "Food & drink"
+      }
+    },
+    "https://personal-brand-playbook.lovable.app": {
+      "methodVersion": 0,
+      "title": "Intelligence meets justice | Deans AI and Law Academy",
+      "description": "Discover Deans AI and Law Academy, an initiative by Shahzad Pasha bringing AI and legal education together. Head office in Karachi, branch in Faisalab",
+      "q": "intelligence meets justice | deans ai and law academy discover deans ai and law academy, an initiative by shahzad pasha bringing ai and legal education together. head office in karachi, branch in faisalabad. personal-brand-playbook.lovable.app lovable learning",
+      "host": "personal-brand-playbook.lovable.app",
+      "platform": "Lovable",
+      "color": "#365510",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 76,
+        "concept": 74,
+        "uniqueness": 66,
+        "design": 87,
+        "usability": 75,
+        "kind": "Learning"
+      }
+    },
+    "https://piaic-new-website.lovable.app": {
+      "methodVersion": 0,
+      "title": "Piaic New Website",
+      "description": "",
+      "host": "piaic-new-website.lovable.app",
+      "platform": "Lovable",
+      "color": "#365510",
+      "embeddable": false,
+      "status": "offline",
+      "lastOkAt": null,
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "kind": "Other"
+      }
+    },
+    "https://pixel-perfect-replay-5408.lovable.app": {
+      "methodVersion": 0,
+      "title": "Mairaj Alam: Cybersecurity & Agentic AI Learner",
+      "description": "Portfolio of Mairaj Alam, BSCS student at GUtech learning cybersecurity and agentic AI. Network labs, CTFs and learning journey.",
+      "host": "pixel-perfect-replay-5408.lovable.app",
+      "platform": "Lovable",
+      "color": "#a03a08",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 82,
+        "concept": 82,
+        "uniqueness": 76,
+        "design": 86,
+        "usability": 85,
+        "kind": "Learning"
+      }
+    },
+    "https://shahamfaisallovableapp.lovable.app": {
+      "methodVersion": 0,
+      "title": "Shahama Faisal: Multidisciplinary Designer & Digital Creator",
+      "description": "Portfolio of Shahama Faisal, multidisciplinary designer and digital creator, graphic design, video animation, digital marketing, UI/UX and emerging te",
+      "q": "shahama faisal: multidisciplinary designer & digital creator portfolio of shahama faisal, multidisciplinary designer and digital creator, graphic design, video animation, digital marketing, ui/ux and emerging technology. shahamfaisallovableapp.lovable.app lovable portfolio",
+      "host": "shahamfaisallovableapp.lovable.app",
+      "platform": "Lovable",
+      "color": "#a03a08",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 70,
+        "concept": 74,
+        "uniqueness": 59,
+        "design": 64,
+        "usability": 81,
+        "kind": "Portfolio"
+      }
+    },
+    "https://shariqpardesi.lovable.app": {
+      "methodVersion": 0,
+      "title": "Apex Motors: Luxury Car Showroom",
+      "description": "A hand-picked collection of the world's finest automobiles, private viewings, bespoke financing and white-glove delivery at Apex Motors.",
+      "host": "shariqpardesi.lovable.app",
+      "platform": "Lovable",
+      "color": "#7a5000",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 84,
+        "concept": 85,
+        "uniqueness": 73,
+        "design": 94,
+        "usability": 85,
+        "kind": "Shop"
+      }
+    },
+    "https://shariqshahid.lovable.app": {
+      "methodVersion": 0,
+      "title": "Shariq Shahid: Full-Stack Developer Portfolio",
+      "description": "Shariq Shahid is a Karachi-based full-stack developer building modern, responsive websites with React, PHP, ASP.NET and AI-assisted development.",
+      "host": "shariqshahid.lovable.app",
+      "platform": "Lovable",
+      "color": "#0c5079",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 82,
+        "concept": 99,
+        "uniqueness": 68,
+        "design": 94,
+        "usability": 69,
+        "kind": "Portfolio"
+      }
+    },
+    "https://soleora.lovable.app": {
+      "methodVersion": 0,
+      "title": "SOLEORA | Elegance in Every Step: Women's Footwear Pakistan",
+      "description": "Shop handcrafted women's heels, traditional Pakistani khussas, everyday slides, ballerinas, and designer sneakers in Pakistan. Cash on Delivery nation",
+      "q": "soleora | elegance in every step: women's footwear pakistan shop handcrafted women's heels, traditional pakistani khussas, everyday slides, ballerinas, and designer sneakers in pakistan. cash on delivery nationwide. soleora.lovable.app lovable shop",
+      "host": "soleora.lovable.app",
+      "platform": "Lovable",
+      "color": "#a03a08",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 80,
+        "concept": 85,
+        "uniqueness": 76,
+        "design": 90,
+        "usability": 67,
+        "kind": "Shop"
+      }
+    },
+    "https://table-and-thyme.lovable.app": {
+      "methodVersion": 0,
+      "title": "Ember & Oak: Wood-Fired Dining",
+      "description": "Ember & Oak: seasonal wood-fired cooking, candlelit tables and a curated wine list.",
+      "host": "table-and-thyme.lovable.app",
+      "platform": "Lovable",
+      "color": "#365510",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 79,
+        "concept": 72,
+        "uniqueness": 80,
+        "design": 81,
+        "usability": 84,
+        "kind": "Food & drink"
+      }
+    },
+    "https://carverseofficial.lovable.app": {
+      "methodVersion": 0,
+      "title": "CarVerse: Discover Every Generation",
+      "description": "Explore automotive history, legendary designs and the evolution of iconic vehicles.",
+      "host": "carverseofficial.lovable.app",
+      "platform": "Lovable",
+      "color": "#0b6159",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 82,
+        "concept": 69,
+        "uniqueness": 80,
+        "design": 96,
+        "usability": 83,
+        "kind": "Business"
+      }
+    },
+    "https://flexwell-gym-manager.lovable.app": {
+      "methodVersion": 0,
+      "title": "IronDesk: Gym Management",
+      "description": "Run your gym: members, plans, payments and check-ins in one place.",
+      "host": "flexwell-gym-manager.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 63,
+        "concept": 41,
+        "uniqueness": 63,
+        "design": 69,
+        "usability": 78,
+        "kind": "Business"
+      }
+    },
+    "https://nexusgameszone.lovable.app": {
+      "methodVersion": 0,
+      "title": "NEXUS GAMING HUB: The Next Evolution of Gaming",
+      "description": "Discover trending titles, live price drops and global multiplayer hubs in an immersive 3D arena.",
+      "host": "nexusgameszone.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 80,
+        "concept": 63,
+        "uniqueness": 89,
+        "design": 87,
+        "usability": 80,
+        "kind": "Other"
+      }
+    },
+    "https://pageturner-digital-bookshop.lovable.app": {
+      "methodVersion": 0,
+      "title": "Qalam & Qissa: Stories worth keeping, e-books worth owning",
+      "description": "A candle-lit library of e-books. Buy securely from Pakistan with JazzCash, Easypaisa or bank, or from anywhere in the world.",
+      "host": "pageturner-digital-bookshop.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 80,
+        "concept": 76,
+        "uniqueness": 65,
+        "design": 97,
+        "usability": 83,
+        "kind": "Other"
+      }
+    },
+    "https://propertyfy-malir-heights.lovable.app": {
+      "methodVersion": 0,
+      "title": "Loyal Properties: Malir Heights Apartments & Shops, Karachi",
+      "description": "Premium residential apartments and commercial shops at Malir Heights, Malir Town Karachi.",
+      "host": "propertyfy-malir-heights.lovable.app",
+      "platform": "Lovable",
+      "color": "#0c5079",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 80,
+        "concept": 88,
+        "uniqueness": 63,
+        "design": 78,
+        "usability": 89,
+        "kind": "Real estate"
+      }
+    },
+    "https://sadaf-global-tax-advisors.lovable.app": {
+      "methodVersion": 0,
+      "title": "AltraBona | US Tax Filing & IRS Representation by Sadaf, EA, CMA",
+      "description": "AltraBona: US tax returns, IRS representation, bookkeeping and audit support led by Sadaf, an IRS Enrolled Agent and CMA with 25 years of experience.",
+      "host": "sadaf-global-tax-advisors.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 81,
+        "concept": 88,
+        "uniqueness": 72,
+        "design": 80,
+        "usability": 85,
+        "kind": "Business"
+      }
+    },
+    "https://sir-muhammad-owais-boss-ka-khaas-banda.lovable.app": {
+      "methodVersion": 0,
+      "title": "Junaid: Thank You Sir Syed Muhammad Owais Ahmed Khan",
+      "description": "An audio tribute of gratitude from Junaid Ul Haque Sheikh to his mentor Sir Owais.",
+      "host": "sir-muhammad-owais-boss-ka-khaas-banda.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 71,
+        "concept": 70,
+        "uniqueness": 69,
+        "design": 63,
+        "usability": 81,
+        "kind": "Other"
+      }
+    },
+    "https://taskmate-study-compass.lovable.app": {
+      "methodVersion": 0,
+      "title": "TaskMate – Student Task Manager",
+      "description": "Track assignments, subjects and deadlines. Never miss a due date again.",
+      "host": "taskmate-study-compass.lovable.app",
+      "platform": "Lovable",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 68,
+        "concept": 50,
+        "uniqueness": 73,
+        "design": 65,
+        "usability": 86,
+        "kind": "App or game"
+      }
+    },
+    "https://loyal-properties-learning-malir-heights.lovable.app": {
+      "methodVersion": 0,
+      "title": "Jamshed Ul Haque Sheikh: Trainer, Guides & Urdu Explainers",
+      "description": "Aasan Urdu guides, English–Urdu presentations aur deep learning training. Special discount offer, abhi rabta karein.",
+      "host": "loyal-properties-learning-malir-heights.lovable.app",
+      "platform": "Lovable",
+      "color": "#a03a08",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 60,
+        "concept": 60,
+        "uniqueness": 40,
+        "design": 58,
+        "usability": 80,
+        "kind": "Learning"
+      }
+    },
+    "https://loyal-properties-malir-heights.lovable.app": {
+      "methodVersion": 0,
+      "title": "Loyal Properties: Trusted Real Estate in Karachi",
+      "description": "Personal real estate advisory in Karachi: buying, selling and investing in premium property with honesty and care.",
+      "host": "loyal-properties-malir-heights.lovable.app",
+      "platform": "Lovable",
+      "color": "#a03a08",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 70,
+        "concept": 61,
+        "uniqueness": 59,
+        "design": 79,
+        "usability": 82,
+        "kind": "Real estate"
+      }
+    },
+    "https://malir-heights-tools-loyal-properties.lovable.app": {
+      "methodVersion": 0,
+      "title": "Junaid – Loyal Properties | PropertyFy Seekhein",
+      "description": "PropertyFy CRM ko Urdu aur English awaaz ke saath step-by-step seekhein. Special discount offer.",
+      "host": "malir-heights-tools-loyal-properties.lovable.app",
+      "platform": "Lovable",
+      "color": "#0c5079",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 62,
+        "concept": 43,
+        "uniqueness": 67,
+        "design": 59,
+        "usability": 80,
+        "kind": "Real estate"
+      }
+    },
+    "https://propertyfy-loyal-language-bridge.lovable.app": {
+      "methodVersion": 0,
+      "title": "Jamshed Ul Haque Sheikh: Mushkil ko Aasan Banana",
+      "description": "Software guides, English–Urdu presentations aur deep learning, sab kuch aasan Urdu mein.",
+      "host": "propertyfy-loyal-language-bridge.lovable.app",
+      "platform": "Lovable",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 60,
+        "concept": 56,
+        "uniqueness": 39,
+        "design": 71,
+        "usability": 76,
+        "kind": "Learning"
+      }
+    },
+    "https://propertyfy-personal-portfolio.lovable.app": {
+      "methodVersion": 0,
+      "title": "Junaid: Real Estate Tech & Sales Systems",
+      "description": "Junaid builds PropertyFy, a lead CRM that helps real estate sales teams never lose a lead.",
+      "host": "propertyfy-personal-portfolio.lovable.app",
+      "platform": "Lovable",
+      "color": "#7a5000",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 75,
+        "concept": 72,
+        "uniqueness": 63,
+        "design": 77,
+        "usability": 87,
+        "kind": "Real estate"
+      }
+    },
+    "https://promptforgeaii.lovable.app": {
+      "methodVersion": 0,
+      "title": "PromptForge AI: Your Ideas Deserve Better Prompts",
+      "description": "Turn rough ideas into structured, ready-to-use AI prompts with a guided builder and a curated prompt library.",
+      "host": "promptforgeaii.lovable.app",
+      "platform": "Lovable",
+      "color": "#0b6159",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 82,
+        "concept": 97,
+        "uniqueness": 67,
+        "design": 86,
+        "usability": 76,
+        "kind": "App or game"
+      }
+    },
+    "https://shonen-shelf-pk.lovable.app": {
+      "methodVersion": 0,
+      "title": "Shonen Shelf: Top 25 manga in Pakistan",
+      "description": "Shop the top-ranked Japanese manga with Cash on Delivery across Pakistan. Prices in PKR.",
+      "host": "shonen-shelf-pk.lovable.app",
+      "platform": "Lovable",
+      "color": "#7a5000",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 79,
+        "concept": 87,
+        "uniqueness": 78,
+        "design": 67,
+        "usability": 85,
+        "kind": "Shop"
+      }
+    },
+    "https://titanix.lovable.app": {
+      "methodVersion": 0,
+      "title": "Titanex LLM: Modular AI Assistant",
+      "description": "Titanex: a modular AI assistant platform with a replaceable LLM engine, memory and knowledge retrieval.",
+      "host": "titanix.lovable.app",
+      "platform": "Lovable",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 69,
+        "concept": 47,
+        "uniqueness": 69,
+        "design": 74,
+        "usability": 85,
+        "kind": "Other"
+      }
+    },
+    "https://thegracefulgrammarhigherschool.netlify.app": {
+      "methodVersion": 0,
+      "title": "THE GRACE FUL GRAMMAR HIGHER SECONDARY SCHOOL",
+      "description": "",
+      "host": "thegracefulgrammarhigherschool.netlify.app",
+      "platform": "Netlify",
+      "color": "#0b6159",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 76,
+        "concept": 69,
+        "uniqueness": 90,
+        "design": 51,
+        "usability": 93,
+        "kind": "Learning"
+      }
+    },
+    "https://muhmmad-shayan-portfolio.netlify.app": {
+      "methodVersion": 0,
+      "title": "Portfolio | Muhammad Shayan",
+      "description": "",
+      "host": "muhmmad-shayan-portfolio.netlify.app",
+      "platform": "Netlify",
+      "color": "#a03a08",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 84,
+        "concept": 92,
+        "uniqueness": 77,
+        "design": 76,
+        "usability": 89,
+        "kind": "Portfolio"
+      }
+    },
+    "https://sheruspace.netlify.app": {
+      "methodVersion": 0,
+      "title": "index.html",
+      "description": "",
+      "host": "sheruspace.netlify.app",
+      "platform": "Netlify",
+      "color": "#6e2610",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 78,
+        "concept": 68,
+        "uniqueness": 88,
+        "design": 86,
+        "usability": 71,
+        "kind": "Other"
+      }
+    },
+    "https://bilalslab1.netlify.app": {
+      "methodVersion": 0,
+      "title": "Lab 1 Master Brief: 30-slide deck",
+      "description": "",
+      "host": "bilalslab1.netlify.app",
+      "platform": "Netlify",
+      "color": "#365510",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 71,
+        "concept": 64,
+        "uniqueness": 63,
+        "design": 79,
+        "usability": 77,
+        "kind": "Other"
+      }
+    },
+    "https://enrolled-agent-learning.netlify.app": {
+      "methodVersion": 0,
+      "title": "Sadaf The EA",
+      "description": "Learn the Enrolled Agent (EA) course the easy way, US tax explained step by step, starting with Filing Status.",
+      "host": "enrolled-agent-learning.netlify.app",
+      "platform": "Netlify",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 73,
+        "concept": 50,
+        "uniqueness": 81,
+        "design": 73,
+        "usability": 88,
+        "kind": "Learning"
+      }
+    },
+    "https://muhammadsaad-portfolio.netlify.app": {
+      "methodVersion": 0,
+      "title": "Muhammad Saad | Developer & Designer",
+      "description": "",
+      "host": "muhammadsaad-portfolio.netlify.app",
+      "platform": "Netlify",
+      "color": "#0c5079",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 81,
+        "concept": 72,
+        "uniqueness": 76,
+        "design": 85,
+        "usability": 90,
+        "kind": "Portfolio"
+      }
+    },
+    "https://abdul-samad-ai.netlify.app": {
+      "methodVersion": 0,
+      "title": "Abdul Samad: Agentic AI Architect (in progress)",
+      "description": "Abdul Samad, learning Agentic AI Architecture at PIAIC. Prompt writing, automation and web basics.",
+      "host": "abdul-samad-ai.netlify.app",
+      "platform": "Netlify",
+      "color": "#a03a08",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 79,
+        "concept": 83,
+        "uniqueness": 59,
+        "design": 78,
+        "usability": 95,
+        "kind": "Learning"
+      }
+    },
+    "https://ghulam-muhammad-portfolio.netlify.app": {
+      "methodVersion": 0,
+      "title": "Ghulam Muhammad Portfolio",
+      "description": "",
+      "host": "ghulam-muhammad-portfolio.netlify.app",
+      "platform": "Netlify",
+      "color": "#365510",
+      "embeddable": false,
+      "status": "offline",
+      "lastOkAt": null,
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "kind": "Portfolio"
+      }
+    },
+    "https://sellmate-draft.netlify.app": {
+      "methodVersion": 0,
+      "title": "SellMate: Seller Workspace",
+      "description": "SellMate, orders, stock, payments and smart WhatsApp/Instagram replies for small sellers.",
+      "host": "sellmate-draft.netlify.app",
+      "platform": "Netlify",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 73,
+        "concept": 69,
+        "uniqueness": 75,
+        "design": 58,
+        "usability": 90,
+        "kind": "Other"
+      }
+    },
+    "https://build-your-confidence-by-sahabiya.netlify.app": {
+      "methodVersion": 0,
+      "title": "Build Your Confidence",
+      "description": "A 30-day confidence performance system. Daily protocols, interactive modules and progress analytics, private, local-first and offline-ready.",
+      "host": "build-your-confidence-by-sahabiya.netlify.app",
+      "platform": "Netlify",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 82,
+        "concept": 84,
+        "uniqueness": 82,
+        "design": 83,
+        "usability": 80,
+        "kind": "Other"
+      }
+    },
+    "https://civixai.netlify.app": {
+      "methodVersion": 0,
+      "title": "CIVIX AI",
+      "description": "",
+      "host": "civixai.netlify.app",
+      "platform": "Netlify",
+      "color": "#0c5079",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 69,
+        "concept": 47,
+        "uniqueness": 77,
+        "design": 64,
+        "usability": 89,
+        "kind": "Other"
+      }
+    },
+    "https://ghulam-muhammad.netlify.app": {
+      "methodVersion": 0,
+      "title": "Ghulam Muhammad: Import & Export Specialist | Off-Dock Terminal",
+      "description": "Ghulam Muhammad is an import and export specialist based at an off-dock terminal in Karachi, customs clearance, HS classification, export documentatio",
+      "q": "ghulam muhammad: import & export specialist | off-dock terminal ghulam muhammad is an import and export specialist based at an off-dock terminal in karachi, customs clearance, hs classification, export documentation and end-to-end cargo coordination. ghulam-muhammad.netlify.app netlify portfolio",
+      "host": "ghulam-muhammad.netlify.app",
+      "platform": "Netlify",
+      "color": "#0c5079",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 83,
+        "concept": 94,
+        "uniqueness": 78,
+        "design": 82,
+        "usability": 78,
+        "kind": "Portfolio"
+      }
+    },
+    "https://snoopy-luxury-dine.base44.app": {
+      "methodVersion": 0,
+      "title": "Snoopy Luxury Dine | Premium Restaurant",
+      "description": "",
+      "host": "snoopy-luxury-dine.base44.app",
+      "platform": "Base44",
+      "color": "#a03a08",
+      "embeddable": false,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 87,
+        "concept": 97,
+        "uniqueness": 71,
+        "design": 100,
+        "usability": 79,
+        "kind": "Food & drink"
+      }
+    },
+    "https://scooter-planet-prime.base44.app": {
+      "methodVersion": 0,
+      "title": "Scooter Planet: Ride Better. Live Smarter.",
+      "description": "",
+      "host": "scooter-planet-prime.base44.app",
+      "platform": "Base44",
+      "color": "#0c5079",
+      "embeddable": false,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 88,
+        "concept": 91,
+        "uniqueness": 76,
+        "design": 99,
+        "usability": 84,
+        "kind": "Other"
+      }
+    },
+    "https://velvet-whimsy-boutique.base44.app": {
+      "methodVersion": 0,
+      "title": "Fashion Emporium: Modern Fashion Online",
+      "description": "",
+      "host": "velvet-whimsy-boutique.base44.app",
+      "platform": "Base44",
+      "color": "#0b6159",
+      "embeddable": false,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 80,
+        "concept": 84,
+        "uniqueness": 73,
+        "design": 87,
+        "usability": 78,
+        "kind": "Shop"
+      }
+    },
+    "https://sheikh-ayyan.vercel.app": {
+      "methodVersion": 0,
+      "title": "Sheikh Ayyan Iftikhar: Frontend Developer & Creative Web Developer",
+      "description": "Portfolio of Sheikh Ayyan Iftikhar, a frontend developer building modern, interactive and responsive web experiences.",
+      "host": "sheikh-ayyan.vercel.app",
+      "platform": "Vercel",
+      "color": "#7a5000",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 83,
+        "concept": 100,
+        "uniqueness": 69,
+        "design": 81,
+        "usability": 82,
+        "kind": "Portfolio"
+      }
+    },
+    "https://profit-gym-kappa.vercel.app": {
+      "methodVersion": 0,
+      "title": "PROFIT Gym: Turn Sweat Into Strength | Karachi, Pakistan",
+      "description": "PROFIT Gym Karachi, State-of-the-art equipment, expert personal trainers, weight-loss programs & health guidance. Start your transformation today.",
+      "host": "profit-gym-kappa.vercel.app",
+      "platform": "Vercel",
+      "color": "#365510",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 86,
+        "concept": 85,
+        "uniqueness": 68,
+        "design": 100,
+        "usability": 90,
+        "kind": "Business"
+      }
+    },
+    "https://syed-abdullah-portfolio-six.vercel.app": {
+      "methodVersion": 0,
+      "title": "Syed | AI Agents & Automation Engineer at LoopVerses",
+      "description": "I build autonomous AI agents, automation pipelines and AI SaaS products that plan, execute and report back, so your team's busywork runs itself, fully",
+      "q": "syed | ai agents & automation engineer at loopverses i build autonomous ai agents, automation pipelines and ai saas products that plan, execute and report back, so your team's busywork runs itself, fully monitored. syed-abdullah-portfolio-six.vercel.app vercel portfolio",
+      "host": "syed-abdullah-portfolio-six.vercel.app",
+      "platform": "Vercel",
+      "color": "#6e2610",
+      "embeddable": false,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 89,
+        "concept": 94,
+        "uniqueness": 83,
+        "design": 93,
+        "usability": 87,
+        "kind": "Portfolio"
+      }
+    },
+    "https://abdullah-notebook-portfolio.vercel.app": {
+      "methodVersion": 0,
+      "title": "Abdullah - IT Developer",
+      "description": "Abdullah - IT developer. Spec-driven development, game development, UI/UX design and 3D modeling.",
+      "host": "abdullah-notebook-portfolio.vercel.app",
+      "platform": "Vercel",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 84,
+        "concept": 82,
+        "uniqueness": 78,
+        "design": 83,
+        "usability": 91,
+        "kind": "App or game"
+      }
+    },
+    "https://matbakh-e-mashriq.vercel.app": {
+      "methodVersion": 0,
+      "title": "Matbakh-e-Mashriq: The Eastern Kitchen",
+      "description": "Pastes, ketchup, masalas and single-ingredient powders from the Eastern kitchen. Nineteen compositions, one quiet ivory and burgundy family.",
+      "host": "matbakh-e-mashriq.vercel.app",
+      "platform": "Vercel",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 85,
+        "concept": 94,
+        "uniqueness": 65,
+        "design": 91,
+        "usability": 91,
+        "kind": "Other"
+      }
+    },
+    "https://my-portfolio-jt166rz6h-block-tech1.vercel.app": {
+      "methodVersion": 0,
+      "title": "Mr Unknown: Full Stack Blockchain Developer",
+      "description": "Full Stack Blockchain Developer with 5+ years across blockchain, fintech and full-stack engineering. I design DApps, smart contracts and enterprise fi",
+      "q": "mr unknown: full stack blockchain developer full stack blockchain developer with 5+ years across blockchain, fintech and full-stack engineering. i design dapps, smart contracts and enterprise fintech systems that are secure and scalable. my-portfolio-jt166rz6h-block-tech1.vercel.app vercel portfolio",
+      "host": "my-portfolio-jt166rz6h-block-tech1.vercel.app",
+      "platform": "Vercel",
+      "color": "#2c3a4d",
+      "embeddable": false,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 84,
+        "concept": 94,
+        "uniqueness": 72,
+        "design": 82,
+        "usability": 88,
+        "kind": "Portfolio"
+      }
+    },
+    "https://portfolio-abdulrafay-three.vercel.app": {
+      "methodVersion": 0,
+      "title": "Abdul Rafay: Full-stack developer, Karachi",
+      "description": "Abdul Rafay builds AI-native products and fast, considered web apps: AuraFlow, HolyCRM, Sasta Travel Express and more.",
+      "host": "portfolio-abdulrafay-three.vercel.app",
+      "platform": "Vercel",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 88,
+        "concept": 95,
+        "uniqueness": 84,
+        "design": 93,
+        "usability": 79,
+        "kind": "App or game"
+      }
+    },
+    "https://ai-invoice-checker.vercel.app": {
+      "methodVersion": 0,
+      "title": "AI Invoice Checker",
+      "description": "AI-assisted invoice verification for small and medium businesses.",
+      "host": "ai-invoice-checker.vercel.app",
+      "platform": "Vercel",
+      "color": "#0b6159",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 70,
+        "concept": 49,
+        "uniqueness": 75,
+        "design": 58,
+        "usability": 96,
+        "kind": "Other"
+      }
+    },
+    "https://dental-user-nu.vercel.app": {
+      "methodVersion": 0,
+      "title": "Dental Care: AI Dental Coach",
+      "description": "Dental Care, your personal AI dental coach for guidance, routines and booking visits.",
+      "host": "dental-user-nu.vercel.app",
+      "platform": "Vercel",
+      "color": "#a03a08",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 60,
+        "concept": 37,
+        "uniqueness": 67,
+        "design": 48,
+        "usability": 86,
+        "kind": "Other"
+      }
+    },
+    "https://sadaf-portfolio-tau.vercel.app": {
+      "methodVersion": 0,
+      "title": "Sadaf | USA Enrolled Agent & Tax Expert",
+      "description": "Sadaf is a USA Enrolled Agent and Tax Expert serving individuals, SMEs and companies across the USA and UAE.",
+      "host": "sadaf-portfolio-tau.vercel.app",
+      "platform": "Vercel",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 75,
+        "concept": 86,
+        "uniqueness": 62,
+        "design": 74,
+        "usability": 79,
+        "kind": "Business"
+      }
+    },
+    "https://amna-premium-portfolio.vercel.app": {
+      "methodVersion": 0,
+      "title": "Amna Sahar: AI Developer & Creative Web Developer",
+      "description": "Portfolio of Amna Sahar, AI Developer and Creative Web Developer. Building intelligent agents, RAG systems and premium full-stack digital experiences.",
+      "host": "amna-premium-portfolio.vercel.app",
+      "platform": "Vercel",
+      "color": "#0b6159",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 81,
+        "concept": 100,
+        "uniqueness": 75,
+        "design": 75,
+        "usability": 74,
+        "kind": "Portfolio"
+      }
+    },
+    "https://amna-sahar-portfolio.vercel.app": {
+      "methodVersion": 0,
+      "title": "Amna Sahar: AI Developer & Creative Web Developer",
+      "description": "Amna Sahar, AI Developer and Creative Web Developer. Explore AI projects, web design, graphic design and digital creativity.",
+      "host": "amna-sahar-portfolio.vercel.app",
+      "platform": "Vercel",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 88,
+        "concept": 100,
+        "uniqueness": 63,
+        "design": 100,
+        "usability": 88,
+        "kind": "Portfolio"
+      }
+    },
+    "https://delux-motors-five.vercel.app": {
+      "methodVersion": 0,
+      "title": "DELUX MOTORS: Built for the Love of Cars",
+      "description": "DELUX MOTORS, a personal automotive journal celebrating performance cars, supercars, JDM legends and car culture.",
+      "host": "delux-motors-five.vercel.app",
+      "platform": "Vercel",
+      "color": "#6e2610",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 84,
+        "concept": 84,
+        "uniqueness": 75,
+        "design": 91,
+        "usability": 87,
+        "kind": "Business"
+      }
+    },
+    "https://lumisana.vercel.app": {
+      "methodVersion": 0,
+      "title": "Lumisana: AI Systems for Ambitious Businesses",
+      "description": "Lumisana is an AI technology company building concierge agents, trust infrastructure and decision intelligence for luxury, real estate and high-growth",
+      "q": "lumisana: ai systems for ambitious businesses lumisana is an ai technology company building concierge agents, trust infrastructure and decision intelligence for luxury, real estate and high-growth enterprises. lumisana.vercel.app vercel real estate",
+      "host": "lumisana.vercel.app",
+      "platform": "Vercel",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 84,
+        "concept": 97,
+        "uniqueness": 75,
+        "design": 74,
+        "usability": 92,
+        "kind": "Real estate"
+      }
+    },
+    "https://mr-bilal-hassan.vercel.app": {
+      "methodVersion": 0,
+      "title": "MR.BILAL HASSAN | Developer Portfolio",
+      "description": "MR.BILAL HASSAN, Certified Full-Stack Web Developer, Graphic Designer and AI Builder. Selected projects, capabilities, credentials and contact details",
+      "q": "mr.bilal hassan | developer portfolio mr.bilal hassan, certified full-stack web developer, graphic designer and ai builder. selected projects, capabilities, credentials and contact details. mr-bilal-hassan.vercel.app vercel portfolio",
+      "host": "mr-bilal-hassan.vercel.app",
+      "platform": "Vercel",
+      "color": "#0c5079",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 91,
+        "concept": 100,
+        "uniqueness": 78,
+        "design": 97,
+        "usability": 88,
+        "kind": "Portfolio"
+      }
+    },
+    "https://muhammad-arif-portfolio-dun.vercel.app": {
+      "methodVersion": 0,
+      "title": "Muhammad Arif: Office Administration, Data Entry, Store & Accounts Support",
+      "description": "Portfolio of Muhammad Arif, Karachi: office administration, Oracle data entry, store and accounts support.",
+      "host": "muhammad-arif-portfolio-dun.vercel.app",
+      "platform": "Vercel",
+      "color": "#365510",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 80,
+        "concept": 83,
+        "uniqueness": 70,
+        "design": 72,
+        "usability": 94,
+        "kind": "Shop"
+      }
+    },
+    "https://my-portfolio-1-gamma-five.vercel.app": {
+      "methodVersion": 0,
+      "title": "Zimal Khan: Entrepreneur & Lifelong Learner in Karachi",
+      "description": "Zimal Khan is a Karachi-based entrepreneur, founder of a biryani kitchen and a home-based ladies",
+      "host": "my-portfolio-1-gamma-five.vercel.app",
+      "platform": "Vercel",
+      "color": "#0b6159",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 85,
+        "concept": 100,
+        "uniqueness": 71,
+        "design": 82,
+        "usability": 88,
+        "kind": "Real estate"
+      }
+    },
+    "https://aarish-portfolio-lyart.vercel.app": {
+      "methodVersion": 0,
+      "title": "Aarish | AI Developer Portfolio",
+      "description": "Aarish, a 14-year-old AI Developer portfolio showcasing machine learning, generative AI, agentic AI, IoT, and award-winning projects.",
+      "host": "aarish-portfolio-lyart.vercel.app",
+      "platform": "Vercel",
+      "color": "#0b6159",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 78,
+        "concept": 86,
+        "uniqueness": 65,
+        "design": 72,
+        "usability": 91,
+        "kind": "Learning"
+      }
+    },
+    "https://piaic-managementsystem.vercel.app": {
+      "methodVersion": 0,
+      "title": "PIAIC Management Portal",
+      "description": "",
+      "host": "piaic-managementsystem.vercel.app",
+      "platform": "Vercel",
+      "color": "#365510",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 62,
+        "concept": 46,
+        "uniqueness": 68,
+        "design": 60,
+        "usability": 76,
+        "kind": "Other"
+      }
+    },
+    "https://saveups.vercel.app": {
+      "methodVersion": 0,
+      "title": "My Saving Account",
+      "description": "",
+      "host": "saveups.vercel.app",
+      "platform": "Vercel",
+      "color": "#a03a08",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 72,
+        "concept": 75,
+        "uniqueness": 65,
+        "design": 68,
+        "usability": 81,
+        "kind": "Other"
+      }
+    },
+    "https://khuzaymahportfolio-indol.vercel.app": {
+      "methodVersion": 0,
+      "title": "Mohammed Khuzaymah | Portfolio",
+      "description": "Portfolio of Mohammed Khuzaymah - UTech Junior Ambassador learning AI Automation, Python, Robotics, and IoT.",
+      "host": "khuzaymahportfolio-indol.vercel.app",
+      "platform": "Vercel",
+      "color": "#0b6159",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 84,
+        "concept": 91,
+        "uniqueness": 66,
+        "design": 83,
+        "usability": 98,
+        "kind": "Learning"
+      }
+    },
+    "https://my-portfolio-website-nine-pearl.vercel.app": {
+      "methodVersion": 0,
+      "title": "Ramish Khan: AI Automation Portfolio",
+      "description": "Portfolio of Ramish Khan, AI automation learner, prompt writer and web basics explorer based in Karachi, Pakistan.",
+      "host": "my-portfolio-website-nine-pearl.vercel.app",
+      "platform": "Vercel",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 79,
+        "concept": 80,
+        "uniqueness": 60,
+        "design": 90,
+        "usability": 86,
+        "kind": "Learning"
+      }
+    },
+    "https://alimedia749.github.io/aura-skincare-": {
+      "methodVersion": 0,
+      "title": "Alimedia749",
+      "description": "",
+      "host": "alimedia749.github.io/aura-skincare-",
+      "platform": "GitHub Pages",
+      "color": "#7a5000",
+      "embeddable": false,
+      "status": "offline",
+      "lastOkAt": null,
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "kind": "Other"
+      }
+    },
+    "https://rayyan678.github.io/aura-skincare-/index.html": {
+      "methodVersion": 0,
+      "title": "AURA SKINCARE – Pure Ingredients. Visible Results. Luxury Botanical Rituals",
+      "description": "",
+      "host": "rayyan678.github.io/aura-skincare-/index.html",
+      "platform": "GitHub Pages",
+      "color": "#7a5000",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 82,
+        "concept": 84,
+        "uniqueness": 83,
+        "design": 90,
+        "usability": 72,
+        "kind": "Shop"
+      }
+    },
+    "https://mdhunain.github.io/volt-fitness-club": {
+      "methodVersion": 0,
+      "title": "Mdhunain",
+      "description": "",
+      "host": "mdhunain.github.io/volt-fitness-club",
+      "platform": "GitHub Pages",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 78,
+        "concept": 61,
+        "uniqueness": 70,
+        "design": 82,
+        "usability": 98,
+        "kind": "Other"
+      }
+    },
+    "https://arsalanahmed101297-bit.github.io/arsalan-portfolio": {
+      "methodVersion": 0,
+      "title": "Arsalan Ahmed: Agentic AI Engineer",
+      "description": "Arsalan Ahmed is an Agentic AI Engineer who builds intelligent AI agents, automation systems and prompt-engineered workflows for businesses, startups ",
+      "q": "arsalan ahmed: agentic ai engineer arsalan ahmed is an agentic ai engineer who builds intelligent ai agents, automation systems and prompt-engineered workflows for businesses, startups and founders. arsalanahmed101297-bit.github.io/arsalan-portfolio github pages app or game",
+      "host": "arsalanahmed101297-bit.github.io/arsalan-portfolio",
+      "platform": "GitHub Pages",
+      "color": "#a03a08",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 85,
+        "concept": 97,
+        "uniqueness": 70,
+        "design": 82,
+        "usability": 91,
+        "kind": "App or game"
+      }
+    },
+    "https://billgpt.freebuff.app": {
+      "methodVersion": 0,
+      "title": "Project Tracker Pro",
+      "description": "",
+      "host": "billgpt.freebuff.app",
+      "platform": "Freebuff",
+      "color": "#8f1033",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 65,
+        "concept": 48,
+        "uniqueness": 66,
+        "design": 61,
+        "usability": 85,
+        "kind": "App or game"
+      }
+    },
+    "https://milogpt.freebuff.app": {
+      "methodVersion": 0,
+      "title": "Milo GPT: AI Assistant",
+      "description": "",
+      "host": "milogpt.freebuff.app",
+      "platform": "Freebuff",
+      "color": "#365510",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 73,
+        "concept": 52,
+        "uniqueness": 75,
+        "design": 74,
+        "usability": 91,
+        "kind": "App or game"
+      }
+    },
+    "https://portfolio-clone-and-d0kt.bolt.host": {
+      "methodVersion": 0,
+      "title": "Bilal AI Creative Studio Update",
+      "description": "",
+      "host": "portfolio-clone-and-d0kt.bolt.host",
+      "platform": "Bolt",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 83,
+        "concept": 96,
+        "uniqueness": 73,
+        "design": 79,
+        "usability": 83,
+        "kind": "Business"
+      }
+    },
+    "https://g23nx6n0fthgpyzmzq62jds85.bolt.host": {
+      "methodVersion": 0,
+      "title": "Vite + React + TS",
+      "description": "",
+      "host": "g23nx6n0fthgpyzmzq62jds85.bolt.host",
+      "platform": "Bolt",
+      "color": "#2c3a4d",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 69,
+        "concept": 48,
+        "uniqueness": 74,
+        "design": 70,
+        "usability": 83,
+        "kind": "Other"
+      }
+    },
+    "https://project-resource-hub-nxnl.bolt.host": {
+      "methodVersion": 0,
+      "title": "Project Resource Hub Admin",
+      "description": "",
+      "host": "project-resource-hub-nxnl.bolt.host",
+      "platform": "Bolt",
+      "color": "#365510",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 67,
+        "concept": 55,
+        "uniqueness": 62,
+        "design": 59,
+        "usability": 92,
+        "kind": "Other"
+      }
+    },
+    "https://vibenplay.fun": {
+      "methodVersion": 0,
+      "title": "vibenplay: Find your next favorite game",
+      "description": "Find your next favorite browser game. Play quick, clever and delightfully weird games at vibenplay.",
+      "host": "vibenplay.fun",
+      "platform": "Custom domain",
+      "color": "#7a5000",
+      "embeddable": false,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 87,
+        "concept": 85,
+        "uniqueness": 93,
+        "design": 100,
+        "usability": 69,
+        "kind": "App or game"
+      }
+    },
+    "https://share.google/f5NuUIkvDb4bRvbDt": {
+      "methodVersion": 0,
+      "title": "Bazm-e-Sukhan: A Home for Urdu Poetry",
+      "description": "Timeless Urdu poetry: ghazals and shers from Ghalib, Faiz, Iqbal, Mir and more, in Urdu script with translation.",
+      "host": "share.google/f5NuUIkvDb4bRvbDt",
+      "platform": "Google link",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 73,
+        "concept": 54,
+        "uniqueness": 81,
+        "design": 72,
+        "usability": 85,
+        "kind": "Real estate"
+      }
+    },
+    "https://share.google/zQ1noCwhE8U8Ns5wS": {
+      "methodVersion": 0,
+      "title": "Fry Factory: Crispy Fries, Big Burgers",
+      "description": "Fry Factory serves golden fries, smash burgers and shakes made fresh to order.",
+      "host": "share.google/zQ1noCwhE8U8Ns5wS",
+      "platform": "Google link",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 71,
+        "concept": 66,
+        "uniqueness": 72,
+        "design": 66,
+        "usability": 81,
+        "kind": "Food & drink"
+      }
+    },
+    "https://share.google/orY0sLbEDDVzAETx8": {
+      "methodVersion": 0,
+      "title": "Farytude | Short Fiction, Ebooks & Book Picks",
+      "description": "Welcome to Farytude, a digital space for short fiction, ebooks and handpicked books by Farina Jaffer.",
+      "host": "share.google/orY0sLbEDDVzAETx8",
+      "platform": "Google link",
+      "color": "#1a6447",
+      "embeddable": true,
+      "status": "ok",
+      "lastOkAt": "2026-11-23",
+      "fingerprint": {
+        "minhash": "",
+        "dhash": "",
+        "outline": ""
+      },
+      "measured": null,
+      "judged": null,
+      "legacy": {
+        "overall": 80,
+        "concept": 66,
+        "uniqueness": 75,
+        "design": 95,
+        "usability": 82,
+        "kind": "Other"
+      }
+    }
+  }
+}
