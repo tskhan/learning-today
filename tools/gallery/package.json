@@ -1,0 +1,12 @@
+{
+  "name": "student-gallery-generator",
+  "private": true,
+  "type": "module",
+  "description": "Builds student-websites.html from data/gallery: measures sites, queues judging for a Claude Code session, renders the page. See .claude/skills/student-gallery/SKILL.md.",
+  "scripts": {
+    "test": "node --test \"test/*.test.mjs\"",
+    "measure": "node measure.mjs",
+    "build": "node build.mjs"
+  },
+  "engines": { "node": ">=22" }
+}

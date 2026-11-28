@@ -8,5 +8,6 @@ Disallow: /student-websites.html
 Disallow: /portal/
 Disallow: /docs/
 Disallow: /tools/
+Disallow: /data/
 
 Sitemap: https://learning-today.com/sitemap.xml

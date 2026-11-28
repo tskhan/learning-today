@@ -7,3 +7,7 @@
 node_modules/
 .DS_Store
 *.pem
+
+# Student gallery generator: screenshots and per-run working files (never committed)
+data/gallery/.shots/
+data/gallery/.run/
