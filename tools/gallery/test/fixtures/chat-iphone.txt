@@ -1,0 +1,9 @@
+[20/10/2026, 19:02:11] Batch Group: ‎Messages and calls are end-to-end encrypted. Only people in this chat can read, listen to, or share them.
+[20/10/2026, 19:05:40] Ali Example: Here is my site https://ali-demo.lovable.app/ please check
+[20/10/2026, 19:07:02] ‎+92 300 0000000: Mine: http://www.sara-shop.vercel.app/?utm_source=wa
+[21/10/2026, 08:15:00] Teacher Sample: Class link https://meet.google.com/abc-defg-hij and slides https://docs.google.com/presentation/d/xyz
+[21/10/2026, 08:16:30] Teacher Sample: Join https://chat.whatsapp.com/INVITE123 and watch https://youtu.be/abc
+[22/10/2026, 21:40:00] Ali Example: Updated version:
+the new link is https://ali-demo.lovable.app
+[22/10/2026, 22:01:00] Bilal Sample: bilal-portfolio.netlify.app (made with Netlify), email me at bilal@example.com
+[23/10/2026, 10:00:00] Bilal Sample: also https://share.google/AbC123?ref=x and https://lovable.dev/projects/123
