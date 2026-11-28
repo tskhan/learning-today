@@ -40,3 +40,12 @@ describe("shared page parts", () => {
     expect(checkGallery({ gallery: withMotion, index }).problems.join(" ")).toMatch(/jsDelivr/);
   });
 });
+
+describe("gallery generator (tools/gallery)", () => {
+  it("renders the committed page byte for byte from its own data", async () => {
+    const { parsePage } = await import("../../../tools/gallery/lib/parse-page.mjs");
+    const { renderPage } = await import("../../../tools/gallery/lib/render.mjs");
+    const page = read("student-websites.html");
+    expect(renderPage(parsePage(page), read("tools/gallery/template.html")) === page).toBe(true);
+  });
+});

@@ -12,7 +12,7 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 | Address | https://learning-today.com | https://portal.learning-today.com |
 | Built with | Plain HTML, CSS and JavaScript (no build step, no libraries); the browser's own Web Animations API for animations | Next.js 16.4, React 19.3, TypeScript, Supabase (Auth, Postgres, Storage for pictures), Tiptap 3.33 editor saving Markdown, `marked` 18 + `sanitize-html` |
 | Hosted on | GitHub Pages, from `main` | Vercel (Root Directory `portal`), from `main`; Resend sends its emails |
-| Tested with | `tools/check-student-gallery.mjs` and link checks in the portal's unit tests | Vitest 5 (unit and database), Playwright 1.65 (browser), Supabase CLI 3 (local database) |
+| Tested with | `tools/check-student-gallery.mjs`, the gallery generator's tests (`tools/gallery`, node:test) and link checks in the portal's unit tests | Vitest 5 (unit and database), Playwright 1.65 (browser), Supabase CLI 3 (local database) |
 
 > This is an independent learner site. PIAIC, Panaversity and Anthropic run the official programme, book and exams. This site only points to them and records what one class has covered. Check [piaic.org](https://www.piaic.org) for syllabus, fees and dates.
 
@@ -24,7 +24,7 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 - **Header:** **Sign-in** is the first menu item, outlined in orange so it stands out, followed by the Class resources dropdown, Core documents, Learn Claude, Make Videos with Claude, PIAIC Batch 91 and Enrol with PIAIC. On wide screens the bar is centred over the page content: the logo starts where the content starts and the menu ends in line with the content's buttons.
 - **Home page:** a hero with a typing demo, a pinned practice quiz, a **Batch 91 Portal** card right after the hero, the Batch 91 class timeline, five core documents with previews, a Learn Claude path, the five-quarter roadmap and Class resources.
 - **Links shared in Class**, **Student websites** (177 sites with live previews, search, kind-of-site filters, automated ratings and five rankings) and **Make Videos with Claude**, plus a privacy page that explains both the site and the portal.
-- **Student gallery checks:** the gallery is generated outside this repo; [`docs/student-gallery.md`](docs/student-gallery.md) sets the rules (every count, rank and filter is computed from the final list of cards; ranks count only rated sites) and `node tools/check-student-gallery.mjs` checks them.
+- **Student gallery generator** (`tools/gallery/`): after each WhatsApp export, a script on the owner's PC saves only the links and dates, then a Claude Code session measures every site, judges the new or changed ones from screenshots (no API key), builds the page and opens a pull request. Unchanged sites keep their scores between exports. [`docs/student-gallery.md`](docs/student-gallery.md) sets the rules (every count, rank and filter is computed from the final list of cards; ranks count only rated sites) and `node tools/check-student-gallery.mjs` checks them.
 - Scroll reveals and count-ups (Web Animations API) that respect reduced motion, WebP images in several sizes with fallbacks, a sitemap, and `robots.txt` that keeps the portal source, `docs/` and the student gallery out of search.
 
 ### The Batch 91 Portal: frontend (Next.js on Vercel)
@@ -91,13 +91,15 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 | `assets/vendor/popover-polyfill-0.5.2.min.js` | The [popover polyfill](https://github.com/oddbird/popover-polyfill) (BSD-3-Clause, licence in `popover-polyfill-LICENSE.txt` beside it), loaded by `site.js` only in older browsers without native popovers. Served from this site instead of a CDN. |
 | `files/shaadi-expenses-sheet1.csv` | A small practice spreadsheet an admin shared in class: 12 made-up wedding expense lines with deliberate traps (a repeated line, a cancelled booking, a lowercase event name, pending items) for a checking exercise. Offered as a download from the Links shared in Class page. |
 | `CNAME` | Tells GitHub Pages to serve this repo at `learning-today.com`. Do not delete it. |
-| `robots.txt` | Tells search engines to skip the student websites page, the `portal/` source, `docs/` and `tools/`, and where the sitemap is. |
+| `robots.txt` | Tells search engines to skip the student websites page, the `portal/` source, `docs/`, `tools/` and `data/`, and where the sitemap is. |
 | `sitemap.xml` | Lists the pages search engines should index (home, Links shared in Class, Make Videos with Claude and privacy). Update `lastmod` when a page changes, and add any new page here. |
 | `.gitignore` | Keeps `.env` files (which hold keys) and `node_modules` out of the repository. |
 | `.nojekyll` | Tells GitHub Pages to publish the files as they are, without running Jekyll. |
 | `README.md` | This file. |
 | `portal/` | The Batch 91 Portal app (Next.js + Supabase), deployed to Vercel with Root Directory `portal`. GitHub Pages also publishes these source files as plain files; that is harmless (no secrets) and `robots.txt` keeps them out of search. See [`portal/README.md`](portal/README.md). |
 | `docs/` | Design and build plan for the portal (`docs/superpowers/`), and [`docs/student-gallery.md`](docs/student-gallery.md), the rules the student gallery generator must follow. Kept out of search by `robots.txt`. |
+| `tools/gallery/` | The student gallery generator: `extract.mjs` (chat export → links, on the owner's PC), `measure.mjs` (Playwright and axe-core), `queue.mjs` and `record.mjs` (judging by a Claude Code session), `build.mjs` (scores, page, counts, checker), `template.html`, `lib/` and its tests (`npm test`). Runbook: `.claude/skills/student-gallery/SKILL.md`. |
+| `data/gallery/` | The gallery's saved state, public: `links.json` (links and posting dates), `scores.json` (measurements, judgments and one kind sentence per site), `anchors.json` (reference sites for judging), `removed.json` (links students asked to remove). Kept out of search by `robots.txt`. |
 | `tools/check-student-gallery.mjs` | Checks that `student-websites.html` is consistent (counts, scores, ranks, tables, and the totals on the home page and in this README). Run `node tools/check-student-gallery.mjs` after regenerating the gallery; the portal's unit tests run it too. Kept out of search by `robots.txt`. |
 | `.github/dependabot.yml` | Dependabot's routine updates for the portal's npm packages: once a month, minor and patch updates in one grouped pull request, majors separately. Security fixes come straight away through the repo's Dependabot security updates setting. |
 | `CLAUDE.md` | Short notes Claude Code reads automatically in this repo: how to regenerate the gallery, testing in cloud sessions, and the rules for migrations and updates. |
@@ -109,7 +111,7 @@ A website for learning Claude, built around the **PIAIC Batch 91** class, in two
 - **Student websites:** links students posted in the same group (export of 23 Nov 2026), plus one site added on request that was shared outside it. Titles and descriptions come from each site's own public page.
 - **Ratings:** each site was opened in headless Chrome at desktop and phone width and measured. The scores are **automated estimates, not a teacher's grade**. They read what a page does, not the effort or learning behind it.
 
-The generator scripts are kept outside this repository because they work from the raw chat export. The pages here are the finished output. The student gallery generator must follow [`docs/student-gallery.md`](docs/student-gallery.md), and every regenerated gallery must pass `node tools/check-student-gallery.mjs`.
+The Links shared in Class page is made by scripts kept outside this repository, because they work from the raw chat export. The student gallery is generated in this repository (`tools/gallery/`) from a links-only file; it must follow [`docs/student-gallery.md`](docs/student-gallery.md), and every regenerated gallery must pass `node tools/check-student-gallery.mjs`.
 
 ## Privacy
 
