@@ -17,6 +17,8 @@ before(async () => {
     const [, site, rest] = req.url.split("?")[0].split("/");
     const file = rest || "index.html";
     const p = new URL(`${site}/${file}`, SITES);
+    if (site === "redirect") { res.writeHead(302, { location: `http://localhost:${server.address().port}/login/` }); res.end(); return; }
+    if (site === "hang" && file === "never.png") return; // never answers
     if (!existsSync(p)) { res.writeHead(404); res.end("not found"); return; }
     const headers = { "content-type": TYPES[path.extname(p.pathname)] ?? "application/octet-stream" };
     if (site === "broken") headers["x-frame-options"] = "SAMEORIGIN";
@@ -90,4 +92,23 @@ test("stripContacts drops whole sentences that held a phone number or email", as
   assert.equal(stripContacts("Fresh sourdough every morning. Call +92 300 1234567 or email hello@greenleaf.example to order."), "Fresh sourdough every morning.");
   assert.equal(stripContacts("Portfolio of Sara. Reach me: sara@example.com"), "Portfolio of Sara.");
   assert.equal(stripContacts("Open daily from 9 to 5"), "Open daily from 9 to 5");
+});
+
+test("a site that redirects to a sign-in page is blocked, not ranked", async () => {
+  const m = await measureSite(browser, `${base}/redirect/`, { shotsDir, timeoutMs: 10000 });
+  assert.equal(m.status, "blocked");
+});
+
+test("a page that shows its content but never fires load is still measured", async () => {
+  const m = await measureSite(browser, `${base}/hang/`, { shotsDir, timeoutMs: 5000 });
+  assert.equal(m.status, "ok");
+  assert.match(m.digest.text, /never finishes loading/);
+});
+
+test("stripContacts leaves clean text alone and doesn't take years or prices for phone numbers", async () => {
+  const { stripContacts } = await import("../measure.mjs");
+  assert.equal(stripContacts("Visit vibenplay.fun today. Prices from $4.99 for version 2.0"), "Visit vibenplay.fun today. Prices from $4.99 for version 2.0");
+  assert.equal(stripContacts("Serving Karachi 2010 - 2024 with love"), "Serving Karachi 2010 - 2024 with love");
+  assert.equal(stripContacts("Open 9:00 - 17:00 daily. Call 0300 1234567 today."), "Open 9:00 - 17:00 daily.");
+  assert.equal(stripContacts("WhatsApp us on +923001234567. We deliver."), "We deliver.");
 });

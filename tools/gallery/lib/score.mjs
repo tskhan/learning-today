@@ -39,7 +39,7 @@ export const overallScore = (s) => roundHalfEven((s.concept + s.uniqueness + s.d
 
 /** True when a site must be (re)judged: new, never judged, changed, or judged under an older rubric. */
 export function needsJudging(saved, fresh, rubricVersion) {
-  if (!saved || !saved.judged || saved.judged.rubricVersion !== rubricVersion) return true;
+  if (!saved || !saved.judged || saved.rejudge || saved.judged.rubricVersion !== rubricVersion) return true;
   const a = saved.fingerprint ?? {};
   const b = fresh.fingerprint;
   if (!a.minhash || !a.dhash) return true;

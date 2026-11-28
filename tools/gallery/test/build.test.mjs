@@ -97,3 +97,41 @@ test("building twice with nothing new gives identical output", () => {
   const t = readRepo("tools/gallery/template.html");
   assert.equal(renderPage(toPageModel(scores, links), t), renderPage(toPageModel(mergeState(scores, runOf(fresh()), {}, "2026-12-01"), links), t));
 });
+
+test("a changed site stays queued for judging even after a build runs before it is judged", async () => {
+  const { buildQueue } = await import("../queue.mjs");
+  const changed = fresh({ fingerprint: fp("a shoe shop with handmade leather shoes and bags online", "ff00ff00ff00ff00") });
+  const run = runOf(changed);
+  const before = scoresWith(site());
+  assert.deepEqual(buildQueue(run, before, 1).map((q) => q.url), [URL1]);
+  const afterBuild = mergeState(before, run, {}, "2026-12-01");
+  assert.deepEqual(buildQueue(run, afterBuild, 1).map((q) => q.url), [URL1]);
+  const judged = mergeState(afterBuild, run, { [URL1]: { concept: 60, designLook: 50, kind: "Shop", reason: "A simple shop.", judgedAt: "2026-12-01", rubricVersion: 1 } }, "2026-12-01");
+  assert.deepEqual(buildQueue(run, judged, 1), []);
+});
+
+test("a removed link leaves scores.json and no longer counts in others' uniqueness", () => {
+  const scores = { methodVersion: 1, rubricVersion: 1, sites: {
+    [URL1]: site(),
+    "https://gone.lovable.app": site({ host: "gone.lovable.app", title: "Gone" }),
+  } };
+  const out = buildAll({
+    links, scores, measurements: null, judgments: {}, template: readRepo("tools/gallery/template.html"),
+    index: '<p class="big" aria-hidden="true">1</p>\n<h3>Student websites</h3>', readme: "", previous: null, today: "2026-12-01",
+  });
+  assert.deepEqual(Object.keys(out.scores.sites), [URL1]);
+  assert.doesNotMatch(JSON.stringify(out.scores), /gone\.lovable\.app/);
+  assert.ok(toPageModel(scores, links).cards[0].scores.uniqueness > 50, "uniqueness counts only cards on the page");
+});
+
+test("the summary compares against the page saved when measuring started, not a mid-run build", async () => {
+  const { mkdtempSync, mkdirSync, writeFileSync } = await import("node:fs");
+  const { tmpdir } = await import("node:os");
+  const { join } = await import("node:path");
+  const { previousPage } = await import("../build.mjs");
+  const dir = mkdtempSync(join(tmpdir(), "gallery-data-"));
+  assert.equal(previousPage(dir, "<on disk>"), "<on disk>");
+  mkdirSync(join(dir, ".run"));
+  writeFileSync(join(dir, ".run/baseline.html"), "<published>");
+  assert.equal(previousPage(dir, "<on disk>"), "<published>");
+});

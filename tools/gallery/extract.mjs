@@ -17,10 +17,17 @@ const URL_RE = /\bhttps?:\/\/[^\s<>"'`]+/gi;
 // Links pasted without "https://", on the hosts students use.
 const BARE_RE = /(?<![\w./-])(?:[a-z0-9-]+\.)+(?:lovable\.app|vercel\.app|netlify\.app|github\.io|base44\.app|bolt\.host|freebuff\.app)(?:\/[^\s<>"'`]*)?/gi;
 
-/** Links that are never student websites. */
+/** Links that are never student websites: chat and video, documents, social networks, AI tools,
+    news, code hosting (github.io pages are kept) and this site itself. Anything else that isn't a
+    student's site goes in data/gallery/removed.json with the reason "not-a-site". */
 const IGNORE = [
-  "chat.whatsapp.com", "wa.me", "whatsapp.com", "youtube.com", "youtu.be", "docs.google.com", "drive.google.com",
-  "forms.gle", "meet.google.com", "piaic.org", "panaversity.org", "lovable.dev",
+  "chat.whatsapp.com", "wa.me", "whatsapp.com", "youtube.com", "youtu.be", "zoom.us", "meet.google.com",
+  "docs.google.com", "drive.google.com", "forms.gle", "colab.research.google.com", "notion.so", "canva.com",
+  "linkedin.com", "facebook.com", "fb.com", "instagram.com", "x.com", "twitter.com", "tiktok.com", "threads.net", "reddit.com", "medium.com",
+  "chatgpt.com", "openai.com", "claude.ai", "claude.com", "anthropic.com", "gemini.google.com", "openrouter.ai", "ollama.com",
+  "huggingface.co", "perplexity.ai", "deepseek.com", "modelcontextprotocol.io", "cursor.com", "lovable.dev",
+  "github.com", "gitlab.com", "npmjs.com", "stackoverflow.com", "techcrunch.com", "theverge.com", "wikipedia.org",
+  "piaic.org", "panaversity.org", "learning-today.com",
 ];
 const ignored = (url) => {
   const host = new URL(url).hostname.replace(/^www\./, "");
@@ -29,7 +36,7 @@ const ignored = (url) => {
 
 function dayFirst(lines) {
   for (const l of lines) {
-    const m = l.match(LINE);
+    const m = l.replace(INVISIBLE, "").match(LINE);
     if (!m) continue;
     if (Number(m[1]) > 12) return true;
     if (Number(m[2]) > 12) return false;
@@ -38,6 +45,8 @@ function dayFirst(lines) {
 }
 
 const trimUrl = (u) => u.replace(/[.,;:!?)\]}*_]+$/, "");
+// Direction marks and other invisible characters WhatsApp puts around names, links and Urdu text.
+const INVISIBLE = /[\u200b-\u200f\u202a-\u202e\u2060\ufeff]/g;
 
 function isoDate(m, df) {
   const [a, b, y] = [Number(m[1]), Number(m[2]), m[3]];
@@ -52,7 +61,7 @@ export function lastMessageDate(text) {
   const df = dayFirst(lines);
   let date = null;
   for (const line of lines) {
-    const m = line.match(LINE);
+    const m = line.replace(INVISIBLE, "").match(LINE);
     if (m) date = isoDate(m, df);
   }
   return date;
@@ -64,7 +73,8 @@ export function parseChat(text) {
   const df = dayFirst(lines);
   const out = [];
   let date = null;
-  for (const line of lines) {
+  for (const rawLine of lines) {
+    const line = rawLine.replace(INVISIBLE, "");
     const m = line.match(LINE);
     let body = line;
     if (m) {
@@ -150,5 +160,6 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   writeFileSync(linksFile, JSON.stringify({ exportDate, links }, null, 2) + "\n");
   console.log(`found ${new Set(found.map((f) => f.url)).size}, new ${added.length}, skipped (removed) ${skipped}; export date ${exportDate}`);
   for (const url of added) console.log(`  new: ${url}`);
-  console.log("Check the new links are students' websites, then commit data/gallery/links.json.");
+  console.log("Check the new links are students' websites. For any that isn't, add it to data/gallery/removed.json as");
+  console.log('  { "url": "<link>", "reason": "not-a-site" }  and run this again. Then commit data/gallery/links.json.');
 }

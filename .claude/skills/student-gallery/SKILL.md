@@ -11,6 +11,7 @@ The generator lives in `tools/gallery/`; the rules the page must meet are in `do
 
 - `data/gallery/links.json` must be up to date. The owner makes it on their PC with
   `node tools/gallery/extract.mjs "<WhatsApp export .txt>"` and pushes it. Never ask for the chat export and never commit it.
+- If a link in `links.json` isn't a student's website (a tool, an article, a profile), add it to `data/gallery/removed.json` as `{ "url": "…", "reason": "not-a-site" }` and remove it from `links.json`; the build then drops it everywhere.
 - This needs to reach students' sites (lovable.app, vercel.app, netlify.app, …). In a cloud session, check with `get_environment`; if those hosts are blocked, propose a personal environment with open internet access for this repository (the owner approves) and stop until it's in place. On the owner's PC it works as it is.
 
 ## 1. Measure

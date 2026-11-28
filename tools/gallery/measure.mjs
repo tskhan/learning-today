@@ -22,14 +22,17 @@ const VIEWS = {
   phone: { viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, isMobile: true, hasTouch: true, tap: 40 },
 };
 const STARTER = /welcome to your (new|blank) (app|project|site)|start building your|your blank app|get started by editing|edit src\/app|vite \+ react|this is a blank/i;
+// Phone-number candidates; only runs with 10 or more digits count (so years, prices and times don't).
 const PHONE = /\+?\d[\d\s().-]{7,}\d/g;
+const isPhone = (s) => (s.match(/\d/g) ?? []).length >= 10;
 const EMAIL = /[\w.+-]+@[\w-]+(\.[\w-]+)+/g;
 
-/** Drops every sentence that held a phone number or email address. */
+/** Drops every sentence that held a phone number or email address; other text is left as it is. */
 export function stripContacts(text) {
-  const marked = String(text ?? "").replace(/\s+/g, " ").trim().replace(EMAIL, "\u0000").replace(PHONE, "\u0000");
-  const sentences = marked.match(/[^.!?]+[.!?]*/g) ?? [];
-  return sentences.filter((s) => !s.includes("\u0000")).map((s) => s.trim()).join(" ").trim();
+  const clean = String(text ?? "").replace(/\s+/g, " ").trim();
+  const marked = clean.replace(EMAIL, "\u0000").replace(PHONE, (m) => (isPhone(m) ? "\u0000" : m));
+  if (!marked.includes("\u0000")) return clean;
+  return marked.split(/(?<=[.!?])\s+/).filter((s) => !s.includes("\u0000")).join(" ").trim();
 }
 
 // Collected in the page from the start: largest contentful paint and layout shift.
@@ -111,6 +114,17 @@ async function dhashOf(browser, png) {
   }
 }
 
+const AUTH_HOSTS = ["vercel.com", "lovable.dev", "accounts.google.com", "app.base44.com", "github.com", "netlify.com", "bolt.new"];
+
+/** True when a visit to `requested` ended on a sign-in page somewhere else (a login wall). */
+export function landedOnSignIn(requested, final) {
+  const a = new URL(requested), b = new URL(final);
+  const same = a.hostname.replace(/^www\./, "") === b.hostname.replace(/^www\./, "") && a.pathname.replace(/\/+$/, "") === b.pathname.replace(/\/+$/, "");
+  if (same) return false;
+  return AUTH_HOSTS.includes(b.hostname.replace(/^www\./, "")) || /^(accounts|auth|login|sso|signin)\./.test(b.hostname) ||
+    /(^|\/)(log-?in|sign-?in|sign-?up|sso|auth|oauth|session)(\/|$|\?)/i.test(b.pathname);
+}
+
 function frameable(headers) {
   const xfo = (headers["x-frame-options"] ?? "").toLowerCase();
   if (xfo.includes("deny") || xfo.includes("sameorigin")) return false;
@@ -131,8 +145,11 @@ async function measureView(browser, url, name, { shotsDir, timeoutMs, slugName }
   page.on("response", (r) => { if (r.status() >= 400 && counted.has(r.request().resourceType()) && r.request() !== mainRequest) failedRequests++; });
   let mainRequest = null;
   try {
-    const response = await page.goto(url, { waitUntil: "load", timeout: timeoutMs });
+    // Wait for the page's content, then for "load" if it comes: a page that never finishes loading
+    // (one stuck image) is still measured, and its speed scores low on its own.
+    const response = await page.goto(url, { waitUntil: "domcontentloaded", timeout: timeoutMs });
     mainRequest = response?.request() ?? null;
+    await page.waitForLoadState("load", { timeout: timeoutMs }).catch(() => {});
     await page.waitForLoadState("networkidle", { timeout: 5000 }).catch(() => {});
     await page.waitForTimeout(800);
     const r = await page.evaluate(READ, tap);
@@ -157,7 +174,7 @@ async function measureView(browser, url, name, { shotsDir, timeoutMs, slugName }
       await page.screenshot({ path: shot });
     }
     return {
-      status: response && response.status() >= 400 ? "blocked" : r.passwordWall ? "blocked" : "ok",
+      status: (response && response.status() >= 400) || r.passwordWall || landedOnSignIn(url, page.url()) ? "blocked" : "ok",
       headers: response ? await response.allHeaders() : {},
       read: r,
       shot,
@@ -223,6 +240,8 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
   const urls = links.map((l) => l.url).filter((u) => !only || u === only);
   const shotsDir = path.join(data, ".shots");
   mkdirSync(path.join(data, ".run"), { recursive: true });
+  // The published page as it was before this regeneration, for the pull request summary.
+  if (!only) writeFileSync(path.join(data, ".run/baseline.html"), readFileSync(path.join(root, "student-websites.html")));
   const browser = await chromium.launch(process.env.PW_CHROMIUM_PATH ? { executablePath: process.env.PW_CHROMIUM_PATH } : {});
   const results = {};
   let done = 0;

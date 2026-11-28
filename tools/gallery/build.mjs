@@ -45,6 +45,8 @@ export function mergeState(scores, measurements, judgments, today) {
         s.fingerprint = m.fingerprint;
         s.starter = m.starter;
         s.measured = m.measured;
+        // The saved judgment no longer describes this site: keep it queued until it is judged again.
+        if (s.judged && !judgments[url]) s.rejudge = true;
       }
       if (m.title || m.description) {
         if (m.title !== s.title || m.description !== s.description) delete s.q;
@@ -58,7 +60,10 @@ export function mergeState(scores, measurements, judgments, today) {
       s.status = m.status;
       if (m.status === "blocked" && m.title) s.title = s.title || m.title;
     }
-    if (judgments[url]) s.judged = judgments[url];
+    if (judgments[url]) {
+      s.judged = judgments[url];
+      delete s.rejudge;
+    }
     s.methodVersion = s.judged && s.measured ? 1 : 0;
     out.sites[url] = s;
   }
@@ -92,9 +97,10 @@ function cardScores(s, uniqueness, url, today) {
 
 /** The page model: one card per link, in links.json order. */
 export function toPageModel(scores, links, today = links.exportDate) {
+  const onPage = new Set(links.links.map((l) => l.url));
   const withFp = Object.fromEntries(
     Object.entries(scores.sites)
-      .filter(([, s]) => s.fingerprint?.minhash)
+      .filter(([url, s]) => onPage.has(url) && s.fingerprint?.minhash)
       .map(([url, s]) => [url, { ...s.fingerprint, starter: !!s.starter }]),
   );
   const uniqueness = uniquenessScores(withFp);
@@ -134,9 +140,18 @@ function updateCounts(index, readme, model) {
   return { index: newIndex, readme: newReadme };
 }
 
+/** The page to compare against: the one saved when measuring started (mid-run builds overwrite the page on disk). */
+export function previousPage(dataDir, onDisk) {
+  const baseline = path.join(dataDir, ".run/baseline.html");
+  return existsSync(baseline) ? readFileSync(baseline, "utf8") : onDisk;
+}
+
 /** Everything the CLI does, without touching files. */
 export function buildAll({ links, scores, measurements, judgments, template, index, readme, previous, today }) {
-  const merged = measurements ? mergeState(scores, measurements, judgments, today) : scores;
+  const merged = measurements ? mergeState(scores, measurements, judgments, today) : structuredClone(scores);
+  // Only links still in links.json stay in the (public) saved state: removed links leave no trace.
+  const keep = new Set(links.links.map((l) => l.url));
+  for (const url of Object.keys(merged.sites)) if (!keep.has(url)) delete merged.sites[url];
   const model = toPageModel(merged, links, today);
   const html = renderPage(model, template);
   const counts = updateCounts(index, readme, model);
@@ -166,7 +181,7 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     template: readFileSync(at("tools/gallery/template.html"), "utf8"),
     index: readFileSync(at("index.html"), "utf8"),
     readme: readFileSync(at("README.md"), "utf8"),
-    previous: readFileSync(at("student-websites.html"), "utf8"),
+    previous: previousPage(at("data/gallery"), readFileSync(at("student-websites.html"), "utf8")),
     today: new Date().toISOString().slice(0, 10),
   });
   if (out.problems.length) {

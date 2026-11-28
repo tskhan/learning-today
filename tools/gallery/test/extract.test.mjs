@@ -56,3 +56,22 @@ test("existing links keep their order; new links are added at the end, oldest fi
   const { links } = mergeLinks(existing, [{ url: "https://new-late.lovable.app", date: "2026-10-25" }, { url: "https://new-early.lovable.app", date: "2026-10-22" }], []);
   assert.deepEqual(links.map((l) => l.url), ["https://z-first.lovable.app", "https://a-second.lovable.app", "https://new-early.lovable.app", "https://new-late.lovable.app"]);
 });
+
+test("invisible direction marks next to a link don't lose it or create a second card", () => {
+  const text = [
+    "[24/11/2026, 9:05:33 PM] ‎Ali Example: ‎https://a.lovable.app‎",
+    "[24/11/2026, 9:06:00 PM] Sara Shop: ‏میری سائٹ https://a.lovable.app/‎ دیکھیں",
+    "[24/11/2026, 9:07:00 PM] Bilal Sample: <Media omitted>",
+  ].join("\n");
+  assert.deepEqual(parseChat(text), [{ url: "https://a.lovable.app", date: "2026-11-24" }, { url: "https://a.lovable.app", date: "2026-11-24" }]);
+});
+
+test("social, AI-tool, news and code-hosting links are never student websites", () => {
+  const urls = ["https://www.linkedin.com/in/some-person", "https://instagram.com/x", "https://facebook.com/x", "https://x.com/x",
+    "https://twitter.com/x", "https://tiktok.com/@x", "https://chatgpt.com/share/abc", "https://claude.ai/share/abc", "https://claude.com/download",
+    "https://openrouter.ai", "https://ollama.com", "https://techcrunch.com/a", "https://github.com/user/repo", "https://learning-today.com/x",
+    "https://portal.learning-today.com", "https://modelcontextprotocol.io", "https://anthropic.com/news"];
+  const text = urls.map((u, i) => `24/11/2026, 10:${String(i).padStart(2, "0")} - Someone: ${u}`).join("\n");
+  assert.deepEqual(parseChat(text), []);
+  assert.deepEqual(parseChat("24/11/2026, 10:00 - Someone: https://user.github.io/portfolio"), [{ url: "https://user.github.io/portfolio", date: "2026-11-24" }]);
+});

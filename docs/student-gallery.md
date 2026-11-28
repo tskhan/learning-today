@@ -6,7 +6,7 @@
 1. On the owner's PC: `node tools/gallery/extract.mjs "<export .txt>"` writes `data/gallery/links.json` (links and dates only: no names, numbers or message text). Push it. The chat export itself is never committed.
 2. In a Claude Code session: "regenerate the gallery". The session follows [`.claude/skills/student-gallery/SKILL.md`](../.claude/skills/student-gallery/SKILL.md): measure every site, judge the new or changed ones from screenshots (no API key), build, check, open a pull request.
 
-The saved state is in `data/gallery/` (`links.json`, `scores.json`, `anchors.json`, `removed.json`). These files are public; a link a student asks to remove goes in `removed.json` and is skipped from then on. The design is [`docs/superpowers/specs/2026-11-28-student-gallery-generator-design.md`](superpowers/specs/2026-11-28-student-gallery-generator-design.md). `build.mjs` runs the checker itself and writes nothing unless it passes; you can also run it from the repository root:
+The saved state is in `data/gallery/` (`links.json`, `scores.json`, `anchors.json`, `removed.json`). These files are public. A link a student asks to remove, or a link that isn't a student's website, goes in `removed.json` (`{ "url": …, "reason": "asked" }` or `"not-a-site"`) and is skipped from then on; the next build also drops it from `scores.json`. The design is [`docs/superpowers/specs/2026-11-28-student-gallery-generator-design.md`](superpowers/specs/2026-11-28-student-gallery-generator-design.md). `build.mjs` runs the checker itself and writes nothing unless it passes; you can also run it from the repository root:
 
 ```bash
 node tools/check-student-gallery.mjs
