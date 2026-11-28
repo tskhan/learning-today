@@ -8,5 +8,11 @@
     "measure": "node measure.mjs",
     "build": "node build.mjs"
   },
-  "engines": { "node": ">=22" }
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "axe-core": "4.14.1",
+    "playwright": "1.65.1"
+  }
 }
